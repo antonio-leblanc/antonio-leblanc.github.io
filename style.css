@@ -1,0 +1,134 @@
+:root {
+  --bg: #0c0f0d;
+  --bg-alt: #10140f;
+  --fg: #eae7dd;
+  --fg-dim: #a3a89c;
+  --accent: #ff7a45;
+  --line: #23271f;
+  --max-w: 720px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.hero {
+  padding: clamp(64px, 14vh, 120px) 0 clamp(40px, 8vh, 72px);
+}
+
+.eyebrow {
+  color: var(--fg-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  margin: 0 0 16px;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  line-height: 1.25;
+  margin: 0 0 28px;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg-dim);
+  margin: 0 0 20px;
+  font-weight: 600;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+}
+
+.section {
+  padding: 56px 0;
+  border-top: 1px solid var(--line);
+}
+
+.section.alt {
+  background: var(--bg-alt);
+}
+
+.section p {
+  margin: 0 0 16px;
+  color: var(--fg);
+}
+
+.section p:last-child {
+  margin-bottom: 0;
+}
+
+.stats {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin: 32px 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat .num {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stat .label {
+  color: var(--fg-dim);
+  font-size: 0.85rem;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 32px 0 56px;
+}
+
+footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  color: var(--fg-dim);
+  font-size: 0.9rem;
+}
+
+footer .links {
+  gap: 16px;
+}
