@@ -16,75 +16,101 @@
 </head>
 <body>
 
-  <header class="hero">
-    <div class="wrap hero-wrap">
-      <div class="hero-text">
-        <p class="eyebrow">Antonio Leblanc</p>
-        <h1>Co-Founder &amp; CTO @ 1.5°C — building AI that fights<br>wildfires before they spread.</h1>
-        <nav class="links">
-          <a href="https://github.com/antonio-leblanc" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://www.linkedin.com/in/antonio-leblanc/" target="_blank" rel="noopener">LinkedIn</a>
-        </nav>
-      </div>
-      <img class="hero-avatar" src="avatar.png" alt="Antonio Leblanc" width="220" height="324">
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"></div>
+
+  <div class="topbar" id="topbar">
+    <div class="wrap">
+      <span class="mark">Antonio Leblanc</span>
+      <nav>
+        <a href="#pantera">Pantera</a>
+        <a href="#agents">Agents</a>
+        <a href="#oss">Open source</a>
+        <a class="contact" href="https://www.linkedin.com/in/antonio-leblanc/" target="_blank" rel="noopener">Contact</a>
+      </nav>
     </div>
+  </div>
+
+  <header class="hero" id="hero">
+    <div class="spot" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow reveal"><span class="dot"></span> Co-Founder &amp; CTO @ 1.5°C — Rio de Janeiro</p>
+        <h1 class="reveal" style="--d:80ms">Building AI that fights wildfires <span class="dim">before they spread.</span></h1>
+        <p class="hero-sub reveal" style="--d:160ms">17 million hectares under watch across Brazil — the Pantanal, indigenous territories, and the land nobody else is looking at.</p>
+        <div class="cta reveal" style="--d:240ms">
+          <a class="btn primary" href="#pantera">See the work</a>
+          <a class="btn" href="https://github.com/antonio-leblanc" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/antonio-leblanc/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="avatar-frame reveal" style="--d:120ms">
+        <img src="avatar.png" alt="Antonio Leblanc" width="220" height="324">
+      </div>
+    </div>
+    <span class="scroll-hint" aria-hidden="true">Scroll</span>
   </header>
 
   <main>
-    <section class="section">
+    <section class="section" id="about">
       <div class="wrap">
-        <h2>About</h2>
-        <p>I joined <a href="https://umgrauemeio.com/" target="_blank" rel="noopener">1.5°C</a> (umgrauemeio) as an intern, became CTO ten months later, and today I'm co-founder — leading engineering at a Brazilian climate tech company built around one idea: you can't manage a wildfire you don't see coming — prevention, response, all of it starts there.</p>
-        <p>Tech alone doesn't solve the climate crisis. It needs policy, community, and people who show up for the parts nobody claps for — that's the part I care about most.</p>
-        <p>If you're working on something in that same direction — wildfire, climate, agentic AI — I'd like to hear about it.</p>
+        <h2 class="reveal">About</h2>
+        <div class="body">
+          <p class="lead reveal">I joined <a class="u" href="https://umgrauemeio.com/" target="_blank" rel="noopener">1.5°C</a> as an intern, became CTO ten months later, and today I'm co-founder.</p>
+          <p class="reveal" style="--d:80ms">I lead engineering at a Brazilian climate tech company built around one idea: you can't manage a wildfire you don't see coming — prevention, response, all of it starts there.</p>
+          <p class="reveal" style="--d:120ms">Tech alone doesn't solve the climate crisis. It needs policy, community, and people who show up for the parts nobody claps for — that's the part I care about most.</p>
+          <p class="reveal" style="--d:160ms">If you're working on something in that same direction — wildfire, climate, agentic AI — I'd like to hear about it.</p>
+        </div>
       </div>
     </section>
 
-    <section class="section alt">
+    <section class="section tint" id="pantera">
       <div class="wrap">
-        <h2>Pantera</h2>
-        <p>Pantera is the hybrid edge/cloud AI platform we built at 1.5°C, covering the full cycle — prevention, detection, response, and impact assessment. It combines a network of <strong>190 cameras</strong> across Brazil with satellite feeds and fire risk modeling to detect wildfires with 95% accuracy, taking on one of the country's largest sources of CO₂ emissions.</p>
-        <div class="stats">
-          <div class="stat">
-            <span class="num">17M+</span>
-            <span class="label">hectares monitored</span>
+        <h2 class="reveal">Pantera</h2>
+        <div class="body">
+          <p class="lead reveal">A hybrid edge/cloud AI platform covering the full cycle — prevention, detection, response, impact.</p>
+          <div class="stats reveal" style="--d:80ms">
+            <div class="stat"><span class="num" data-count="17" data-suffix="M+">17M+</span><span class="label">hectares monitored</span></div>
+            <div class="stat"><span class="num" data-count="190" data-suffix="">190</span><span class="label">cameras in the field</span></div>
+            <div class="stat"><span class="num" data-count="95" data-suffix="%">95%</span><span class="label">detection accuracy</span></div>
+            <div class="stat"><span class="num" data-count="10" data-suffix="mo">10mo</span><span class="label">intern → CTO</span></div>
           </div>
-          <div class="stat">
-            <span class="num">190</span>
-            <span class="label">cameras in the field</span>
-          </div>
-          <div class="stat">
-            <span class="num">95%</span>
-            <span class="label">detection accuracy</span>
-          </div>
-          <div class="stat">
-            <span class="num">10mo</span>
-            <span class="label">intern → CTO</span>
+          <p class="reveal">It combines a network of <strong>190 cameras</strong> across Brazil with satellite feeds and fire risk modeling to detect wildfires with 95% accuracy, taking on one of the country's largest sources of CO₂ emissions.</p>
+          <p class="reveal" style="--d:60ms">Some of that ground is the Pantanal and indigenous territories — the kind of land where losing a few hours of detection time actually matters. We also work with clients in pulp/paper, agriculture, and conservation to cut fire impact on the ground.</p>
+          <div class="tech reveal" style="--d:100ms">
+            <span>Python</span><span>FastAPI</span><span>AWS</span><span>Docker</span><span>PostGIS</span><span>PyTorch</span>
           </div>
         </div>
-        <p>Some of that ground is the Pantanal and indigenous territories — the kind of land where losing a few hours of detection time actually matters. We also work with clients in pulp/paper, agriculture, and conservation to cut fire impact on the ground.</p>
-        <p>Built on Python, FastAPI, AWS, Docker, PostGIS, and PyTorch.</p>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="agents">
       <div class="wrap">
-        <h2>Agents</h2>
-        <p>Alongside Pantera, I set up the infrastructure behind 8 AI agents that now run day-to-day operations across Sales, Customer Success, Support, and Marketing at 1.5°C — orchestrated on <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes</a>, an open-source agent framework I deployed on our own servers. Each agent owns a domain, and the whole thing runs without anyone babysitting it.</p>
+        <h2 class="reveal">Agents</h2>
+        <div class="body">
+          <p class="lead reveal">8 AI agents now run day-to-day operations at 1.5°C — without anyone babysitting them.</p>
+          <p class="reveal" style="--d:80ms">Alongside Pantera, I set up the infrastructure behind agents covering Sales, Customer Success, Support, and Marketing — orchestrated on <a class="u" href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes</a>, an open-source agent framework I deployed on our own servers. Each agent owns a domain.</p>
+        </div>
       </div>
     </section>
 
-    <section class="section alt">
+    <section class="section tint" id="oss">
       <div class="wrap">
-        <h2>Open source</h2>
-        <p>Since 2022 I've contributed to <a href="https://github.com/forefireAPI/forefire" target="_blank" rel="noopener">ForeFire</a>, an open-source wildfire simulation engine in C++ built by CNRS at Université de Corse. Mostly plumbing: Dockerizing it, setting up CI/CD, and writing docs people can actually follow.</p>
+        <h2 class="reveal">Open source</h2>
+        <div class="body">
+          <p class="lead reveal">Contributing to <a class="u" href="https://github.com/forefireAPI/forefire" target="_blank" rel="noopener">ForeFire</a> since 2022.</p>
+          <p class="reveal" style="--d:80ms">An open-source wildfire simulation engine in C++ built by CNRS at Université de Corse. Mostly plumbing: Dockerizing it, setting up CI/CD, and writing docs people can actually follow.</p>
+        </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="outside">
       <div class="wrap">
-        <h2>Outside of work</h2>
-        <p>I run — marathon PR sub-3:23 — cycle, play sax in a carnival bloco, and spend as much time as I can with family and friends, traveling when it fits.</p>
+        <h2 class="reveal">Outside of work</h2>
+        <div class="body">
+          <p class="reveal">I run — marathon PR sub-3:23 — cycle, play sax in a carnival bloco, and spend as much time as I can with family and friends, traveling when it fits.</p>
+        </div>
       </div>
     </section>
   </main>
@@ -92,12 +118,86 @@
   <footer>
     <div class="wrap">
       <span>© 2026 Antonio Leblanc</span>
-      <nav class="links">
+      <nav>
         <a href="https://github.com/antonio-leblanc" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/antonio-leblanc/" target="_blank" rel="noopener">LinkedIn</a>
       </nav>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* reveal on scroll */
+      var revealables = document.querySelectorAll('.reveal');
+      if (reduced || !('IntersectionObserver' in window)) {
+        revealables.forEach(function (el) { el.classList.add('in'); });
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              io.unobserve(e.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+        revealables.forEach(function (el) { io.observe(el); });
+      }
+
+      /* count-up on the stat numbers */
+      var nums = document.querySelectorAll('.num[data-count]');
+      if (!reduced && 'IntersectionObserver' in window) {
+        var numIo = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            var el = e.target;
+            numIo.unobserve(el);
+            var target = parseFloat(el.dataset.count);
+            var suffix = el.dataset.suffix || '';
+            var start = null, dur = 1100;
+            function step(ts) {
+              if (start === null) start = ts;
+              var p = Math.min((ts - start) / dur, 1);
+              var eased = 1 - Math.pow(1 - p, 3);
+              el.textContent = Math.round(target * eased) + suffix;
+              if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+          });
+        }, { threshold: 0.5 });
+        nums.forEach(function (el) { numIo.observe(el); });
+      }
+
+      /* scroll progress + topbar */
+      var bar = document.querySelector('.progress');
+      var topbar = document.getElementById('topbar');
+      var hero = document.getElementById('hero');
+      var ticking = false;
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          var max = document.documentElement.scrollHeight - window.innerHeight;
+          bar.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
+          topbar.classList.toggle('visible', window.scrollY > hero.offsetHeight * 0.7);
+          ticking = false;
+        });
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      /* pointer-tracked light in the hero */
+      if (!reduced && window.matchMedia('(pointer: fine)').matches) {
+        var spot = hero.querySelector('.spot');
+        hero.addEventListener('pointermove', function (e) {
+          var r = hero.getBoundingClientRect();
+          spot.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+          spot.style.setProperty('--my', (e.clientY - r.top) + 'px');
+        });
+      }
+    })();
+  </script>
 
 </body>
 </html>
