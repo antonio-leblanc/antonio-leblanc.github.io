@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Antonio Leblanc</title>
+  <meta name="author" content="Antonio Leblanc">
   <meta name="description" content="Antonio Leblanc — Most AI fails in the field, not in the notebook. Co-Founder &amp; CTO @ 1.5°C.">
+  <link rel="canonical" href="https://antonio-leblanc.github.io/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='50' dy='.35em' text-anchor='middle' font-size='78' font-weight='700' font-family='Helvetica,Arial,sans-serif' fill='%23f9a522'%3EA%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
 
@@ -13,6 +15,28 @@
   <meta property="og:title" content="Antonio Leblanc">
   <meta property="og:description" content="Most AI fails in the field, not in the notebook. Co-Founder &amp; CTO @ 1.5°C.">
   <meta property="og:image" content="https://antonio-leblanc.github.io/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Antonio Leblanc">
+  <meta name="twitter:description" content="Most AI fails in the field, not in the notebook. Co-Founder &amp; CTO @ 1.5°C.">
+  <meta name="twitter:image" content="https://antonio-leblanc.github.io/og-image.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Antonio Leblanc",
+    "url": "https://antonio-leblanc.github.io/",
+    "image": "https://antonio-leblanc.github.io/avatar.png",
+    "jobTitle": "Co-Founder & CTO",
+    "worksFor": { "@type": "Organization", "name": "1.5°C (umgrauemeio)", "url": "https://umgrauemeio.com/" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Rio de Janeiro", "addressCountry": "BR" },
+    "knowsAbout": ["Wildfire detection", "AI for climate resilience", "Edge machine learning", "Geospatial intelligence", "Agentic systems"],
+    "sameAs": [
+      "https://www.linkedin.com/in/antonio-leblanc/",
+      "https://github.com/antonio-leblanc"
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -24,11 +48,12 @@
     <div class="wrap">
       <span class="mark">Antonio Leblanc</span>
       <nav>
-        <a href="#approach">Approach</a>
         <a href="#pantera">Pantera</a>
-        <a href="#agents">Agents</a>
+        <a href="#approach">Approach</a>
+        <a href="#elsewhere">Elsewhere</a>
         <a href="#now">Now</a>
-        <a class="contact" href="https://www.linkedin.com/in/antonio-leblanc/" target="_blank" rel="noopener">Contact</a>
+        <!-- e-mail pessoal (o mesmo dos commits, ja publico). Trocar se preferir outro endereco. -->
+        <a class="contact" href="mailto:antoniolebla@gmail.com">Email</a>
       </nav>
     </div>
   </div>
@@ -39,9 +64,10 @@
       <div>
         <p class="eyebrow reveal"><span class="dot"></span> Co-Founder &amp; CTO @ 1.5°C — Rio de Janeiro</p>
         <h1 class="reveal" style="--d:80ms">Most AI fails in the field, <span class="dim">not in the notebook.</span></h1>
-        <p class="hero-sub reveal" style="--d:160ms">Six years making machine learning survive dust, lightning and dead 4G links — 190 cameras watching 17 million hectares of Brazil for wildfire.</p>
+        <p class="hero-sub reveal" style="--d:160ms">What I actually do is narrower than the title: I get models out of the demo and into places where nobody is around to restart them. I joined <a class="u" href="https://umgrauemeio.com/" target="_blank" rel="noopener">1.5°C</a> as an intern, became CTO ten months later, and today I'm co-founder — all of it on wildfire in Brazil.</p>
         <div class="cta reveal" style="--d:240ms">
-          <a class="btn primary" href="#approach">How I work</a>
+          <a class="btn primary" href="#pantera">See the work</a>
+          <a class="btn" href="mailto:antoniolebla@gmail.com">Email</a>
           <a class="btn" href="https://github.com/antonio-leblanc" target="_blank" rel="noopener">GitHub</a>
           <a class="btn" href="https://www.linkedin.com/in/antonio-leblanc/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
@@ -50,33 +76,10 @@
         <img src="avatar.png" alt="Antonio Leblanc" width="220" height="324">
       </div>
     </div>
-    <span class="scroll-hint" aria-hidden="true">Scroll</span>
+    <span class="scroll-hint" aria-hidden="true"></span>
   </header>
 
   <main>
-    <section class="section" id="about">
-      <div class="wrap">
-        <h2 class="reveal">About</h2>
-        <div class="body">
-          <p class="lead reveal">I joined <a class="u" href="https://umgrauemeio.com/" target="_blank" rel="noopener">1.5°C</a> as an intern, became CTO ten months later, and today I'm co-founder.</p>
-          <p class="reveal" style="--d:80ms">What I actually do is narrower than the title: I get models out of the demo and into places where nobody is around to restart them. Wildfire is where I learned it — unforgiving in every direction at once — and the discipline travels further than the domain does.</p>
-          <p class="reveal" style="--d:120ms">Tech alone doesn't solve the climate crisis. It needs policy, community, and people who show up for the parts nobody claps for — that's the part I care about most.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section tint" id="approach">
-      <div class="wrap">
-        <h2 class="reveal">Approach</h2>
-        <div class="body">
-          <p class="lead reveal">Three things I've come to believe, the expensive way.</p>
-          <p class="reveal" style="--d:80ms"><strong>The model is the easy part.</strong> What breaks in the field is dust, lightning, heat, a lens nobody cleaned, 4G that drops for six hours. Ninety-nine percent of what's written about ML is about the model. Almost none of it is about what happens when inference runs on a pole in the middle of nowhere — which is where the system either works or doesn't.</p>
-          <p class="reveal" style="--d:120ms"><strong>Accuracy is a vanity metric on its own.</strong> The honest questions are what a false negative costs when it's a real fire, and what a false positive costs when you wake a brigade at 3 a.m. Those two numbers are not symmetric, and they're not the same for every client. I build to the operator's cost function, not to a leaderboard.</p>
-          <p class="reveal" style="--d:160ms"><strong>Research and operations are two different sports.</strong> I contribute to an academic fire simulator and I help run a system people depend on tonight. Standing on both sides is rare, and most of what I think comes out of the gap between them.</p>
-        </div>
-      </div>
-    </section>
-
     <section class="section" id="pantera">
       <div class="wrap">
         <h2 class="reveal">Pantera</h2>
@@ -98,23 +101,27 @@
       </div>
     </section>
 
-    <section class="section tint" id="agents">
+    <section class="section tint" id="approach">
       <div class="wrap">
-        <h2 class="reveal">Agents</h2>
+        <h2 class="reveal">Approach</h2>
         <div class="body">
-          <p class="lead reveal">8 AI agents now run day-to-day operations at 1.5°C — without anyone babysitting them.</p>
-          <p class="reveal" style="--d:80ms">Sales, customer success, support, marketing. Each agent owns a domain, orchestrated on <a class="u" href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes</a>, an open-source framework I deployed on our own servers.</p>
-          <p class="reveal" style="--d:120ms">Same discipline as the cameras, different domain. An agent that quietly does the wrong thing is far worse than one that fails loudly, so most of the work isn't the prompt — it's the guardrails, the handoff back to a human, and being honest about what should never be automated at all.</p>
+          <p class="lead reveal">Three things I've come to believe, the expensive way.</p>
+          <p class="reveal" style="--d:80ms"><strong>The model is the easy part.</strong> What breaks in the field is dust, lightning, heat, a lens nobody cleaned, 4G that drops for six hours. Ninety-nine percent of what's written about ML is about the model. Almost none of it is about what happens when inference runs on a pole in the middle of nowhere — which is where the system either works or doesn't.</p>
+          <p class="reveal" style="--d:120ms"><strong>Accuracy is a vanity metric on its own.</strong> The honest questions are what a false negative costs when it's a real fire, and what a false positive costs when you wake a brigade at 3 a.m. Those two numbers are not symmetric, and they're not the same for every client. I build to the operator's cost function, not to a leaderboard.</p>
+          <p class="reveal" style="--d:160ms"><strong>Research and operations are two different sports.</strong> I contribute to an academic fire simulator and I help run a system people depend on tonight. Standing on both sides is rare, and most of what I think comes out of the gap between them.</p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="oss">
+    <section class="section" id="elsewhere">
       <div class="wrap">
-        <h2 class="reveal">Open source</h2>
+        <h2 class="reveal">Elsewhere</h2>
         <div class="body">
-          <p class="lead reveal">Contributing to <a class="u" href="https://github.com/forefireAPI/forefire" target="_blank" rel="noopener">ForeFire</a> since 2022.</p>
-          <p class="reveal" style="--d:80ms">An open-source wildfire simulation engine in C++ built by CNRS at Université de Corse. Mostly plumbing: Dockerizing it, setting up CI/CD, and writing docs people can actually follow — the unglamorous work that decides whether research code ever leaves the lab.</p>
+          <p class="lead reveal">Wildfire is where I learned this — unforgiving in every direction at once — and the discipline travels further than the domain does.</p>
+          <!-- TODO: um numero concreto aqui (tickets resolvidos sem humano, horas/mes, taxa de handoff).
+               Sem numero, este e o unico bloco do site que afirma sem provar. -->
+          <p class="reveal" style="--d:80ms"><strong>Agents running our own operation.</strong> Eight of them cover sales, customer success, support and marketing at 1.5°C, orchestrated on <a class="u" href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes</a>, an open-source framework I deployed on our own servers. An agent that quietly does the wrong thing is far worse than one that fails loudly, so most of the work isn't the prompt — it's the guardrails, the handoff back to a human, and being honest about what should never be automated at all.</p>
+          <p class="reveal" style="--d:120ms"><strong>ForeFire, since 2022.</strong> An open-source wildfire simulation engine in C++ built by CNRS at Université de Corse. Mostly plumbing: <a class="u" href="https://github.com/forefireAPI/forefire" target="_blank" rel="noopener">Dockerizing it</a>, setting up CI/CD, and writing docs people can actually follow — the unglamorous work that decides whether research code ever leaves the lab.</p>
         </div>
       </div>
     </section>
@@ -126,16 +133,18 @@
           <p class="lead reveal">Two directions I'm paying attention to.</p>
           <p class="reveal" style="--d:80ms"><strong>Climate and public technology.</strong> Fire, deforestation, monitoring — systems that governments, NGOs and communities actually operate, rather than pilots that end with the press release. This is where policy, community and engineering have to meet, and where I think I'm most useful.</p>
           <p class="reveal" style="--d:120ms"><strong>Agentic systems outside of AI companies.</strong> The interesting problem isn't the models, it's putting them inside an operation where being wrong has a cost — which is most of the economy, and almost none of the current discourse.</p>
-          <p class="reveal" style="--d:160ms">None of this is work anyone does alone — the useful part almost always shows up when people who see the problem from different sides end up in the same room. If you're working on something in either direction, <a class="u" href="https://www.linkedin.com/in/antonio-leblanc/" target="_blank" rel="noopener">write to me</a>: to trade notes, to collaborate, or to build something together.</p>
+          <p class="reveal" style="--d:160ms">Tech alone doesn't solve the climate crisis. It needs policy, community, and people who show up for the parts nobody claps for — that's the part I care about most.</p>
+          <p class="reveal" style="--d:200ms">None of this is work anyone does alone — the useful part almost always shows up when people who see the problem from different sides end up in the same room. If you're working on something in either direction, <a class="u" href="mailto:antoniolebla@gmail.com">write to me</a>: to trade notes, to collaborate, or to build something together.</p>
+          <p class="stamp reveal" style="--d:240ms">Updated August 2026</p>
         </div>
       </div>
     </section>
 
     <section class="section" id="outside">
       <div class="wrap">
-        <h2 class="reveal">Outside of work</h2>
+        <h2 class="reveal">Off the clock</h2>
         <div class="body">
-          <p class="reveal">I run — marathon PR sub-3:23 — cycle, play sax in a carnival bloco, and spend as much time as I can with family and friends, traveling when it fits.</p>
+          <p class="reveal">I run — marathon PR sub-3:23 — cycle, play sax in a carnival bloco, and spend as much time as I can with family and friends, traveling when it fits. None of it is a metaphor for the work. It's just the rest of the life.</p>
         </div>
       </div>
     </section>
@@ -145,6 +154,7 @@
     <div class="wrap">
       <span>© 2026 Antonio Leblanc</span>
       <nav>
+        <a href="mailto:antoniolebla@gmail.com">Email</a>
         <a href="https://github.com/antonio-leblanc" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/antonio-leblanc/" target="_blank" rel="noopener">LinkedIn</a>
       </nav>

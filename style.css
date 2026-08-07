@@ -3,7 +3,7 @@
   --bg-2: #0e100e;
   --fg: #f2efe8;
   --fg-2: #9ba095;
-  --fg-3: #5d6159;
+  --fg-3: #7a7e75; /* 4.8:1 sobre --bg — passa WCAG AA em texto pequeno */
   --accent: #f9a522;
   --accent-soft: #ffc861;
   --line: rgba(242, 239, 232, 0.09);
@@ -232,9 +232,11 @@ h1 .dim { color: var(--fg-3); }
 .hero-sub {
   color: var(--fg-2);
   font-size: 1.05rem;
-  max-width: 46ch;
+  max-width: 54ch;
   margin: 0 0 36px;
+  text-wrap: pretty;
 }
+.hero-sub .u { color: var(--accent); }
 
 .cta {
   display: flex;
@@ -299,19 +301,26 @@ h1 .dim { color: var(--fg-3); }
   .avatar-frame { width: 150px; order: -1; }
 }
 
-/* scroll hint */
+/* scroll hint — hairline que escorre, no lugar da palavra "Scroll" */
 .scroll-hint {
   position: absolute;
-  bottom: 30px; left: 50%;
+  bottom: 34px; left: 50%;
   transform: translateX(-50%);
-  color: var(--fg-3);
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  animation: bob 2.6s ease-in-out infinite;
+  width: 1px;
+  height: 42px;
+  overflow: hidden;
+  background: var(--line);
 }
-@keyframes bob {
-  50% { transform: translate(-50%, 7px); }
+.scroll-hint::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, var(--accent));
+  animation: trickle 2.6s var(--ease) infinite;
+}
+@keyframes trickle {
+  0%   { transform: translateY(-100%); }
+  60%, 100% { transform: translateY(100%); }
 }
 @media (max-width: 780px) { .scroll-hint { display: none; } }
 
@@ -364,6 +373,15 @@ h2 {
   line-height: 1.42;
   letter-spacing: -0.02em;
   color: var(--fg) !important;
+}
+
+/* carimbo de frescor da seção Now — um /now desatualizado é pior que nenhum */
+.stamp {
+  margin-top: 28px !important;
+  font-size: 0.76rem !important;
+  color: var(--fg-3) !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 /* ---------- stats ---------- */
