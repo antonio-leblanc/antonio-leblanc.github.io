@@ -371,6 +371,7 @@ h2 {
 
 .body p {
   margin: 0 0 20px;
+  max-width: 68ch;
   font-size: 1.08rem;
   color: rgba(242, 239, 232, 0.88);
   text-wrap: pretty;
