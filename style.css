@@ -100,11 +100,13 @@ body {
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid transparent;
   opacity: 0;
+  visibility: hidden;
   transform: translateY(-100%);
-  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease), border-color 0.5s var(--ease);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease), border-color 0.5s var(--ease), visibility 0.5s;
 }
 .topbar.visible {
   opacity: 1;
+  visibility: visible;
   transform: none;
   border-bottom-color: var(--line);
 }
@@ -163,6 +165,14 @@ a {
 }
 .topbar nav a { transition: color 0.3s var(--ease); }
 .topbar nav a:hover { color: var(--fg); }
+
+/* ---------- focus (keyboard nav) ---------- */
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
 
 /* ---------- hero ---------- */
 
@@ -279,7 +289,7 @@ h1 .dim { color: var(--fg-3); }
   display: block;
   width: 100%;
   height: auto;
-  filter: grayscale(0.25) contrast(1.05);
+  filter: grayscale(0.7) sepia(0.35) saturate(1.5) hue-rotate(-6deg) contrast(1.05) brightness(0.96);
   -webkit-mask-image: radial-gradient(115% 92% at 50% 42%, #000 52%, transparent 82%);
   mask-image: radial-gradient(115% 92% at 50% 42%, #000 52%, transparent 82%);
 }
