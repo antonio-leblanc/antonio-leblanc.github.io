@@ -41,29 +41,17 @@ body {
   filter: blur(90px);
   opacity: 0.55;
 }
-.ambient::before,
-.ambient::after {
+.ambient::before {
   content: "";
   position: absolute;
   border-radius: 50%;
-}
-.ambient::before {
   width: 60vw; height: 60vw;
   top: -10vh; left: 8vw;
   background: radial-gradient(circle, rgba(249, 165, 34, 0.30), transparent 68%);
   animation: drift-a 34s var(--ease) infinite alternate;
 }
-.ambient::after {
-  width: 55vw; height: 55vw;
-  top: 30vh; right: 2vw;
-  background: radial-gradient(circle, rgba(60, 120, 90, 0.22), transparent 68%);
-  animation: drift-b 44s var(--ease) infinite alternate;
-}
 @keyframes drift-a {
   to { transform: translate3d(6vw, 10vh, 0) scale(1.15); }
-}
-@keyframes drift-b {
-  to { transform: translate3d(-8vw, -6vh, 0) scale(0.9); }
 }
 
 /* film grain — the thing that keeps flat dark from looking cheap */
