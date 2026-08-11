@@ -86,14 +86,14 @@
       <div class="wrap">
         <h2 class="reveal">Pantera</h2>
         <div class="body">
-          <p class="lead reveal">Uma plataforma para gestão de incêndios florestais cobrindo o ciclo completo — prevenção, detecção, resposta e impacto.</p> (híbrida de IA edge/cloud) isso dai nao precisa
+          <p class="lead reveal">Uma plataforma para gestão de incêndios florestais cobrindo o ciclo completo — prevenção, detecção, resposta e impacto.</p>
           <div class="stats reveal" style="--d:80ms">
             <div class="stat"><span class="num" data-count="40" data-suffix="M+">40M+</span><span class="label">hectares monitorados</span></div>
             <div class="stat"><span class="num" data-count="190" data-suffix="">190</span><span class="label">câmeras em campo</span></div>
             <div class="stat"><span class="num" data-count="150" data-suffix="">150</span><span class="label">torres instaladas</span></div>
             <div class="stat"><span class="num">24/7</span><span class="label">operação contínua</span></div>
           </div>
-          <p class="reveal">Combina câmeras com imagens de satélite e modelagem de risco para detectar incêndios florestais precocemente (faltou falar da propagacao, talvez p n ficar muito longo tirar ess detectar invcendios precocemente n sei...), enfrentando uma das maiores fontes de emissões de CO₂ do Brasil. (acho que cortar aquele blabalbla final)
+          <p class="reveal">Combina câmeras, satélite e modelagem de risco pra detectar o incêndio rápido — e prevê pra onde ele vai, ajudando a decidir a resposta.</p>
           <p class="reveal" style="--d:60ms">Parte desse território engloba o Pantanal e áreas indígenas, onde perder poucas horas de detecção é o que decide tudo. O restante atende setores de celulose, agricultura e conservação - clientes que medem nosso resultado em hectares que não queimaram.</p>
           <p class="reveal" style="--d:80ms">Lidero a arquitetura de ponta a ponta — inferência na borda (edge), a plataforma híbrida on-prem/cloud e os modelos de ML para detecção e risco. O Pantera é construído por engenheiros, especialistas em ML e cientistas ambientais; a maior parte do que sei sobre fogo, aprendi com eles.</p>
           <div class="tech reveal" style="--d:100ms">
@@ -110,7 +110,7 @@
           <p class="lead reveal">Três coisas em que passei a acreditar, da forma mais cara.</p>
           <p class="reveal" style="--d:80ms"><strong>O modelo é a parte fácil.</strong> O que quebra no campo é poeira, raio, calor, uma lente que ninguém limpou, 4G que cai por seis horas. 99% do que se escreve sobre ML é sobre o modelo.</p>
           <p class="reveal" style="--d:120ms"><strong>Acurácia isolada é métrica de vaidade.</strong> As perguntas honestas são: quanto custa um falso negativo quando é um incêndio real, e quanto custa um falso positivo quando você acorda uma brigada às 3h da manhã. Esses dois números não são simétricos, e não são os mesmos para cada cliente. Eu construo para a função de custo do operador, não para um leaderboard.</p>
-          <p class="reveal" style="--d:160ms"><strong>Pesquisa e operações são esportes diferentes.</strong> Eu contribuo com um simulador acadêmico de fogo e ajudo a rodar um sistema do qual pessoas dependem hoje à noite(explicar melhor poderia ser eu construi um sofwatr onde tem pessoas detectando incendios nesse exato momento algo assim). -> cara esse final aqui nao entendi tao bem ficou meio ruim me da alternativas ,Estar dos dois lados é raro, e a maioria das minhas ideias surge justamente no espaço entre eles.</p>
+          <p class="reveal" style="--d:160ms"><strong>Pesquisa e operações são esportes diferentes.</strong> Eu contribuo com um simulador acadêmico de fogo e ajudo a rodar um sistema que, nesse instante, está detectando incêndio de verdade em algum lugar. Estar dos dois lados é raro, e a maioria das minhas ideias surge justamente no espaço entre eles.</p>
         </div>
       </div>
     </section>
@@ -119,8 +119,8 @@
       <div class="wrap">
         <h2 class="reveal">De resto</h2>
         <div class="body">
-          <p class="lead reveal">Aprendi isso lidando com incêndios florestais — um ambiente implacável em todas as direções ao mesmo tempo —, e essa disciplina vai muito além desse domínio.</p> nao entendi nada ate cortaria esse paragrafo.
-          <p class="reveal" style="--d:80ms"><strong>Agentes rodando nossa própria operação.</strong> Oito agentes cobrem vendas, sucesso do cliente, suporte e marketing na 1.5°C, orquestrados no <a class="u" href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes</a>, um framework open-source que rodei nos nossos próprios servidores. Um deles, sozinho, já abriu mais de 400 issues — cerca de 25% fecham sem revisão. [[ esse final todo achei ruim. mas gostei da pegada de mas sinceramente maioria das coisas pode ser feita com um script nao precisa de um agente e llm algo assim sabe. tipo ai beyond de hype eu quero trazer essa pegadao. auqi nao eh vamos rodar "1000" agentes e sim quanto vai custar. isso nao poderia ser um script? trade off etc? sabe 
+          <p class="lead reveal">Duas coisas que rodo fora da Pantera.</p>
+          <p class="reveal" style="--d:80ms"><strong>Agentes rodando nossa própria operação.</strong> Oito agentes cobrem vendas, sucesso do cliente, suporte e marketing na 1.5°C, orquestrados no <a class="u" href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes</a>, um framework open-source que rodei nos nossos próprios servidores. Um deles, sozinho, já abriu mais de 400 issues — cerca de 25% fecham sem revisão real.</p>
           <p class="reveal" style="--d:120ms"><strong>ForeFire, desde 2022.</strong> Um motor open-source de simulação de incêndios florestais em C++ desenvolvido pelo CNRS na Université de Corse. Minhas contribuições foramem  infraestrutura: <a class="u" href="https://github.com/forefireAPI/forefire" target="_blank" rel="noopener">Dockerização</a>, configuração de CI/CD e documentação clara — _> tipo ajudar para divulgar para facilitar p outras pessoas usarem sabe
         </div>
       </div>
@@ -143,7 +143,12 @@
       <div class="wrap">
         <h2 class="reveal">Fora do trabalho</h2>
         <div class="body">
-          <p class="reveal">Corro — RP em maratona sub-3:23 —, pedalo, toco sax em bloco de carnaval e passo o máximo de tempo que posso com a família e amigos, viajando quando dá. Nada disso é uma metáfora para o trabalho. É só o resto da vida.</p>
+          <div class="life-row reveal">
+            <div class="life-frame">
+              <img src="/off-the-clock.jpg" alt="Antonio terminando uma corrida em Niterói, polegar pra cima, com a orla do Rio ao fundo." width="240" height="240">
+            </div>
+            <p>Corro — RP em maratona sub-3:23 —, pedalo, toco sax em bloco de carnaval e passo o máximo de tempo que posso com a família e amigos, viajando quando dá.</p>
+          </div>
         </div>
       </div>
     </section>
