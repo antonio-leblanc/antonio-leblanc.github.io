@@ -89,7 +89,8 @@
         <div class="grade"></div>
       </div>
       <div class="wrap">
-        <h2 class="reveal">Pantera</h2>
+        <div class="spine" aria-hidden="true"><span class="spine-dot"></span></div>
+        <h2 class="reveal"><span class="chapter">01</span>Pantera</h2>
         <div class="body">
           <p class="lead reveal">A hybrid edge/cloud AI platform covering the full cycle — prevention, detection, response, impact.</p>
           <div class="stats reveal" style="--d:80ms">
@@ -110,7 +111,8 @@
 
     <section class="section tint" id="approach">
       <div class="wrap">
-        <h2 class="reveal">Approach</h2>
+        <div class="spine" aria-hidden="true"><span class="spine-dot"></span></div>
+        <h2 class="reveal"><span class="chapter">02</span>Approach</h2>
         <div class="body">
           <p class="lead reveal">Three things I've come to believe, the expensive way.</p>
           <p class="reveal" style="--d:80ms"><strong>The model is the easy part.</strong> What breaks in the field is dust, lightning, heat, a lens nobody cleaned, 4G that drops for six hours. Ninety-nine percent of what's written about ML is about the model. Almost none of it is about what happens when inference runs on a pole in the middle of nowhere — which is where the system either works or doesn't.</p>
@@ -122,7 +124,8 @@
 
     <section class="section" id="elsewhere">
       <div class="wrap">
-        <h2 class="reveal">Elsewhere</h2>
+        <div class="spine" aria-hidden="true"><span class="spine-dot"></span></div>
+        <h2 class="reveal"><span class="chapter">03</span>Elsewhere</h2>
         <div class="body">
           <p class="lead reveal">I get models out of the demo and into places where nobody is around to restart them — that's the bar I hold anything I put into production to, agents included.</p>
           <p class="reveal" style="--d:80ms"><strong>Agents running our own operation.</strong> Eight of them cover sales, customer success, support and marketing at 1.5°C, orchestrated on <a class="u" href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes</a>, an open-source framework I deployed on our own servers. One of them alone has opened 400+ issues, about 25% closing without any real review, mine included.</p>
@@ -133,7 +136,8 @@
 
     <section class="section tint" id="now">
       <div class="wrap">
-        <h2 class="reveal">Now</h2>
+        <div class="spine" aria-hidden="true"><span class="spine-dot"></span></div>
+        <h2 class="reveal"><span class="chapter">04</span>Now</h2>
         <div class="body">
           <p class="lead reveal">Two directions I'm paying attention to.</p>
           <p class="reveal" style="--d:80ms"><strong>Climate and public technology.</strong> Fire, deforestation, monitoring — systems that governments, NGOs and communities actually operate, rather than pilots that end with the press release. This is where policy, community and engineering have to meet, and where I think I'm most useful.</p>
@@ -146,7 +150,8 @@
 
     <section class="section" id="outside">
       <div class="wrap">
-        <h2 class="reveal">Off the clock</h2>
+        <div class="spine" aria-hidden="true"><span class="spine-dot"></span></div>
+        <h2 class="reveal"><span class="chapter">05</span>Off the clock</h2>
         <div class="body">
           <div class="life-row reveal">
             <div class="life-frame">
@@ -212,6 +217,17 @@
           });
         }, { threshold: 0.5 });
         nums.forEach(function (el) { numIo.observe(el); });
+      }
+
+      /* light up the spine marker for whichever section is under the sticky label */
+      var spineSections = document.querySelectorAll('main .section');
+      if ('IntersectionObserver' in window) {
+        var activeIo = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            entry.target.classList.toggle('active', entry.isIntersecting);
+          });
+        }, { rootMargin: '-88px 0px -70% 0px', threshold: 0 });
+        spineSections.forEach(function (el) { activeIo.observe(el); });
       }
 
       /* scroll progress + topbar */

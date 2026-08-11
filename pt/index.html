@@ -88,7 +88,8 @@
         <div class="grade"></div>
       </div>
       <div class="wrap">
-        <h2 class="reveal">Pantera</h2>
+        <div class="spine" aria-hidden="true"><span class="spine-dot"></span></div>
+        <h2 class="reveal"><span class="chapter">01</span>Pantera</h2>
         <div class="body">
           <p class="lead reveal">Uma plataforma para gestão de incêndios florestais cobrindo o ciclo completo — prevenção, detecção, resposta e impacto.</p>
           <div class="stats reveal" style="--d:80ms">
@@ -109,7 +110,8 @@
 
     <section class="section tint" id="approach">
       <div class="wrap">
-        <h2 class="reveal">Abordagem</h2>
+        <div class="spine" aria-hidden="true"><span class="spine-dot"></span></div>
+        <h2 class="reveal"><span class="chapter">02</span>Abordagem</h2>
         <div class="body">
           <p class="lead reveal">Três coisas em que passei a acreditar, da forma mais cara.</p>
           <p class="reveal" style="--d:80ms"><strong>O modelo é a parte fácil.</strong> O que quebra no campo é poeira, raio, calor, uma lente que ninguém limpou, 4G que cai por seis horas. 99% do que se escreve sobre ML é sobre o modelo.</p>
@@ -121,7 +123,8 @@
 
     <section class="section" id="elsewhere">
       <div class="wrap">
-        <h2 class="reveal">De resto</h2>
+        <div class="spine" aria-hidden="true"><span class="spine-dot"></span></div>
+        <h2 class="reveal"><span class="chapter">03</span>De resto</h2>
         <div class="body">
           <p class="lead reveal">O Pantera roda onde não tem ninguém por perto pra reiniciar nada — é a mesma exigência que aplico em qualquer coisa que ponho pra rodar sozinha, agente de IA incluído.</p>
           <p class="reveal" style="--d:80ms"><strong>Agentes rodando nossa própria operação.</strong> Oito agentes cobrem vendas, sucesso do cliente, suporte e marketing na 1.5°C, orquestrados no <a class="u" href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes</a>, um framework open-source que rodei nos nossos próprios servidores. Um deles, sozinho, já abriu mais de 400 issues — cerca de 25% fecham sem revisão real.</p>
@@ -132,7 +135,8 @@
 
     <section class="section tint" id="now">
       <div class="wrap">
-        <h2 class="reveal">Hoje</h2>
+        <div class="spine" aria-hidden="true"><span class="spine-dot"></span></div>
+        <h2 class="reveal"><span class="chapter">04</span>Hoje</h2>
         <div class="body">
           <p class="lead reveal">Duas direções que venho acompanhando.</p>
           <p class="reveal" style="--d:80ms"><strong>Tecnologia pública e clima.</strong> Fogo, desmatamento, monitoramento — sistemas que governos, ONGs e comunidades realmente operam, em vez de projetos piloto que terminam no press release. É onde política pública, comunidade e engenharia se encontram, e onde acredito ser mais útil.</p>
@@ -145,7 +149,8 @@
 
     <section class="section" id="outside">
       <div class="wrap">
-        <h2 class="reveal">Fora do trabalho</h2>
+        <div class="spine" aria-hidden="true"><span class="spine-dot"></span></div>
+        <h2 class="reveal"><span class="chapter">05</span>Fora do trabalho</h2>
         <div class="body">
           <div class="life-row reveal">
             <div class="life-frame">
@@ -211,6 +216,17 @@
           });
         }, { threshold: 0.5 });
         nums.forEach(function (el) { numIo.observe(el); });
+      }
+
+      /* light up the spine marker for whichever section is under the sticky label */
+      var spineSections = document.querySelectorAll('main .section');
+      if ('IntersectionObserver' in window) {
+        var activeIo = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            entry.target.classList.toggle('active', entry.isIntersecting);
+          });
+        }, { rootMargin: '-88px 0px -70% 0px', threshold: 0 });
+        spineSections.forEach(function (el) { activeIo.observe(el); });
       }
 
       /* scroll progress + topbar */

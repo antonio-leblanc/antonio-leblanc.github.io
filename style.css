@@ -432,20 +432,68 @@ h2 {
   position: sticky;
   top: 88px;
   align-self: start;
+  grid-column: 1;
+  grid-row: 1;
   margin: 0;
+  padding-left: 20px;
   font-size: 0.74rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.16em;
   color: var(--fg-3);
 }
+.chapter {
+  display: block;
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+  text-transform: none;
+}
+.section .wrap > .body {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+/* ---------- spine: a running vertical line down the gutter, with a marker per section ---------- */
+
+.spine {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+  width: 1px;
+  height: 100%;
+  background: var(--line);
+}
+.spine-dot {
+  position: sticky;
+  top: 84px;
+  display: block;
+  width: 7px;
+  height: 7px;
+  margin-left: -3px;
+  border-radius: 50%;
+  background: var(--bg-2);
+  border: 1px solid var(--fg-3);
+  transition: background 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.section.active .spine-dot {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(249, 165, 34, 0.16);
+}
+
 @media (max-width: 860px) {
   .section { padding: 64px 0; }
   .section .wrap {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  h2 { position: static; }
+  h2 { position: static; grid-column: auto; grid-row: auto; padding-left: 0; }
+  .section .wrap > .body { grid-column: auto; grid-row: auto; }
+  .spine { display: none; }
 }
 
 .body p {
