@@ -98,7 +98,7 @@
             <div class="stat"><span class="num" data-count="150" data-suffix="">150</span><span class="label">towers deployed</span></div>
             <div class="stat"><span class="num">24/7</span><span class="label">operational, year-round</span></div>
           </div>
-          <p class="reveal">It combines cameras with satellite feeds and fire risk modeling to catch wildfires early, taking on one of Brazil's largest sources of CO₂ emissions. Detection accuracy sits at 95% — that's the number people ask for. The number that decides whether it was worth building is minutes-to-alert, and what happens in the hour after.</p>
+          <p class="reveal">It combines cameras with satellite feeds and fire risk modeling to catch wildfires early — and predicts where they're heading, to help decide the response. Detection accuracy sits at 95% — that's the number people ask for. The number that decides whether it was worth building is minutes-to-alert, and what happens in the hour after.</p>
           <p class="reveal" style="--d:60ms">Some of that ground is the Pantanal and indigenous territories, where losing a few hours of detection time is the whole story. The rest is pulp/paper, agriculture, and conservation — clients who measure us in hectares that didn't burn.</p>
           <p class="reveal" style="--d:80ms">I own the architecture end to end — edge inference, the hybrid on-prem/cloud platform, the ML behind detection and risk. Pantera itself is built by engineers, ML specialists and environmental scientists, and most of what it knows about fire, I learned from them.</p>
           <div class="tech reveal" style="--d:100ms">
@@ -115,7 +115,7 @@
           <p class="lead reveal">Three things I've come to believe, the expensive way.</p>
           <p class="reveal" style="--d:80ms"><strong>The model is the easy part.</strong> What breaks in the field is dust, lightning, heat, a lens nobody cleaned, 4G that drops for six hours. Ninety-nine percent of what's written about ML is about the model. Almost none of it is about what happens when inference runs on a pole in the middle of nowhere — which is where the system either works or doesn't.</p>
           <p class="reveal" style="--d:120ms"><strong>Accuracy is a vanity metric on its own.</strong> The honest questions are what a false negative costs when it's a real fire, and what a false positive costs when you wake a brigade at 3 a.m. Those two numbers are not symmetric, and they're not the same for every client. I build to the operator's cost function, not to a leaderboard.</p>
-          <p class="reveal" style="--d:160ms"><strong>Research and operations are two different sports.</strong> I contribute to an academic fire simulator and I help run a system people depend on tonight. Standing on both sides is rare, and most of what I think comes out of the gap between them.</p>
+          <p class="reveal" style="--d:160ms"><strong>Research and operations are two different sports.</strong> I contribute to an academic fire simulator and I help run a system that, right now, is detecting a real fire somewhere. Standing on both sides is rare, and most of what I think comes out of the gap between them.</p>
         </div>
       </div>
     </section>
@@ -124,9 +124,9 @@
       <div class="wrap">
         <h2 class="reveal">Elsewhere</h2>
         <div class="body">
-          <p class="lead reveal">Wildfire is where I learned this — unforgiving in every direction at once — and the discipline travels further than the domain does.</p>
-          <p class="reveal" style="--d:80ms"><strong>Agents running our own operation.</strong> Eight of them cover sales, customer success, support and marketing at 1.5°C, orchestrated on <a class="u" href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes</a>, an open-source framework I deployed on our own servers. One of them alone has opened 400+ issues, about 25% closing without any real review, mine included. An agent that quietly does the wrong thing is far worse than one that fails loudly, so most of the work isn't the prompt — it's the guardrails, the handoff back to a human, and being honest about what should never be automated at all.</p>
-          <p class="reveal" style="--d:120ms"><strong>ForeFire, since 2022.</strong> An open-source wildfire simulation engine in C++ built by CNRS at Université de Corse. Mostly plumbing: <a class="u" href="https://github.com/forefireAPI/forefire" target="_blank" rel="noopener">Dockerizing it</a>, setting up CI/CD, and writing docs people can actually follow — the unglamorous work that decides whether research code actually gets used outside the lab that built it.</p>
+          <p class="lead reveal">I get models out of the demo and into places where nobody is around to restart them — that's the bar I hold anything I put into production to, agents included.</p>
+          <p class="reveal" style="--d:80ms"><strong>Agents running our own operation.</strong> Eight of them cover sales, customer success, support and marketing at 1.5°C, orchestrated on <a class="u" href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes</a>, an open-source framework I deployed on our own servers. One of them alone has opened 400+ issues, about 25% closing without any real review, mine included.</p>
+          <p class="reveal" style="--d:120ms"><strong>ForeFire, since 2022.</strong> An open-source wildfire simulation engine in C++ built by CNRS at Université de Corse. Mostly plumbing: <a class="u" href="https://github.com/forefireAPI/forefire" target="_blank" rel="noopener">Dockerizing it</a>, setting up CI/CD, and writing docs people can actually follow, to help other groups run ForeFire in their own projects.</p>
         </div>
       </div>
     </section>
