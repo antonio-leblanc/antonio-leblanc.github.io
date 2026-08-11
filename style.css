@@ -298,7 +298,7 @@ h1 .dim { color: var(--fg-3); }
     grid-template-columns: 1fr;
     gap: 32px;
   }
-  .avatar-frame { width: 150px; order: -1; }
+  .avatar-frame { width: 130px; margin: 0 auto; }
 }
 
 /* scroll hint — hairline que escorre, no lugar da palavra "Scroll" */
