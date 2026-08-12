@@ -116,8 +116,13 @@ body {
   font-size: 0.86rem;
   color: var(--fg-2);
 }
+.topbar nav a.lang-switch {
+  margin-left: 8px;
+  font-weight: 600;
+  opacity: 0.85;
+}
 @media (max-width: 620px) {
-  .topbar nav a:not(.contact) { display: none; }
+  .topbar nav a:not(.contact):not(.lang-switch) { display: none; }
 }
 
 .wrap {
