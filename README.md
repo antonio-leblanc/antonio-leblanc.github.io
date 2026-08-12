@@ -10,11 +10,23 @@ Estático puro, sem build. GitHub Pages serve o `main` direto da raiz.
 
 | Arquivo | O quê |
 |---|---|
-| `index.html` | a página inteira — conteúdo, JSON-LD e o JS inline (reveal, count-up, scroll progress) |
+| `index.html` | a página inteira em inglês — conteúdo, JSON-LD e o JS inline (reveal, count-up, scroll progress) |
+| `pt/index.html` | a mesma página em português |
 | `style.css` | todo o estilo; tokens de cor e tipografia no `:root` |
 | `avatar.png` | retrato do hero |
 | `og-image.png` | preview de social (1200×630) |
 | `CNAME` | domínio custom, gerenciado pelo GitHub Pages |
+
+## Idioma: o português é a fonte, o inglês é a tradução
+
+**Escrever copy nova primeiro no `pt/index.html`, nunca no `index.html`.** O
+Antonio pensa em português e traduz depois; texto composto direto em inglês sai
+com voz de business em vez da dele. O inglês é atualizado depois, a partir do
+português aprovado.
+
+Traduzir a *ideia*, não a frase: expressão idiomática em inglês vira calque em
+português (e vice-versa). Guia de voz e casos reais em
+`antoninus/profissional/ghostwriter.md`.
 
 ## Domínio
 

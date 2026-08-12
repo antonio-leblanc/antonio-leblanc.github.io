@@ -1,4 +1,3 @@
-<!-- IMPORTANTE O SITE TA SENDO FEITO EM PORTUGUES ANTES NAO USAR ESSA COMO BASE -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +53,6 @@
         <a href="#approach">Approach</a>
         <a href="#elsewhere">Elsewhere</a>
         <a href="#now">Now</a>
-        <!-- e-mail pessoal (o mesmo dos commits, ja publico). Trocar se preferir outro endereco. -->
         <a class="contact" href="mailto:antoniolebla@gmail.com">Email</a>
       </nav>
     </div>
@@ -93,16 +91,16 @@
         <div class="spine" aria-hidden="true"><span class="spine-dot"></span></div>
         <h2 class="reveal"><span class="chapter">01</span>Pantera</h2>
         <div class="body">
-          <p class="lead reveal">A hybrid edge/cloud AI platform covering the full cycle — prevention, detection, response, impact.</p>
+          <p class="lead reveal">Pantera: a wildfire management platform — prevention, detection, response, impact.</p>
           <div class="stats reveal" style="--d:80ms">
             <div class="stat"><span class="num" data-count="40" data-suffix="M+">40M+</span><span class="label">hectares monitored</span></div>
             <div class="stat"><span class="num" data-count="190" data-suffix="">190</span><span class="label">cameras in the field</span></div>
             <div class="stat"><span class="num" data-count="150" data-suffix="">150</span><span class="label">towers deployed</span></div>
             <div class="stat"><span class="num">24/7</span><span class="label">operational, year-round</span></div>
           </div>
-          <p class="reveal">It combines cameras with satellite feeds and fire risk modeling to catch wildfires early — and predicts where they're heading, to help decide the response. Detection accuracy sits at 95% — that's the number people ask for. The number that decides whether it was worth building is minutes-to-alert, and what happens in the hour after.</p>
+          <p class="reveal">It combines cameras with satellite feeds and fire risk modeling to catch wildfires early — and predicts where they're heading.</p>
           <p class="reveal" style="--d:60ms">Some of that ground is the Pantanal and indigenous territories, where the nearest brigade can be hours away. The rest is pulp/paper, agriculture, and conservation — clients who measure us in hectares that didn't burn.</p>
-          <p class="reveal" style="--d:80ms">I own the architecture end to end — edge inference, the hybrid on-prem/cloud platform, the ML behind detection and risk. Pantera itself is built by engineers, ML specialists and environmental scientists, and most of what it knows about fire, I learned from them.</p>
+          <p class="reveal" style="--d:80ms">I own the architecture end to end — inference on the cameras themselves, the hybrid on-prem/cloud platform, the ML behind detection and risk. Pantera itself is built by engineers, ML specialists and environmental scientists, and most of what I know about fire, I learned from them.</p>
           <div class="tech reveal" style="--d:100ms">
             <span>Python</span><span>FastAPI</span><span>AWS</span><span>Docker</span><span>PostGIS</span><span>PyTorch</span>
           </div>
@@ -115,10 +113,10 @@
         <div class="spine" aria-hidden="true"><span class="spine-dot"></span></div>
         <h2 class="reveal"><span class="chapter">02</span>Approach</h2>
         <div class="body">
-          <p class="lead reveal">Three things I've come to believe, the expensive way.</p>
-          <p class="reveal" style="--d:80ms"><strong>The model is the easy part.</strong> What breaks in the field is dust, lightning, heat, a lens nobody cleaned, 4G that drops for six hours. Ninety-nine percent of what's written about ML is about the model. Almost none of it is about what happens when inference runs on a pole in the middle of nowhere — which is where the system either works or doesn't.</p>
-          <p class="reveal" style="--d:120ms"><strong>Accuracy is a vanity metric on its own.</strong> The honest questions are what a false negative costs when it's a real fire, and what a false positive costs when you wake a brigade at 3 a.m. Those two numbers are not symmetric, and they're not the same for every client. I build to the operator's cost function, not to a leaderboard.</p>
-          <p class="reveal" style="--d:160ms"><strong>Research and operations are two different sports.</strong> I contribute to an academic fire simulator and I help run a system that, right now, is detecting a real fire somewhere. Standing on both sides is rare, and most of what I think comes out of the gap between them.</p>
+          <p class="lead reveal">Three things I learned the hard way.</p>
+          <p class="reveal" style="--d:80ms"><strong>The model is the easy part.</strong> What breaks in the field is dust, lightning, heat, a lens nobody cleaned, 4G that drops for six hours. Ninety-nine percent of what's written about ML is about the model. Almost none of it is about what happens when inference runs on a pole in the middle of nowhere.</p>
+          <p class="reveal" style="--d:120ms"><strong>I don't judge a model on accuracy alone.</strong> The question is what it costs to miss a real fire, and what it costs to wake a brigade at 3 a.m. for nothing.</p>
+          <p class="reveal" style="--d:160ms"><strong>Research and operations are two different sports.</strong> I contribute to an academic fire simulator and I help run a system that, right now, is detecting a real fire somewhere.</p>
         </div>
       </div>
     </section>
@@ -128,7 +126,7 @@
         <div class="spine" aria-hidden="true"><span class="spine-dot"></span></div>
         <h2 class="reveal"><span class="chapter">03</span>Elsewhere</h2>
         <div class="body">
-          <p class="lead reveal">I get models out of the demo and into places where nobody is around to restart them — that's the bar I hold anything I put into production to, agents included.</p>
+          <p class="lead reveal">The bar I hold Pantera to is the bar for anything I put out to run on its own, AI agents included.</p>
           <p class="reveal" style="--d:80ms"><strong>Agents running our own operation.</strong> Eight of them cover sales, customer success, support and marketing at 1.5°C, orchestrated on <a class="u" href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes</a>, an open-source framework I deployed on our own servers. One of them alone has opened 400+ issues, about 25% closing without any real review, mine included.</p>
           <p class="reveal" style="--d:120ms"><strong>ForeFire, since 2022.</strong> An open-source wildfire simulation engine in C++ built by CNRS at Université de Corse. Mostly plumbing: <a class="u" href="https://github.com/forefireAPI/forefire" target="_blank" rel="noopener">Dockerizing it</a>, setting up CI/CD, and writing docs people can actually follow, to help other groups run ForeFire in their own projects.</p>
         </div>
@@ -141,9 +139,9 @@
         <h2 class="reveal"><span class="chapter">04</span>Now</h2>
         <div class="body">
           <p class="lead reveal">Two directions I'm paying attention to.</p>
-          <p class="reveal" style="--d:80ms"><strong>Climate and public technology.</strong> Fire, deforestation, monitoring — systems that governments, NGOs and communities actually operate, rather than pilots that end with the press release. This is where policy, community and engineering have to meet.</p>
-          <p class="reveal" style="--d:120ms"><strong>Agentic systems outside of AI companies.</strong> The interesting problem isn't the models, it's putting them inside an operation where being wrong has a cost.</p>
-          <p class="reveal" style="--d:160ms">None of this is work anyone does alone — if you're working on something in either direction, <a class="u" href="mailto:antoniolebla@gmail.com">write to me</a> — I'd like to hear about it.</p>
+          <p class="reveal" style="--d:80ms"><strong>Climate and public technology.</strong> Fire, deforestation, monitoring — systems that governments, NGOs and communities actually operate, rather than pilots that end with the press release.</p>
+          <p class="reveal" style="--d:120ms"><strong>Agentic systems outside of AI companies.</strong> The hard part isn't the model — it's putting it inside an operation where being wrong is expensive.</p>
+          <p class="reveal" style="--d:160ms">If you're building something in either direction, <a class="u" href="mailto:antoniolebla@gmail.com">write to me</a> — I'd like to hear about it.</p>
           <p class="stamp reveal" style="--d:240ms">Updated August 2026</p>
         </div>
       </div>
@@ -158,7 +156,7 @@
             <div class="life-frame">
               <img src="off-the-clock.jpg" alt="Antonio finishing a race in Niterói, thumbs up, Rio's coastline behind him." width="240" height="240">
             </div>
-            <p>I run — marathon PR sub-3:23 — cycle, play sax in a carnival bloco, and spend as much time as I can with family and friends, traveling when it fits.</p>
+            <p>I run marathons (PR of 3:22), cycle, play sax in a carnival bloco, and spend as much time as I can with family and friends, traveling when it fits.</p>
           </div>
         </div>
       </div>
