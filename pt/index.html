@@ -127,15 +127,18 @@
   }
 
   /* Lang switch */
-  .lang-switch { padding: 24px 0 0; text-align: right; }
-  .lang-switch a {
+  .lang-switch {
+    padding: 24px 0 0;
+    text-align: right;
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--fg-faint);
   }
-  .lang-switch a:hover { color: var(--accent); }
+  .lang-switch .lang-current { color: var(--fg); font-weight: 600; }
+  .lang-switch .lang-sep { color: var(--fg-faint); padding: 0 6px; }
+  .lang-switch .lang-link { color: var(--fg-faint); }
+  .lang-switch .lang-link:hover { color: var(--accent); }
 
   /* Hero */
   .hero {
@@ -316,7 +319,7 @@
 
 <main id="top">
   <div class="wrap">
-    <div class="lang-switch"><a href="/">EN</a></div>
+    <div class="lang-switch" role="group" aria-label="Idioma"><a class="lang-link" href="/">EN</a><span class="lang-sep">/</span><span class="lang-current">PT</span></div>
     <section class="hero">
       <div class="hero-panel">
         <div class="hero-text">
