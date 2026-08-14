@@ -101,6 +101,7 @@ h1{font-size:clamp(31px,4.5vw,54px);line-height:1.08;letter-spacing:-.026em}
 .dek b{color:var(--fg);font-weight:600}
 
 /* ── detection frame ─────────────────────────── */
+.hero-text,.frame{min-width:0}
 .frame{
   margin:0;border:1px solid var(--line-2);border-radius:4px;
   background:var(--bg-1);overflow:hidden;
@@ -273,19 +274,21 @@ footer{
 
 /* ── responsive ──────────────────────────────── */
 @media (max-width:900px){
-  .hero{grid-template-columns:1fr;gap:36px}
-  .split{grid-template-columns:1fr;gap:18px}
-  .mods{grid-template-columns:1fr}
-  .log .row{grid-template-columns:32px 1fr;gap:6px 16px}
+  .hero{grid-template-columns:minmax(0,1fr);gap:36px}
+  .split{grid-template-columns:minmax(0,1fr);gap:18px}
+  .mods{grid-template-columns:minmax(0,1fr)}
+  .log .row{grid-template-columns:32px minmax(0,1fr);gap:6px 16px;padding-right:0}
   .log dd{grid-column:2}
-  .gauges{grid-template-columns:1fr}
-  .gauge{border-right:0;border-bottom:1px solid var(--line);padding-left:0!important}
+  .gauges{grid-template-columns:minmax(0,1fr)}
+  .gauge{border-right:0;border-bottom:1px solid var(--line);padding:20px 0;padding-left:0!important}
   .gauge:last-child{border-bottom:0}
 }
 @media (max-width:640px){
   .sb-coord,.sb-role{display:none}
-  .contact-body{grid-template-columns:1fr}
-  .portrait{max-width:120px}
+  .contact-body{grid-template-columns:minmax(0,1fr)}
+  .portrait{max-width:124px}
+  h1{font-size:clamp(28px,7.6vw,34px)}
+  .dek,.contact-body p{font-size:15.5px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
