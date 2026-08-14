@@ -23,8 +23,8 @@
     --fg-muted: #a89a89;
     --fg-faint: #6f6459;
     --line: #2c2620;
-    --accent: #d9662c;
-    --accent-dim: #8a4a26;
+    --accent: #d9a62a;
+    --accent-dim: #7a5f1a;
     --font-display: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Code', monospace;
   }
@@ -122,15 +122,6 @@
     top: 0; left: 28px; right: 28px;
     height: 3px;
     background: linear-gradient(90deg, var(--accent), transparent 75%);
-    z-index: 0;
-  }
-  .hero-panel::after {
-    content: '';
-    position: absolute;
-    top: -25%; left: -12%;
-    width: 62%; height: 75%;
-    background: radial-gradient(circle, rgba(217, 102, 44, 0.16), transparent 70%);
-    pointer-events: none;
     z-index: 0;
   }
   .hero-text, .hero-photo { position: relative; z-index: 1; }
@@ -299,7 +290,7 @@
       <div class="hero-panel">
         <div class="hero-text">
           <p class="eyebrow">Antonio Leblanc — Rio de Janeiro</p>
-          <h1>Intern to CTO in ten months. I inherited Pantera from a teammate who left for a PhD at NASA — today it protects 40 million hectares.</h1>
+          <h1>Intern to CTO in ten months. I inherited Pantera — today it protects 40 million hectares.</h1>
           <p class="dek">I lead Pantera end to end at 1.5°C — 190 cameras, 95% detection accuracy, including the Pantanal. Policy, community engagement, and ethics matter just as much as the model — that's where I want to keep spending my energy.</p>
         </div>
         <figure class="hero-photo">
@@ -313,7 +304,7 @@
       <dl style="margin:0;">
         <div class="row fact">
           <dt>Pantera</dt>
-          <dd>The platform I lead end to end at 1.5°C: architecture, detection, risk, response, impact.</dd>
+          <dd>Inherited from a teammate who left to do a PhD at NASA. I lead it end to end today: architecture, detection, risk, response, impact.</dd>
         </div>
         <div class="row fact">
           <dt>1.5°C</dt>
