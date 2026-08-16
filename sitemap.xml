@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://antonioleblanc.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antonioleblanc.com/" />
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/" />
+  </url>
+  <url>
+    <loc>https://antonioleblanc.com/pt/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antonioleblanc.com/" />
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/" />
+  </url>
+  <url>
+    <loc>https://antonioleblanc.com/projects/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/" />
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/" />
+  </url>
+  <url>
+    <loc>https://antonioleblanc.com/pt/projects/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/" />
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/" />
+  </url>
+</urlset>
