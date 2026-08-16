@@ -10,12 +10,25 @@ Estático puro, sem build. GitHub Pages serve o `main` direto da raiz.
 
 | Arquivo | O quê |
 |---|---|
-| `index.html` | a página inteira em inglês — conteúdo, JSON-LD e o JS inline (reveal, count-up, scroll progress) |
+| `index.html` | a página inteira em inglês — conteúdo, JSON-LD, `<style>` inline (tokens no `:root`) e o JS inline (reveal, count-up, scroll progress) |
 | `pt/index.html` | a mesma página em português |
-| `style.css` | todo o estilo; tokens de cor e tipografia no `:root` |
-| `avatar.png` | retrato do hero |
-| `og-image.png` | preview de social (1200×630) |
+| `projects/index.html`, `pt/projects/index.html` | página de projetos (en/pt), mesmo padrão de `<style>` inline |
+| `assets/fonts/` | Inter e JetBrains Mono (`.woff2`), carregadas via `@font-face` no `<style>` inline |
+| `assets/images/` | `antonio-headshot.jpg` (retrato real, hero atual), `og-image.png` (preview social 1200×630), imagens de `projects/` |
 | `CNAME` | domínio custom, gerenciado pelo GitHub Pages |
+
+Não tem `style.css` na raiz — cada página carrega seu próprio `<style>` inline, sem link externo.
+
+### `_lab/` e `_src/` — não fazem parte do site no ar
+
+| Pasta | O quê |
+|---|---|
+| `_lab/index2.html` + `_lab/style2.css` | direção visual anterior (documental full-bleed por seção, `<link>` pro `style2.css`), superada mas mantida como referência |
+| `_lab/index3.html` | variante self-contained, fontes embutidas em base64 no `<style>` |
+| `_src/build_index3.py`, `index3.src.html`, `index3.assets.json` | geram o `_lab/index3.html` |
+| `_src/og-image.html` | template pra renderizar o `og-image.png` (skill `render-html-para-imagem`) |
+
+`avatar.png` e `off-the-clock.jpg` só existem como referência dentro do `_lab/index2.html` — saíram de circulação na versão ao vivo.
 
 ## Idioma: o português é a fonte, o inglês é a tradução
 
