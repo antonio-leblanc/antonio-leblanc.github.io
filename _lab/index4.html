@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Antonio Leblanc — Field Notes (lab)</title>
+
+<style>
+@font-face {
+  font-family: 'Inter';
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: url(../assets/fonts/inter.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: url(../assets/fonts/jetbrains-mono.woff2) format('woff2');
+}
+
+:root {
+  --bg: #0b0908;
+  --bg-raised: #171210;
+  --fg: #f5efe4;
+  --fg-muted: #b9ac9c;
+  --fg-faint: #6f6459;
+  --line: #2c2620;
+  --amber: #d9a62a;
+  --ember: #ff5a1f;
+  --font-display: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Code', monospace;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--bg); scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-display);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--amber), var(--ember));
+  z-index: 4;
+  transition: width 80ms linear;
+}
+
+main { position: relative; z-index: 1; }
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+nav.top {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 32px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg-faint);
+}
+nav.top a { color: var(--fg-faint); text-decoration: none; }
+nav.top a:hover { color: var(--amber); }
+nav.top .back { color: var(--fg-muted); }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 900ms cubic-bezier(.16,1,.3,1), transform 900ms cubic-bezier(.16,1,.3,1);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Hero */
+.hero {
+  min-height: 92vh;
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 32px 100px;
+  position: relative;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 70%;
+  background:
+    radial-gradient(closest-side, rgba(255,90,31,0.18), transparent),
+    radial-gradient(closest-side, rgba(217,166,42,0.14), transparent 70%);
+  background-position: 15% 20%, 80% 40%;
+  background-repeat: no-repeat;
+  background-size: 60% 60%, 55% 55%;
+  animation: drift 22s ease-in-out infinite alternate;
+  z-index: -1;
+  filter: blur(10px);
+}
+@keyframes drift {
+  from { transform: translate(0,0) scale(1); }
+  to { transform: translate(3%, 6%) scale(1.08); }
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--fg-faint);
+  margin: 0 0 28px;
+}
+.eyebrow::before { content: '— '; color: var(--ember); }
+
+h1.big {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+  font-size: clamp(40px, 7.4vw, 104px);
+}
+h1.big .muted { color: var(--fg-muted); font-weight: 600; }
+h1.big .hot {
+  background: linear-gradient(100deg, var(--amber) 10%, var(--ember) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-dek {
+  margin: 32px 0 0;
+  max-width: 46ch;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--fg-muted);
+}
+.hero-dek strong { color: var(--fg); font-weight: 600; }
+
+.hero-photo {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: 4px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.15) brightness(0.95);
+  display: block;
+}
+.hero-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(200deg, var(--ember) 0%, transparent 45%, var(--amber) 120%);
+  mix-blend-mode: color;
+  opacity: 0.85;
+}
+.hero-photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(11,9,8,0.55), transparent 40%);
+  z-index: 1;
+}
+
+/* Stats / proof */
+.proof {
+  position: relative;
+  padding: 140px 32px;
+  background-image:
+    linear-gradient(180deg, var(--bg) 0%, rgba(11,9,8,0.7) 20%, rgba(11,9,8,0.86) 100%),
+    url(../assets/images/pantera-field.webp);
+  background-size: cover;
+  background-position: center;
+}
+.proof .wrap { max-width: 1180px; }
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  border-top: 1px solid var(--line);
+  padding-top: 48px;
+}
+.stat { text-align: left; }
+.stat .num {
+  font-size: clamp(48px, 6.4vw, 92px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+.stat .num .suffix { color: var(--amber); }
+.stat .label {
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg-faint);
+}
+.proof-caption {
+  margin: 0 0 0;
+  max-width: 60ch;
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--fg-muted);
+}
+.proof-caption strong { color: var(--fg); }
+
+/* ForeFire full bleed */
+.forefire {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 0 80px;
+}
+.forefire img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+.forefire::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(11,9,8,0.94) 0%, rgba(11,9,8,0.55) 45%, rgba(11,9,8,0.15) 75%);
+  z-index: -1;
+}
+.forefire-body { max-width: 780px; }
+.forefire .kicker {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin: 0 0 18px;
+}
+.forefire h2 {
+  margin: 0;
+  font-size: clamp(30px, 4.6vw, 58px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+.forefire p {
+  margin: 24px 0 0;
+  max-width: 58ch;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--fg-muted);
+}
+.forefire p a { color: var(--fg); }
+
+/* Manifesto / ledger */
+.manifesto { padding: 140px 32px; }
+.manifesto .row {
+  border-top: 1px solid var(--line);
+  padding: 40px 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.manifesto .row:last-child { border-bottom: 1px solid var(--line); }
+.manifesto .row:nth-child(even) { text-align: right; }
+.manifesto .row:nth-child(even) .fact-body { margin-left: auto; }
+.manifesto dt {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ember);
+  margin: 0;
+}
+.fact-body {
+  max-width: 62ch;
+  font-size: clamp(19px, 2.4vw, 26px);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--fg);
+}
+.fact-body .muted { color: var(--fg-muted); font-weight: 500; }
+.fact-body a { color: var(--amber); text-decoration-color: rgba(217,166,42,0.4); }
+
+/* Contact */
+.contact {
+  padding: 100px 32px 120px;
+  border-top: 1px solid var(--line);
+}
+.contact h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  margin: 0 0 24px;
+}
+.contact p {
+  max-width: 58ch;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--fg-muted);
+  margin: 0;
+}
+.links {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin: 40px 0 0;
+  padding: 0;
+}
+.links a {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 2px solid var(--amber);
+  padding-bottom: 2px;
+}
+.links a:hover { color: var(--amber); }
+
+footer {
+  padding: 32px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-faint);
+  border-top: 1px solid var(--line);
+}
+footer a { color: var(--fg-faint); }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; padding-top: 20px; }
+  .hero-photo { max-width: 260px; order: -1; }
+  .stat-row { grid-template-columns: 1fr; gap: 32px; }
+  .manifesto .row:nth-child(even) { text-align: left; }
+  .manifesto .row:nth-child(even) .fact-body { margin-left: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before { animation: none; }
+  .reveal { transition: none; opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<main>
+  <nav class="top">
+    <span class="back">antonioleblanc.com <span style="color:var(--fg-faint)">/ lab / 04</span></span>
+    <a href="../index.html">← main site</a>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Antonio Leblanc — Rio de Janeiro</p>
+      <h1 class="big reveal">
+        Intern to CTO<br>
+        in <span class="muted">ten months.</span><br>
+        Today I protect <span class="hot">40 million hectares</span><br>
+        against wildfire.
+      </h1>
+      <p class="hero-dek reveal">I lead Pantera at 1.5°C — detection, risk, response, and impact, covering the Pantanal and indigenous territories. <strong>Policy, community, and ethics matter as much as the model.</strong></p>
+    </div>
+    <figure class="hero-photo reveal">
+      <img src="../assets/images/antonio-headshot.jpg" alt="Antonio Leblanc">
+    </figure>
+  </section>
+
+  <section class="proof">
+    <div class="wrap">
+      <p class="proof-caption reveal" style="margin-bottom:56px;">A camera network across the <strong>Pantanal</strong> and indigenous territories — built by the engineering, ML, and environmental science team I lead.</p>
+      <div class="stat-row">
+        <div class="stat reveal">
+          <div class="num"><span class="count" data-target="40">0</span><span class="suffix">M+ ha</span></div>
+          <div class="label">Protected</div>
+        </div>
+        <div class="stat reveal">
+          <div class="num"><span class="count" data-target="190">0</span></div>
+          <div class="label">Cameras in the field</div>
+        </div>
+        <div class="stat reveal">
+          <div class="num"><span class="count" data-target="95">0</span><span class="suffix">%</span></div>
+          <div class="label">Detection accuracy</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="forefire">
+    <img src="../assets/images/projects/forefire.webp" alt="ForeFire simulation of a real wildfire front in Portugal, wind field overlaid.">
+    <div class="wrap">
+      <div class="forefire-body reveal">
+        <p class="kicker">ForeFire — CNRS, since 2022</p>
+        <h2>Research and operations are two different sports.</h2>
+        <p>A real run in Portugal, 2017 — wind at 1.29 m/s, engine output, no fabricated overlay. I'm a maintainer since 2025 and co-author on its <a href="https://doi.org/10.21105/joss.08680" target="_blank" rel="noopener">JOSS paper</a>: reviewing and merging PRs, cutting releases, Dockerization, CI/CD, documentation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="manifesto">
+    <div class="wrap">
+      <div class="row reveal">
+        <dt>Pantera</dt>
+        <div class="fact-body">I lead architecture, satellite, fire spread risk, response, and operations — <span class="muted">with the engineering, ML, and environmental science team that builds it with me.</span></div>
+      </div>
+      <div class="row reveal">
+        <dt>1.5°C</dt>
+        <div class="fact-body"><span class="muted">Co-founder and CTO since 2020, Rio de Janeiro.</span></div>
+      </div>
+      <div class="row reveal">
+        <dt>Agents</dt>
+        <div class="fact-body">Eight AI agents run sales, support, and marketing on Hermes, open-source, on our own servers. <span class="muted">One alone has opened 400+ issues, about 25% closing without real review, mine included.</span></div>
+      </div>
+      <div class="row reveal">
+        <dt>Now</dt>
+        <div class="fact-body"><span class="muted">Open to a technical second opinion for early-stage climate teams, or to hear what you're building in wildfire, deforestation, or agentic systems.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="wrap">
+      <h2 class="reveal">Get in touch</h2>
+      <p class="reveal">If you're building something in either direction, or if you lead an early-stage climate team and want a technical second opinion, write to me — I'd like to hear about it.</p>
+      <ul class="links reveal">
+        <li><a href="../projects/index.html">Projects</a></li>
+        <li><a href="mailto:antoniolebla@gmail.com">Email</a></li>
+        <li><a href="https://github.com/antonio-leblanc" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/antonio-leblanc/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <span>Antonio Leblanc — _lab/index4.html, not linked from the live site</span>
+    <a href="../index.html">back to main site</a>
+  </footer>
+</main>
+
+<script>
+(function () {
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var progress = document.getElementById('progress');
+  function onScroll() {
+    var h = document.documentElement;
+    var scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+    progress.style.width = (scrolled * 100).toFixed(1) + '%';
+  }
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  function animateCount(el) {
+    var target = parseInt(el.getAttribute('data-target'), 10);
+    if (reduceMotion) { el.textContent = target; return; }
+    var start = null;
+    var duration = 1100;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  var revealEls = document.querySelectorAll('.reveal');
+  var countEls = document.querySelectorAll('.count');
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      if (entry.target.classList.contains('count')) animateCount(entry.target);
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.3 });
+
+  revealEls.forEach(function (el) { io.observe(el); });
+  countEls.forEach(function (el) { io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
