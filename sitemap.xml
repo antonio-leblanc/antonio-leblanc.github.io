@@ -12,13 +12,23 @@
     <xhtml:link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/" />
   </url>
   <url>
-    <loc>https://antonioleblanc.com/projects/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/" />
-    <xhtml:link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/" />
+    <loc>https://antonioleblanc.com/projects/pantera/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/pantera/" />
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/pantera/" />
   </url>
   <url>
-    <loc>https://antonioleblanc.com/pt/projects/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/" />
-    <xhtml:link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/" />
+    <loc>https://antonioleblanc.com/pt/projects/pantera/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/pantera/" />
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/pantera/" />
+  </url>
+  <url>
+    <loc>https://antonioleblanc.com/projects/forefire/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/forefire/" />
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/forefire/" />
+  </url>
+  <url>
+    <loc>https://antonioleblanc.com/pt/projects/forefire/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/forefire/" />
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/forefire/" />
   </url>
 </urlset>

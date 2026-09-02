@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Antonio Leblanc</title>
+  <title>ForeFire — Antonio Leblanc</title>
   <meta name="author" content="Antonio Leblanc">
-  <meta name="description" content="Antonio Leblanc — Intern to CTO in ten months. Today I lead the AI platform protecting 40 million hectares against wildfire. Co-Founder &amp; CTO @ 1.5°C.">
-  <link rel="canonical" href="https://antonioleblanc.com/">
-  <link rel="alternate" hreflang="en" href="https://antonioleblanc.com/">
-  <link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/">
+  <meta name="description" content="ForeFire is the open-source fire-spread simulator built by CNRS / Université de Corse. Contributor since 2022, maintainer since 2025, co-author on its JOSS paper.">
+  <link rel="canonical" href="https://antonioleblanc.com/projects/forefire/">
+  <link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/forefire/">
+  <link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/forefire/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='50' dy='.35em' text-anchor='middle' font-size='78' font-weight='700' font-family='Helvetica,Arial,sans-serif' fill='%23f9a522'%3EA%3C/text%3E%3C/svg%3E">
 
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://antonioleblanc.com/">
-  <meta property="og:title" content="Antonio Leblanc">
-  <meta property="og:description" content="Intern to CTO in ten months. Today I lead the AI platform protecting 40 million hectares against wildfire. Co-Founder &amp; CTO @ 1.5°C.">
+  <meta property="og:url" content="https://antonioleblanc.com/projects/forefire/">
+  <meta property="og:title" content="ForeFire — Antonio Leblanc">
+  <meta property="og:description" content="ForeFire is the open-source fire-spread simulator built by CNRS / Université de Corse. Contributor since 2022, maintainer since 2025, co-author on its JOSS paper.">
   <meta property="og:image" content="https://antonioleblanc.com/assets/images/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Antonio Leblanc">
-  <meta name="twitter:description" content="Intern to CTO in ten months. Today I lead the AI platform protecting 40 million hectares against wildfire. Co-Founder &amp; CTO @ 1.5°C.">
+  <meta name="twitter:title" content="ForeFire — Antonio Leblanc">
+  <meta name="twitter:description" content="ForeFire is the open-source fire-spread simulator built by CNRS / Université de Corse. Contributor since 2022, maintainer since 2025, co-author on its JOSS paper.">
   <meta name="twitter:image" content="https://antonioleblanc.com/assets/images/og-image.png">
 
   <script type="application/ld+json">
@@ -145,31 +145,6 @@
   .hero {
     padding: 64px 0 0;
   }
-  .hero-panel {
-    background: var(--bg-raised);
-    border-radius: 14px;
-    padding: 56px;
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 48px;
-    align-items: center;
-    animation: rise 700ms ease-out both;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-panel::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 28px; right: 28px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent), transparent 75%);
-    z-index: 0;
-  }
-  .hero-text, .hero-photo { position: relative; z-index: 1; }
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
   .eyebrow {
     font-size: 12px;
     color: var(--fg-muted);
@@ -181,42 +156,17 @@
     line-height: 1.12;
     letter-spacing: -0.01em;
   }
-  .hero-sub {
-    margin-top: 18px;
-    font-size: clamp(19px, 2.2vw, 24px);
-    font-weight: 600;
-    line-height: 1.4;
-    color: var(--fg-muted);
-    max-width: 54ch;
-  }
   .dek {
     margin-top: 22px;
     font-size: 17px;
     line-height: 1.6;
     color: var(--fg-muted);
-    max-width: 54ch;
+    max-width: 62ch;
   }
   .dek strong { color: var(--fg); font-weight: 600; }
 
-  .dek-note {
-    margin-top: 14px;
-    font-size: 15.5px;
-    line-height: 1.6;
-    color: var(--fg-faint);
-    max-width: 54ch;
-  }
-
-  .hero-photo { margin: 0; }
-  .hero-photo img {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    border-radius: 10px;
-    display: block;
-    filter: grayscale(1) contrast(1.05);
-  }
   /* Ledger */
-  .ledger { padding: 88px 0; }
+  .ledger { padding: 56px 0; }
   .ledger .row {
     display: grid;
     grid-template-columns: 200px 1fr;
@@ -256,11 +206,11 @@
     display: grid;
     grid-template-columns: 0.8fr 1.2fr;
     gap: 40px;
-    padding: 72px 0;
+    padding: 56px 0;
     border-top: 1px solid var(--line);
   }
   .split h2 {
-    font-size: clamp(26px, 3vw, 34px);
+    font-size: clamp(24px, 3vw, 30px);
     font-weight: 800;
     letter-spacing: -0.01em;
   }
@@ -279,7 +229,7 @@
   }
   .card h3 {
     margin: 0 0 12px;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 600;
   }
   .card p {
@@ -326,15 +276,73 @@
 
   @media (max-width: 760px) {
     .wrap { padding: 0 20px; }
-    .hero-panel { grid-template-columns: 1fr; padding: 32px; gap: 28px; }
-    .hero-photo { order: -1; max-width: 220px; }
     .split { grid-template-columns: 1fr; gap: 20px; }
     .cards { grid-template-columns: 1fr; }
     .ledger .row { grid-template-columns: 1fr; gap: 8px; }
   }
 
+  /* ── system frame (shared with project cards) ─────────── */
+  :root {
+    --line-2: rgba(242, 236, 225, .16);
+  }
+  .fr-head, .fr-foot, .fr-tag { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .08em; }
+
+  .showcase { margin-top: 40px; }
+  .frame {
+    margin: -26px -26px 18px;
+    width: calc(100% + 52px);
+    border: 1px solid var(--line-2);
+    border-radius: 5px 5px 0 0;
+    background: var(--bg);
+    overflow: hidden;
+    box-shadow: 0 24px 60px -32px rgba(0,0,0,.85);
+  }
+  .showcase .frame { margin: 0; width: 100%; border-radius: 8px; }
+  .fr-head, .fr-foot {
+    display: flex; justify-content: space-between; gap: 12px;
+    font-size: 9.5px; color: var(--fg-faint); padding: 9px 12px;
+  }
+  .fr-head { border-bottom: 1px solid var(--line); }
+  .fr-head b { color: var(--accent); font-weight: 600; }
+  .fr-foot { border-top: 1px solid var(--line); }
+  .fr-foot span:last-child { color: var(--fg-muted); }
+  .fr-foot b { color: var(--fg); font-variant-numeric: tabular-nums; }
+
+  .fr-view { position: relative; line-height: 0; overflow: hidden; aspect-ratio: 16 / 9; --mx: 50%; --my: 50%; }
+  .fr-view img {
+    width: 100%; height: 100%; display: block; object-fit: cover;
+    filter: grayscale(1) contrast(1.1) brightness(.9);
+    transform: scale(1.05); opacity: 0;
+    transition: transform 1.6s cubic-bezier(.16,1,.3,1), opacity 1.2s ease;
+  }
+  .frame.in .fr-view img { transform: none; opacity: 1; }
+  .fr-view::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(rgba(242,236,225,.05) 1px, transparent 1px) 0 0/100% 25%,
+      linear-gradient(90deg, rgba(242,236,225,.05) 1px, transparent 1px) 0 0/12.5% 100%,
+      radial-gradient(120% 90% at var(--mx) var(--my), rgba(217,166,42,.10), transparent 55%),
+      radial-gradient(140% 110% at 50% 50%, transparent 45%, rgba(6,5,4,.7));
+  }
+  .scan {
+    position: absolute; left: 0; right: 0; top: 0; height: 100%; pointer-events: none;
+    transform: translateY(-100%); opacity: 0;
+    background: linear-gradient(to bottom,
+      transparent 0, transparent calc(100% - 72px),
+      rgba(217,166,42,.14) calc(100% - 22px),
+      rgba(217,166,42,.55) 100%);
+  }
+  .frame.in .scan { animation: sweep 7s cubic-bezier(.45,0,.55,1) 1.1s infinite; }
+  @keyframes sweep {
+    0% { transform: translateY(-100%); opacity: 0; }
+    5% { opacity: .95; }
+    24% { transform: translateY(0); opacity: .95; }
+    30%, 100% { transform: translateY(0); opacity: 0; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .hero-panel { animation: none; }
+    .fr-view img { transition: none; opacity: 1; transform: none; }
+    .scan, .frame.in .scan { animation: none; opacity: 0; }
   }
   </style>
 </head>
@@ -342,80 +350,61 @@
 
 <main id="top">
   <div class="wrap">
-    <div class="lang-switch" role="group" aria-label="Language"><span class="lang-current">EN</span><span class="lang-sep">/</span><a class="lang-link" href="/pt/">PT</a></div>
+    <div class="lang-switch" role="group" aria-label="Language"><span class="lang-current">EN</span><span class="lang-sep">/</span><a class="lang-link" href="/pt/projects/forefire/">PT</a></div>
     <section class="hero">
-      <div class="hero-panel">
-        <div class="hero-text">
-          <p class="eyebrow">Antonio Leblanc — Rio de Janeiro</p>
-          <h1>Intern to CTO in ten months.</h1>
-          <h2 class="hero-sub">Today I lead the AI platform protecting 40 million hectares against wildfires.</h2>
-          <p class="dek-note">Policy, community engagement, and ethics matter just as much as the model — that's where I want to keep spending my energy.</p>
+      <p class="eyebrow"><a href="/">← Antonio Leblanc</a></p>
+      <h1>ForeFire</h1>
+      <p class="dek">The open-source fire-spread simulator built by CNRS / Université de Corse. I've contributed since 2022 and maintained it since 2025 — on my own time, alongside Pantera.</p>
+
+      <figure class="showcase frame" id="frame-forefire">
+        <div class="fr-head">
+          <span><b>ForeFire</b> — fire-spread simulation</span>
+          <span>Actual engine output</span>
         </div>
-        <figure class="hero-photo">
-          <img src="/assets/images/antonio-headshot.jpg" alt="Antonio Leblanc">
-        </figure>
+        <div class="fr-view">
+          <img src="/assets/images/projects/forefire.webp" alt="ForeFire simulation of a real wildfire front in Portugal, with wind field overlaid" width="900" height="489" loading="lazy">
+          <div class="scan"></div>
+        </div>
+        <figcaption class="fr-foot">
+          <span>Real run — Portugal, 2017</span>
+          <span>Wind <b data-count="1.29" data-dec="2">0.00</b> m/s · CNRS engine</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="split">
+      <h2>What it is</h2>
+      <div>
+        <p class="dek" style="margin-top:0;">ForeFire is a C++ engine that simulates how a wildfire front actually moves — fed by real wind fields, terrain, and fuel data, not a simplified toy model. It's used by researchers and operational teams to run "what if" scenarios: where does this fire go in the next six hours if the wind shifts.</p>
       </div>
     </section>
 
-    <section class="ledger" aria-label="Track record">
+    <section class="ledger" aria-label="My role">
       <dl style="margin:0;">
         <div class="row fact">
-          <dt>Pantera</dt>
-          <dd><strong>190 cameras, 40M+ hectares, 95% detection accuracy</strong>, including the Pantanal. I lead computer vision detection models, satellite imagery, fire spread, risk analysis and architecture at <a href="https://umgrauemeio.com/" target="_blank" rel="noopener">1.5°C</a> — co-founder and CTO since 2020 — with the engineering, ML, and environmental science team that builds it with me.</dd>
+          <dt>Since 2022</dt>
+          <dd>Contributor — reviewing and merging PRs, cutting releases.</dd>
         </div>
         <div class="row fact">
-          <dt>Agents</dt>
-          <dd>Eight AI agents run sales, support, and marketing on Hermes, open-source, on our own servers.</dd>
+          <dt>Since 2025</dt>
+          <dd>Maintainer — Dockerization, CI/CD pipeline, Sphinx documentation, and the day-to-day of keeping the project buildable and reproducible.</dd>
         </div>
         <div class="row fact">
-          <dt><a href="https://forefire.readthedocs.io/en/latest/" target="_blank" rel="noopener">ForeFire</a></dt>
-          <dd>Contributor since 2022 to CNRS's open-source wildfire simulator, maintainer since 2025, and co-author on its <a href="https://doi.org/10.21105/joss.08680" target="_blank" rel="noopener">JOSS paper</a> — reviewing and merging PRs, cutting releases, Dockerization, CI/CD, documentation.</dd>
-        </div>
-        <div class="row fact">
-          <dt>Now</dt>
-          <dd>Open to a technical second opinion for early-stage climate or govtech teams, a hand with technical leadership beyond 1.5°C, or just to hear what you're building in wildfire, deforestation, or agentic systems.</dd>
+          <dt>JOSS paper</dt>
+          <dd>Co-author on the project's <a href="https://doi.org/10.21105/joss.08680" target="_blank" rel="noopener">Journal of Open Source Software paper</a>, the formal citation for the engine.</dd>
         </div>
       </dl>
     </section>
 
     <section class="split">
-      <h2>What I build</h2>
-      <div class="cards">
-        <article class="card">
-          <h3>Pantera</h3>
-          <p>The wildfire AI platform I lead end to end at 1.5°C — detection, risk, response, impact.</p>
-          <a class="card-link" href="/projects/pantera/">Read the full story →</a>
-        </article>
-        <article class="card">
-          <h3>ForeFire</h3>
-          <p>The open-source fire-spread simulator I maintain outside the day job, built by CNRS.</p>
-          <a class="card-link" href="/projects/forefire/">Read the full story →</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="split">
-      <h2>Where I focus</h2>
-      <div class="cards">
-        <article class="card">
-          <h3>Climate and public technology</h3>
-          <p>Fire, deforestation, monitoring — systems that governments, NGOs, and communities actually operate, rather than pilots that end with the press release.</p>
-        </article>
-        <article class="card">
-          <h3>Agentic systems outside of AI companies</h3>
-          <p>The hard part isn't the model — it's putting it inside an operation where being wrong is expensive.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="split">
       <h2>Get in touch</h2>
       <div class="contact-body">
-        <p>If you're building something in either direction, or if you lead an early-stage climate team and want a technical second opinion, write to me — I'd like to hear about it.</p>
+        <p>If you're building something in fire simulation, wildfire, or scientific open-source tooling, write to me.</p>
         <ul class="links">
+          <li><a href="/projects/pantera/">Pantera →</a></li>
+          <li><a href="https://github.com/forefireAPI/forefire" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://forefire.readthedocs.io/en/latest/" target="_blank" rel="noopener">Documentation</a></li>
           <li><a href="mailto:antoniolebla@gmail.com">Email</a></li>
-          <li><a href="https://github.com/antonio-leblanc" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="https://www.linkedin.com/in/antonio-leblanc/" target="_blank" rel="noopener">LinkedIn</a></li>
         </ul>
       </div>
     </section>
@@ -426,6 +415,35 @@
     </footer>
   </div>
 </main>
+<script>
+(function () {
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function countUp(el) {
+    if (el.dataset.ran) return; el.dataset.ran = '1';
+    var target = parseFloat(el.dataset.count), dec = parseInt(el.dataset.dec || 0, 10);
+    if (reduce) { el.textContent = target.toFixed(dec); return; }
+    var t0 = null, dur = 1400;
+    function step(t) {
+      if (t0 === null) t0 = t;
+      var p = Math.min((t - t0) / dur, 1);
+      el.textContent = (target * (1 - Math.pow(1 - p, 3))).toFixed(dec);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      e.target.querySelectorAll('[data-count]').forEach(countUp);
+      io.unobserve(e.target);
+    });
+  }, { threshold: .3, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.frame').forEach(function (el) { io.observe(el); });
+})();
+</script>
 <script src="/assets/js/lang-redirect.js" defer></script>
 </body>
 </html>
