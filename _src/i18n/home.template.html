@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="@@LANG@@">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Antonio Leblanc</title>
 <meta name="author" content="Antonio Leblanc">
-<meta name="description" content="Antonio Leblanc — Estagiário a CTO em dez meses. Lidero a plataforma de IA que protege 40 milhões de hectares contra incêndio florestal. Co-Founder &amp; CTO @ 1.5°C.">
-<link rel="canonical" href="https://antonioleblanc.com/pt/">
+<meta name="description" content="@@META_DESCRIPTION@@">
+<link rel="canonical" href="@@URL@@">
 <link rel="alternate" hreflang="en" href="https://antonioleblanc.com/">
 <link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='50' dy='.35em' text-anchor='middle' font-size='78' font-weight='700' font-family='Helvetica,Arial,sans-serif' fill='%23f9a522'%3EA%3C/text%3E%3C/svg%3E">
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://antonioleblanc.com/pt/">
+<meta property="og:url" content="@@URL@@">
 <meta property="og:title" content="Antonio Leblanc">
-<meta property="og:description" content="Estagiário a CTO em dez meses. Lidero a plataforma de IA que protege 40 milhões de hectares contra incêndio florestal. Co-Founder &amp; CTO @ 1.5°C.">
+<meta property="og:description" content="@@OG_DESCRIPTION@@">
 <meta property="og:image" content="https://antonioleblanc.com/assets/images/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Antonio Leblanc">
-<meta name="twitter:description" content="Estagiário a CTO em dez meses. Lidero a plataforma de IA que protege 40 milhões de hectares contra incêndio florestal. Co-Founder &amp; CTO @ 1.5°C.">
+<meta name="twitter:description" content="@@OG_DESCRIPTION@@">
 <meta name="twitter:image" content="https://antonioleblanc.com/assets/images/og-image.png">
 
 <script type="application/ld+json">
@@ -26,12 +26,12 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Antonio Leblanc",
-  "url": "https://antonioleblanc.com/pt/",
+  "url": "@@URL@@",
   "image": "https://antonioleblanc.com/assets/images/antonio-headshot.jpg",
   "jobTitle": "Co-Founder & CTO",
   "worksFor": { "@type": "Organization", "name": "1.5°C (umgrauemeio)", "url": "https://umgrauemeio.com/" },
   "address": { "@type": "PostalAddress", "addressLocality": "Rio de Janeiro", "addressCountry": "BR" },
-  "knowsAbout": ["Detecção de incêndios florestais", "IA para resiliência climática", "Machine learning em edge", "Inteligência geoespacial", "Sistemas de agentes"],
+  "knowsAbout": @@JSONLD_KNOWS_ABOUT@@,
   "sameAs": [
     "https://www.linkedin.com/in/antonio-leblanc/",
     "https://github.com/antonio-leblanc"
@@ -373,19 +373,19 @@ footer{
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m3 6.5 9 6 9-6"/></svg>
     </a>
   </span>
-  <span class="sb-item sb-lang"><a href="/">EN</a><s>/</s><b>PT</b></span>
+  <span class="sb-item sb-lang">@@LANG_SWITCH@@</span>
 </header>
 
 <main class="wrap" id="top">
 
   <section class="hero" id="hero">
     <div class="hero-text">
-      <p class="eyebrow">Rio de Janeiro · Clima e tecnologia pública</p>
+      <p class="eyebrow">@@EYEBROW@@</p>
       <h1>
-        <span class="ln"><i class="l-soft" style="--d:120ms">Estagiário a CTO em dez meses.</i></span>
-        <span class="ln"><i class="l-hard" style="--d:260ms">Hoje lidero a plataforma de IA que protege 40 milhões de hectares contra incêndio florestal.</i></span>
+        <span class="ln"><i class="l-soft" style="--d:120ms">@@H1_SOFT@@</i></span>
+        <span class="ln"><i class="l-hard" style="--d:260ms">@@H1_HARD@@</i></span>
       </h1>
-      <p class="dek rv" style="--d:600ms">Políticas públicas, comunidades tradicionais e ética pesam tanto quanto o modelo — é onde quero continuar investindo minha energia.</p>
+      <p class="dek rv" style="--d:600ms">@@DEK@@</p>
     </div>
 
     <figure class="frame">
@@ -395,117 +395,117 @@ footer{
     </figure>
   </section>
 
-  <section class="gauges" id="gauges" aria-label="Escala">
+  <section class="gauges" id="gauges" aria-label="@@GAUGES_ARIA@@">
     <div class="gauge rv">
       <div class="v"><b data-count="190">190</b></div>
-      <small>Câmeras · 150 HaaS + 40 SaaS</small>
+      <small>@@GAUGE1_LABEL@@</small>
     </div>
     <div class="gauge rv" style="--d:130ms">
       <div class="v"><b data-count="40">40</b><u>M+</u></div>
-      <small>Hectares sob monitoramento</small>
+      <small>@@GAUGE2_LABEL@@</small>
     </div>
     <div class="gauge rv" style="--d:260ms">
       <div class="v"><b data-count="95">95</b><u>%</u></div>
-      <small>Acurácia de detecção</small>
+      <small>@@GAUGE3_LABEL@@</small>
       <div class="bar"><b></b></div>
     </div>
   </section>
 
-  <section class="log" aria-label="Histórico">
+  <section class="log" aria-label="@@LOG_ARIA@@">
     <dl style="margin:0">
       <div class="row rv">
         <span class="idx">01</span><dt>Pantera</dt>
-        <dd>Lidero modelos de visão computacional para detecção, imagens de satélite, propagação de incêndio, análise de risco e arquitetura na <a href="https://umgrauemeio.com/" target="_blank" rel="noopener" class="u">1.5°C</a> — cofundador e CTO desde 2020 — incluindo o Pantanal, com o time de engenharia, ML e ciência ambiental que constrói isso comigo.</dd>
+        <dd>@@LOG1_DD@@</dd>
       </div>
       <div class="row rv" style="--d:110ms">
-        <span class="idx">02</span><dt>Agentes</dt>
-        <dd>Oito agentes de IA rodam vendas, suporte e marketing no Hermes, open-source, em servidores próprios.</dd>
+        <span class="idx">02</span><dt>@@LOG2_DT@@</dt>
+        <dd>@@LOG2_DD@@</dd>
       </div>
       <div class="row rv" style="--d:220ms">
         <span class="idx">03</span><dt><a href="https://forefire.readthedocs.io/en/latest/" target="_blank" rel="noopener" class="u">ForeFire</a></dt>
-        <dd>Contribuidor desde 2022 do simulador de incêndio florestal open-source do CNRS, mantenedor desde 2025, e coautor do <a href="https://doi.org/10.21105/joss.08680" target="_blank" rel="noopener" class="u">paper na JOSS</a> — revisando e mesclando PRs, cortando releases, Dockerização, CI/CD, documentação.</dd>
+        <dd>@@LOG3_DD@@</dd>
       </div>
       <div class="row rv" style="--d:330ms">
-        <span class="idx">04</span><dt>Hoje</dt>
-        <dd>Aberto a dar uma segunda opinião técnica pra times early-stage em clima ou govtech, dar uma força em liderança técnica além da 1.5°C, ou a ouvir o que você está construindo em incêndio florestal, desmatamento ou sistemas de agentes.</dd>
+        <span class="idx">04</span><dt>@@LOG4_DT@@</dt>
+        <dd>@@LOG4_DD@@</dd>
       </div>
     </dl>
   </section>
 
   <section class="split">
-    <div><span class="label">Foco</span><h2>Onde eu foco</h2></div>
+    <div><span class="label">@@FOCUS_LABEL@@</span><h2>@@FOCUS_H2@@</h2></div>
     <div class="mods">
       <article class="mod rv">
         <span class="mod-idx">01</span>
-        <h3>Clima e tecnologia pública</h3>
-        <p>Incêndio, desmatamento, monitoramento — sistemas que governo, ONG e comunidade realmente operam no dia a dia, não pilotos que terminam no release de imprensa.</p>
+        <h3>@@FOCUS1_TITLE@@</h3>
+        <p>@@FOCUS1_BODY@@</p>
       </article>
       <article class="mod rv" style="--d:110ms">
         <span class="mod-idx">02</span>
-        <h3>Sistemas de agentes fora de empresas de IA</h3>
-        <p>O difícil não é o modelo — é botar ele dentro de uma operação onde errar custa caro.</p>
+        <h3>@@FOCUS2_TITLE@@</h3>
+        <p>@@FOCUS2_BODY@@</p>
       </article>
     </div>
   </section>
 
   <section class="split">
-    <div><span class="label">Construção</span><h2>O que eu construo</h2></div>
+    <div><span class="label">@@BUILD_LABEL@@</span><h2>@@BUILD_H2@@</h2></div>
     <div class="mods">
       <article class="mod mod-media rv">
         <span class="mod-idx">01</span>
         <figure class="frame" style="margin:-24px -24px 20px">
           <div class="fr-head">
-            <span><b>Pantera</b> — detecção de fumaça</span>
-            <span>Output real do sistema</span>
+            <span><b>Pantera</b> — @@PANTERA_KIND@@</span>
+            <span>@@PANTERA_OUTPUT_LABEL@@</span>
           </div>
           <div class="fr-view">
-            <img src="/assets/images/projects/pantera-detection-field.webp" alt="Fumaça de incêndio florestal subindo sobre uma plantação, detectada e demarcada pela rede de câmeras do Pantera." width="644" height="366">
+            <img src="/assets/images/projects/pantera-detection-field.webp" alt="@@PANTERA_ALT@@" width="644" height="366">
             <div class="scan"></div>
             <div class="fr-box">
               <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
-              <span class="fr-tag">Fumaça <b data-count="97.2" data-dec="1">97.2</b>%</span>
+              <span class="fr-tag">@@PANTERA_TAG_LABEL@@ <b data-count="97.2" data-dec="1">97.2</b>%</span>
             </div>
           </div>
           <figcaption class="fr-foot">
-            <span>Uma das 190 câmeras</span>
-            <span>40M+ hectares monitorados</span>
+            <span>@@PANTERA_CAP1@@</span>
+            <span>@@PANTERA_CAP2@@</span>
           </figcaption>
         </figure>
         <h3>Pantera</h3>
-        <p>A plataforma de IA contra incêndio florestal que lidero de ponta a ponta na 1.5°C — detecção, risco, resposta, impacto.</p>
-        <a class="mod-link u" href="/pt/projects/pantera/">Ler a história completa ↗</a>
+        <p>@@PANTERA_BODY@@</p>
+        <a class="mod-link u" href="@@PANTERA_HREF@@">@@READ_STORY@@</a>
       </article>
       <article class="mod mod-media rv" style="--d:110ms">
         <span class="mod-idx">02</span>
         <figure class="frame" style="margin:-24px -24px 20px">
           <div class="fr-head">
-            <span><b>ForeFire</b> — simulação de propagação de incêndio</span>
-            <span>Output do simulador</span>
+            <span><b>ForeFire</b> — @@FOREFIRE_KIND@@</span>
+            <span>@@FOREFIRE_OUTPUT_LABEL@@</span>
           </div>
           <div class="fr-view">
-            <img src="/assets/images/projects/forefire.webp" alt="Saída de simulação de propagação de incêndio do ForeFire sobre um terreno." width="900" height="489">
+            <img src="/assets/images/projects/forefire.webp" alt="@@FOREFIRE_ALT@@" width="900" height="489">
           </div>
           <figcaption class="fr-foot">
-            <span>Open-source, CNRS</span>
-            <span>Contribuidor desde 2022</span>
+            <span>@@FOREFIRE_CAP1@@</span>
+            <span>@@FOREFIRE_CAP2@@</span>
           </figcaption>
         </figure>
         <h3>ForeFire</h3>
-        <p>O simulador open-source de propagação de incêndio que mantenho fora do trabalho de casa, construído pelo CNRS.</p>
-        <a class="mod-link u" href="/pt/projects/forefire/">Ler a história completa ↗</a>
+        <p>@@FOREFIRE_BODY@@</p>
+        <a class="mod-link u" href="@@FOREFIRE_HREF@@">@@READ_STORY@@</a>
       </article>
     </div>
   </section>
 
   <section class="split">
-    <div><span class="label">Contato</span><h2>Fale comigo</h2></div>
+    <div><span class="label">@@CONTACT_LABEL@@</span><h2>@@CONTACT_H2@@</h2></div>
     <div class="contact-body">
       <figure class="portrait rv">
         <div class="p-box"><i class="tl"></i><i class="br"></i><img src="/assets/images/off-the-clock.jpg" alt="Antonio Leblanc" width="480" height="480"></div>
         <figcaption>Rio de Janeiro</figcaption>
       </figure>
       <div class="rv" style="--d:110ms">
-        <p>Se você está construindo alguma coisa nessas duas direções, ou lidera um time early-stage em clima e quer uma segunda opinião técnica, me escreva — quero saber o que é.</p>
+        <p>@@CONTACT_BODY@@</p>
         <ul class="links">
           <li><a href="mailto:antoniolebla@gmail.com">Email <span>↗</span></a></li>
           <li><a href="https://github.com/antonio-leblanc" target="_blank" rel="noopener">GitHub <span>↗</span></a></li>
@@ -517,7 +517,7 @@ footer{
 
   <footer>
     <span class="foot">Antonio Leblanc — Rio de Janeiro</span>
-    <span class="foot"><a href="/">English</a> · <a href="#top">Voltar ao topo</a></span>
+    <span class="foot">@@FOOTER_LANG_LINK@@ · <a href="#top">@@BACK_TO_TOP@@</a></span>
   </footer>
 </main>
 
