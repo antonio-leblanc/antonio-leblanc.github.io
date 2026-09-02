@@ -10,14 +10,15 @@ Estático puro, sem build. GitHub Pages serve o `main` direto da raiz.
 
 | Arquivo | O quê |
 |---|---|
-| `index.html` | a página inteira em inglês — conteúdo, JSON-LD, `<style>` inline (tokens no `:root`) e o JS inline (reveal, count-up, scroll progress) |
-| `pt/index.html` | a mesma página em português |
-| `projects/index.html`, `pt/projects/index.html` | página de projetos (en/pt), mesmo padrão de `<style>` inline |
-| `assets/fonts/` | Inter e JetBrains Mono (`.woff2`), carregadas via `@font-face` no `<style>` inline |
+| `index.html` | a página inteira em inglês — conteúdo, JSON-LD, `<link>` pro `assets/css/style.css` (tokens no `:root`) e o JS inline (reveal, count-up, scroll progress) |
+| `pt/index.html` | a mesma página em português, carregando o mesmo `assets/css/style.css` |
+| `projects/index.html`, `pt/projects/index.html` | stubs de redirect (`meta http-equiv="refresh"`) pra `/` e `/pt/` — sem CSS próprio |
+| `projects/pantera/index.html`, `projects/forefire/index.html` (e os pares em `pt/projects/`) | as páginas de projeto de fato — carregam `assets/css/projects.css` |
+| `assets/css/style.css` | CSS compartilhado por `index.html` e `pt/index.html` |
+| `assets/css/projects.css` | CSS compartilhado pelas 4 páginas de projeto (pantera/forefire × en/pt) — standalone, não estende `style.css` (várias regras com o mesmo seletor, como `.dek`, `.ledger`, `.split` e `.card h3`, têm valores diferentes entre o design da home e o das páginas de projeto) |
+| `assets/fonts/` | Inter e JetBrains Mono (`.woff2`), carregadas via `@font-face` no CSS |
 | `assets/images/` | `antonio-headshot.jpg` (retrato real, hero atual), `og-image.png` (preview social 1200×630), imagens de `projects/` |
 | `CNAME` | domínio custom, gerenciado pelo GitHub Pages |
-
-Não tem `style.css` na raiz — cada página carrega seu próprio `<style>` inline, sem link externo.
 
 ### `_lab/` e `_src/` — não fazem parte do site no ar
 
