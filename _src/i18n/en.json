@@ -4,7 +4,7 @@
   "META_DESCRIPTION": "Antonio Leblanc — Intern to CTO in ten months. Today I lead the AI platform protecting 40 million hectares against wildfire. Co-Founder &amp; CTO @ 1.5°C.",
   "OG_DESCRIPTION": "Intern to CTO in ten months. Today I lead the AI platform protecting 40 million hectares against wildfire. Co-Founder &amp; CTO @ 1.5°C.",
   "JSONLD_KNOWS_ABOUT": ["Wildfire detection", "AI for climate resilience", "Edge machine learning", "Geospatial intelligence", "Agentic systems"],
-  "LANG_SWITCH": "<b>EN</b><s>/</s><a href=\"/pt/\">PT</a>",
+  "LANG_SWITCH": "<b>EN</b><s>/</s><a class=\"lang-link\" href=\"/pt/\">PT</a>",
   "EYEBROW": "Rio de Janeiro · Climate &amp; public technology",
   "H1_SOFT": "Intern to CTO in ten months.",
   "H1_HARD": "Today I lead the AI platform protecting 40 million hectares against wildfires.",
@@ -47,6 +47,6 @@
   "CONTACT_LABEL": "Contact",
   "CONTACT_H2": "Get in touch",
   "CONTACT_BODY": "If you're building something in either direction, or if you lead an early-stage climate team and want a technical second opinion, write to me — I'd like to hear about it.",
-  "FOOTER_LANG_LINK": "<a href=\"/pt/\">Português</a>",
+  "FOOTER_LANG_LINK": "<a class=\"lang-link\" href=\"/pt/\">Português</a>",
   "BACK_TO_TOP": "Back to top"
 }

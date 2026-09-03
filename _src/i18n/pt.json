@@ -4,7 +4,7 @@
   "META_DESCRIPTION": "Antonio Leblanc — Estagiário a CTO em dez meses. Lidero a plataforma de IA que protege 40 milhões de hectares contra incêndio florestal. Co-Founder &amp; CTO @ 1.5°C.",
   "OG_DESCRIPTION": "Estagiário a CTO em dez meses. Lidero a plataforma de IA que protege 40 milhões de hectares contra incêndio florestal. Co-Founder &amp; CTO @ 1.5°C.",
   "JSONLD_KNOWS_ABOUT": ["Detecção de incêndios florestais", "IA para resiliência climática", "Machine learning em edge", "Inteligência geoespacial", "Sistemas de agentes"],
-  "LANG_SWITCH": "<a href=\"/\">EN</a><s>/</s><b>PT</b>",
+  "LANG_SWITCH": "<a class=\"lang-link\" href=\"/\">EN</a><s>/</s><b>PT</b>",
   "EYEBROW": "Rio de Janeiro · Clima e tecnologia pública",
   "H1_SOFT": "Estagiário a CTO em dez meses.",
   "H1_HARD": "Hoje lidero a plataforma de IA que protege 40 milhões de hectares contra incêndio florestal.",
@@ -47,6 +47,6 @@
   "CONTACT_LABEL": "Contato",
   "CONTACT_H2": "Fale comigo",
   "CONTACT_BODY": "Se você está construindo alguma coisa nessas duas direções, ou lidera um time early-stage em clima e quer uma segunda opinião técnica, me escreva — quero saber o que é.",
-  "FOOTER_LANG_LINK": "<a href=\"/\">English</a>",
+  "FOOTER_LANG_LINK": "<a class=\"lang-link\" href=\"/\">English</a>",
   "BACK_TO_TOP": "Voltar ao topo"
 }
