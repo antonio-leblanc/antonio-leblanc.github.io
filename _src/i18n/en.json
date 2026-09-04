@@ -19,13 +19,7 @@
   "LOG2_DD": "Eight AI agents run sales, support, and marketing on Hermes, open-source, on our own servers.",
   "LOG3_DD": "Contributor since 2022 to CNRS's open-source wildfire simulator, maintainer since 2025, and co-author on its <a href=\"https://doi.org/10.21105/joss.08680\" target=\"_blank\" rel=\"noopener\" class=\"u\">JOSS paper</a> — reviewing and merging PRs, cutting releases, Dockerization, CI/CD, documentation.",
   "LOG4_DT": "Now",
-  "LOG4_DD": "Open to a technical second opinion for early-stage climate or govtech teams, a hand with technical leadership beyond 1.5°C, or just to hear what you're building in wildfire, deforestation, or agentic systems.",
-  "FOCUS_LABEL": "Focus",
-  "FOCUS_H2": "Where I focus",
-  "FOCUS1_TITLE": "Climate and public technology",
-  "FOCUS1_BODY": "Fire, deforestation, monitoring — systems that governments, NGOs, and communities actually operate, rather than pilots that end with the press release.",
-  "FOCUS2_TITLE": "Agentic systems outside of AI companies",
-  "FOCUS2_BODY": "The hard part isn't the model — it's putting it inside an operation where being wrong is expensive.",
+  "LOG4_DD": "Open to CTO or senior technical leadership roles — in climate, govtech, or agentic systems, where the hard part isn't the model but putting it inside an operation where being wrong is expensive.",
   "BUILD_LABEL": "Build",
   "BUILD_H2": "What I build",
   "PANTERA_KIND": "smoke detection",
@@ -47,6 +41,7 @@
   "CONTACT_LABEL": "Contact",
   "CONTACT_H2": "Get in touch",
   "CONTACT_BODY": "If you're building something in either direction, or if you lead an early-stage climate team and want a technical second opinion, write to me — I'd like to hear about it.",
+  "PORTRAIT_CAPTION": "Rio de Janeiro — marathon runner, percussion in a Carnaval bloco",
   "FOOTER_LANG_LINK": "<a class=\"lang-link\" href=\"/pt/\">Português</a>",
   "BACK_TO_TOP": "Back to top"
 }

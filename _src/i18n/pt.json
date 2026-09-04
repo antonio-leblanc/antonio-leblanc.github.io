@@ -19,13 +19,7 @@
   "LOG2_DD": "Oito agentes de IA rodam vendas, suporte e marketing no Hermes, open-source, em servidores próprios.",
   "LOG3_DD": "Contribuidor desde 2022 do simulador de incêndio florestal open-source do CNRS, mantenedor desde 2025, e coautor do <a href=\"https://doi.org/10.21105/joss.08680\" target=\"_blank\" rel=\"noopener\" class=\"u\">paper na JOSS</a> — revisando e mesclando PRs, cortando releases, Dockerização, CI/CD, documentação.",
   "LOG4_DT": "Hoje",
-  "LOG4_DD": "Aberto a dar uma segunda opinião técnica pra times early-stage em clima ou govtech, dar uma força em liderança técnica além da 1.5°C, ou a ouvir o que você está construindo em incêndio florestal, desmatamento ou sistemas de agentes.",
-  "FOCUS_LABEL": "Foco",
-  "FOCUS_H2": "Onde eu foco",
-  "FOCUS1_TITLE": "Clima e tecnologia pública",
-  "FOCUS1_BODY": "Incêndio, desmatamento, monitoramento — sistemas que governo, ONG e comunidade realmente operam no dia a dia, não pilotos que terminam no release de imprensa.",
-  "FOCUS2_TITLE": "Sistemas de agentes fora de empresas de IA",
-  "FOCUS2_BODY": "O difícil não é o modelo — é botar ele dentro de uma operação onde errar custa caro.",
+  "LOG4_DD": "Aberto a cargos de CTO ou liderança técnica sênior — em clima, govtech ou sistemas de agentes, onde o difícil não é o modelo, e sim colocá-lo dentro de uma operação em que errar custa caro.",
   "BUILD_LABEL": "Construção",
   "BUILD_H2": "O que eu construo",
   "PANTERA_KIND": "detecção de fumaça",
@@ -47,6 +41,7 @@
   "CONTACT_LABEL": "Contato",
   "CONTACT_H2": "Fale comigo",
   "CONTACT_BODY": "Se você está construindo alguma coisa nessas duas direções, ou lidera um time early-stage em clima e quer uma segunda opinião técnica, me escreva — quero saber o que é.",
+  "PORTRAIT_CAPTION": "Rio de Janeiro — corredor de maratona, percussão em bloco de Carnaval",
   "FOOTER_LANG_LINK": "<a class=\"lang-link\" href=\"/\">English</a>",
   "BACK_TO_TOP": "Voltar ao topo"
 }
