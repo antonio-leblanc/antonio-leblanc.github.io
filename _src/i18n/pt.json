@@ -14,7 +14,7 @@
   "GAUGE2_LABEL": "Hectares sob monitoramento",
   "GAUGE3_LABEL": "Acurácia de detecção",
   "LOG_ARIA": "Histórico",
-  "LOG1_DD": "Lidero modelos de visão computacional para detecção, imagens de satélite, propagação de incêndio, análise de risco e arquitetura na <a href=\"https://umgrauemeio.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">1.5°C</a> — cofundador e CTO desde 2020 — incluindo o Pantanal, com o time de engenharia, ML e ciência ambiental que constrói isso comigo.",
+  "LOG1_DD": "Como cofundador e CTO da <a href=\"https://umgrauemeio.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">1.5°C</a>, lidero os modelos de visão computacional, imagens de satélite e risco de incêndio — com o time de engenharia, ML e ciência ambiental que os constrói comigo.",
   "LOG2_DT": "Agentes",
   "LOG2_DD": "Oito agentes de IA rodam vendas, suporte e marketing no Hermes, open-source, em servidores próprios.",
   "LOG3_DD": "Contribuidor desde 2022 do simulador de incêndio florestal open-source do CNRS, mantenedor desde 2025, e coautor do <a href=\"https://doi.org/10.21105/joss.08680\" target=\"_blank\" rel=\"noopener\" class=\"u\">paper na JOSS</a> — revisando e mesclando PRs, cortando releases, Dockerização, CI/CD, documentação.",

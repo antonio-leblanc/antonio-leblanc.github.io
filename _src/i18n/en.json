@@ -14,7 +14,7 @@
   "GAUGE2_LABEL": "Hectares under watch",
   "GAUGE3_LABEL": "Detection accuracy",
   "LOG_ARIA": "Track record",
-  "LOG1_DD": "I lead computer vision detection models, satellite imagery, fire spread, risk analysis and architecture at <a href=\"https://umgrauemeio.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">1.5°C</a> — co-founder and CTO since 2020 — including the Pantanal, with the engineering, ML, and environmental science team that builds it with me.",
+  "LOG1_DD": "As co-founder and CTO of <a href=\"https://umgrauemeio.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">1.5°C</a>, I lead the computer vision, satellite imagery, and fire-risk models — with the engineering, ML, and environmental science team that builds them with me.",
   "LOG2_DT": "Agents",
   "LOG2_DD": "Eight AI agents run sales, support, and marketing on Hermes, open-source, on our own servers.",
   "LOG3_DD": "Contributor since 2022 to CNRS's open-source wildfire simulator, maintainer since 2025, and co-author on its <a href=\"https://doi.org/10.21105/joss.08680\" target=\"_blank\" rel=\"noopener\" class=\"u\">JOSS paper</a> — reviewing and merging PRs, cutting releases, Dockerization, CI/CD, documentation.",
