@@ -54,15 +54,18 @@
       <figure class="showcase frame" id="frame-forefire">
         <div class="fr-head">
           <span><b>ForeFire</b> — simulação de propagação de incêndio</span>
-          <span>Saída real do motor</span>
+          <span>Ao vivo dentro do Pantera</span>
         </div>
         <div class="fr-view">
-          <img src="/assets/images/projects/forefire.webp" alt="Simulação do ForeFire de uma frente de incêndio real em Portugal, com campo de vento sobreposto" width="900" height="489" loading="lazy">
+          <video autoplay loop muted playsinline poster="/assets/images/projects/forefire.webp" aria-label="Previsão de propagação do ForeFire renderizada dentro do Pantera, mostrando uma trajetória projetada de incêndio sobre terreno real.">
+            <source src="/assets/videos/forefire-propagation.webm" type="video/webm">
+            <source src="/assets/videos/forefire-propagation.mp4" type="video/mp4">
+          </video>
           <div class="scan"></div>
         </div>
         <figcaption class="fr-foot">
-          <span>Execução real — Portugal, 2017</span>
-          <span>Vento <b data-count="1.29" data-dec="2">0.00</b> m/s · motor CNRS</span>
+          <span>Mesmo motor em C++, em produção</span>
+          <span>Alimentando os módulos de risco e resposta do Pantera</span>
         </figcaption>
       </figure>
     </section>
@@ -70,7 +73,22 @@
     <section class="split">
       <h2>O que é</h2>
       <div>
-        <p class="dek" style="margin-top:0;">O ForeFire é um motor em C++ que simula como uma frente de incêndio realmente se move — alimentado por campos de vento, terreno e combustível reais, não um modelo simplificado. É usado por pesquisadores e equipes operacionais pra rodar cenários "e se": pra onde esse incêndio vai nas próximas seis horas se o vento mudar.</p>
+        <p class="dek" style="margin-top:0;">O ForeFire é um motor em C++ que simula como uma frente de incêndio realmente se move — alimentado por campos de vento, terreno e combustível reais, não um modelo simplificado. É usado por pesquisadores e equipes operacionais pra rodar cenários "e se": pra onde esse incêndio vai nas próximas seis horas se o vento mudar. No Pantera, é o mesmo motor por trás das nossas próprias previsões de propagação — transformando uma detecção confirmada numa trajetória projetada que a brigada consegue agir em cima.</p>
+
+        <figure class="showcase frame" id="frame-forefire-pyrocb" style="margin-top:28px;">
+          <div class="fr-head">
+            <span><b>ForeFire</b> — modelo acoplado fogo–atmosfera</span>
+            <span>Paper na JOSS, Fig. 2</span>
+          </div>
+          <div class="fr-view">
+            <img src="/assets/images/projects/forefire-pyrocb.webp" alt="Renderização 3D volumétrica da pluma piroconvectiva e dos downbursts gerados pelo modelo acoplado fogo-atmosfera do ForeFire, simulando o incêndio de Pedrógão Grande de 2017 em Portugal." width="1200" height="677" loading="lazy">
+            <div class="scan"></div>
+          </div>
+          <figcaption class="fr-foot">
+            <span>Pedrógão Grande, Portugal — 2017</span>
+            <span>O fogo cria seu próprio clima — modelado, não assumido</span>
+          </figcaption>
+        </figure>
       </div>
     </section>
 
