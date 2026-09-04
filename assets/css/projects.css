@@ -258,6 +258,8 @@
   .fr-head, .fr-foot, .fr-tag { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .08em; }
 
   .showcase { margin-top: 40px; }
+  /* proteção do "wow" único: shot de abertura não estica edge-to-edge no wrap inteiro */
+  .hero > .showcase { max-width: 860px; margin-right: auto; }
   .frame {
     margin: -26px -26px 18px;
     width: calc(100% + 52px);

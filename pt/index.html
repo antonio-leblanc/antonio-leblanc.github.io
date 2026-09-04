@@ -258,6 +258,8 @@ h1{font-size:clamp(31px,4.5vw,54px);line-height:1.08;letter-spacing:-.026em}
   gap:clamp(24px,4vw,48px);padding:clamp(44px,6vw,76px) 0;
   border-top:1px solid var(--line);
 }
+/* coluna de label+h2 é curta demais pra justificar .72fr — sobra vão lateral antes dos cards */
+.split-build{grid-template-columns:minmax(0,.46fr) minmax(0,1.54fr)}
 .split h2{font-size:clamp(23px,2.7vw,31px);font-weight:800;letter-spacing:-.02em}
 .split .label{display:block;font-size:9.5px;color:var(--fg-faint);margin-bottom:14px}
 
@@ -432,7 +434,7 @@ footer{
     </dl>
   </section>
 
-  <section class="split">
+  <section class="split split-build">
     <div><span class="label">Construção</span><h2>O que eu construo</h2></div>
     <div class="mods">
       <article class="mod mod-media rv">
@@ -457,7 +459,7 @@ footer{
         </figure>
         <h3>Pantera</h3>
         <p>A plataforma de IA contra incêndio florestal que lidero de ponta a ponta na 1.5°C — detecção, risco, resposta, impacto.</p>
-        <a class="mod-link u" href="/pt/projects/pantera/">Ler a história completa ↗</a>
+        <a class="mod-link u" href="/pt/projects/pantera/" target="_blank" rel="noopener">Ler a história completa ↗</a>
       </article>
       <article class="mod mod-media rv" style="--d:110ms">
         <span class="mod-idx">02</span>
@@ -476,7 +478,7 @@ footer{
         </figure>
         <h3>ForeFire</h3>
         <p>O simulador open-source de propagação de incêndio que mantenho fora do trabalho de casa, construído pelo CNRS.</p>
-        <a class="mod-link u" href="/pt/projects/forefire/">Ler a história completa ↗</a>
+        <a class="mod-link u" href="/pt/projects/forefire/" target="_blank" rel="noopener">Ler a história completa ↗</a>
       </article>
     </div>
   </section>
@@ -486,7 +488,7 @@ footer{
     <div class="contact-body">
       <figure class="portrait rv">
         <div class="p-box"><i class="tl"></i><i class="br"></i><img src="/assets/images/off-the-clock.jpg" alt="Antonio Leblanc" width="480" height="480"></div>
-        <figcaption>Rio de Janeiro — corredor de maratona, percussão em bloco de Carnaval</figcaption>
+        <figcaption>Rio de Janeiro — corredor de maratona, saxofone em bloco de Carnaval</figcaption>
       </figure>
       <div class="rv" style="--d:110ms">
         <p>Se você está construindo alguma coisa nessas duas direções, ou lidera um time early-stage em clima e quer uma segunda opinião técnica, me escreva — quero saber o que é.</p>
