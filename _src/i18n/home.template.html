@@ -254,8 +254,8 @@ h1{font-size:clamp(31px,4.5vw,54px);line-height:1.08;letter-spacing:-.026em}
   gap:clamp(24px,4vw,48px);padding:clamp(44px,6vw,76px) 0;
   border-top:1px solid var(--line);
 }
-/* coluna de label+h2 é curta demais pra justificar .72fr — sobra vão lateral antes dos cards */
-.split-build{grid-template-columns:minmax(0,.46fr) minmax(0,1.54fr)}
+/* coluna de label+h2 é curta demais pra justificar .72fr — sobra vão lateral antes dos cards/do bloco de contato */
+.split-build,.split-contact{grid-template-columns:minmax(0,.46fr) minmax(0,1.54fr)}
 .split h2{font-size:clamp(23px,2.7vw,31px);font-weight:800;letter-spacing:-.02em}
 .split .label{display:block;font-size:9.5px;color:var(--fg-faint);margin-bottom:14px}
 
@@ -281,8 +281,8 @@ h1{font-size:clamp(31px,4.5vw,54px);line-height:1.08;letter-spacing:-.026em}
 .mod p{font-size:14px;line-height:1.62;color:var(--fg-muted);position:relative}
 .mod-link{display:inline-block;margin-top:14px;font-size:12.5px;font-weight:600;position:relative}
 
-/* ── contact ─────────────────────────────────── */
-.contact-body{display:grid;grid-template-columns:132px 1fr;gap:clamp(20px,3vw,34px);align-items:start}
+/* ── about / contact ────────────────────────────── */
+.bio-grid{display:grid;grid-template-columns:132px 1fr;gap:clamp(20px,3vw,34px);align-items:start}
 .portrait{margin:0;position:relative}
 .portrait .p-box{position:relative;width:100%;padding-top:100%}
 .portrait img{
@@ -294,12 +294,14 @@ h1{font-size:clamp(31px,4.5vw,54px);line-height:1.08;letter-spacing:-.026em}
 .portrait .tl{top:-4px;left:-4px;border-right:0;border-bottom:0}
 .portrait .br{bottom:-4px;right:-4px;border-left:0;border-top:0}
 .portrait figcaption{font-family:var(--mono);font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-faint);margin-top:10px}
-.contact-body p{font-size:16.5px;line-height:1.65;color:var(--fg-muted);max-width:54ch}
-.links{list-style:none;display:flex;gap:10px;margin:26px 0 0;padding:0;flex-wrap:wrap}
+.bio-grid p,.contact-text p{font-size:16.5px;line-height:1.65;color:var(--fg-muted);max-width:54ch}
+.bio-grid p.mark{position:relative;padding-left:17px}
+.bio-grid p.mark::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;background:var(--accent);opacity:.6}
+.links{list-style:none;display:flex;gap:12px;margin:28px 0 0;padding:0;flex-wrap:wrap}
 .links a{
-  display:inline-flex;align-items:center;gap:9px;
-  border:1px solid var(--line-2);border-radius:2px;padding:9px 15px;
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--line-2);border-radius:3px;padding:13px 22px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.09em;text-transform:uppercase;
   color:var(--fg-muted);transition:color .3s ease,border-color .3s ease,background .3s ease;
 }
 .links a span{color:var(--fg-faint);transition:transform .3s var(--ease),color .3s ease}
@@ -328,10 +330,10 @@ footer{
 @media (max-width:640px){
   .sb-role{display:none}
   .sb-social{gap:14px;padding:0 12px}
-  .contact-body{grid-template-columns:minmax(0,1fr)}
+  .bio-grid{grid-template-columns:minmax(0,1fr)}
   .portrait{max-width:124px}
   h1{font-size:clamp(28px,7.6vw,34px)}
-  .dek,.contact-body p{font-size:15.5px}
+  .dek,.bio-grid p,.contact-text p{font-size:15.5px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -469,22 +471,30 @@ footer{
     </div>
   </section>
 
-  <section class="split">
-    <div><span class="label">@@CONTACT_LABEL@@</span><h2>@@CONTACT_H2@@</h2></div>
-    <div class="contact-body">
+  <section class="split split-contact">
+    <div><span class="label">@@ABOUT_LABEL@@</span><h2>@@ABOUT_H2@@</h2></div>
+    <div class="bio-grid">
       <figure class="portrait rv">
         <div class="p-box"><i class="tl"></i><i class="br"></i><img src="/assets/images/marathon.jpg" alt="Antonio Leblanc" width="480" height="480"></div>
         <figcaption>@@PORTRAIT_CAPTION@@</figcaption>
       </figure>
       <div class="rv" style="--d:110ms">
-        <p>@@CONTACT_BODY@@</p>
-        <ul class="links">
-          <li><a href="mailto:antoniolebla@gmail.com">Email <span>↗</span></a></li>
-          <li><a href="https://github.com/antonio-leblanc" target="_blank" rel="noopener">GitHub <span>↗</span></a></li>
-          <li><a href="https://www.linkedin.com/in/antonio-leblanc/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a></li>
-          <li><a href="/assets/cv/antonio-leblanc-resume.pdf" target="_blank" rel="noopener">@@RESUME_LINK@@ <span>↗</span></a></li>
-        </ul>
+        <p class="mark">@@ABOUT_RUN@@</p>
+        <p class="mark">@@ABOUT_MUSIC@@</p>
       </div>
+    </div>
+  </section>
+
+  <section class="split split-contact">
+    <div><span class="label">@@CONTACT_LABEL@@</span><h2>@@CONTACT_H2@@</h2></div>
+    <div class="contact-text rv" style="--d:110ms">
+      <p>@@CONTACT_BODY@@</p>
+      <ul class="links">
+        <li><a href="mailto:antoniolebla@gmail.com">Email <span>↗</span></a></li>
+        <li><a href="https://github.com/antonio-leblanc" target="_blank" rel="noopener">GitHub <span>↗</span></a></li>
+        <li><a href="https://www.linkedin.com/in/antonio-leblanc/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a></li>
+        <li><a href="/assets/cv/antonio-leblanc-resume.pdf" target="_blank" rel="noopener">@@RESUME_LINK@@ <span>↗</span></a></li>
+      </ul>
     </div>
   </section>
 
