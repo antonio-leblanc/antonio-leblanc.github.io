@@ -282,7 +282,8 @@ h1{font-size:clamp(31px,4.5vw,54px);line-height:1.08;letter-spacing:-.026em}
 .mod-link{display:inline-block;margin-top:14px;font-size:12.5px;font-weight:600;position:relative}
 
 /* ── about / contact ────────────────────────────── */
-.bio-grid{display:grid;grid-template-columns:132px 1fr;gap:clamp(20px,3vw,34px);align-items:start}
+.bio-grid{display:grid;grid-template-columns:132px 1fr;gap:clamp(20px,3vw,34px);align-items:center}
+.bio-marks{display:flex;flex-direction:column;gap:16px}
 .portrait{margin:0;position:relative}
 .portrait .p-box{position:relative;width:100%;padding-top:100%}
 .portrait img{
@@ -293,7 +294,6 @@ h1{font-size:clamp(31px,4.5vw,54px);line-height:1.08;letter-spacing:-.026em}
 .portrait i{position:absolute;width:10px;height:10px;border:1.5px solid var(--accent);opacity:.75}
 .portrait .tl{top:-4px;left:-4px;border-right:0;border-bottom:0}
 .portrait .br{bottom:-4px;right:-4px;border-left:0;border-top:0}
-.portrait figcaption{font-family:var(--mono);font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-faint);margin-top:10px}
 .bio-grid p,.contact-text p{font-size:16.5px;line-height:1.65;color:var(--fg-muted);max-width:54ch}
 .bio-grid p.mark{position:relative;padding-left:17px}
 .bio-grid p.mark::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;background:var(--accent);opacity:.6}
@@ -470,9 +470,8 @@ footer{
     <div class="bio-grid">
       <figure class="portrait rv">
         <div class="p-box"><i class="tl"></i><i class="br"></i><img src="/assets/images/marathon.jpg" alt="Antonio Leblanc" width="480" height="480"></div>
-        <figcaption>Rio de Janeiro — corredor de maratona</figcaption>
       </figure>
-      <div class="rv" style="--d:110ms">
+      <div class="rv bio-marks" style="--d:110ms">
         <p class="mark">Maratonista, PR de 3:23.</p>
         <p class="mark">Dez anos de piano formal, violão autodidata, e saxofone num bloco de Carnaval.</p>
       </div>
