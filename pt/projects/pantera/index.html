@@ -48,50 +48,42 @@
     <div class="lang-switch" role="group" aria-label="Idioma"><a class="lang-link" href="/projects/pantera/">EN</a><span class="lang-sep">/</span><span class="lang-current">PT</span></div>
     <section class="hero">
       <p class="eyebrow"><a href="/pt/">← Antonio Leblanc</a></p>
-      <h1>Pantera</h1>
-      <p class="dek">A plataforma de IA que lidero de ponta a ponta na 1.5°C — detecção por visão computacional, imagens de satélite, modelagem de propagação de incêndio, análise de risco e a arquitetura por trás de tudo isso.</p>
-
-      <figure class="showcase frame" id="frame-pantera">
-        <div class="fr-head">
-          <span><b>Pantera</b> — detecção de fumaça</span>
-          <span>Saída real do sistema</span>
+      <div class="hero-grid">
+        <div class="hero-text">
+          <h1>Pantera</h1>
+          <p class="dek">A plataforma de IA que lidero de ponta a ponta na 1.5°C — detecção por visão computacional, imagens de satélite, modelagem de propagação de incêndio, análise de risco e a arquitetura por trás de tudo isso.</p>
+          <ul class="hero-facts">
+            <li><b>190 câmeras</b> na rede — 150 HaaS (hardware que operamos para proprietários de terra) e 40 SaaS (nosso software rodando sobre infraestrutura que já existe).</li>
+            <li><b>40M+ hectares</b> sob monitoramento, incluindo o Pantanal e territórios indígenas.</li>
+            <li><b>95% de acurácia na detecção</b> — medida em campo, não em benchmark.</li>
+          </ul>
         </div>
-        <div class="fr-view">
-          <img src="/assets/images/projects/pantera-detection-field.webp" alt="Fumaça de incêndio florestal subindo sobre uma plantação, detectada e demarcada pela rede de câmeras do Pantera." width="644" height="366" loading="lazy">
-          <div class="scan"></div>
-          <div class="fr-box" style="left:9.63%;top:24.32%;width:48.91%;height:57.65%">
-            <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
-            <span class="fr-tag">Fumaça <b data-count="97.2" data-dec="1">0.0</b>%</span>
+
+        <figure class="showcase frame" id="frame-pantera">
+          <div class="fr-head">
+            <span><b>Pantera</b> — detecção de fumaça</span>
+            <span>Saída real do sistema</span>
           </div>
-        </div>
-        <figcaption class="fr-foot">
-          <span>Uma das 190 câmeras</span>
-          <span>40M+ hectares sob monitoramento</span>
-        </figcaption>
-      </figure>
-    </section>
-
-    <section class="ledger" aria-label="Escala">
-      <dl style="margin:0;">
-        <div class="row fact">
-          <dt>Câmeras</dt>
-          <dd><strong>190 câmeras</strong> na rede — 150 HaaS (hardware que operamos para proprietários de terra) e 40 SaaS (nosso software rodando sobre infraestrutura que já existe).</dd>
-        </div>
-        <div class="row fact">
-          <dt>Cobertura</dt>
-          <dd><strong>40M+ hectares</strong> sob monitoramento, incluindo o Pantanal e territórios indígenas.</dd>
-        </div>
-        <div class="row fact">
-          <dt>Acurácia</dt>
-          <dd><strong>95% de acurácia na detecção</strong> — medida em campo, não em benchmark.</dd>
-        </div>
-      </dl>
+          <div class="fr-view">
+            <img src="/assets/images/projects/pantera-detection-field.webp" alt="Fumaça de incêndio florestal subindo sobre uma plantação, detectada e demarcada pela rede de câmeras do Pantera." width="644" height="366" loading="lazy">
+            <div class="scan"></div>
+            <div class="fr-box" style="left:9.63%;top:24.32%;width:48.91%;height:57.65%">
+              <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
+              <span class="fr-tag">Fumaça <b data-count="97.2" data-dec="1">0.0</b>%</span>
+            </div>
+          </div>
+          <figcaption class="fr-foot">
+            <span>Uma das 190 câmeras</span>
+            <span>40M+ hectares sob monitoramento</span>
+          </figcaption>
+        </figure>
+      </div>
     </section>
 
     <section class="split">
       <div>
         <h2>O mesmo sistema, ao vivo</h2>
-        <p class="dek" style="margin-top:14px;">Imagem crua de uma das 190 torres — a caixa de detecção é gerada pelo próprio sistema, o mesmo pipeline do quadro acima. Quando a fumaça cruza o limiar de confiança, vira um alerta que uma pessoa confirma em minutos.</p>
+        <p class="dek" style="margin-top:14px;">Imagem crua de uma das 190 torres. O sistema patrulha por presets, sinaliza um candidato, dá zoom pra confirmar — só então desenha a caixa que você vê. O que cruza o limiar de confiança vira um alerta que nosso time 24/7 confirma em minutos.</p>
       </div>
       <figure class="showcase frame" id="frame-pantera-live">
         <div class="fr-head">
@@ -102,7 +94,6 @@
           <video autoplay loop muted playsinline poster="/assets/images/projects/pantera-detection-field.webp" aria-label="Imagem ao vivo de uma torre de câmera do Pantera sobre uma plantação, com o próprio sistema de detecção marcando a fumaça em tempo real.">
             <source src="/assets/videos/pantera-detection.mp4" type="video/mp4">
           </video>
-          <div class="scan"></div>
         </div>
         <figcaption class="fr-foot">
           <span>Imagem crua, sem overlay adicionado</span>

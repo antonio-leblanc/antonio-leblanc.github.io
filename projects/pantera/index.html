@@ -48,50 +48,42 @@
     <div class="lang-switch" role="group" aria-label="Language"><span class="lang-current">EN</span><span class="lang-sep">/</span><a class="lang-link" href="/pt/projects/pantera/">PT</a></div>
     <section class="hero">
       <p class="eyebrow"><a href="/">← Antonio Leblanc</a></p>
-      <h1>Pantera</h1>
-      <p class="dek">The AI platform I lead end to end at 1.5°C — computer vision detection, satellite imagery, fire spread modeling, risk analysis, and the architecture underneath all of it.</p>
-
-      <figure class="showcase frame" id="frame-pantera">
-        <div class="fr-head">
-          <span><b>Pantera</b> — smoke detection</span>
-          <span>Actual system output</span>
+      <div class="hero-grid">
+        <div class="hero-text">
+          <h1>Pantera</h1>
+          <p class="dek">The AI platform I lead end to end at 1.5°C — computer vision detection, satellite imagery, fire spread modeling, risk analysis, and the architecture underneath all of it.</p>
+          <ul class="hero-facts">
+            <li><b>190 cameras</b> in the network — 150 HaaS (hardware we run for landowners) and 40 SaaS (our software layered on infrastructure that's already there).</li>
+            <li><b>40M+ hectares</b> under watch, including the Pantanal and indigenous territories.</li>
+            <li><b>95% detection accuracy</b> — measured in the field, not in a benchmark.</li>
+          </ul>
         </div>
-        <div class="fr-view">
-          <img src="/assets/images/projects/pantera-detection-field.webp" alt="Wildfire smoke rising over farmland, detected and boxed by the Pantera camera network." width="644" height="366" loading="lazy">
-          <div class="scan"></div>
-          <div class="fr-box" style="left:9.63%;top:24.32%;width:48.91%;height:57.65%">
-            <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
-            <span class="fr-tag">Smoke <b data-count="97.2" data-dec="1">0.0</b>%</span>
+
+        <figure class="showcase frame" id="frame-pantera">
+          <div class="fr-head">
+            <span><b>Pantera</b> — smoke detection</span>
+            <span>Actual system output</span>
           </div>
-        </div>
-        <figcaption class="fr-foot">
-          <span>One of 190 cameras</span>
-          <span>40M+ hectares under watch</span>
-        </figcaption>
-      </figure>
-    </section>
-
-    <section class="ledger" aria-label="Scale">
-      <dl style="margin:0;">
-        <div class="row fact">
-          <dt>Cameras</dt>
-          <dd><strong>190 cameras</strong> in the network — 150 HaaS (hardware we run for landowners) and 40 SaaS (our software layered on infrastructure that's already there).</dd>
-        </div>
-        <div class="row fact">
-          <dt>Coverage</dt>
-          <dd><strong>40M+ hectares</strong> under watch, including the Pantanal and indigenous territories.</dd>
-        </div>
-        <div class="row fact">
-          <dt>Accuracy</dt>
-          <dd><strong>95% detection accuracy</strong> — measured in the field, not in a benchmark.</dd>
-        </div>
-      </dl>
+          <div class="fr-view">
+            <img src="/assets/images/projects/pantera-detection-field.webp" alt="Wildfire smoke rising over farmland, detected and boxed by the Pantera camera network." width="644" height="366" loading="lazy">
+            <div class="scan"></div>
+            <div class="fr-box" style="left:9.63%;top:24.32%;width:48.91%;height:57.65%">
+              <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
+              <span class="fr-tag">Smoke <b data-count="97.2" data-dec="1">0.0</b>%</span>
+            </div>
+          </div>
+          <figcaption class="fr-foot">
+            <span>One of 190 cameras</span>
+            <span>40M+ hectares under watch</span>
+          </figcaption>
+        </figure>
+      </div>
     </section>
 
     <section class="split">
       <div>
         <h2>Same system, live</h2>
-        <p class="dek" style="margin-top:14px;">Raw footage from one of the 190 towers — the detection box is burned in by the system itself, the same pipeline behind the frame above. Smoke crossing the confidence threshold becomes an alert a person confirms in minutes.</p>
+        <p class="dek" style="margin-top:14px;">Raw footage from one of the 190 towers. The system patrols by preset, flags a candidate, zooms in to confirm — and only then draws the box you see. What crosses the threshold becomes an alert our 24/7 team confirms within minutes.</p>
       </div>
       <figure class="showcase frame" id="frame-pantera-live">
         <div class="fr-head">
@@ -102,7 +94,6 @@
           <video autoplay loop muted playsinline poster="/assets/images/projects/pantera-detection-field.webp" aria-label="Live footage from a Pantera camera tower over farmland, with the detection system's own overlay flagging smoke in real time.">
             <source src="/assets/videos/pantera-detection.mp4" type="video/mp4">
           </video>
-          <div class="scan"></div>
         </div>
         <figcaption class="fr-foot">
           <span>Raw footage, no added overlay</span>
