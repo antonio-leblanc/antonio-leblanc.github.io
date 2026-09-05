@@ -40,5 +40,8 @@
   "CONTACT_BODY": "If you're building something ambitious — in AI, climate, or public-interest tech — or leading an early-stage team that wants a technical second opinion, write to me. I'd like to hear about it.",
   "RESUME_LINK": "Resume",
   "FOOTER_LANG_LINK": "<a class=\"lang-link\" href=\"/pt/\">Português</a>",
-  "BACK_TO_TOP": "Back to top"
+  "BACK_TO_TOP": "Back to top",
+  "AGENTS_H3": "Production AI Agents",
+  "AGENTS_BODY": "Orchestrating 8 autonomous agents running on self-hosted Hermes — executing real GitHub PRs, cutting AWS costs, and managing CS.",
+  "AGENTS_HREF": "/projects/agents/"
 }

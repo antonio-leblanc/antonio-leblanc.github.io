@@ -40,5 +40,8 @@
   "CONTACT_BODY": "Se você está construindo algo ambicioso — em IA, clima ou tecnologia de interesse público — ou lidera um time early-stage que quer uma segunda opinião técnica, me escreva. Quero saber o que é.",
   "RESUME_LINK": "Currículo",
   "FOOTER_LANG_LINK": "<a class=\"lang-link\" href=\"/\">English</a>",
-  "BACK_TO_TOP": "Voltar ao topo"
+  "BACK_TO_TOP": "Voltar ao topo",
+  "AGENTS_H3": "Agentes de IA em Produção",
+  "AGENTS_BODY": "Orquestrando 8 agentes autônomos no Hermes self-hosted — executando PRs reais no GitHub, cortando custos AWS e gerenciando CS.",
+  "AGENTS_HREF": "/pt/projects/agents/"
 }
