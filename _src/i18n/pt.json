@@ -41,5 +41,8 @@
   "PORTRAIT_CAPTION": "Rio de Janeiro — corredor de maratona",
   "RESUME_LINK": "Currículo",
   "FOOTER_LANG_LINK": "<a class=\"lang-link\" href=\"/\">English</a>",
-  "BACK_TO_TOP": "Voltar ao topo"
+  "BACK_TO_TOP": "Voltar ao topo",
+  "AGENTS_H3": "Agentes de IA em Produção",
+  "AGENTS_BODY": "Orquestrando 8 agentes autônomos no Hermes self-hosted — executando PRs reais no GitHub, cortando custos AWS e gerenciando CS.",
+  "AGENTS_HREF": "/pt/projects/agents/"
 }
