@@ -149,14 +149,6 @@ h1{font-size:clamp(31px,4.5vw,54px);line-height:1.08;letter-spacing:-.026em}
   background:var(--bg-1);overflow:hidden;
   box-shadow:0 30px 80px -40px rgba(0,0,0,.9);
 }
-.fr-head,.fr-foot{
-  display:flex;justify-content:space-between;gap:12px;
-  font-size:9.5px;color:var(--fg-faint);padding:9px 12px;
-}
-.fr-head{border-bottom:1px solid var(--line)}
-.fr-head b{color:var(--accent);font-weight:500}
-.fr-foot{border-top:1px solid var(--line)}
-.fr-foot span:last-child{color:var(--fg-muted)}
 .fr-view{position:relative;line-height:0;overflow:hidden;--mx:50%;--my:50%}
 .fr-view img{
   width:100%;height:auto;display:block;
@@ -440,10 +432,6 @@ footer{
       <article class="mod mod-media rv">
         <span class="mod-idx">01</span>
         <figure class="frame" style="margin:-24px -24px 20px">
-          <div class="fr-head">
-            <span><b>Pantera</b> — smoke detection</span>
-            <span>Actual system output</span>
-          </div>
           <div class="fr-view">
             <img src="/assets/images/projects/pantera-detection-field.webp" alt="Wildfire smoke rising over farmland, detected and boxed by the Pantera camera network." width="644" height="366">
             <div class="scan"></div>
@@ -452,10 +440,6 @@ footer{
               <span class="fr-tag">Smoke <b data-count="97.2" data-dec="1">97.2</b>%</span>
             </div>
           </div>
-          <figcaption class="fr-foot">
-            <span>One of 190 cameras</span>
-            <span>40M+ hectares under watch</span>
-          </figcaption>
         </figure>
         <h3>Pantera</h3>
         <p>The wildfire AI platform I lead end to end at 1.5°C — detection, risk, response, impact.</p>
@@ -464,17 +448,9 @@ footer{
       <article class="mod mod-media rv" style="--d:110ms">
         <span class="mod-idx">02</span>
         <figure class="frame" style="margin:-24px -24px 20px">
-          <div class="fr-head">
-            <span><b>ForeFire</b> — fire spread simulation</span>
-            <span>Simulator output</span>
-          </div>
           <div class="fr-view">
             <img src="/assets/images/projects/forefire.webp" alt="ForeFire fire-spread simulation output over terrain." width="900" height="489">
           </div>
-          <figcaption class="fr-foot">
-            <span>Open-source, CNRS</span>
-            <span>Contributor since 2022</span>
-          </figcaption>
         </figure>
         <h3>ForeFire</h3>
         <p>The open-source fire-spread simulator I maintain outside the day job, built by CNRS.</p>
