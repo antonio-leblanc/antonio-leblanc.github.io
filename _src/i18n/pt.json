@@ -1,6 +1,7 @@
 {
   "LANG": "pt-BR",
   "URL": "https://antonioleblanc.com/pt/",
+  "TITLE": "Antonio Leblanc — CTO liderando IA contra incêndios",
   "META_DESCRIPTION": "Antonio Leblanc — Estagiário a CTO em dez meses. Lidero a plataforma de IA que protege 40 milhões de hectares contra incêndio florestal. Co-Founder &amp; CTO @ 1.5°C.",
   "OG_DESCRIPTION": "Estagiário a CTO em dez meses. Lidero a plataforma de IA que protege 40 milhões de hectares contra incêndio florestal. Co-Founder &amp; CTO @ 1.5°C.",
   "JSONLD_KNOWS_ABOUT": ["Detecção de incêndios florestais", "IA para resiliência climática", "Machine learning em edge", "Inteligência geoespacial", "Sistemas de agentes"],
@@ -34,6 +35,7 @@
   "CONTACT_H2": "Fale comigo",
   "CONTACT_BODY": "Se você está construindo alguma coisa nessas duas direções, ou lidera um time early-stage em clima e quer uma segunda opinião técnica, me escreva — quero saber o que é.",
   "PORTRAIT_CAPTION": "Rio de Janeiro — corredor de maratona, saxofone em bloco de Carnaval",
+  "RESUME_LINK": "Currículo",
   "FOOTER_LANG_LINK": "<a class=\"lang-link\" href=\"/\">English</a>",
   "BACK_TO_TOP": "Voltar ao topo"
 }

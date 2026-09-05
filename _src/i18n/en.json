@@ -1,6 +1,7 @@
 {
   "LANG": "en",
   "URL": "https://antonioleblanc.com/",
+  "TITLE": "Antonio Leblanc — CTO leading wildfire AI at scale",
   "META_DESCRIPTION": "Antonio Leblanc — Intern to CTO in ten months. Today I lead the AI platform protecting 40 million hectares against wildfire. Co-Founder &amp; CTO @ 1.5°C.",
   "OG_DESCRIPTION": "Intern to CTO in ten months. Today I lead the AI platform protecting 40 million hectares against wildfire. Co-Founder &amp; CTO @ 1.5°C.",
   "JSONLD_KNOWS_ABOUT": ["Wildfire detection", "AI for climate resilience", "Edge machine learning", "Geospatial intelligence", "Agentic systems"],
@@ -34,6 +35,7 @@
   "CONTACT_H2": "Get in touch",
   "CONTACT_BODY": "If you're building something in either direction, or if you lead an early-stage climate team and want a technical second opinion, write to me — I'd like to hear about it.",
   "PORTRAIT_CAPTION": "Rio de Janeiro — marathon runner, saxophone in a Carnaval bloco",
+  "RESUME_LINK": "Resume",
   "FOOTER_LANG_LINK": "<a class=\"lang-link\" href=\"/pt/\">Português</a>",
   "BACK_TO_TOP": "Back to top"
 }
