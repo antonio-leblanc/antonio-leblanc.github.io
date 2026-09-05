@@ -265,6 +265,7 @@ h1{font-size:clamp(31px,4.5vw,54px);line-height:1.08;letter-spacing:-.026em}
 .mod{
   position:relative;background:var(--bg-1);border:1px solid var(--line);
   border-radius:3px;padding:24px;overflow:hidden;--mx:50%;--my:0%;
+  display:flex;flex-direction:column;
   transition:border-color .4s ease,transform .5s var(--ease);
 }
 .mod::before{
@@ -281,7 +282,7 @@ h1{font-size:clamp(31px,4.5vw,54px);line-height:1.08;letter-spacing:-.026em}
 .mod-idx{font-size:9.5px;color:var(--accent);margin-bottom:14px;display:block}
 .mod h3{font-size:16px;font-weight:600;margin-bottom:10px;position:relative}
 .mod p{font-size:14px;line-height:1.62;color:var(--fg-muted);position:relative}
-.mod-link{display:inline-block;margin-top:14px;font-size:12.5px;font-weight:600;position:relative}
+.mod-link{display:inline-block;margin-top:auto;padding-top:14px;font-size:12.5px;font-weight:600;position:relative}
 
 /* ── about / contact ────────────────────────────── */
 .bio-grid{display:grid;grid-template-columns:132px 1fr;gap:clamp(20px,3vw,34px);align-items:center}
