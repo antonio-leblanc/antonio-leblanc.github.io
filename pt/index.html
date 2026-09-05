@@ -85,7 +85,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
 }
 .u:hover{color:var(--fg);text-decoration-color:var(--accent)}
 
-.mono,.eyebrow,.label,.log dt,.sb-item,.gauge small,.fr-head,.fr-foot,.mod-idx,.foot{
+.mono,.eyebrow,.label,.log dt,.sb-item,.gauge small,.mod-idx,.foot{
   font-family:var(--mono);text-transform:uppercase;letter-spacing:.09em;
 }
 .wrap{max-width:1180px;margin:0 auto;padding:0 var(--gut);position:relative;z-index:2}
@@ -149,14 +149,6 @@ h1{font-size:clamp(31px,4.5vw,54px);line-height:1.08;letter-spacing:-.026em}
   background:var(--bg-1);overflow:hidden;
   box-shadow:0 30px 80px -40px rgba(0,0,0,.9);
 }
-.fr-head,.fr-foot{
-  display:flex;justify-content:space-between;gap:12px;
-  font-size:9.5px;color:var(--fg-faint);padding:9px 12px;
-}
-.fr-head{border-bottom:1px solid var(--line)}
-.fr-head b{color:var(--accent);font-weight:500}
-.fr-foot{border-top:1px solid var(--line)}
-.fr-foot span:last-child{color:var(--fg-muted)}
 .fr-view{position:relative;line-height:0;overflow:hidden;--mx:50%;--my:50%}
 .fr-view img{
   width:100%;height:auto;display:block;
@@ -440,10 +432,6 @@ footer{
       <article class="mod mod-media rv">
         <span class="mod-idx">01</span>
         <figure class="frame" style="margin:-24px -24px 20px">
-          <div class="fr-head">
-            <span><b>Pantera</b> — detecção de fumaça</span>
-            <span>Output real do sistema</span>
-          </div>
           <div class="fr-view">
             <img src="/assets/images/projects/pantera-detection-field.webp" alt="Fumaça de incêndio florestal subindo sobre uma plantação, detectada e demarcada pela rede de câmeras do Pantera." width="644" height="366">
             <div class="scan"></div>
@@ -452,10 +440,6 @@ footer{
               <span class="fr-tag">Fumaça <b data-count="97.2" data-dec="1">97.2</b>%</span>
             </div>
           </div>
-          <figcaption class="fr-foot">
-            <span>Uma das 190 câmeras</span>
-            <span>40M+ hectares monitorados</span>
-          </figcaption>
         </figure>
         <h3>Pantera</h3>
         <p>A plataforma de IA contra incêndio florestal que lidero de ponta a ponta na 1.5°C — detecção, risco, resposta, impacto.</p>
@@ -464,17 +448,9 @@ footer{
       <article class="mod mod-media rv" style="--d:110ms">
         <span class="mod-idx">02</span>
         <figure class="frame" style="margin:-24px -24px 20px">
-          <div class="fr-head">
-            <span><b>ForeFire</b> — simulação de propagação de incêndio</span>
-            <span>Output do simulador</span>
-          </div>
           <div class="fr-view">
             <img src="/assets/images/projects/forefire.webp" alt="Saída de simulação de propagação de incêndio do ForeFire sobre um terreno." width="900" height="489">
           </div>
-          <figcaption class="fr-foot">
-            <span>Open-source, CNRS</span>
-            <span>Contribuidor desde 2022</span>
-          </figcaption>
         </figure>
         <h3>ForeFire</h3>
         <p>O simulador open-source de propagação de incêndio que mantenho fora do trabalho de casa, construído pelo CNRS.</p>
