@@ -1,14 +1,14 @@
 {
   "LANG": "en",
   "URL": "https://antonioleblanc.com/",
-  "TITLE": "Antonio Leblanc — CTO leading wildfire AI at scale",
-  "META_DESCRIPTION": "Antonio Leblanc — Intern to CTO in ten months. Today I lead the AI platform protecting 40 million hectares against wildfire. Co-Founder &amp; CTO @ 1.5°C.",
-  "OG_DESCRIPTION": "Intern to CTO in ten months. Today I lead the AI platform protecting 40 million hectares against wildfire. Co-Founder &amp; CTO @ 1.5°C.",
+  "TITLE": "Antonio Leblanc — CTO, wildfire AI & autonomous agents in production",
+  "META_DESCRIPTION": "Antonio Leblanc — Intern to CTO in ten months. I lead the wildfire AI protecting 40M+ hectares, and 8 AI agents running engineering, sales, and support at 1.5°C.",
+  "OG_DESCRIPTION": "Intern to CTO in ten months. I lead the wildfire AI protecting 40M+ hectares, and 8 AI agents running engineering, sales, and support at 1.5°C.",
   "JSONLD_KNOWS_ABOUT": ["Wildfire detection", "AI for climate resilience", "Edge machine learning", "Geospatial intelligence", "Agentic systems"],
   "LANG_SWITCH": "<b>EN</b><s>/</s><a class=\"lang-link\" href=\"/pt/\">PT</a>",
   "EYEBROW": "Rio de Janeiro · Climate &amp; public technology",
   "H1_SOFT": "Intern to CTO in ten months.",
-  "H1_HARD": "Today I lead the AI platform protecting 40 million hectares against wildfires.",
+  "H1_HARD": "Today I lead AI in production — a wildfire platform watching 40M+ hectares, and 8 AI agents running engineering and operations.",
   "DEK": "Policy, community engagement, and ethics matter just as much as the model — that's where I want to keep spending my energy.",
   "GAUGES_ARIA": "Scale",
   "GAUGE1_LABEL": "Cameras · 150 HaaS + 40 SaaS",
@@ -17,7 +17,9 @@
   "LOG_ARIA": "Track record",
   "LOG1_DD": "As co-founder and CTO of <a href=\"https://umgrauemeio.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">1.5°C</a>, I lead the computer vision, satellite imagery, and fire-risk models — with the engineering, ML, and environmental science team that builds them with me.",
   "LOG2_DT": "Agents",
-  "LOG2_DD": "Eight AI agents run sales, support, and marketing on Hermes, open-source, on our own servers.",
+  "LOG2_DD": "Eight AI agents run sales, support, and marketing on <a href=\"https://hermes-agent.nousresearch.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">Hermes</a>, open-source, on our own servers.",
+  "LOG_DELEGATION_DT": "Beyond CTO",
+  "LOG_DELEGATION_DD": "Support, Customer Success, Marketing, HR — all outside engineering, all landed on my desk at some point: a broken ticketing system to fix, scattered CS docs to untangle, two years running HR, Marketing covered between hires. Every one went to a real owner once it was running.",
   "LOG3_DD": "Contributor since 2022 to CNRS's open-source wildfire simulator, maintainer since 2025, and co-author on its <a href=\"https://doi.org/10.21105/joss.08680\" target=\"_blank\" rel=\"noopener\" class=\"u\">JOSS paper</a> — reviewing and merging PRs, cutting releases, Dockerization, CI/CD, documentation.",
   "LOG4_DT": "Now",
   "LOG4_DD": "Open to CTO or senior technical leadership roles — in climate, govtech, or agentic systems, where the hard part isn't the model but putting it inside an operation where being wrong is expensive.",
@@ -43,5 +45,6 @@
   "BACK_TO_TOP": "Back to top",
   "AGENTS_H3": "Production AI Agents",
   "AGENTS_BODY": "Orchestrating 8 autonomous agents running on self-hosted Hermes — executing real GitHub PRs, cutting AWS costs, and managing CS.",
-  "AGENTS_HREF": "/projects/agents/"
+  "AGENTS_HREF": "/projects/agents/",
+  "AGENTS_STATS": "<b>291</b> PRs · <b>171</b> issues · <b>−15%</b> AWS costs"
 }

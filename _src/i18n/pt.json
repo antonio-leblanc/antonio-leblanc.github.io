@@ -1,14 +1,14 @@
 {
   "LANG": "pt-BR",
   "URL": "https://antonioleblanc.com/pt/",
-  "TITLE": "Antonio Leblanc — CTO liderando IA contra incêndios",
-  "META_DESCRIPTION": "Antonio Leblanc — Estagiário a CTO em dez meses. Lidero a plataforma de IA que protege 40 milhões de hectares contra incêndio florestal. Co-Founder &amp; CTO @ 1.5°C.",
-  "OG_DESCRIPTION": "Estagiário a CTO em dez meses. Lidero a plataforma de IA que protege 40 milhões de hectares contra incêndio florestal. Co-Founder &amp; CTO @ 1.5°C.",
+  "TITLE": "Antonio Leblanc — CTO, IA contra incêndio e agentes autônomos em produção",
+  "META_DESCRIPTION": "Antonio Leblanc — Estagiário a CTO em dez meses. Lidero a IA contra incêndio florestal que protege 40 milhões de hectares, e 8 agentes de IA que rodam engenharia, vendas e suporte na 1.5°C.",
+  "OG_DESCRIPTION": "Estagiário a CTO em dez meses. Lidero a IA contra incêndio florestal que protege 40 milhões de hectares, e 8 agentes de IA que rodam engenharia, vendas e suporte na 1.5°C.",
   "JSONLD_KNOWS_ABOUT": ["Detecção de incêndios florestais", "IA para resiliência climática", "Machine learning em edge", "Inteligência geoespacial", "Sistemas de agentes"],
   "LANG_SWITCH": "<a class=\"lang-link\" href=\"/\">EN</a><s>/</s><b>PT</b>",
   "EYEBROW": "Rio de Janeiro · Clima e tecnologia pública",
   "H1_SOFT": "Estagiário a CTO em dez meses.",
-  "H1_HARD": "Hoje lidero a plataforma de IA que protege 40 milhões de hectares contra incêndio florestal.",
+  "H1_HARD": "Hoje lidero IA em produção — uma plataforma contra incêndio florestal que monitora 40 milhões de hectares, e 8 agentes de IA que rodam engenharia e operações.",
   "DEK": "Políticas públicas, comunidades tradicionais e ética pesam tanto quanto o modelo — é onde quero continuar investindo minha energia.",
   "GAUGES_ARIA": "Escala",
   "GAUGE1_LABEL": "Câmeras · 150 HaaS + 40 SaaS",
@@ -17,7 +17,9 @@
   "LOG_ARIA": "Histórico",
   "LOG1_DD": "Como cofundador e CTO da <a href=\"https://umgrauemeio.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">1.5°C</a>, lidero os modelos de visão computacional, imagens de satélite e risco de incêndio — com o time de engenharia, ML e ciência ambiental que os constrói comigo.",
   "LOG2_DT": "Agentes",
-  "LOG2_DD": "Oito agentes de IA rodam vendas, suporte e marketing no Hermes, open-source, em servidores próprios.",
+  "LOG2_DD": "Oito agentes de IA rodam vendas, suporte e marketing no <a href=\"https://hermes-agent.nousresearch.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">Hermes</a>, open-source, em servidores próprios.",
+  "LOG_DELEGATION_DT": "Além de CTO",
+  "LOG_DELEGATION_DD": "Suporte, Sucesso do Cliente, Marketing, RH — fora da engenharia, todos passaram pela minha mesa em algum momento: ticketing bagunçado pra arrumar, documentação de CS espalhada, dois anos à frente do RH, Marketing coberto entre contratações. Cada uma foi entregue a um responsável de verdade assim que passou a rodar sozinha.",
   "LOG3_DD": "Contribuidor desde 2022 do simulador de incêndio florestal open-source do CNRS, mantenedor desde 2025, e coautor do <a href=\"https://doi.org/10.21105/joss.08680\" target=\"_blank\" rel=\"noopener\" class=\"u\">paper na JOSS</a> — revisando e mesclando PRs, cortando releases, Dockerização, CI/CD, documentação.",
   "LOG4_DT": "Hoje",
   "LOG4_DD": "Aberto a cargos de CTO ou liderança técnica sênior — em clima, govtech ou sistemas de agentes, onde o difícil não é o modelo, e sim colocá-lo dentro de uma operação em que errar custa caro.",
@@ -43,5 +45,6 @@
   "BACK_TO_TOP": "Voltar ao topo",
   "AGENTS_H3": "Agentes de IA em Produção",
   "AGENTS_BODY": "Orquestrando 8 agentes autônomos no Hermes self-hosted — executando PRs reais no GitHub, cortando custos AWS e gerenciando CS.",
-  "AGENTS_HREF": "/pt/projects/agents/"
+  "AGENTS_HREF": "/pt/projects/agents/",
+  "AGENTS_STATS": "<b>291</b> PRs · <b>171</b> issues · <b>−15%</b> custos AWS"
 }
