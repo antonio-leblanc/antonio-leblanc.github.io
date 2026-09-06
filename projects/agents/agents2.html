@@ -3,1273 +3,143 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Production AI Agents — Antonio Leblanc</title>
-  <meta name="author" content="Antonio Leblanc">
-  <meta name="description" content="Orchestrating 8 autonomous AI agents running on self-hosted Hermes — executing real GitHub PRs, cutting AWS costs, and managing production workloads.">
-  <link rel="canonical" href="https://antonioleblanc.com/projects/agents/">
+  <title>Production AI Agents [preview v2] — Antonio Leblanc</title>
+  <meta name="robots" content="noindex">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='50' dy='.35em' text-anchor='middle' font-size='78' font-weight='700' font-family='Helvetica,Arial,sans-serif' fill='%23f9a522'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/assets/css/projects.css">
 
   <style>
-    @font-face {
-      font-family: 'Inter';
-      font-weight: 100 900;
-      font-style: normal;
-      font-display: swap;
-      src: url('../../assets/fonts/inter.woff2') format('woff2'),
-           url('/assets/fonts/inter.woff2') format('woff2');
-    }
-    @font-face {
-      font-family: 'JetBrains Mono';
-      font-weight: 100 900;
-      font-style: normal;
-      font-display: swap;
-      src: url('../../assets/fonts/jetbrains-mono.woff2') format('woff2'),
-           url('/assets/fonts/jetbrains-mono.woff2') format('woff2');
-    }
+    /* Draft-only additions. Reuses tokens/classes from projects.css (--bg, --accent, --line, .card, .ledger)
+       so this stays visually one system with the rest of the site, not a second design language. */
 
-    :root {
-      --bg: #090807;
-      --bg-surface: #12100d;
-      --bg-card: #181511;
-      --bg-card-hover: #201b16;
-      --border: #26201a;
-      --border-subtle: #1c1813;
-      --border-highlight: #3d3328;
-      
-      --fg: #f5efe6;
-      --fg-muted: #a69888;
-      --fg-faint: #63574b;
-      
-      --amber: #e8a938;
-      --amber-glow: rgba(232, 169, 56, 0.15);
-      --ember: #ff5b26;
-      --ember-glow: rgba(255, 91, 38, 0.18);
-      --green: #34d399;
-      --green-glow: rgba(52, 211, 153, 0.15);
-      
-      --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html {
-      background-color: var(--bg);
-      color: var(--fg);
-      font-family: var(--font-display);
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      position: relative;
-      overflow-x: hidden;
-      min-height: 100vh;
-      background: var(--bg);
-    }
-
-    /* Subtle Film Grain */
-    .noise-overlay {
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.045;
-      mix-blend-mode: overlay;
-      pointer-events: none;
-      z-index: 10;
-    }
-
-    /* Ambient Mistral Glow in Background */
-    .ambient-glow {
-      position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90vw;
-      max-width: 1200px;
-      height: 650px;
-      background: radial-gradient(circle at 40% 30%, var(--ember-glow) 0%, transparent 60%),
-                  radial-gradient(circle at 70% 40%, var(--amber-glow) 0%, transparent 55%);
-      filter: blur(80px);
-      pointer-events: none;
-      z-index: 0;
-      animation: pulseGlow 14s ease-in-out infinite alternate;
-    }
-
-    @keyframes pulseGlow {
-      0% { transform: translateX(-50%) scale(0.96); opacity: 0.8; }
-      100% { transform: translateX(-48%) scale(1.06); opacity: 1; }
-    }
-
-    .container {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 28px;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Top Navigation / Breadcrumbs */
-    header {
-      padding: 32px 0 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      letter-spacing: 0.04em;
-    }
-
-    .nav-left a {
-      color: var(--fg-muted);
-      text-decoration: none;
-      transition: color 0.15s ease;
-    }
-    .nav-left a:hover { color: var(--fg); }
-    .nav-sep { color: var(--fg-faint); }
-    .nav-curr { color: var(--amber); }
-
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(24, 21, 17, 0.8);
-      border: 1px solid var(--border);
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--fg-muted);
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background-color: var(--green);
-      box-shadow: 0 0 10px var(--green);
-      animation: pulseDot 2.4s ease-in-out infinite;
-    }
-
-    @keyframes pulseDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.45; transform: scale(0.85); }
-    }
-
-    /* Hero */
-    .hero {
-      padding: 72px 0 48px;
-    }
-
-    .eyebrow {
+    .draft-flag {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--line);
       font-family: var(--font-mono);
       font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--amber);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      letter-spacing: .04em;
+      color: var(--fg-faint);
+      text-align: center;
+      padding: 10px 20px;
     }
+    .draft-flag b { color: var(--accent); }
 
-    .eyebrow::before {
-      content: "";
-      display: inline-block;
-      width: 14px;
-      height: 1px;
-      background-color: var(--amber);
-    }
-
-    h1.hero-title {
-      font-size: clamp(38px, 6.2vw, 76px);
+    /* Under the hood — 7 real facts (2 headline agents + 5 governance mechanisms), static grid.
+       Reuses .card from projects.css; only the container grid is custom (auto-fit avoids an
+       awkward orphan card at 2 or 3 fixed columns with 7 items). */
+    .hood-section { padding: 64px 0; border-top: 1px solid var(--line); }
+    .hood-section h2 {
+      font-size: clamp(24px, 3vw, 30px);
       font-weight: 800;
-      line-height: 1.02;
-      letter-spacing: -0.035em;
-      max-width: 18ch;
-      color: var(--fg);
-      margin-bottom: 28px;
-    }
-
-    h1.hero-title span.glow-word {
-      background: linear-gradient(115deg, var(--amber) 20%, var(--ember) 85%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline-block;
-    }
-
-    .hero-manifesto {
-      font-size: clamp(18px, 2.1vw, 22px);
-      line-height: 1.55;
-      color: var(--fg-muted);
-      max-width: 44ch;
-      font-weight: 400;
-    }
-
-    .hero-manifesto strong {
-      color: var(--fg);
-      font-weight: 600;
-    }
-
-    /* Hero Telemetry Metrics */
-    .metrics-bar {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin: 56px 0 72px;
-    }
-
-    .metric-card {
-      background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-card) 100%);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 26px 28px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .metric-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--border-highlight);
-      box-shadow: 0 12px 32px -10px rgba(0,0,0,0.5);
-    }
-
-    .metric-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--border-highlight), transparent);
-    }
-
-    .metric-num {
-      font-family: var(--font-display);
-      font-size: clamp(40px, 4.8vw, 56px);
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      color: var(--fg);
-      display: flex;
-      align-items: baseline;
-      gap: 4px;
-      margin-bottom: 12px;
-    }
-
-    .metric-num .accent { color: var(--amber); }
-
-    .metric-title {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--fg);
-      margin-bottom: 6px;
-    }
-
-    .metric-detail {
-      font-size: 13.5px;
-      color: var(--fg-muted);
-      line-height: 1.45;
-    }
-
-    /* Centerpiece: 8-Agent Topology & Interactive Architecture */
-    .section-title-wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+      letter-spacing: -0.01em;
       margin-bottom: 32px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
     }
-
-    .section-kicker {
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--amber);
-      margin-bottom: 8px;
-    }
-
-    .section-title {
-      font-size: clamp(26px, 3.4vw, 36px);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .section-meta {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--fg-faint);
-    }
-
-    /* System Inspector / Interactive Matrix */
-    .system-workbench {
+    .hood-cards {
       display: grid;
-      grid-template-columns: 1.3fr 0.9fr;
-      gap: 24px;
-      margin-bottom: 88px;
-      align-items: stretch;
-    }
-
-    /* Left side: The 8 Agent Nodes */
-    .agent-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .agent-node {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 18px 20px;
-      cursor: pointer;
-      position: relative;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      text-align: left;
-    }
-
-    .agent-node:hover {
-      background: var(--bg-card);
-      border-color: var(--border-highlight);
-    }
-
-    .agent-node.is-active {
-      background: var(--bg-card);
-      border-color: var(--amber);
-      box-shadow: inset 0 0 0 1px var(--amber), 0 8px 24px -6px rgba(232, 169, 56, 0.12);
-    }
-
-    .node-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-
-    .node-id {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--fg-faint);
-      letter-spacing: 0.05em;
-    }
-
-    .node-badge {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      padding: 2px 7px;
-      border-radius: 3px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      background: rgba(255,255,255,0.04);
-      color: var(--fg-muted);
-    }
-
-    .agent-node.is-active .node-badge {
-      background: rgba(232, 169, 56, 0.12);
-      color: var(--amber);
-    }
-
-    .node-name {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--fg);
-      margin-bottom: 4px;
-    }
-
-    .node-role {
-      font-size: 12.5px;
-      color: var(--fg-muted);
-      line-height: 1.4;
-    }
-
-    /* Right side: Live Telemetry / Execution Inspector */
-    .telemetry-console {
-      background: #0d0c0a;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .console-header {
-      padding: 14px 18px;
-      background: #14120f;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-mono);
-      font-size: 12px;
-    }
-
-    .console-traffic-lights {
-      display: flex;
-      gap: 6px;
-    }
-
-    .traffic-light {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--border);
-    }
-
-    .console-title {
-      color: var(--fg-muted);
-      letter-spacing: 0.04em;
-    }
-
-    .console-status {
-      color: var(--green);
-      font-size: 11px;
-    }
-
-    .console-body {
-      padding: 22px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      font-family: var(--font-mono);
-    }
-
-    .active-agent-info {
-      border-bottom: 1px dashed var(--border);
-      padding-bottom: 16px;
-    }
-
-    .active-agent-title {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--fg);
-      margin-bottom: 4px;
-    }
-
-    .active-agent-meta {
-      font-size: 12px;
-      color: var(--amber);
-      margin-bottom: 10px;
-    }
-
-    .active-agent-desc {
-      font-family: var(--font-display);
-      font-size: 13.5px;
-      color: var(--fg-muted);
-      line-height: 1.5;
-    }
-
-    .telemetry-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      padding: 6px 0;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .telemetry-label { color: var(--fg-faint); }
-    .telemetry-val { color: var(--fg); font-weight: 500; }
-    .telemetry-val.highlight { color: var(--amber); }
-
-    .terminal-trace-box {
-      margin-top: auto;
-      background: #070605;
-      border: 1px solid var(--border-subtle);
-      border-radius: 4px;
-      padding: 14px;
-      font-size: 11.5px;
-      color: #928576;
-      line-height: 1.6;
-    }
-
-    .terminal-trace-box .line-green { color: var(--green); }
-    .terminal-trace-box .line-amber { color: var(--amber); }
-
-    /* Tactile Proof Section: The Autonomy Proof Terminal */
-    .proof-section {
-      margin-bottom: 96px;
-    }
-
-    .proof-terminal {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .terminal-bar {
-      background: #15120e;
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--fg-muted);
-    }
-
-    .terminal-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      divide-x: 1px solid var(--border);
-    }
-
-    .step-item {
-      padding: 24px;
-      border-right: 1px solid var(--border);
-      position: relative;
-    }
-    .step-item:last-child { border-right: none; }
-
-    .step-num {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--amber);
-      letter-spacing: 0.08em;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-    }
-
-    .step-title {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--fg);
-      margin-bottom: 8px;
-    }
-
-    .step-desc {
-      font-size: 13px;
-      color: var(--fg-muted);
-      line-height: 1.45;
-    }
-
-    /* Under The Hood: The Architecture Ledger Reimagined */
-    .ledger-section {
-      margin-bottom: 96px;
-    }
-
-    .hood-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-
-    .hood-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 32px;
-      transition: border-color 0.2s ease, background-color 0.2s ease;
-      position: relative;
-    }
-
-    .hood-card:hover {
-      border-color: var(--border-highlight);
-      background: var(--bg-card);
-    }
-
-    .hood-index {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--ember);
-      letter-spacing: 0.1em;
-      margin-bottom: 16px;
-    }
-
-    .hood-name {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--fg);
-      margin-bottom: 12px;
-      letter-spacing: -0.015em;
-    }
-
-    .hood-body {
-      font-size: 15px;
-      color: var(--fg-muted);
-      line-height: 1.6;
-    }
-
-    .hood-body strong {
-      color: var(--fg);
-      font-weight: 600;
-    }
-
-    /* Founder Note / Core Thesis */
-    .thesis-banner {
-      background: linear-gradient(135deg, rgba(232,169,56,0.06) 0%, rgba(255,91,38,0.04) 100%);
-      border: 1px solid var(--border-highlight);
-      border-radius: 8px;
-      padding: 44px 48px;
-      margin-bottom: 96px;
-      position: relative;
-    }
-
-    .thesis-tag {
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      color: var(--amber);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .thesis-quote {
-      font-size: clamp(20px, 2.5vw, 26px);
-      font-weight: 600;
-      line-height: 1.45;
-      color: var(--fg);
-      letter-spacing: -0.02em;
-      margin-bottom: 18px;
-    }
-
-    .thesis-author {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--fg-muted);
-    }
-
-    /* Contact Block */
-    .contact-block {
-      border-top: 1px solid var(--border);
-      padding: 72px 0 88px;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 40px;
-    }
-
-    .contact-block h2 {
-      font-size: clamp(28px, 3.6vw, 42px);
-      font-weight: 800;
-      letter-spacing: -0.025em;
-      margin-bottom: 16px;
-    }
-
-    .contact-block p {
-      font-size: 17px;
-      color: var(--fg-muted);
-      line-height: 1.6;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-direction: column;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 16px;
-      align-items: flex-start;
-      justify-content: center;
     }
-
-    .cta-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--fg);
-      text-decoration: none;
-      padding: 12px 24px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      transition: all 0.2s ease;
-      width: 100%;
-      max-width: 320px;
-    }
-
-    .cta-link:hover {
-      background: var(--bg-card);
-      border-color: var(--amber);
-      color: var(--amber);
-      transform: translateX(4px);
-    }
-
-    .cta-link .arrow {
-      margin-left: auto;
-      transition: transform 0.2s ease;
-    }
-    .cta-link:hover .arrow { transform: translateX(3px); }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border-subtle);
-      padding: 32px 0 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--fg-faint);
-    }
-
-    footer a {
-      color: var(--fg-faint);
-      text-decoration: none;
-      transition: color 0.15s ease;
-    }
-    footer a:hover { color: var(--amber); }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .system-workbench { grid-template-columns: 1fr; }
-      .metrics-bar { grid-template-columns: 1fr; }
-      .terminal-steps { grid-template-columns: 1fr 1fr; }
-      .terminal-steps .step-item:nth-child(2) { border-right: none; }
-      .terminal-steps .step-item:nth-child(1),
-      .terminal-steps .step-item:nth-child(2) { border-bottom: 1px solid var(--border); }
-      .hood-grid { grid-template-columns: 1fr; }
-      .contact-block { grid-template-columns: 1fr; }
-      .thesis-banner { padding: 32px 24px; }
-    }
-
-    @media (max-width: 600px) {
-      .agent-grid { grid-template-columns: 1fr; }
-      .terminal-steps { grid-template-columns: 1fr; }
-      .terminal-steps .step-item { border-right: none; border-bottom: 1px solid var(--border); }
-      .terminal-steps .step-item:last-child { border-bottom: none; }
-      header { flex-direction: column; align-items: flex-start; gap: 14px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .ambient-glow, .status-dot { animation: none; }
-      .metric-card:hover, .cta-link:hover { transform: none; }
-    }
+    .hood-cards .card h3 { font-size: 15px; }
+    .hood-cards .card p { font-size: 14px; }
+    .hood-cards .card p strong { color: var(--fg); font-variant-numeric: tabular-nums; }
   </style>
 </head>
 <body>
 
-<div class="noise-overlay" aria-hidden="true"></div>
-<div class="ambient-glow" aria-hidden="true"></div>
+<div class="draft-flag">draft interno — <b>não indexado</b>, não linkado em produção. Comparar com <code>index.html</code> na mesma pasta.</div>
 
-<div class="container">
-  <header>
-    <div class="nav-left">
-      <a href="/">antonioleblanc.com</a>
-      <span class="nav-sep">/</span>
-      <a href="/projects/agents/">projects</a>
-      <span class="nav-sep">/</span>
-      <span class="nav-curr">agents [preview concept]</span>
-    </div>
-    <div class="status-pill">
-      <span class="status-dot"></span>
-      <span>8 Hermes Agents · Live Runtime</span>
-    </div>
-  </header>
-
-  <main>
-    <!-- Hero -->
+<main id="top">
+  <div class="wrap">
     <section class="hero">
-      <p class="eyebrow">Production AI Systems</p>
-      <h1 class="hero-title">
-        Building the ecosystem that lets AI <span class="glow-word">take real action.</span>
-      </h1>
-      <p class="hero-manifesto">
-        I do not train foundation models. I engineer the <strong>tools, memory state, runtime governance, and self-hosted orchestration</strong> that turn raw weights into reliable, autonomous production execution.
-      </p>
+      <p class="eyebrow"><a href="/">← Antonio Leblanc</a></p>
+      <h1>Production AI Agents</h1>
+      <p class="dek">I do not build or train foundation models. I build the ecosystem, tools, integrations, and orchestration around them so they can take real action.</p>
+      <ul class="hero-facts">
+        <li><b>8 autonomous agents</b> deployed in production across sales, CS, support, and marketing.</li>
+        <li><b>Self-hosted infrastructure</b> running entirely on <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Hermes</a> (open-source by Nous Research).</li>
+      </ul>
+    </section>
 
-      <!-- Key Proof Metrics -->
-      <div class="metrics-bar">
-        <div class="metric-card">
-          <div class="metric-num"><span data-target="291">291</span><span class="accent">PRs</span></div>
-          <div class="metric-title">Autonomous GitHub Merges</div>
-          <div class="metric-detail">Merged into production codebases in the first 3 months with zero human push.</div>
+    <section class="hood-section">
+      <h2>Under the hood</h2>
+      <div class="hood-cards">
+        <div class="card">
+          <h3>Engineering Agent</h3>
+          <p><strong><span data-count="291" data-dec="0">0</span> PRs</strong> merged autonomously and <strong><span data-count="171" data-dec="0">0</span> issues</strong> closed, in the first 3 months.</p>
         </div>
-
-        <div class="metric-card">
-          <div class="metric-num"><span data-target="171">171</span><span class="accent">Issues</span></div>
-          <div class="metric-title">Resolved End-to-End</div>
-          <div class="metric-detail">From issue triage and AST reproduction to test execution and deployment.</div>
+        <div class="card">
+          <h3>Ops Agent</h3>
+          <p>Cut <strong><span data-count="15" data-dec="0">0</span>%</strong> of AWS infrastructure costs, autonomously.</p>
         </div>
-
-        <div class="metric-card">
-          <div class="metric-num"><span class="accent">-</span><span data-target="15">15</span><span class="accent">%</span></div>
-          <div class="metric-title">AWS Infrastructure Spend</div>
-          <div class="metric-detail">Cut autonomously by the Ops Agent auditing idle compute and oversized clusters.</div>
+        <div class="card">
+          <h3>Strategic Governance</h3>
+          <p>Weekly OKR review cross-checks the board against the quarter's key results, flagging epics with no linked KR.</p>
+        </div>
+        <div class="card">
+          <h3>Delivery Pipeline</h3>
+          <p>Backlog runs on <strong>GitHub Projects</strong> — Sprint and Epic boards — plan, issue, PR, same system as the code.</p>
+        </div>
+        <div class="card">
+          <h3>Self-Healing</h3>
+          <p>A cognitive audit reviews the agents' own memory and skill usage, opening issues against itself to refactor.</p>
+        </div>
+        <div class="card">
+          <h3>State as Code</h3>
+          <p>Runtime config and memory sync to GitHub via automated PR twice a week.</p>
+        </div>
+        <div class="card">
+          <h3>Security Watchdogs</h3>
+          <p>Two independent audits scan for vulnerabilities every morning; only a nonzero finding pages the team on Telegram.</p>
         </div>
       </div>
     </section>
 
-    <!-- Centerpiece: 8-Agent Interactive Topology -->
-    <section class="topology-section">
-      <div class="section-title-wrap">
-        <div>
-          <p class="section-kicker">Multi-Agent Architecture</p>
-          <h2 class="section-title">The 8 Autonomous Nodes</h2>
-        </div>
-        <div class="section-meta">
-          Self-Hosted on Hermes (Nous Research OSS)
-        </div>
-      </div>
-
-      <div class="system-workbench">
-        <!-- Node Grid Selector -->
-        <div class="agent-grid" id="agentGrid">
-          
-          <div class="agent-node is-active" data-id="eng">
-            <div class="node-header">
-              <span class="node-id">NODE_01</span>
-              <span class="node-badge">Full Autonomous</span>
-            </div>
-            <div class="node-name">Engineering Agent</div>
-            <div class="node-role">Autonomous GitHub PRs, bug fixing, test suites & automated merge.</div>
-          </div>
-
-          <div class="agent-node" data-id="ops">
-            <div class="node-header">
-              <span class="node-id">NODE_02</span>
-              <span class="node-badge">FinOps / Infra</span>
-            </div>
-            <div class="node-name">Cost & Ops Watchdog</div>
-            <div class="node-role">Continuous AWS inspection, spot instances & idle compute optimization.</div>
-          </div>
-
-          <div class="agent-node" data-id="audit">
-            <div class="node-header">
-              <span class="node-id">NODE_03</span>
-              <span class="node-badge">Self-Healing</span>
-            </div>
-            <div class="node-name">Cognitive Auditor</div>
-            <div class="node-role">Audits agent prompt logs & skill drift; opens issues against itself to refactor.</div>
-          </div>
-
-          <div class="agent-node" data-id="state">
-            <div class="node-header">
-              <span class="node-id">NODE_04</span>
-              <span class="node-badge">State Sync</span>
-            </div>
-            <div class="node-name">State-as-Code Sync</div>
-            <div class="node-role">Serializes runtime memories and prompts back into Git via bi-weekly PRs.</div>
-          </div>
-
-          <div class="agent-node" data-id="sec">
-            <div class="node-header">
-              <span class="node-id">NODE_05-06</span>
-              <span class="node-badge">Dual Scanner</span>
-            </div>
-            <div class="node-name">Security Watchdogs (A & B)</div>
-            <div class="node-role">Dual independent audits every morning. Pages Telegram only on nonzero findings.</div>
-          </div>
-
-          <div class="agent-node" data-id="okr">
-            <div class="node-header">
-              <span class="node-id">NODE_07</span>
-              <span class="node-badge">Governance</span>
-            </div>
-            <div class="node-name">Strategic OKR Governor</div>
-            <div class="node-role">Cross-examines GitHub Projects against quarterly KRs, flagging unlinked epics.</div>
-          </div>
-
-          <div class="agent-node" data-id="cs">
-            <div class="node-header">
-              <span class="node-id">NODE_08</span>
-              <span class="node-badge">Human-in-the-Loop</span>
-            </div>
-            <div class="node-name">CS & Support Assistant</div>
-            <div class="node-role">Client ticket triage, ticket context synthesis and draft escalation.</div>
-          </div>
-
-          <div class="agent-node" data-id="mkt">
-            <div class="node-header">
-              <span class="node-id">CORE_BUS</span>
-              <span class="node-badge">Foundation Bus</span>
-            </div>
-            <div class="node-name">Hermes Runtime Bus</div>
-            <div class="node-role">Tool execution sandbox, sandboxed bash & persistent memory store.</div>
-          </div>
-
-        </div>
-
-        <!-- Telemetry Details Pane -->
-        <div class="telemetry-console">
-          <div class="console-header">
-            <div class="console-traffic-lights">
-              <span class="traffic-light"></span>
-              <span class="traffic-light"></span>
-              <span class="traffic-light"></span>
-            </div>
-            <span class="console-title" id="paneConsoleTitle">NODE_01 // TELEMETRY</span>
-            <span class="console-status">[ACTIVE]</span>
-          </div>
-
-          <div class="console-body">
-            <div class="active-agent-info">
-              <div class="active-agent-title" id="paneTitle">Engineering Agent</div>
-              <div class="active-agent-meta" id="paneMeta">TRIGGER: GitHub Webhook (Issue / Bug Report)</div>
-              <div class="active-agent-desc" id="paneDesc">
-                Monitors repositories, ingests failing tests, analyzes AST dependencies, generates patches in clean branches, runs test suites, and merges autonomously when verification passes.
-              </div>
-            </div>
-
-            <div>
-              <div class="telemetry-row">
-                <span class="telemetry-label">Runtime Engine:</span>
-                <span class="telemetry-val" id="paneEngine">Self-Hosted Hermes + Docker Sandbox</span>
-              </div>
-              <div class="telemetry-row">
-                <span class="telemetry-label">Authorization:</span>
-                <span class="telemetry-val" id="paneAuth">GitHub App (Fine-grained RW)</span>
-              </div>
-              <div class="telemetry-row">
-                <span class="telemetry-label">Primary Output:</span>
-                <span class="telemetry-val highlight" id="paneOutput">291 PRs Merged Autonomously</span>
-              </div>
-              <div class="telemetry-row">
-                <span class="telemetry-label">Failure Mode:</span>
-                <span class="telemetry-val" id="paneFailure">Automated issue comment + Human Hand-off</span>
-              </div>
-            </div>
-
-            <div class="terminal-trace-box" id="paneTrace">
-              <div class="line-amber">&gt; Issue #171 detected: "Fix edge socket backoff timeout"</div>
-              <div>&gt; Reading src/sockets/connection.py: AST parsed</div>
-              <div>&gt; Running pytest -k test_backoff_jitter... <span class="line-green">34 passed</span></div>
-              <div class="line-green">&gt; PR #291 opened and merged into main (0 human clicks)</div>
-            </div>
-          </div>
-        </div>
+    <section class="split">
+      <h2>Get in touch</h2>
+      <div class="contact-body">
+        <p>If you're running AI agents in production — where a mistake is expensive and delegation needs to be real, not nominal — write to me.</p>
+        <ul class="links">
+          <li><a href="/projects/pantera/">Pantera →</a></li>
+          <li><a href="mailto:antoniolebla@gmail.com">Email</a></li>
+          <li><a href="https://github.com/antonio-leblanc" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/antonio-leblanc/" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
       </div>
     </section>
 
-    <!-- Tactile Proof: The Autonomy Flow -->
-    <section class="proof-section">
-      <div class="section-title-wrap">
-        <div>
-          <p class="section-kicker">Execution Mechanics</p>
-          <h2 class="section-title">How Delegation Actually Works</h2>
-        </div>
-        <div class="section-meta">
-          From issue to production merge
-        </div>
-      </div>
-
-      <div class="proof-terminal">
-        <div class="terminal-bar">
-          <span>PIPELINE: GITHUB_PROJECTS → CODEBASE_PATCH → CI_VERIFY → MERGE</span>
-          <span>ESTIMATED CYCLE: 3.2m</span>
-        </div>
-        <div class="terminal-steps">
-          <div class="step-item">
-            <div class="step-num">Step 01 // Triage</div>
-            <div class="step-title">Native Planning</div>
-            <div class="step-desc">Planning lives on GitHub Projects, not external silos. The agent picks tasks directly from the sprint board.</div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">Step 02 // Isolation</div>
-            <div class="step-title">Hermes Sandbox</div>
-            <div class="step-desc">Code execution and testing happen in sandboxed containers with fine-grained API credentials.</div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">Step 03 // Verification</div>
-            <div class="step-title">Deterministic CI</div>
-            <div class="step-desc">Zero reliance on "it looks right". Linting, typing, and regression test suites must exit code 0.</div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">Step 04 // Self-Sync</div>
-            <div class="step-title">State-as-Code</div>
-            <div class="step-desc">Prompt refinements and memory changes sync back into the repo via scheduled Git PRs.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Under The Hood Architecture Pillars -->
-    <section class="ledger-section">
-      <div class="section-title-wrap">
-        <div>
-          <p class="section-kicker">Engineering Principles</p>
-          <h2 class="section-title">Under The Hood</h2>
-        </div>
-        <div class="section-meta">
-          Production-grade constraints
-        </div>
-      </div>
-
-      <div class="hood-grid">
-        <div class="hood-card">
-          <div class="hood-index">01 / STRATEGIC GOVERNANCE</div>
-          <div class="hood-name">Weekly OKR Alignment Audit</div>
-          <div class="hood-body">
-            A weekly autonomous review scans GitHub Projects against quarterly Key Results. Any epic in flight without an explicit KR link gets flagged immediately, preventing engineering drift.
-          </div>
-        </div>
-
-        <div class="hood-card">
-          <div class="hood-index">02 / RECURSIVE REFACTORING</div>
-          <div class="hood-name">Self-Healing Cognitive Loop</div>
-          <div class="hood-body">
-            A dedicated auditor agent monitors skill execution logs, token usage, and memory fragmentation. When a tool definition degenerates, <strong>it opens a GitHub issue against itself</strong> to refactor.
-          </div>
-        </div>
-
-        <div class="hood-card">
-          <div class="hood-index">03 / REPRODUCIBLE RUNTIME</div>
-          <div class="hood-name">Memory & State as Code</div>
-          <div class="hood-body">
-            Runtime configurations, tool schemas, and prompt memories never live as unversioned server state. Everything synchronizes back to Git twice a week via automated PRs.
-          </div>
-        </div>
-
-        <div class="hood-card">
-          <div class="hood-index">04 / ZERO-NOISE TELEMETRY</div>
-          <div class="hood-name">Dual Security Watchdogs</div>
-          <div class="hood-body">
-            Two independent security scanners sweep infrastructure vulnerabilities every morning at 06:00. If findings are zero, team channels remain quiet. <strong>Only non-zero detections page the team on Telegram.</strong>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Core Thesis Quote -->
-    <div class="thesis-banner">
-      <p class="thesis-tag">// Orchestration Philosophy</p>
-      <div class="thesis-quote">
-        "The foundation model is just a raw engine. What actually generates value in production is the transmission, the brakes, the fuel injectors, and the telemetry around it."
-      </div>
-      <div class="thesis-author">— Antonio Leblanc, Co-Founder & CTO</div>
-    </div>
-
-    <!-- Contact Block -->
-    <section class="contact-block">
-      <div>
-        <h2>Let's talk production agents.</h2>
-        <p>
-          If you are deploying autonomous AI systems in production — where mistakes carry real financial or operational consequences and delegation must be verifiable — let's connect.
-        </p>
-      </div>
-      <div class="contact-links">
-        <a class="cta-link" href="mailto:contact@antonioleblanc.com">
-          <span>Email Me</span>
-          <span class="arrow">→</span>
-        </a>
-        <a class="cta-link" href="https://github.com/antonio-leblanc" target="_blank" rel="noopener">
-          <span>GitHub Profile</span>
-          <span class="arrow">↗</span>
-        </a>
-        <a class="cta-link" href="https://www.linkedin.com/in/antonio-leblanc/" target="_blank" rel="noopener">
-          <span>LinkedIn</span>
-          <span class="arrow">↗</span>
-        </a>
-        <a class="cta-link" href="/projects/pantera/">
-          <span>Explore Pantera (40M ha AI)</span>
-          <span class="arrow">→</span>
-        </a>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <span>Antonio Leblanc · Production Systems</span>
-    <a href="#">Back to top ↑</a>
-  </footer>
-</div>
+    <footer>
+      <span class="meta">Antonio Leblanc — draft v2, comparar com index.html</span>
+      <a href="#top">back to top</a>
+    </footer>
+  </div>
+</main>
 
 <script>
-  // Interactive Node Data for Telemetry Console
-  const agentData = {
-    eng: {
-      title: "Engineering Agent",
-      badge: "Full Autonomous",
-      meta: "TRIGGER: GitHub Webhook (Issue / Bug Report)",
-      desc: "Monitors repositories, ingests failing tests, analyzes AST dependencies, generates patches in clean branches, runs test suites, and merges autonomously when verification passes.",
-      engine: "Self-Hosted Hermes + Docker Sandbox",
-      auth: "GitHub App (Fine-grained RW)",
-      output: "291 PRs Merged Autonomously",
-      failure: "Automated issue comment + Human Hand-off",
-      trace: [
-        { text: '> Issue #171 detected: "Fix edge socket backoff timeout"', cls: 'line-amber' },
-        { text: '> Reading src/sockets/connection.py: AST parsed', cls: '' },
-        { text: '> Running pytest -k test_backoff_jitter... 34 passed', cls: 'line-green' },
-        { text: '> PR #291 opened and merged into main (0 human clicks)', cls: 'line-green' }
-      ]
-    },
-    ops: {
-      title: "Cost & Ops Watchdog",
-      badge: "FinOps / Infra",
-      meta: "TRIGGER: Cron (Every 4h) + AWS CloudWatch",
-      desc: "Audits unutilized compute instances, oversized RDS clusters, and detached EBS volumes. Issues terraform adjustments and autonomous scaling recommendations.",
-      engine: "Hermes + AWS Boto3 SDK + CloudWatch",
-      auth: "AWS IAM (Least Privilege FinOps)",
-      output: "-15% Total AWS Cloud Spend",
-      failure: "Pages DevOps via Telegram on anomaly",
-      trace: [
-        { text: '> Sweeping us-east-1 EC2 cluster utilization metrics...', cls: '' },
-        { text: '> Identified 3 overprovisioned dev environments (idle > 72h)', cls: 'line-amber' },
-        { text: '> Applying scheduled stop policy + downsizing standby DB', cls: '' },
-        { text: '> Monthly infrastructure delta: -$1,420/mo secured', cls: 'line-green' }
-      ]
-    },
-    audit: {
-      title: "Cognitive Auditor",
-      badge: "Self-Healing",
-      meta: "TRIGGER: Weekly Evaluation Loop",
-      desc: "Performs introspective meta-analysis over agent prompt drift, hallucination frequency, and tool call latency. Opens refactoring issues against its own system.",
-      engine: "Hermes Meta-Eval + Context Tracing",
-      auth: "Internal Sandbox + GitHub Issues",
-      output: "Zero Degraded Tools in Production",
-      failure: "Escalates to CTO weekly digest",
-      trace: [
-        { text: '> Ingesting last 1,400 agent execution traces...', cls: '' },
-        { text: '> Drift detected in "github_search_code" tool usage (high retry rate)', cls: 'line-amber' },
-        { text: '> Synthesizing refactored schema + few-shot prompt updates', cls: '' },
-        { text: '> Filed self-healing Issue #304: "Refactor code search tool"', cls: 'line-green' }
-      ]
-    },
-    state: {
-      title: "State-as-Code Sync",
-      badge: "State Sync",
-      meta: "TRIGGER: Bi-Weekly Automated Sync",
-      desc: "Guarantees zero prompt drift across distributed agent containers. Serializes in-memory skills, state vectors, and runtimes into version-controlled Git commits.",
-      engine: "Git Automation + Schema Validator",
-      auth: "Deploy Key (Git Committer)",
-      output: "100% Deterministic & Recoverable State",
-      failure: "Rolls back to previous stable commit",
-      trace: [
-        { text: '> Extracting runtime configurations & persistent memory schemas...', cls: '' },
-        { text: '> Validating diff against JSON Schema v7...', cls: 'line-green' },
-        { text: '> Pushing branch: chore/sync-runtime-state-wk36', cls: '' },
-        { text: '> PR opened and verified by CI', cls: 'line-green' }
-      ]
-    },
-    sec: {
-      title: "Security Watchdogs (A & B)",
-      badge: "Dual Scanner",
-      meta: "TRIGGER: Daily 06:00 UTC",
-      desc: "Dual independent scanner agents sweep container images, dependencies, and exposed network endpoints. Adheres to strict zero-noise policy: silent when green.",
-      engine: "Trivy + OSV + Custom Hermes Auditor",
-      auth: "Read-Only Security Audit Role",
-      output: "Zero-Noise Telegram Alerts (Zero false positives)",
-      failure: "Immediate high-priority Telegram paging",
-      trace: [
-        { text: '> Running Watchdog A (OSV & CVE database sync)... 0 criticals', cls: 'line-green' },
-        { text: '> Running Watchdog B (IAM role privilege escalation check)... 0 issues', cls: 'line-green' },
-        { text: '> All scans green. Team channels undisturbed (Zero noise policy)', cls: 'line-green' }
-      ]
-    },
-    okr: {
-      title: "Strategic OKR Governor",
-      badge: "Governance",
-      meta: "TRIGGER: Monday 08:00 Sprint Kickoff",
-      desc: "Audits active sprint backlogs and engineering PRs against the company's executive OKR framework. Flags unaligned tasks before dev time is wasted.",
-      engine: "Hermes + GitHub Projects GraphQL API",
-      auth: "GitHub Project Admin Token",
-      output: "100% Backlog Traceability to Q3 KRs",
-      failure: "Comments on unlinked Epics in GitHub",
-      trace: [
-        { text: '> Cross-referencing 42 active epics against Q3 OKR matrix...', cls: '' },
-        { text: '> Warning: Epic #88 ("Experimental Websocket V2") lacks linked KR', cls: 'line-amber' },
-        { text: '> Auto-flagged for review in Monday planning agenda', cls: 'line-green' }
-      ]
-    },
-    cs: {
-      title: "CS & Support Assistant",
-      badge: "Human-in-the-Loop",
-      meta: "TRIGGER: Inbound Client Ticket / Slack Channel",
-      desc: "Synthesizes customer error logs, cross-references telemetry with Pantera detection servers, and drafts root-cause explanations for human engineers to review.",
-      engine: "Hermes + Zendesk / Slack Webhooks",
-      auth: "Customer Service Portal API",
-      output: "3.5x Faster First-Response Resolution",
-      failure: "Direct escalation to on-call engineer",
-      trace: [
-        { text: '> Inbound ticket: "Camera 142 telemetry latency warning"', cls: '' },
-        { text: '> Ingesting LTE signal logs from field tower gateway...', cls: '' },
-        { text: '> Diagnosed carrier IP throttling; prepared diagnostic response', cls: 'line-amber' },
-        { text: '> Draft assigned to Support Lead for approval', cls: 'line-green' }
-      ]
-    },
-    mkt: {
-      title: "Hermes Runtime Bus",
-      badge: "Foundation Bus",
-      meta: "STATUS: High-Availability Self-Hosted Cluster",
-      desc: "The underlying nervous system orchestrating all agents. Built on open-source Hermes from Nous Research, enhanced with custom toolchains, vector stores, and execution sandboxes.",
-      engine: "Hermes (Nous Research) + Custom Python Toolkit",
-      auth: "Mutual TLS + Internal Mesh",
-      output: "8 Concurrent Autonomous Workers",
-      failure: "Cluster node auto-recovery",
-      trace: [
-        { text: '> Cluster uptime: 99.98% across 8 production nodes', cls: 'line-green' },
-        { text: '> IPC message queue latency: 12ms avg', cls: '' },
-        { text: '> Sandboxed Bash tool calls: 4,812 this week', cls: 'line-green' }
-      ]
+(function () {
+  // Count-up, same pattern already used in index.html — triggers once the numbers scroll into view.
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function countUp(el) {
+    if (el.dataset.ran) return; el.dataset.ran = '1';
+    var target = parseFloat(el.dataset.count), dec = parseInt(el.dataset.dec || 0, 10);
+    if (reduce) { el.textContent = target.toFixed(dec); return; }
+    var t0 = null, dur = 1200;
+    function step(t) {
+      if (t0 === null) t0 = t;
+      var p = Math.min((t - t0) / dur, 1);
+      el.textContent = (target * (1 - Math.pow(1 - p, 3))).toFixed(dec);
+      if (p < 1) requestAnimationFrame(step);
     }
-  };
-
-  // Node Click Handlers
-  const nodes = document.querySelectorAll('.agent-node');
-  nodes.forEach(node => {
-    node.addEventListener('click', () => {
-      nodes.forEach(n => n.classList.remove('is-active'));
-      node.classList.add('is-active');
-      const id = node.dataset.id;
-      const data = agentData[id];
-      if (!data) return;
-
-      document.getElementById('paneConsoleTitle').textContent = `NODE_${id.toUpperCase()} // TELEMETRY`;
-      document.getElementById('paneTitle').textContent = data.title;
-      document.getElementById('paneMeta').textContent = data.meta;
-      document.getElementById('paneDesc').textContent = data.desc;
-      document.getElementById('paneEngine').textContent = data.engine;
-      document.getElementById('paneAuth').textContent = data.auth;
-      document.getElementById('paneOutput').textContent = data.output;
-      document.getElementById('paneFailure').textContent = data.failure;
-
-      const traceBox = document.getElementById('paneTrace');
-      traceBox.innerHTML = '';
-      data.trace.forEach(item => {
-        const div = document.createElement('div');
-        if (item.cls) div.className = item.cls;
-        div.textContent = item.text;
-        traceBox.appendChild(div);
-      });
+    requestAnimationFrame(step);
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.querySelectorAll('[data-count]').forEach(countUp);
+      io.unobserve(e.target);
     });
-  });
-
-  // Number Count-Up on Scroll
-  (function () {
-    const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const counters = document.querySelectorAll('[data-target]');
-    if (prefersReduced) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        const target = parseFloat(el.dataset.target);
-        let start = 0;
-        const duration = 1200;
-        const startTime = performance.now();
-
-        function update(now) {
-          const elapsed = now - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          // Ease out cubic
-          const easeOut = 1 - Math.pow(1 - progress, 3);
-          el.textContent = Math.round(start + (target - start) * easeOut);
-          if (progress < 1) requestAnimationFrame(update);
-          else el.textContent = target;
-        }
-
-        requestAnimationFrame(update);
-        observer.unobserve(el);
-      });
-    }, { threshold: 0.5 });
-
-    counters.forEach(c => observer.observe(c));
-  })();
+  }, { threshold: .3 });
+  document.querySelectorAll('.hood-cards').forEach(function (el) { io.observe(el); });
+})();
 </script>
-
 </body>
 </html>

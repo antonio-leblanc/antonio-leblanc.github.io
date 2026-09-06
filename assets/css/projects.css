@@ -245,6 +245,17 @@
     font-weight: 600;
   }
 
+  /* Full-width section: h2 stacks above content (unlike .split's 2-col text+content layout) */
+  .section { padding: 56px 0; border-top: 1px solid var(--line); }
+  .section h2 {
+    font-size: clamp(24px, 3vw, 30px);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+  }
+  /* Modifier for .cards when the item count doesn't divide evenly into 2 fixed columns */
+  .cards.auto { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
   .chips { display: flex; flex-wrap: wrap; gap: 10px; }
   .chip {
     font-family: var(--font-mono);
