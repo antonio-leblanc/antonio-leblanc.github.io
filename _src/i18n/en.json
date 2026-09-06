@@ -19,7 +19,7 @@
   "LOG2_DT": "Agents",
   "LOG2_DD": "Eight AI agents run sales, support, and marketing on <a href=\"https://hermes-agent.nousresearch.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">Hermes</a>, open-source, on our own servers.",
   "LOG_DELEGATION_DT": "Beyond CTO",
-  "LOG_DELEGATION_DD": "Support, Customer Success, Marketing, HR — all outside engineering, all landed on my desk at some point: a broken ticketing system to fix, scattered CS docs to untangle, two years running HR, Marketing covered between hires. Every one went to a real owner once it was running.",
+  "LOG_DELEGATION_DD": "Ran Customer Success, Marketing, Support, and HR at various points — none of it engineering. Fixed what was broken, then handed each off once there was a real owner to take it.",
   "LOG3_DD": "Contributor since 2022 to CNRS's open-source wildfire simulator, maintainer since 2025, and co-author on its <a href=\"https://doi.org/10.21105/joss.08680\" target=\"_blank\" rel=\"noopener\" class=\"u\">JOSS paper</a> — reviewing and merging PRs, cutting releases, Dockerization, CI/CD, documentation.",
   "LOG4_DT": "Now",
   "LOG4_DD": "Open to CTO or senior technical leadership roles — in climate, govtech, or agentic systems, where the hard part isn't the model but putting it inside an operation where being wrong is expensive.",
