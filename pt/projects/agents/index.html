@@ -52,56 +52,49 @@
         <div class="hero-text">
           <h1>Agentes de IA em Produção</h1>
           <p class="dek">Eu não crio nem treino modelos fundacionais. Eu construo o ecossistema, as ferramentas, integrações e a orquestração em volta deles para que possam agir de verdade no mundo real.</p>
-          <ul class="hero-facts">
-            <li><b>8 agentes autônomos</b> em produção nas áreas de vendas, CS, suporte e marketing.</li>
-            <li><b>Infraestrutura self-hosted</b> rodando inteiramente sobre <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Hermes</a> (open-source da Nous Research).</li>
-          </ul>
         </div>
-
-        <div class="ledger">
-          <div class="row fact">
-            <dt>Engenharia</dt>
-            <dd><strong>291 PRs</strong> mergeadas autonomamente nos primeiros 3 meses.</dd>
-          </div>
-          <div class="row fact">
-            <dt>Resolução de Issues</dt>
-            <dd><strong>171 issues</strong> fechadas pelo agente de engenharia.</dd>
-          </div>
-          <div class="row fact">
-            <dt>Otimização de Custos</dt>
-            <dd>Agente de ops cortou <strong>15% dos custos AWS</strong>.</dd>
-          </div>
-          <div class="row fact">
-            <dt>Mudança de Fluxo</dt>
-            <dd>Planejamento saiu do Notion/Jira para o <strong>GitHub</strong> (os agentes trabalham onde o código está).</dd>
-          </div>
-        </div>
+        <ul class="hero-facts">
+          <li><b>8 agentes autônomos</b> em produção nas áreas de vendas, CS, suporte e marketing.</li>
+          <li><b>Infraestrutura self-hosted</b> rodando inteiramente sobre <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Hermes</a> (open-source da Nous Research).</li>
+        </ul>
       </div>
     </section>
 
-    <section class="split">
+    <section class="section">
       <h2>Por baixo do capô</h2>
-      <div class="ledger">
-        <div class="row fact">
-          <dt>Governança Estratégica</dt>
-          <dd>Revisão semanal de OKR cruza o board com os KRs do trimestre e aponta épico sem KR vinculado.</dd>
-        </div>
-        <div class="row fact">
-          <dt>Pipeline de Entrega</dt>
-          <dd>Backlog roda em <strong>GitHub Projects</strong> — boards de Sprint e de Épicos — planejamento, issue e PR no mesmo sistema onde o código vive.</dd>
-        </div>
-        <div class="row fact">
-          <dt>Self-Healing</dt>
-          <dd>Uma auditoria cognitiva revisa a própria memória e uso de skills dos agentes, abrindo issue contra si mesma quando precisa se refatorar.</dd>
-        </div>
-        <div class="row fact">
-          <dt>Estado como Código</dt>
-          <dd>Configuração e memória de runtime sincronizam de volta pro GitHub via PR automático, duas vezes por semana.</dd>
-        </div>
-        <div class="row fact">
-          <dt>Vigilância de Segurança</dt>
-          <dd>Duas auditorias independentes varrem vulnerabilidades toda manhã; só achado maior que zero avisa o time no Telegram.</dd>
-        </div>
+      <div class="cards auto">
+        <article class="card">
+          <h3>Agente de Engenharia</h3>
+          <p><strong><span data-count="291" data-dec="0">0</span> PRs</strong> mergeadas autonomamente e <strong><span data-count="171" data-dec="0">0</span> issues</strong> fechadas, nos primeiros 3 meses.</p>
+        </article>
+        <article class="card">
+          <h3>Agente de Ops</h3>
+          <p>Cortou <strong><span data-count="15" data-dec="0">0</span>%</strong> dos custos de infraestrutura AWS, autonomamente.</p>
+        </article>
+        <article class="card">
+          <h3>Governança Estratégica</h3>
+          <p>Revisão semanal de OKR cruza o board com os KRs do trimestre e aponta épico sem KR vinculado.</p>
+        </article>
+        <article class="card">
+          <h3>Pipeline de Entrega</h3>
+          <p>Backlog roda em <strong>GitHub Projects</strong> — boards de Sprint e de Épicos — planejamento, issue e PR no mesmo sistema onde o código vive.</p>
+        </article>
+        <article class="card">
+          <h3>Self-Healing</h3>
+          <p>Uma auditoria cognitiva revisa a própria memória e uso de skills dos agentes, abrindo issue contra si mesma quando precisa se refatorar.</p>
+        </article>
+        <article class="card">
+          <h3>Estado como Código</h3>
+          <p>Configuração e memória de runtime sincronizam de volta pro GitHub via PR automático, duas vezes por semana.</p>
+        </article>
+        <article class="card">
+          <h3>Vigilância de Segurança</h3>
+          <p>Duas auditorias independentes varrem vulnerabilidades toda manhã; só achado maior que zero avisa o time no Telegram.</p>
+        </article>
+        <article class="card">
+          <h3>Mudança de Fluxo</h3>
+          <p>Planejamento saiu do Notion/Jira para o <strong>GitHub</strong> — os agentes trabalham onde o código está.</p>
+        </article>
       </div>
     </section>
 
@@ -150,7 +143,7 @@
       io.unobserve(e.target);
     });
   }, { threshold: .3, rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.frame').forEach(function (el) { io.observe(el); });
+  document.querySelectorAll('.frame, .cards.auto').forEach(function (el) { io.observe(el); });
 })();
 </script>
 <script src="/assets/js/lang-redirect.js" defer></script>
