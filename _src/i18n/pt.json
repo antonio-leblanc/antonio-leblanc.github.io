@@ -1,7 +1,7 @@
 {
   "LANG": "pt-BR",
   "URL": "https://antonioleblanc.com/pt/",
-  "TITLE": "Antonio Leblanc — CTO, IA contra incêndio e agentes autônomos em produção",
+  "TITLE": "Antonio Leblanc — CTO, IA contra incêndio e sistemas de agentes em produção",
   "META_DESCRIPTION": "Antonio Leblanc — Estagiário a CTO em dez meses. Lidero a IA contra incêndio florestal que protege 40 milhões de hectares na 1.5°C.",
   "OG_DESCRIPTION": "Estagiário a CTO em dez meses. Lidero a IA contra incêndio florestal que protege 40 milhões de hectares na 1.5°C.",
   "JSONLD_KNOWS_ABOUT": ["Detecção de incêndios florestais", "IA para resiliência climática", "Machine learning em edge", "Inteligência geoespacial", "Sistemas de agentes"],
@@ -17,7 +17,7 @@
   "LOG_ARIA": "Histórico",
   "LOG1_DD": "Como cofundador e CTO da <a href=\"https://umgrauemeio.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">1.5°C</a>, lidero os modelos de visão computacional, imagens de satélite e risco de incêndio — com o time de engenharia, ML e ciência ambiental que os constrói comigo.",
   "LOG2_DT": "Agentes",
-  "LOG2_DD": "Oito agentes de IA rodam vendas, suporte e marketing no <a href=\"https://hermes-agent.nousresearch.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">Hermes</a>, open-source, em servidores próprios.",
+  "LOG2_DD": "Oito agentes de IA em produção no <a href=\"https://hermes-agent.nousresearch.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">Hermes</a>, o runtime de agentes open-source, em servidores nossos. Um escreve as PRs de engenharia e roda as auditorias de infraestrutura; os outros sete ficam dentro de vendas, sucesso do cliente, suporte, marketing, projetos, alertas de incêndio e liderança, cada um com um dono humano. Toda PR que o agente escreve passa por revisão e merge de uma pessoa.",
   "LOG_DELEGATION_DT": "Além de CTO",
   "LOG_DELEGATION_DD": "Suporte, Sucesso do Cliente, Marketing, RH — fora da engenharia, todos passaram pela minha mesa em algum momento: ticketing bagunçado pra arrumar, documentação de CS espalhada, dois anos à frente do RH, Marketing coberto entre contratações. Cada uma foi entregue a um responsável de verdade assim que passou a rodar sozinha.",
   "LOG3_DD": "Contribuidor desde 2022 do simulador de incêndio florestal open-source do CNRS, mantenedor desde 2025, e coautor do <a href=\"https://doi.org/10.21105/joss.08680\" target=\"_blank\" rel=\"noopener\" class=\"u\">paper na JOSS</a> — revisando e mesclando PRs, cortando releases, Dockerização, CI/CD, documentação.",
@@ -44,7 +44,7 @@
   "FOOTER_LANG_LINK": "<a class=\"lang-link\" href=\"/\">English</a>",
   "BACK_TO_TOP": "Voltar ao topo",
   "AGENTS_H3": "Agentes de IA em Produção",
-  "AGENTS_BODY": "Orquestrando 8 agentes autônomos no Hermes self-hosted — executando PRs reais no GitHub, cortando custos AWS e gerenciando CS.",
+  "AGENTS_BODY": "Oito agentes de IA em produção no Hermes self-hosted — um escrevendo PRs de engenharia com revisão humana, sete trabalhando ao lado dos times.",
   "AGENTS_HREF": "/pt/projects/agents/",
   "AGENTS_STATS": "<b>291</b> PRs · <b>171</b> issues · <b>−15%</b> custos AWS"
 }

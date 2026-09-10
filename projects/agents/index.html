@@ -5,20 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Production AI Agents — Antonio Leblanc</title>
   <meta name="author" content="Antonio Leblanc">
-  <meta name="description" content="Orchestrating 8 autonomous AI agents running on self-hosted Hermes — executing real GitHub PRs, cutting AWS costs, and managing CS.">
+  <meta name="description" content="Eight AI agents in production on self-hosted Hermes. 291 PRs written by the engineering agent in three months — every one reviewed and merged by a person.">
   <link rel="canonical" href="https://antonioleblanc.com/projects/agents/">
   <link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/agents/">
   <link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/agents/">
+  <link rel="alternate" hreflang="x-default" href="https://antonioleblanc.com/projects/agents/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='50' dy='.35em' text-anchor='middle' font-size='78' font-weight='700' font-family='Helvetica,Arial,sans-serif' fill='%23f9a522'%3EA%3C/text%3E%3C/svg%3E">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://antonioleblanc.com/projects/agents/">
   <meta property="og:title" content="Production AI Agents — Antonio Leblanc">
-  <meta property="og:description" content="Orchestrating 8 autonomous AI agents running on self-hosted Hermes — executing real GitHub PRs, cutting AWS costs, and managing CS.">
+  <meta property="og:description" content="Eight AI agents in production on self-hosted Hermes. 291 PRs written by the engineering agent in three months — every one reviewed and merged by a person.">
   <meta property="og:image" content="https://antonioleblanc.com/assets/images/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Production AI Agents — Antonio Leblanc">
-  <meta name="twitter:description" content="Orchestrating 8 autonomous AI agents running on self-hosted Hermes — executing real GitHub PRs, cutting AWS costs, and managing CS.">
+  <meta name="twitter:description" content="Eight AI agents in production on self-hosted Hermes. 291 PRs written by the engineering agent in three months — every one reviewed and merged by a person.">
   <meta name="twitter:image" content="https://antonioleblanc.com/assets/images/og-image.png">
 
   <script type="application/ld+json">
@@ -54,31 +55,40 @@
           <p class="dek">I build the ecosystem, tools, integrations, and orchestration that give a foundation model the ability to take real action.</p>
         </div>
         <ul class="hero-facts">
-          <li><b>8 autonomous agents</b> deployed in production across sales, CS, support, and marketing.</li>
-          <li><b>Self-hosted infrastructure</b> running entirely on <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Hermes</a> (open-source by Nous Research).</li>
+          <li><b>8 AI agents</b> in production: one control plane that writes engineering PRs and audits the infrastructure, and seven working inside sales, CS, support, marketing, projects, fire alerts, and leadership.</li>
+          <li><b>A person reviews and merges every PR.</b> The agent's autonomy is authorship — it opens the pull request, someone on the team merges it.</li>
+          <li><b>Self-hosted</b> on our own servers, on <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Hermes</a> — the open-source agent runtime by Nous Research.</li>
         </ul>
       </div>
     </section>
 
     <section class="section">
       <h2>The agents</h2>
-      <p class="dek" style="margin-top:0;margin-bottom:28px;">Two of the eight carry a hard number below. The rest run sales, CS, support, and marketing day to day.</p>
+      <p class="dek" style="margin-top:0;margin-bottom:28px;">The control plane carries both hard numbers below. The other seven run one area each, next to the person who owns it.</p>
       <div class="cards auto">
         <article class="card">
-          <h3>Engineering Agent</h3>
-          <p><strong><span data-count="291" data-dec="0">0</span> PRs</strong> written and <strong><span data-count="171" data-dec="0">0</span> issues</strong> closed by the agent, in the first 3 months.</p>
+          <h3>Writing code</h3>
+          <p><strong><span data-count="291" data-dec="0">0</span> PRs</strong> written and <strong><span data-count="171" data-dec="0">0</span> issues</strong> closed by the agent, in the first 3 months. A person reviewed and merged every one.</p>
         </article>
         <article class="card">
-          <h3>Ops Agent</h3>
-          <p>Cut <strong><span data-count="15" data-dec="0">0</span>%</strong> of AWS infrastructure costs, autonomously.</p>
+          <h3>Running infrastructure</h3>
+          <p>Cut <strong><span data-count="15" data-dec="0">0</span>%</strong> of AWS infrastructure costs. A watchdog checks every agent profile every 15 minutes.</p>
+        </article>
+        <article class="card">
+          <h3>Beside the teams</h3>
+          <p>Seven area agents — sales, CS, support, marketing, projects, fire alerts, leadership. Each one delivers its morning briefing to the person who owns that area.</p>
         </article>
       </div>
     </section>
 
     <section class="section">
-      <h2>Safe to run unsupervised</h2>
-      <p class="dek" style="margin-top:0;margin-bottom:28px;">The practices and infrastructure that make autonomous execution safe to ship without someone checking every step.</p>
+      <h2>Guardrails that make delegation real</h2>
+      <p class="dek" style="margin-top:0;margin-bottom:28px;">An agent opening pull requests against production repositories needs more than a good model. This is what had to exist first.</p>
       <div class="cards auto">
+        <article class="card">
+          <h3>Human Review</h3>
+          <p>The agent opens the PR; a person reviews and merges it. Scheduled jobs open their issues raw, with no project label attached, so a human has to triage them.</p>
+        </article>
         <article class="card">
           <h3>Strategic Governance</h3>
           <p>Weekly OKR review cross-checks the board against the quarter's key results, flagging epics with no linked KR.</p>

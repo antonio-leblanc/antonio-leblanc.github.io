@@ -1,7 +1,7 @@
 {
   "LANG": "en",
   "URL": "https://antonioleblanc.com/",
-  "TITLE": "Antonio Leblanc — CTO, wildfire AI & autonomous agents in production",
+  "TITLE": "Antonio Leblanc — CTO, wildfire AI & agentic systems in production",
   "META_DESCRIPTION": "Antonio Leblanc — Intern to CTO in ten months. I lead the wildfire AI protecting 40M+ hectares at 1.5°C.",
   "OG_DESCRIPTION": "Intern to CTO in ten months. I lead the wildfire AI protecting 40M+ hectares at 1.5°C.",
   "JSONLD_KNOWS_ABOUT": ["Wildfire detection", "AI for climate resilience", "Edge machine learning", "Geospatial intelligence", "Agentic systems"],
@@ -17,7 +17,7 @@
   "LOG_ARIA": "Track record",
   "LOG1_DD": "As co-founder and CTO of <a href=\"https://umgrauemeio.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">1.5°C</a>, I lead the computer vision, satellite imagery, and fire-risk models — with the engineering, ML, and environmental science team that builds them with me.",
   "LOG2_DT": "Agents",
-  "LOG2_DD": "Eight AI agents run sales, support, and marketing on <a href=\"https://hermes-agent.nousresearch.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">Hermes</a>, open-source, on our own servers.",
+  "LOG2_DD": "Eight AI agents in production on <a href=\"https://hermes-agent.nousresearch.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">Hermes</a>, the open-source agent runtime, on our own servers. One writes the engineering PRs and runs the infrastructure audits; the other seven work inside sales, CS, support, marketing, projects, fire alerts, and leadership, each with a human owner. Every PR the agent writes is reviewed and merged by a person.",
   "LOG_DELEGATION_DT": "Beyond CTO",
   "LOG_DELEGATION_DD": "Ran Customer Success, Marketing, Support, and HR at various points — none of it engineering. Fixed what was broken, then handed each off once there was a real owner to take it.",
   "LOG3_DD": "Contributor since 2022 to CNRS's open-source wildfire simulator, maintainer since 2025, and co-author on its <a href=\"https://doi.org/10.21105/joss.08680\" target=\"_blank\" rel=\"noopener\" class=\"u\">JOSS paper</a> — reviewing and merging PRs, cutting releases, Dockerization, CI/CD, documentation.",
@@ -44,7 +44,7 @@
   "FOOTER_LANG_LINK": "<a class=\"lang-link\" href=\"/pt/\">Português</a>",
   "BACK_TO_TOP": "Back to top",
   "AGENTS_H3": "Production AI Agents",
-  "AGENTS_BODY": "Orchestrating 8 autonomous agents running on self-hosted Hermes — executing real GitHub PRs, cutting AWS costs, and managing CS.",
+  "AGENTS_BODY": "Eight AI agents in production on self-hosted Hermes — one writing engineering PRs under human review, seven working beside the teams.",
   "AGENTS_HREF": "/projects/agents/",
   "AGENTS_STATS": "<b>291</b> PRs · <b>171</b> issues · <b>−15%</b> AWS costs"
 }

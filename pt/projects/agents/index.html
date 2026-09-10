@@ -5,20 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agentes de IA em Produção — Antonio Leblanc</title>
   <meta name="author" content="Antonio Leblanc">
-  <meta name="description" content="Orquestrando 8 agentes autônomos no Hermes self-hosted — executando PRs reais no GitHub, cortando custos AWS e gerenciando CS.">
+  <meta name="description" content="Oito agentes de IA em produção no Hermes self-hosted. 291 PRs escritas pelo agente de engenharia em três meses — todas revisadas e mescladas por uma pessoa.">
   <link rel="canonical" href="https://antonioleblanc.com/pt/projects/agents/">
   <link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/agents/">
   <link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/agents/">
+  <link rel="alternate" hreflang="x-default" href="https://antonioleblanc.com/projects/agents/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='50' dy='.35em' text-anchor='middle' font-size='78' font-weight='700' font-family='Helvetica,Arial,sans-serif' fill='%23f9a522'%3EA%3C/text%3E%3C/svg%3E">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://antonioleblanc.com/pt/projects/agents/">
   <meta property="og:title" content="Agentes de IA em Produção — Antonio Leblanc">
-  <meta property="og:description" content="Orquestrando 8 agentes autônomos no Hermes self-hosted — executando PRs reais no GitHub, cortando custos AWS e gerenciando CS.">
+  <meta property="og:description" content="Oito agentes de IA em produção no Hermes self-hosted. 291 PRs escritas pelo agente de engenharia em três meses — todas revisadas e mescladas por uma pessoa.">
   <meta property="og:image" content="https://antonioleblanc.com/assets/images/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Agentes de IA em Produção — Antonio Leblanc">
-  <meta name="twitter:description" content="Orquestrando 8 agentes autônomos no Hermes self-hosted — executando PRs reais no GitHub, cortando custos AWS e gerenciando CS.">
+  <meta name="twitter:description" content="Oito agentes de IA em produção no Hermes self-hosted. 291 PRs escritas pelo agente de engenharia em três meses — todas revisadas e mescladas por uma pessoa.">
   <meta name="twitter:image" content="https://antonioleblanc.com/assets/images/og-image.png">
 
   <script type="application/ld+json">
@@ -54,31 +55,40 @@
           <p class="dek">Eu construo o ecossistema, as ferramentas, integrações e orquestração que dão a um modelo fundacional a capacidade de agir de verdade no mundo real.</p>
         </div>
         <ul class="hero-facts">
-          <li><b>8 agentes autônomos</b> em produção nas áreas de vendas, CS, suporte e marketing.</li>
-          <li><b>Infraestrutura self-hosted</b> rodando inteiramente sobre <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Hermes</a> (open-source da Nous Research).</li>
+          <li><b>8 agentes de IA</b> em produção: um control plane, que escreve as PRs de engenharia e audita a infraestrutura, e sete dentro de vendas, sucesso do cliente, suporte, marketing, projetos, alertas de incêndio e liderança.</li>
+          <li><b>Uma pessoa revisa e mescla toda PR.</b> A autonomia do agente é de autoria — ele abre o pull request, alguém do time faz o merge.</li>
+          <li><b>Self-hosted</b> em servidores nossos, sobre o <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Hermes</a> — o runtime de agentes open-source da Nous Research.</li>
         </ul>
       </div>
     </section>
 
     <section class="section">
       <h2>Os agentes</h2>
-      <p class="dek" style="margin-top:0;margin-bottom:28px;">Dois dos oito têm número duro aqui embaixo. Os outros seis rodam vendas, CS, suporte e marketing no dia a dia.</p>
+      <p class="dek" style="margin-top:0;margin-bottom:28px;">O control plane carrega os dois números duros aqui embaixo. Os outros sete rodam uma área cada um, ao lado da pessoa que responde por ela.</p>
       <div class="cards auto">
         <article class="card">
-          <h3>Agente de Engenharia</h3>
-          <p><strong><span data-count="291" data-dec="0">0</span> PRs</strong> escritas e <strong><span data-count="171" data-dec="0">0</span> issues</strong> fechadas pelo agente, nos primeiros 3 meses.</p>
+          <h3>Escrevendo código</h3>
+          <p><strong><span data-count="291" data-dec="0">0</span> PRs</strong> escritas e <strong><span data-count="171" data-dec="0">0</span> issues</strong> fechadas pelo agente, nos primeiros 3 meses. Uma pessoa revisou e mesclou cada uma.</p>
         </article>
         <article class="card">
-          <h3>Agente de Ops</h3>
-          <p>Cortou <strong><span data-count="15" data-dec="0">0</span>%</strong> dos custos de infraestrutura AWS, autonomamente.</p>
+          <h3>Cuidando da infraestrutura</h3>
+          <p>Cortou <strong><span data-count="15" data-dec="0">0</span>%</strong> dos custos de infraestrutura AWS. Um watchdog checa cada perfil de agente a cada 15 minutos.</p>
+        </article>
+        <article class="card">
+          <h3>Ao lado dos times</h3>
+          <p>Sete agentes de área — vendas, sucesso do cliente, suporte, marketing, projetos, alertas de incêndio, liderança. Cada um entrega o briefing da manhã pra pessoa que responde por aquela área.</p>
         </article>
       </div>
     </section>
 
     <section class="section">
-      <h2>Seguro pra rodar sem supervisão</h2>
-      <p class="dek" style="margin-top:0;margin-bottom:28px;">As práticas e a infraestrutura que tornam a execução autônoma segura de rodar sem alguém checando cada passo.</p>
+      <h2>O que faz a delegação ser real</h2>
+      <p class="dek" style="margin-top:0;margin-bottom:28px;">Um agente que abre pull request em repositório de produção precisa de mais que um bom modelo. Isso é o que teve que existir antes.</p>
       <div class="cards auto">
+        <article class="card">
+          <h3>Revisão Humana</h3>
+          <p>O agente abre a PR; uma pessoa revisa e mescla. Job agendado abre a issue crua, sem etiqueta de projeto, pra obrigar a triagem humana.</p>
+        </article>
         <article class="card">
           <h3>Governança Estratégica</h3>
           <p>Revisão semanal de OKR cruza o board com os KRs do trimestre e aponta épico sem KR vinculado.</p>
