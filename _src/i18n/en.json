@@ -13,7 +13,7 @@
   "GAUGES_ARIA": "Scale",
   "GAUGE1_LABEL": "Cameras · 150 HaaS + 40 SaaS",
   "GAUGE2_LABEL": "Hectares under watch",
-  "GAUGE3_LABEL": "Detection accuracy",
+  "GAUGE3_LABEL": "AI agents in production · human oversight",
   "LOG_ARIA": "Track record",
   "LOG1_DD": "As co-founder and CTO of <a href=\"https://umgrauemeio.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">1.5°C</a>, I lead the computer vision, satellite imagery, and fire-risk models — with the engineering, ML, and environmental science team that builds them with me.",
   "LOG2_DT": "Agents",

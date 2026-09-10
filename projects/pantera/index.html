@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pantera — Antonio Leblanc</title>
   <meta name="author" content="Antonio Leblanc">
-  <meta name="description" content="Pantera is the AI platform I lead as co-founder and CTO at 1.5°C — 190 cameras, 40M+ hectares, 95% detection accuracy, including the Pantanal.">
+  <meta name="description" content="Pantera is the AI platform I lead as co-founder and CTO at 1.5°C — 190 cameras, 40M+ hectares, including the Pantanal.">
   <link rel="canonical" href="https://antonioleblanc.com/projects/pantera/">
   <link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/pantera/">
   <link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/pantera/">
@@ -15,11 +15,11 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://antonioleblanc.com/projects/pantera/">
   <meta property="og:title" content="Pantera — Antonio Leblanc">
-  <meta property="og:description" content="Pantera is the AI platform I lead as co-founder and CTO at 1.5°C — 190 cameras, 40M+ hectares, 95% detection accuracy, including the Pantanal.">
+  <meta property="og:description" content="Pantera is the AI platform I lead as co-founder and CTO at 1.5°C — 190 cameras, 40M+ hectares, including the Pantanal.">
   <meta property="og:image" content="https://antonioleblanc.com/assets/images/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Pantera — Antonio Leblanc">
-  <meta name="twitter:description" content="Pantera is the AI platform I lead as co-founder and CTO at 1.5°C — 190 cameras, 40M+ hectares, 95% detection accuracy, including the Pantanal.">
+  <meta name="twitter:description" content="Pantera is the AI platform I lead as co-founder and CTO at 1.5°C — 190 cameras, 40M+ hectares, including the Pantanal.">
   <meta name="twitter:image" content="https://antonioleblanc.com/assets/images/og-image.png">
 
   <script type="application/ld+json">
@@ -52,11 +52,10 @@
       <div class="hero-grid">
         <div class="hero-text">
           <h1>Pantera</h1>
-          <p class="dek">The AI platform I lead end to end at 1.5°C — computer vision detection, satellite imagery, fire spread modeling, risk analysis, and the architecture underneath all of it.</p>
+          <p class="dek">The wildfire management platform I lead at 1.5°C, with our engineering, ML, and environmental science team — from risk analysis and smoke detection to response and impact assessment.</p>
           <ul class="hero-facts">
             <li><b>190 cameras</b> in the network — 150 HaaS (hardware we run for landowners) and 40 SaaS (our software layered on infrastructure that's already there).</li>
             <li><b>40M+ hectares</b> under watch, including the Pantanal and indigenous territories.</li>
-            <li><b>95% detection accuracy</b> — measured in the field, not in a benchmark.</li>
           </ul>
         </div>
 
@@ -84,7 +83,7 @@
     <section class="split">
       <div>
         <h2>Same system, live</h2>
-        <p class="dek" style="margin-top:14px;">Raw footage from one of the 190 towers. The system patrols by preset, flags a candidate, zooms in to confirm — and only then draws the box you see. What crosses the threshold becomes an alert our 24/7 team confirms within minutes.</p>
+        <p class="dek" style="margin-top:14px;">Raw footage from the camera network. The system patrols preset views, flags a smoke candidate, and zooms in for another check. Detections that cross the confidence threshold go to our 24/7 team for review.</p>
       </div>
       <figure class="showcase frame" id="frame-pantera-live">
         <div class="fr-head">
@@ -104,11 +103,28 @@
     </section>
 
     <section class="split">
+      <h2>Why we prioritize recall</h2>
+      <div>
+        <p class="dek" style="margin-top:0;">Missing real smoke can delay the response to a wildfire. In this application, that false negative carries a greater cost than a false positive. We prioritize recall in the smoke detection model: finding more of the real smoke occurrences.</p>
+        <div class="cards" style="margin-top:24px;">
+          <article class="card">
+            <h3>The trade-off</h3>
+            <p>Higher recall can mean more false positives and more review work. We accept that trade-off to reduce missed smoke detections; false alarms still have an operational cost.</p>
+          </article>
+          <article class="card">
+            <h3>From detection to alert</h3>
+            <p>A model detection is a candidate for validation. The camera checks and human review described above are part of the path to a confirmed alert. Model precision and the quality of alerts reaching the customer must be evaluated separately.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="split">
       <h2>What it does</h2>
       <div class="cards">
         <article class="card">
           <h3>Detection</h3>
-          <p>The camera network and computer vision models flag smoke early enough for it to still be a small fire.</p>
+          <p>The camera network and computer vision models flag signs of smoke for validation and early response.</p>
         </article>
         <article class="card">
           <h3>Risk</h3>
@@ -116,7 +132,7 @@
         </article>
         <article class="card">
           <h3>Response</h3>
-          <p>Turning a confirmed detection into a coordinated action on the ground — the part that actually stops a fire.</p>
+          <p>Supporting the coordination of a field response once a detection is confirmed.</p>
         </article>
         <article class="card">
           <h3>Impact</h3>

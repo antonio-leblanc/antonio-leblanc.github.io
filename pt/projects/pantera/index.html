@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pantera — Antonio Leblanc</title>
   <meta name="author" content="Antonio Leblanc">
-  <meta name="description" content="Pantera é a plataforma de IA que lidero como cofundador e CTO na 1.5°C — 190 câmeras, 40M+ hectares, 95% de acurácia na detecção, incluindo o Pantanal.">
+  <meta name="description" content="Pantera é a plataforma de IA que lidero como cofundador e CTO na 1.5°C — 190 câmeras, 40M+ hectares, incluindo o Pantanal.">
   <link rel="canonical" href="https://antonioleblanc.com/pt/projects/pantera/">
   <link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/pantera/">
   <link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/pantera/">
@@ -15,11 +15,11 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://antonioleblanc.com/pt/projects/pantera/">
   <meta property="og:title" content="Pantera — Antonio Leblanc">
-  <meta property="og:description" content="Pantera é a plataforma de IA que lidero como cofundador e CTO na 1.5°C — 190 câmeras, 40M+ hectares, 95% de acurácia na detecção, incluindo o Pantanal.">
+  <meta property="og:description" content="Pantera é a plataforma de IA que lidero como cofundador e CTO na 1.5°C — 190 câmeras, 40M+ hectares, incluindo o Pantanal.">
   <meta property="og:image" content="https://antonioleblanc.com/assets/images/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Pantera — Antonio Leblanc">
-  <meta name="twitter:description" content="Pantera é a plataforma de IA que lidero como cofundador e CTO na 1.5°C — 190 câmeras, 40M+ hectares, 95% de acurácia na detecção, incluindo o Pantanal.">
+  <meta name="twitter:description" content="Pantera é a plataforma de IA que lidero como cofundador e CTO na 1.5°C — 190 câmeras, 40M+ hectares, incluindo o Pantanal.">
   <meta name="twitter:image" content="https://antonioleblanc.com/assets/images/og-image.png">
 
   <script type="application/ld+json">
@@ -52,11 +52,10 @@
       <div class="hero-grid">
         <div class="hero-text">
           <h1>Pantera</h1>
-          <p class="dek">A plataforma de IA que lidero de ponta a ponta na 1.5°C — detecção por visão computacional, imagens de satélite, modelagem de propagação de incêndio, análise de risco e a arquitetura por trás de tudo isso.</p>
+          <p class="dek">A plataforma de gestão de incêndios florestais que lidero na 1.5°C, com o time de engenharia, ML e ciência ambiental — da análise de risco e detecção de fumaça à resposta e avaliação de impacto.</p>
           <ul class="hero-facts">
             <li><b>190 câmeras</b> na rede — 150 HaaS (hardware que operamos para proprietários de terra) e 40 SaaS (nosso software rodando sobre infraestrutura que já existe).</li>
             <li><b>40M+ hectares</b> sob monitoramento, incluindo o Pantanal e territórios indígenas.</li>
-            <li><b>95% de acurácia na detecção</b> — medida em campo, não em benchmark.</li>
           </ul>
         </div>
 
@@ -84,7 +83,7 @@
     <section class="split">
       <div>
         <h2>O mesmo sistema, ao vivo</h2>
-        <p class="dek" style="margin-top:14px;">Imagem crua de uma das 190 torres. O sistema patrulha por presets, sinaliza um candidato, dá zoom pra confirmar — só então desenha a caixa que você vê. O que cruza o limiar de confiança vira um alerta que nosso time 24/7 confirma em minutos.</p>
+        <p class="dek" style="margin-top:14px;">Imagem crua da rede de câmeras. O sistema percorre posições predefinidas, sinaliza uma possível fumaça e dá zoom para uma nova verificação. As detecções que cruzam o limiar de confiança seguem para revisão do nosso time 24/7.</p>
       </div>
       <figure class="showcase frame" id="frame-pantera-live">
         <div class="fr-head">
@@ -104,11 +103,28 @@
     </section>
 
     <section class="split">
+      <h2>Por que priorizamos recall</h2>
+      <div>
+        <p class="dek" style="margin-top:0;">Deixar uma fumaça real passar pode atrasar a resposta a um incêndio. Nessa aplicação, esse falso negativo custa mais do que um falso positivo. Por isso, priorizamos recall no modelo de detecção de fumaça: encontrar mais das ocorrências reais.</p>
+        <div class="cards" style="margin-top:24px;">
+          <article class="card">
+            <h3>O custo dessa escolha</h3>
+            <p>Priorizar recall pode aumentar os falsos positivos e o trabalho de revisão. Aceitamos essa troca para reduzir as ocorrências de fumaça que passam despercebidas; alarmes falsos também têm custo operacional.</p>
+          </article>
+          <article class="card">
+            <h3>Da detecção ao alerta</h3>
+            <p>Uma detecção do modelo é um candidato para validação. As verificações da câmera e a revisão humana descritas acima fazem parte do caminho até um alerta confirmado. A precisão do modelo e a qualidade dos alertas que chegam ao cliente precisam ser avaliadas separadamente.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="split">
       <h2>O que ele faz</h2>
       <div class="cards">
         <article class="card">
           <h3>Detecção</h3>
-          <p>A rede de câmeras e os modelos de visão computacional identificam fumaça cedo o suficiente pra ainda ser um foco pequeno.</p>
+          <p>A rede de câmeras e os modelos de visão computacional sinalizam indícios de fumaça para validação e resposta antecipada.</p>
         </article>
         <article class="card">
           <h3>Risco</h3>
@@ -116,7 +132,7 @@
         </article>
         <article class="card">
           <h3>Resposta</h3>
-          <p>Transformar uma detecção confirmada em ação coordenada em campo — a parte que de fato apaga um incêndio.</p>
+          <p>Apoiar a coordenação da resposta em campo depois da confirmação de uma detecção.</p>
         </article>
         <article class="card">
           <h3>Impacto</h3>
