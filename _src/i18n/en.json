@@ -45,7 +45,7 @@
   "BACK_TO_TOP": "Back to top",
   "AGENTS_ALT": "GitHub activity feed for the pantera-bot engineering agent, showing a pull request it opened that received 17 review comments from the team.",
   "AGENTS_H3": "Production AI Agents",
-  "AGENTS_BODY": "Eight AI agents in production on self-hosted Hermes — one writing engineering PRs under human review, seven working beside the teams.",
+  "AGENTS_BODY": "Eight AI agents in production on self-hosted Hermes.",
   "AGENTS_HREF": "/projects/agents/",
   "AGENTS_STATS": "<b>291</b> PRs · <b>171</b> issues · <b>−15%</b> AWS costs"
 }

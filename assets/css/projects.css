@@ -214,6 +214,9 @@
     font-weight: 800;
     letter-spacing: -0.01em;
   }
+  /* split com mídia grande (foto/vídeo) ao lado de texto curto: mesma proporção 1fr/1fr do hero,
+     pra moldura não mudar de largura ao rolar de uma seção pra outra */
+  .split.split-media { grid-template-columns: 1fr 1fr; }
 
   .cards {
     display: grid;
@@ -299,7 +302,7 @@
 
   @media (max-width: 760px) {
     .wrap { padding: 0 20px; }
-    .split { grid-template-columns: 1fr; gap: 20px; }
+    .split, .split.split-media { grid-template-columns: 1fr; gap: 20px; }
     .cards { grid-template-columns: 1fr; }
     .ledger .row { grid-template-columns: 1fr; gap: 8px; }
     .hero-grid { grid-template-columns: 1fr; gap: 28px; }
