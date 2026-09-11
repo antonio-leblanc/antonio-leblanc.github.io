@@ -87,7 +87,7 @@
       <div class="cards auto">
         <article class="card">
           <h3>Human Review</h3>
-          <p>The agent opens the PR; a person reviews and merges it. Scheduled jobs open their issues raw, with no project label attached, so a human has to triage them.</p>
+          <p>The agent opens the PR; a person reviews and merges it. It caps how many PRs it keeps open per repo at once — it respects how much a team can actually review, it never floods the queue. Scheduled jobs open their issues raw, with no project label attached, so a human has to triage them.</p>
         </article>
         <article class="card">
           <h3>Strategic Governance</h3>
@@ -113,6 +113,21 @@
           <h3>Recursive Audit</h3>
           <p>Every Monday, a dedicated job reviews every other scheduled job across all agent profiles — stale schedules, silent failures — before they compound.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="split">
+      <h2>How it's built</h2>
+      <div>
+        <p class="dek" style="margin-top:0;">Self-hosted end to end — the agent runtime and every integration run on our own infrastructure, not inside a SaaS platform.</p>
+        <div class="chips" style="margin-top:20px;">
+          <span class="chip">Hermes Agent Runtime</span>
+          <span class="chip">Python</span>
+          <span class="chip">GitHub CLI &amp; API</span>
+          <span class="chip">Linux / Systemd</span>
+          <span class="chip">Bash</span>
+          <span class="chip">AWS</span>
+        </div>
       </div>
     </section>
 

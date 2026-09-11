@@ -87,7 +87,7 @@
       <div class="cards auto">
         <article class="card">
           <h3>Revisão Humana</h3>
-          <p>O agente abre a PR; uma pessoa revisa e faz o merge. Um job agendado abre a issue crua, sem label de projeto, pra obrigar a triagem humana.</p>
+          <p>O agente abre a PR; uma pessoa revisa e faz o merge. Ele limita quantas PRs mantém abertas por repositório ao mesmo tempo — respeita quanto um time consegue revisar de fato, nunca inunda a fila. Um job agendado abre a issue crua, sem label de projeto, pra obrigar a triagem humana.</p>
         </article>
         <article class="card">
           <h3>Governança Estratégica</h3>
@@ -113,6 +113,21 @@
           <h3>Auditoria Recursiva</h3>
           <p>Toda segunda-feira, uma rotina dedicada revisa todos os outros jobs agendados de cada perfil de agente — agenda perdida, falha silenciosa — antes que se acumule.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="split">
+      <h2>Como é construído</h2>
+      <div>
+        <p class="dek" style="margin-top:0;">Self-hosted de ponta a ponta — o runtime do agente e cada integração rodam em infraestrutura própria, não dentro de uma plataforma SaaS.</p>
+        <div class="chips" style="margin-top:20px;">
+          <span class="chip">Hermes Agent Runtime</span>
+          <span class="chip">Python</span>
+          <span class="chip">GitHub CLI &amp; API</span>
+          <span class="chip">Linux / Systemd</span>
+          <span class="chip">Bash</span>
+          <span class="chip">AWS</span>
+        </div>
       </div>
     </section>
 
