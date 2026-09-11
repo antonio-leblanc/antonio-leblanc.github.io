@@ -90,7 +90,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
 }
 .u:hover{color:var(--fg);text-decoration-color:var(--accent)}
 
-.mono,.eyebrow,.label,.log dt,.sb-item,.gauge small,.mod-idx,.foot{
+.mono,.eyebrow,.label,.log dt,.sb-item,.gauge small,.foot{
   font-family:var(--mono);text-transform:uppercase;letter-spacing:.09em;
 }
 .wrap{max-width:1180px;margin:0 auto;padding:0 var(--gut);position:relative;z-index:2}
@@ -266,7 +266,7 @@ h1{font-size:clamp(31px,4.5vw,54px);line-height:1.08;letter-spacing:-.026em}
 .mod{
   position:relative;background:var(--bg-1);border:1px solid var(--line);
   border-radius:3px;padding:24px;overflow:hidden;--mx:50%;--my:0%;
-  display:flex;flex-direction:column;
+  display:flex;flex-direction:column;cursor:pointer;
   transition:border-color .4s ease,transform .5s var(--ease);
 }
 .mod::before{
@@ -280,10 +280,12 @@ h1{font-size:clamp(31px,4.5vw,54px);line-height:1.08;letter-spacing:-.026em}
 .mod:hover{border-color:var(--line-2);transform:translateY(-2px)}
 .mod:hover::before{opacity:1}
 .mod:hover::after{transform:scaleY(1)}
-.mod-idx{font-size:9.5px;color:var(--accent);margin-bottom:14px;display:block}
 .mod h3{font-size:16px;font-weight:600;margin-bottom:10px;position:relative}
 .mod p{font-size:14px;line-height:1.62;color:var(--fg-muted);position:relative}
 .mod-link{display:inline-block;margin-top:auto;padding-top:14px;font-size:12.5px;font-weight:600;position:relative}
+.mod-link::after{content:'';position:absolute;inset:-1000px}
+.mod-media .fr-view{aspect-ratio:16/9}
+.mod-media .fr-view img{height:100%;object-fit:cover}
 
 /* ── about / contact ────────────────────────────── */
 .bio-grid{display:grid;grid-template-columns:132px 1fr;gap:clamp(20px,3vw,34px);align-items:center}
@@ -444,7 +446,6 @@ footer{
     <div><span class="label">@@BUILD_LABEL@@</span><h2>@@BUILD_H2@@</h2></div>
     <div class="mods">
       <article class="mod mod-media rv">
-        <span class="mod-idx">01</span>
         <figure class="frame" style="margin:-24px -24px 20px">
           <div class="fr-view">
             <img src="/assets/images/projects/pantera-detection-field.webp" alt="@@PANTERA_ALT@@" width="644" height="366">
@@ -460,7 +461,6 @@ footer{
         <a class="mod-link u" href="@@PANTERA_HREF@@" target="_blank" rel="noopener">@@READ_STORY@@</a>
       </article>
       <article class="mod mod-media rv" style="--d:110ms">
-        <span class="mod-idx">02</span>
         <figure class="frame" style="margin:-24px -24px 20px">
           <div class="fr-view">
             <img src="/assets/images/projects/forefire.webp" alt="@@FOREFIRE_ALT@@" width="900" height="489">
@@ -471,7 +471,6 @@ footer{
         <a class="mod-link u" href="@@FOREFIRE_HREF@@" target="_blank" rel="noopener">@@READ_STORY@@</a>
       </article>
       <article class="mod mod-media rv" style="--d:160ms">
-        <span class="mod-idx">03</span>
         <figure class="frame" style="margin:-24px -24px 20px">
           <div class="fr-view">
             <img src="/assets/images/projects/agents-pantera-bot-pr.webp" alt="@@AGENTS_ALT@@" width="644" height="412">
