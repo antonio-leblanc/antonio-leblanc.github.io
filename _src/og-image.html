@@ -3,72 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body {
-    width: 1200px; height: 630px;
-    background: #0a0b0a;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    overflow: hidden;
-  }
-  .topbar-line {
-    position: absolute; top: 0; left: 0; right: 0; height: 6px;
-    background: linear-gradient(90deg, #f9a522, #ffc861);
-  }
-  .content {
-    position: absolute; top: 0; left: 0; bottom: 0;
-    width: 780px;
-    display: flex; flex-direction: column; justify-content: center;
-    padding-left: 80px;
-  }
-  .eyebrow {
-    display: flex; align-items: center; gap: 10px;
-    color: #9ba095;
-    font-size: 15px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    margin-bottom: 22px;
-  }
-  .dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: #f9a522;
-    display: inline-block;
-  }
-  h1 {
-    color: #f2efe8;
-    font-size: 46px; font-weight: 800;
-    line-height: 1.18; letter-spacing: -0.01em;
-    margin-bottom: 26px;
-  }
-  .divider {
-    width: 130px; height: 1px;
-    background: #7a7e75;
-    opacity: 0.5;
-    margin-bottom: 28px;
-  }
-  .stats {
-    display: flex; gap: 46px;
-  }
-  .stat-num {
-    color: #f9a522;
-    font-size: 28px; font-weight: 800;
-  }
-  .stat-label {
-    color: #9ba095;
-    font-size: 13px; margin-top: 4px;
-  }
-  .avatar {
-    position: absolute;
-    right: 20px; bottom: -15px;
-    height: 640px;
-    width: auto;
-  }
+@font-face{font-family:'Inter';font-weight:100 900;font-style:normal;src:url(../assets/fonts/inter.woff2) format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-weight:100 900;font-style:normal;src:url(../assets/fonts/jetbrains-mono.woff2) format('woff2')}
+
+:root{
+  --bg:#0a0907;
+  --fg:#f3ede2;
+  --fg-muted:#a1968a;
+  --fg-faint:#6b6259;
+  --line:rgba(243,237,226,.16);
+  --accent:#d9a62a;
+  --display:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  width:1200px;height:630px;
+  background:var(--bg);color:var(--fg);
+  font-family:var(--display);
+  -webkit-font-smoothing:antialiased;
+  overflow:hidden;position:relative;
+}
+body::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.05;mix-blend-mode:overlay;
+}
+
+.topbar{
+  position:absolute;top:0;left:0;right:0;height:5px;
+  background:linear-gradient(90deg,var(--accent),#e8c46a 55%,rgba(217,166,42,.25));
+}
+
+.frame{
+  position:absolute;inset:0;
+  padding:78px 80px 72px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+
+.eyebrow{
+  display:flex;align-items:center;gap:11px;
+  font-family:var(--mono);font-size:14px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--fg-faint);
+  margin-bottom:30px;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+
+h1{
+  font-size:62px;font-weight:800;
+  line-height:1.14;letter-spacing:-.022em;
+  color:var(--fg);
+}
+
+.rule{
+  width:104px;height:1px;background:var(--line);
+  margin:42px 0 38px;
+}
+
+.stats{display:flex;gap:88px}
+.stat-num{
+  font-size:62px;font-weight:800;
+  line-height:1;letter-spacing:-.02em;
+  color:var(--accent);
+}
+.stat-label{
+  font-family:var(--mono);font-size:12px;font-weight:500;
+  letter-spacing:.11em;text-transform:uppercase;
+  color:var(--fg-muted);
+  margin-top:13px;
+}
+
+.domain{
+  position:absolute;right:80px;bottom:66px;
+  font-family:var(--mono);font-size:13px;font-weight:500;
+  letter-spacing:.08em;
+  color:var(--fg-faint);
+}
 </style>
 </head>
 <body>
-  <div class="topbar-line"></div>
-  <div class="content">
-    <p class="eyebrow"><span class="dot"></span> Antonio Leblanc</p>
-    <h1>Built the AI that watches 40M hectares — and 8 agents running ops, support, and code beside the team.</h1>
-    <div class="divider"></div>
+  <div class="topbar"></div>
+  <div class="frame">
+    <p class="eyebrow"><span class="dot"></span>Antonio Leblanc &nbsp;·&nbsp; CTO</p>
+    <h1>Built the AI that watches<br>40M hectares — and the 8 agents<br>running ops beside the team.</h1>
+    <div class="rule"></div>
     <div class="stats">
       <div>
         <div class="stat-num">40M+</div>
@@ -84,6 +104,6 @@
       </div>
     </div>
   </div>
-  <img class="avatar" src="../assets/images/avatar.png">
+  <p class="domain">antonioleblanc.com</p>
 </body>
 </html>
