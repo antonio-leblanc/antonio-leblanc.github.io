@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Production AI Agents — Antonio Leblanc</title>
   <meta name="author" content="Antonio Leblanc">
-  <meta name="description" content="Eight AI agents in production on self-hosted Hermes. 291 PRs written by the engineering agent in three months — every one reviewed and merged by a person.">
+  <meta name="description" content="Eight AI agents in production on self-hosted Hermes. 170+ production issues resolved with >88% human merge rate and strict 2-PR WIP limits.">
   <link rel="canonical" href="https://antonioleblanc.com/projects/agents/">
   <link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/agents/">
   <link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/agents/">
@@ -15,11 +15,11 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://antonioleblanc.com/projects/agents/">
   <meta property="og:title" content="Production AI Agents — Antonio Leblanc">
-  <meta property="og:description" content="Eight AI agents in production on self-hosted Hermes. 291 PRs written by the engineering agent in three months — every one reviewed and merged by a person.">
+  <meta property="og:description" content="Eight AI agents in production on self-hosted Hermes. 170+ production issues resolved with >88% human merge rate and strict 2-PR WIP limits.">
   <meta property="og:image" content="https://antonioleblanc.com/assets/images/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Production AI Agents — Antonio Leblanc">
-  <meta name="twitter:description" content="Eight AI agents in production on self-hosted Hermes. 291 PRs written by the engineering agent in three months — every one reviewed and merged by a person.">
+  <meta name="twitter:description" content="Eight AI agents in production on self-hosted Hermes. 170+ production issues resolved with >88% human merge rate and strict 2-PR WIP limits.">
   <meta name="twitter:image" content="https://antonioleblanc.com/assets/images/og-image.png">
 
   <script type="application/ld+json">
@@ -55,7 +55,7 @@
           <p class="dek">I build the ecosystem, tools, integrations, and orchestration that give a foundation model the ability to take real action.</p>
           <ul class="hero-facts">
             <li><b>8 AI agents</b> in production: one control plane that writes engineering PRs and audits the infrastructure, and seven working inside sales, CS, support, marketing, projects, fire alerts, and leadership.</li>
-            <li><b>A person reviews and merges every PR.</b> The agent's autonomy is authorship — it opens the pull request, someone on the team merges it.</li>
+            <li><b>170+ production issues resolved</b> with a <b>>88% human merge rate</b> by tech leads under a strict 2-PR WIP limit to prevent review fatigue.</li>
             <li><b>Self-hosted</b> on our own servers, on <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Hermes</a> — the open-source agent runtime by Nous Research.</li>
           </ul>
         </div>
@@ -69,8 +69,8 @@
             <img src="/assets/images/projects/agents-pantera-bot-pr.webp" alt="GitHub activity feed for the pantera-bot engineering agent, showing a pull request it opened that received 17 review comments from the team." width="644" height="412" loading="lazy">
           </div>
           <figcaption class="fr-foot">
-            <span>291 PRs written, 3 months</span>
-            <span>Every one reviewed and merged by a person</span>
+            <span>170+ issues closed · >88% merge rate</span>
+            <span>Strict 2-PR limit · human reviewed</span>
           </figcaption>
         </figure>
       </div>
@@ -82,11 +82,11 @@
       <div class="cards auto">
         <article class="card">
           <h3>Writing code</h3>
-          <p><strong><span data-count="291" data-dec="0">291</span> PRs</strong> written and <strong><span data-count="171" data-dec="0">171</span> issues</strong> closed by the agent, in the first 3 months. A person reviewed and merged every one.</p>
+          <p><strong><span data-count="170" data-dec="0">170</span>+ issues</strong> closed with a <strong>&gt;<span data-count="88" data-dec="0">88</span>% merge rate</strong> by tech leads. Strict 2-PR WIP limit per repo to prevent review fatigue.</p>
         </article>
         <article class="card">
           <h3>Running infrastructure</h3>
-          <p>Cut <strong><span data-count="15" data-dec="0">15</span>%</strong> of AWS infrastructure costs. A watchdog checks every agent profile every 15 minutes.</p>
+          <p>Cut <strong><span data-count="15" data-dec="0">15</span>%</strong> of AWS infrastructure costs. Automated AST audits and cost tracking down to $0.08–$120/mo per agent.</p>
         </article>
         <article class="card">
           <h3>Beside the teams</h3>
@@ -100,28 +100,20 @@
       <p class="dek" style="margin-top:0;margin-bottom:28px;">An agent opening pull requests against production repositories needs more than a good model. This is what had to exist first.</p>
       <div class="cards auto">
         <article class="card">
-          <h3>Human Review</h3>
-          <p>The agent opens the PR; a person reviews and merges it. It caps how many PRs it keeps open per repo at once — it respects how much a team can actually review, it never floods the queue. Scheduled jobs open their issues raw, with no project label attached, so a human has to triage them.</p>
+          <h3>Human Review &amp; WIP Throttling</h3>
+          <p>The agent never floods the queue: capped at a strict 2-PR limit per repo. Local tests must run and CI must pass green before human notification. Zero direct pushes to main or staging.</p>
         </article>
         <article class="card">
-          <h3>Strategic Governance</h3>
-          <p>Weekly OKR review cross-checks the board against the quarter's key results, flagging epics with no linked KR.</p>
+          <h3>Real Engineering Scope</h3>
+          <p>No cosmetic code churn. Tested production work: fixing async race conditions in report rendering, migrating Angular routes to Standalone Components, Playwright E2E suites, and Nginx edge compression.</p>
         </article>
         <article class="card">
-          <h3>Delivery Pipeline</h3>
-          <p>Backlog runs on <strong>GitHub Projects</strong> — Sprint and Epic boards — plan, issue, PR, same system as the code.</p>
+          <h3>Subagent Isolation &amp; Fan-out</h3>
+          <p>Complex tasks fan out via <code>delegate_task</code> to specialized, isolated agents (frontend and backend run in separate execution contexts). Keeps context windows clean and limits blast radius.</p>
         </article>
         <article class="card">
-          <h3>Self-Healing</h3>
-          <p>A cognitive audit reviews the agents' own memory and skill usage, opening issues against itself to refactor.</p>
-        </article>
-        <article class="card">
-          <h3>Security Watchdogs</h3>
-          <p>A backend audit scans for vulnerabilities every weekday morning; a separate web audit runs weekly. Only a nonzero finding pages the team on Telegram.</p>
-        </article>
-        <article class="card">
-          <h3>Recursive Audit</h3>
-          <p>Every Monday, a dedicated job reviews every other scheduled job across all agent profiles — stale schedules, silent failures — before they compound.</p>
+          <h3>Unit Economics &amp; Security</h3>
+          <p>Daily AST vulnerability scans notify directly on Telegram only on actionable findings. Token usage telemetry tracks operational cost down to $0.08–$120/month per agent profile.</p>
         </article>
       </div>
     </section>

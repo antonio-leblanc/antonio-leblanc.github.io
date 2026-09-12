@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agentes de IA em Produção — Antonio Leblanc</title>
   <meta name="author" content="Antonio Leblanc">
-  <meta name="description" content="Oito agentes de IA em produção no Hermes self-hosted. 291 PRs escritas pelo agente de engenharia em três meses — todas revisadas e mergeadas por uma pessoa.">
+  <meta name="description" content="Oito agentes de IA em produção no Hermes self-hosted. 170+ issues resolvidas com >88% de aprovação humana e limite estrito de 2 PRs simultâneas.">
   <link rel="canonical" href="https://antonioleblanc.com/pt/projects/agents/">
   <link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/agents/">
   <link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/agents/">
@@ -15,11 +15,11 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://antonioleblanc.com/pt/projects/agents/">
   <meta property="og:title" content="Agentes de IA em Produção — Antonio Leblanc">
-  <meta property="og:description" content="Oito agentes de IA em produção no Hermes self-hosted. 291 PRs escritas pelo agente de engenharia em três meses — todas revisadas e mergeadas por uma pessoa.">
+  <meta property="og:description" content="Oito agentes de IA em produção no Hermes self-hosted. 170+ issues resolvidas com >88% de aprovação humana e limite estrito de 2 PRs simultâneas.">
   <meta property="og:image" content="https://antonioleblanc.com/assets/images/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Agentes de IA em Produção — Antonio Leblanc">
-  <meta name="twitter:description" content="Oito agentes de IA em produção no Hermes self-hosted. 291 PRs escritas pelo agente de engenharia em três meses — todas revisadas e mergeadas por uma pessoa.">
+  <meta name="twitter:description" content="Oito agentes de IA em produção no Hermes self-hosted. 170+ issues resolvidas com >88% de aprovação humana e limite estrito de 2 PRs simultâneas.">
   <meta name="twitter:image" content="https://antonioleblanc.com/assets/images/og-image.png">
 
   <script type="application/ld+json">
@@ -55,7 +55,7 @@
           <p class="dek">Eu construo o ecossistema, as ferramentas, integrações e orquestração que dão a um modelo fundacional a capacidade de agir de verdade no mundo real.</p>
           <ul class="hero-facts">
             <li><b>8 agentes de IA</b> em produção: um control plane, que escreve as PRs de engenharia e audita a infraestrutura, e sete dentro de vendas, sucesso do cliente, suporte, marketing, projetos, alertas de incêndio e liderança.</li>
-            <li><b>Uma pessoa revisa e faz o merge de toda PR.</b> A autonomia do agente é de autoria — ele abre o pull request, alguém do time faz o merge.</li>
+            <li><b>170+ issues resolvidas</b> com <b>>88% de aprovação</b> pelos tech leads e limite estrito de 2 PRs simultâneas para eliminar sobrecarga de review.</li>
             <li><b>Self-hosted</b> em servidores nossos, sobre o <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Hermes</a> — o runtime de agentes open-source da Nous Research.</li>
           </ul>
         </div>
@@ -69,8 +69,8 @@
             <img src="/assets/images/projects/agents-pantera-bot-pr.webp" alt="Feed de atividade do GitHub do agente de engenharia pantera-bot, mostrando um pull request aberto por ele que recebeu 17 comentários de revisão do time." width="644" height="412" loading="lazy">
           </div>
           <figcaption class="fr-foot">
-            <span>291 PRs escritas, 3 meses</span>
-            <span>Todas revisadas e mergeadas por uma pessoa</span>
+            <span>170+ issues resolvidas · >88% merge rate</span>
+            <span>Limite de 2 PRs · revisão humana</span>
           </figcaption>
         </figure>
       </div>
@@ -82,11 +82,11 @@
       <div class="cards auto">
         <article class="card">
           <h3>Escrevendo código</h3>
-          <p><strong><span data-count="291" data-dec="0">291</span> PRs</strong> escritas e <strong><span data-count="171" data-dec="0">171</span> issues</strong> fechadas pelo agente, nos primeiros 3 meses. Uma pessoa revisou e fez o merge de cada uma.</p>
+          <p><strong><span data-count="170" data-dec="0">170</span>+ issues</strong> resolvidas com <strong>&gt;<span data-count="88" data-dec="0">88</span>% de aprovação</strong> pelos tech leads. Limite estrito de 2 PRs simultâneas por repo para eliminar fadiga de review.</p>
         </article>
         <article class="card">
           <h3>Cuidando da infraestrutura</h3>
-          <p>Cortou <strong><span data-count="15" data-dec="0">15</span>%</strong> dos custos de infraestrutura AWS. Um watchdog checa cada perfil de agente a cada 15 minutos.</p>
+          <p>Cortou <strong><span data-count="15" data-dec="0">15</span>%</strong> dos custos de infraestrutura AWS. Auditorias diárias de AST e tracking de custo de $0,08 a $120/mês por agente.</p>
         </article>
         <article class="card">
           <h3>Ao lado dos times</h3>
@@ -100,28 +100,20 @@
       <p class="dek" style="margin-top:0;margin-bottom:28px;">Um agente que abre pull request em repositório de produção precisa de mais que um bom modelo. Isso é o que precisou existir antes.</p>
       <div class="cards auto">
         <article class="card">
-          <h3>Revisão Humana</h3>
-          <p>O agente abre a PR; uma pessoa revisa e faz o merge. Ele limita quantas PRs mantém abertas por repositório ao mesmo tempo — respeita quanto um time consegue revisar de fato, nunca inunda a fila. Um job agendado abre a issue crua, sem label de projeto, pra obrigar a triagem humana.</p>
+          <h3>Revisão Humana e Limite de WIP</h3>
+          <p>O agente nunca inunda a fila: limite estrito de até 2 PRs abertas por repositório. Testes locais e CI verde são obrigatórios antes de notificar para review. Zero pushes diretos em main ou staging.</p>
         </article>
         <article class="card">
-          <h3>Governança Estratégica</h3>
-          <p>Revisão semanal de OKR cruza o board com os KRs do trimestre e aponta épico sem KR vinculado.</p>
+          <h3>Escopo Real de Engenharia</h3>
+          <p>Sem refatoração cosmética. Entregas reais: correção de concorrência assíncrona em relatórios, migração atômica de Angular para Standalone Components, suítes Playwright E2E e compressão Nginx na borda.</p>
         </article>
         <article class="card">
-          <h3>Pipeline de Entrega</h3>
-          <p>Backlog roda em <strong>GitHub Projects</strong> — boards de Sprint e de Épicos — planejamento, issue e PR no mesmo sistema onde o código vive.</p>
+          <h3>Isolamento de Subagentes</h3>
+          <p>Tarefas complexas fazem fan-out via <code>delegate_task</code> para agentes especializados e isolados (frontend e backend rodam em contextos separados). Mantém janelas de contexto limpas e limita o blast radius.</p>
         </article>
         <article class="card">
-          <h3>Self-Healing</h3>
-          <p>Uma auditoria cognitiva revisa a própria memória e uso de skills dos agentes, abrindo issue contra si mesma quando precisa se refatorar.</p>
-        </article>
-        <article class="card">
-          <h3>Vigilância de Segurança</h3>
-          <p>Uma auditoria de backend varre vulnerabilidades toda manhã de dia útil; uma auditoria de web separada roda semanalmente. Só avisa o time no Telegram quando encontra alguma coisa.</p>
-        </article>
-        <article class="card">
-          <h3>Auditoria Recursiva</h3>
-          <p>Toda segunda-feira, uma rotina dedicada revisa todos os outros jobs agendados de cada perfil de agente — agenda perdida, falha silenciosa — antes que se acumule.</p>
+          <h3>Unit Economics e Segurança</h3>
+          <p>Varreduras diárias de AST alertam via Telegram apenas se houver vulnerabilidade real no backend. Telemetria de tokens rastreia o custo operacional de $0,08 a $120/mês por perfil de agente.</p>
         </article>
       </div>
     </section>
