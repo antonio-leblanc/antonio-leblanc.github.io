@@ -520,13 +520,6 @@ footer{
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* os números finais vivem no HTML (funcionam sem JS); zeramos aqui,
-     antes da primeira pintura, pra que o count-up tenha de onde partir */
-  var counters = document.querySelectorAll('[data-count]');
-  if(!reduce) counters.forEach(function(el){
-    el.textContent = (0).toFixed(parseInt(el.dataset.dec || 0, 10));
-  });
-
   /* barra de progresso */
   var prog = document.getElementById('prog'), ticking = false;
   function onScroll(){
@@ -544,6 +537,7 @@ footer{
     if(el.dataset.ran) return; el.dataset.ran = '1';
     var target = parseFloat(el.dataset.count), dec = parseInt(el.dataset.dec || 0, 10);
     if(reduce){ el.textContent = target.toFixed(dec); return; }
+    el.textContent = (0).toFixed(dec);
     var t0 = null, dur = 1750;
     function step(t){
       if(t0 === null) t0 = t;
