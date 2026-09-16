@@ -86,7 +86,7 @@
         </article>
         <article class="card">
           <h3>Cuidando da infraestrutura</h3>
-          <p>Cortou <strong><span data-count="15" data-dec="0">15</span>%</strong> dos custos de infraestrutura AWS. Auditorias diárias de AST e tracking de custo de $0,08 a $120/mês por agente.</p>
+          <p>Cortou <strong><span data-count="15" data-dec="0">15</span>%</strong> dos custos de infraestrutura AWS. Auditorias diárias de SAST e tracking de custo de $0,08 a $120/mês por agente.</p>
         </article>
         <article class="card">
           <h3>Ao lado dos times</h3>
@@ -98,7 +98,7 @@
     <section class="section">
       <h2>O que faz a delegação ser real</h2>
       <p class="dek" style="margin-top:0;margin-bottom:28px;">Um agente que abre pull request em repositório de produção precisa de mais que um bom modelo. Isso é o que precisou existir antes.</p>
-      <div class="cards auto">
+      <div class="cards">
         <article class="card">
           <h3>Revisão Humana e Limite de WIP</h3>
           <p>O agente nunca inunda a fila: limite estrito de até 2 PRs abertas por repositório. Testes locais e CI verde são obrigatórios antes de notificar para review. Zero pushes diretos em main ou staging.</p>
@@ -108,12 +108,12 @@
           <p>Sem refatoração cosmética. Entregas reais: correção de concorrência assíncrona em relatórios, migração atômica de Angular para Standalone Components, suítes Playwright E2E e compressão Nginx na borda.</p>
         </article>
         <article class="card">
-          <h3>Isolamento de Subagentes</h3>
-          <p>Tarefas complexas fazem fan-out via <code>delegate_task</code> para agentes especializados e isolados (frontend e backend rodam em contextos separados). Mantém janelas de contexto limpas e limita o blast radius.</p>
+          <h3>Isolamento de Subagentes &amp; Skills</h3>
+          <p>Tarefas complexas fazem fan-out via <code>delegate_task</code> com carregamento dinâmico de skills procedurais sob demanda, sem inflar o system prompt. Mantém contextos limpos e limita o blast radius.</p>
         </article>
         <article class="card">
           <h3>Unit Economics e Segurança</h3>
-          <p>Varreduras diárias de AST alertam via Telegram apenas se houver vulnerabilidade real no backend. Telemetria de tokens rastreia o custo operacional de $0,08 a $120/mês por perfil de agente.</p>
+          <p>Varreduras diárias de SAST alertam via Telegram apenas se houver vulnerabilidade real no backend. Telemetria de tokens rastreia o custo operacional de $0,08 a $120/mês por perfil de agente.</p>
         </article>
       </div>
     </section>
@@ -124,6 +124,7 @@
         <p class="dek" style="margin-top:0;">Self-hosted de ponta a ponta — o runtime do agente e cada integração rodam em infraestrutura própria, não dentro de uma plataforma SaaS.</p>
         <div class="chips" style="margin-top:20px;">
           <span class="chip">Hermes Agent Runtime</span>
+          <span class="chip">Arquitetura de Skills</span>
           <span class="chip">Python</span>
           <span class="chip">GitHub CLI &amp; API</span>
           <span class="chip">Linux / Systemd</span>
