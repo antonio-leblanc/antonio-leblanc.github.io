@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agentes de IA em Produção — Antonio Leblanc</title>
   <meta name="author" content="Antonio Leblanc">
-  <meta name="description" content="Oito agentes de IA em produção no Hermes self-hosted. 426 PRs mergeadas com 83% de aprovação humana em 7 repositórios e limite estrito de 2 PRs simultâneas.">
+  <meta name="description" content="Nove agentes de IA em produção no Hermes self-hosted. 426 PRs mergeadas com 83% de aprovação humana em 7 repositórios e no máximo 2 PRs abertas por vez.">
   <link rel="canonical" href="https://antonioleblanc.com/pt/projects/agents/">
   <link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/agents/">
   <link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/agents/">
@@ -15,11 +15,11 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://antonioleblanc.com/pt/projects/agents/">
   <meta property="og:title" content="Agentes de IA em Produção — Antonio Leblanc">
-  <meta property="og:description" content="Oito agentes de IA em produção no Hermes self-hosted. 426 PRs mergeadas com 83% de aprovação humana em 7 repositórios e limite estrito de 2 PRs simultâneas.">
+  <meta property="og:description" content="Nove agentes de IA em produção no Hermes self-hosted. 426 PRs mergeadas com 83% de aprovação humana em 7 repositórios e no máximo 2 PRs abertas por vez.">
   <meta property="og:image" content="https://antonioleblanc.com/assets/images/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Agentes de IA em Produção — Antonio Leblanc">
-  <meta name="twitter:description" content="Oito agentes de IA em produção no Hermes self-hosted. 426 PRs mergeadas com 83% de aprovação humana em 7 repositórios e limite estrito de 2 PRs simultâneas.">
+  <meta name="twitter:description" content="Nove agentes de IA em produção no Hermes self-hosted. 426 PRs mergeadas com 83% de aprovação humana em 7 repositórios e no máximo 2 PRs abertas por vez.">
   <meta name="twitter:image" content="https://antonioleblanc.com/assets/images/og-image.png">
 
   <script type="application/ld+json">
@@ -52,9 +52,9 @@
       <div class="hero-grid">
         <div class="hero-text">
           <h1>Agentes de IA em Produção</h1>
-          <p class="dek">Eu construo o ecossistema, as ferramentas, integrações e orquestração que dão a um modelo fundacional a capacidade de agir de verdade no mundo real.</p>
+          <p class="dek">Construo as ferramentas, regras e integrações para colocar modelos de IA trabalhando de verdade em produção — onde errar custa caro.</p>
           <ul class="hero-facts">
-            <li><b>8 agentes de IA</b> em produção — um control plane de engenharia e sete agentes de domínio especializados.</li>
+            <li><b>9 agentes de IA</b> em produção — um orquestrador central e oito perfis especializados em engenharia e operações.</li>
             <li><b>Self-hosted sobre o Hermes</b> — o runtime de agentes open-source da <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Nous Research</a>.</li>
           </ul>
         </div>
@@ -69,7 +69,7 @@
           </div>
           <figcaption class="fr-foot">
             <span>426 PRs mergeadas · 83% de aprovação</span>
-            <span>7 repositórios · limite estrito de 2 PRs</span>
+            <span>7 repositórios · no máximo 2 PRs por vez</span>
           </figcaption>
         </figure>
       </div>
@@ -79,16 +79,16 @@
       <h2>Os agentes</h2>
       <div class="cards auto" style="margin-top:24px;">
         <article class="card">
-          <h3>Plano de Engenharia</h3>
-          <p>Resolve issues no GitHub, roda suítes de testes locais e abre pull requests em 7 repositórios de produção sob revisão humana obrigatória.</p>
+          <h3>Engenharia de Software</h3>
+          <p>Resolve issues no GitHub, roda testes locais e abre pull requests em 7 repositórios de produção, sempre com revisão humana antes do merge.</p>
         </article>
         <article class="card">
-          <h3>Infraestrutura Cloud</h3>
-          <p>Higiene contínua do ambiente AWS — limpeza automatizada de volumes órfãos de disco, poda de storage e right-sizing de daemons.</p>
+          <h3>Nuvem e FinOps</h3>
+          <p>Cuidados contínuos com a AWS — limpeza automatizada de volumes órfãos de disco, poda de storage e controle do uso de recursos.</p>
         </article>
         <article class="card">
-          <h3>Operações de Domínio</h3>
-          <p>Sete agentes dedicados em vendas, CS, suporte, marketing, projetos, detecção de incêndios e operações executivas entregando briefings diários.</p>
+          <h3>Operações do Negócio</h3>
+          <p>Sete agentes dedicados em vendas, CS, suporte, marketing, projetos, inteligência de incêndios e liderança, entregando rotinas e dados pro time.</p>
         </article>
       </div>
 
@@ -150,24 +150,24 @@
       <p class="dek" style="margin-top:0;margin-bottom:28px;">Repositórios de produção precisam de mais que um bom modelo. Isso é o que precisou existir antes.</p>
       <div class="guardrails-grid">
         <div class="guardrail-item">
-          <div class="guardrail-index">01 // Limite de WIP</div>
-          <h3>Portão de Revisão Humana</h3>
-          <p>Limite estrito de 2 PRs por repo. Testes e CI verdes antes da revisão humana. Zero pushes diretos em main ou staging.</p>
+          <div class="guardrail-index">01 // Revisão humana</div>
+          <h3>Nenhum código entra direto</h3>
+          <p>No máximo 2 PRs abertas por repositório pra não afogar o time. O agente roda testes locais, o CI precisa passar 100% e um engenheiro sempre revisa antes do merge.</p>
         </div>
         <div class="guardrail-item">
-          <div class="guardrail-index">02 // Integridade de Escopo</div>
-          <h3>Escopo Real de Engenharia</h3>
-          <p>Sem refatoração cosmética. Entregas reais: concorrência assíncrona, migração Standalone Components e suítes Playwright E2E.</p>
+          <div class="guardrail-index">02 // Escopo real</div>
+          <h3>Problemas reais, zero perfumaria</h3>
+          <p>O bot não fica mudando espaçamento ou inventando refatoração boba. Ele resolve issues reais: bugs de concorrência assíncrona, migração de componentes e testes ponta a ponta.</p>
         </div>
         <div class="guardrail-item">
-          <div class="guardrail-index">03 // Blast Radius</div>
-          <h3>Isolamento de Subagentes</h3>
-          <p>Fan-out via subagentes isolados com injeção dinâmica de skills procedurais, prevenindo vazamento de contexto entre domínios.</p>
+          <div class="guardrail-index">03 // Isolamento</div>
+          <h3>Cada agente na sua área</h3>
+          <p>Cada perfil roda isolado com suas próprias ferramentas e regras. O agente de vendas não encosta no código da engenharia, e o contexto de um nunca se mistura com o do outro.</p>
         </div>
         <div class="guardrail-item">
-          <div class="guardrail-index">04 // Economia &amp; Segurança</div>
-          <h3>SAST e Gating de Custo</h3>
-          <p>Varreduras diárias de SAST alertam apenas se houver risco real. Telemetria granular limita gasto a menos de $120/mês.</p>
+          <div class="guardrail-index">04 // Custo e segurança</div>
+          <h3>Scripts antes de inteligência artificial</h3>
+          <p>O que dá pra resolver com script, Bash ou Git não chama LLM. Isso evita alucinações, roda checagens de segurança em silêncio e mantém o gasto total abaixo de $120 por mês.</p>
         </div>
       </div>
     </section>

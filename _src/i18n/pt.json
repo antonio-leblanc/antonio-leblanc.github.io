@@ -17,7 +17,7 @@
   "LOG_ARIA": "Histórico",
   "LOG1_DD": "Como cofundador e CTO da <a href=\"https://umgrauemeio.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">1.5°C</a>, lidero os modelos de visão computacional, imagens de satélite e risco de incêndio — com o time de engenharia, ML e ciência ambiental que os constrói comigo.",
   "LOG2_DT": "Agentes",
-  "LOG2_DD": "Oito agentes de IA em produção no <a href=\"https://hermes-agent.nousresearch.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">Hermes</a>, o runtime de agentes open-source, em servidores nossos. Um escreve as PRs de engenharia e roda as auditorias de infraestrutura; os outros sete ficam dentro das áreas de vendas, sucesso do cliente, suporte, marketing, projetos, alertas de incêndio e liderança, cada um com um dono humano. Toda PR que o agente escreve é revisada e mergeada por uma pessoa.",
+  "LOG2_DD": "Nove agentes de IA em produção no <a href=\"https://hermes-agent.nousresearch.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">Hermes</a>, o runtime de agentes open-source, em servidores nossos. Um orquestrador central e um de engenharia para PRs e infraestrutura; os outros sete ficam dentro das áreas de vendas, sucesso do cliente, suporte, marketing, projetos, alertas de incêndio e liderança, cada um com um dono humano. Toda PR que o agente escreve é revisada e mergeada por uma pessoa.",
   "LOG_DELEGATION_DT": "Além de CTO",
   "LOG_DELEGATION_DD": "Suporte, Sucesso do Cliente, Marketing, RH — fora da engenharia, todas passaram pela minha mesa em algum momento: ticketing bagunçado pra arrumar, documentação de CS espalhada, dois anos à frente do RH, Marketing coberto entre contratações. Cada uma foi entregue a um responsável de verdade assim que passou a rodar sozinha.",
   "LOG3_DD": "Contribuidor desde 2022 do simulador de incêndio florestal open-source do CNRS, mantenedor desde 2025, e coautor do <a href=\"https://doi.org/10.21105/joss.08680\" target=\"_blank\" rel=\"noopener\" class=\"u\">paper na JOSS</a> — revisando e fazendo merge de PRs, publicando releases, Dockerização, CI/CD, documentação.",
@@ -45,7 +45,7 @@
   "BACK_TO_TOP": "Voltar ao topo",
   "AGENTS_ALT": "Feed de atividade do GitHub do agente de engenharia pantera-bot, mostrando um pull request aberto por ele que recebeu 17 comentários de revisão do time.",
   "AGENTS_H3": "Agentes de IA em Produção",
-  "AGENTS_BODY": "Oito agentes de IA em produção no Hermes self-hosted.",
+  "AGENTS_BODY": "Nove agentes de IA em produção no Hermes self-hosted.",
   "AGENTS_HREF": "/pt/projects/agents/",
   "AGENTS_STATS": "<b>170+</b> issues fechadas · <b>>88%</b> merge · <b>−15%</b> AWS"
 }

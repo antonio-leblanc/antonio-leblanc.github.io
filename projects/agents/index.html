@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Production AI Agents — Antonio Leblanc</title>
   <meta name="author" content="Antonio Leblanc">
-  <meta name="description" content="Eight AI agents in production on self-hosted Hermes. 426 merged PRs with 83% human acceptance rate across 7 repositories and strict 2-PR WIP limits.">
+  <meta name="description" content="Nine AI agents in production on self-hosted Hermes. 426 merged PRs with 83% human acceptance rate across 7 repositories and strict 2-PR WIP limits.">
   <link rel="canonical" href="https://antonioleblanc.com/projects/agents/">
   <link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/agents/">
   <link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/agents/">
@@ -15,11 +15,11 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://antonioleblanc.com/projects/agents/">
   <meta property="og:title" content="Production AI Agents — Antonio Leblanc">
-  <meta property="og:description" content="Eight AI agents in production on self-hosted Hermes. 426 merged PRs with 83% human acceptance rate across 7 repositories and strict 2-PR WIP limits.">
+  <meta property="og:description" content="Nine AI agents in production on self-hosted Hermes. 426 merged PRs with 83% human acceptance rate across 7 repositories and strict 2-PR WIP limits.">
   <meta property="og:image" content="https://antonioleblanc.com/assets/images/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Production AI Agents — Antonio Leblanc">
-  <meta name="twitter:description" content="Eight AI agents in production on self-hosted Hermes. 426 merged PRs with 83% human acceptance rate across 7 repositories and strict 2-PR WIP limits.">
+  <meta name="twitter:description" content="Nine AI agents in production on self-hosted Hermes. 426 merged PRs with 83% human acceptance rate across 7 repositories and strict 2-PR WIP limits.">
   <meta name="twitter:image" content="https://antonioleblanc.com/assets/images/og-image.png">
 
   <script type="application/ld+json">
@@ -52,9 +52,9 @@
       <div class="hero-grid">
         <div class="hero-text">
           <h1>Production AI Agents</h1>
-          <p class="dek">I build the ecosystem, tools, integrations, and orchestration that give a foundation model the ability to take real action.</p>
+          <p class="dek">I build the tools, guardrails, and integrations that move AI models beyond chat and into production — where mistakes are expensive.</p>
           <ul class="hero-facts">
-            <li><b>8 AI agents</b> in production — one engineering control plane and seven specialized domain agents.</li>
+            <li><b>9 AI agents</b> in production — one central orchestrator and eight specialized profiles across engineering and operations.</li>
             <li><b>Self-hosted on Hermes</b> — the open-source agent runtime by <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Nous Research</a>.</li>
           </ul>
         </div>
@@ -79,16 +79,16 @@
       <h2>The agents</h2>
       <div class="cards auto" style="margin-top:24px;">
         <article class="card">
-          <h3>Engineering Control Plane</h3>
+          <h3>Software Engineering</h3>
           <p>Resolves GitHub issues, runs local test suites, and opens pull requests across 7 production repositories under mandatory human review.</p>
         </article>
         <article class="card">
-          <h3>Cloud Infrastructure</h3>
-          <p>Continuous AWS environment hygiene — automated cleanup of orphaned storage volumes, disk pruning, and daemon right-sizing.</p>
+          <h3>Cloud &amp; FinOps</h3>
+          <p>Continuous AWS environment hygiene — automated cleanup of orphaned storage volumes, disk pruning, and resource monitoring.</p>
         </article>
         <article class="card">
-          <h3>Domain Operations</h3>
-          <p>Seven dedicated area agents across sales, CS, support, marketing, projects, wildfire detection, and executive operations delivering daily briefings.</p>
+          <h3>Business Operations</h3>
+          <p>Seven dedicated agents across sales, CS, support, marketing, projects, wildfire intelligence, and executive operations delivering daily briefings.</p>
         </article>
       </div>
 
@@ -150,24 +150,24 @@
       <p class="dek" style="margin-top:0;margin-bottom:28px;">Production repositories need more than a good model. This is what had to exist first.</p>
       <div class="guardrails-grid">
         <div class="guardrail-item">
-          <div class="guardrail-index">01 // WIP Throttling</div>
-          <h3>Human Review Gate</h3>
-          <p>Capped at a strict 2-PR limit per repo. Tests and CI must pass green before human review. Zero direct pushes to main or staging.</p>
+          <div class="guardrail-index">01 // Human review</div>
+          <h3>No direct pushes, ever</h3>
+          <p>Capped at 2 open PRs per repo so the team never gets overwhelmed. The agent runs local tests, CI must pass green, and an engineer always reviews before merge.</p>
         </div>
         <div class="guardrail-item">
-          <div class="guardrail-index">02 // Scope Integrity</div>
-          <h3>Real Engineering Scope</h3>
-          <p>No cosmetic churn. Tested production work: async race conditions, Standalone Components migration, and Playwright E2E suites.</p>
+          <div class="guardrail-index">02 // Real scope</div>
+          <h3>Real problems, zero busywork</h3>
+          <p>No cosmetic churn or whitespace refactoring. The agent tackles actual backlog issues: async race conditions, component migrations, and end-to-end test suites.</p>
         </div>
         <div class="guardrail-item">
-          <div class="guardrail-index">03 // Blast Radius</div>
-          <h3>Subagent Isolation</h3>
-          <p>Complex tasks fan out via isolated subagents with dynamic procedural skill injection, preventing context bleed across domains.</p>
+          <div class="guardrail-index">03 // Isolation</div>
+          <h3>Each agent in its own lane</h3>
+          <p>Each profile runs in an isolated sandbox with its own tools and procedures. The sales agent never touches source code, and context never bleeds across domains.</p>
         </div>
         <div class="guardrail-item">
-          <div class="guardrail-index">04 // Economics &amp; Security</div>
-          <h3>SAST &amp; Cost Gating</h3>
-          <p>Daily SAST vulnerability scans notify only on actionable findings. Granular token telemetry keeps spend under $120/month.</p>
+          <div class="guardrail-index">04 // Cost &amp; safety</div>
+          <h3>Scripts before LLMs</h3>
+          <p>Anything that can be solved with Bash, Python, or Git never calls an LLM. This prevents hallucinations, runs quiet security checks, and keeps token spend under $120/mo.</p>
         </div>
       </div>
     </section>
