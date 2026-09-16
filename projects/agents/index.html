@@ -86,7 +86,7 @@
         </article>
         <article class="card">
           <h3>Running infrastructure</h3>
-          <p>Cut <strong><span data-count="15" data-dec="0">15</span>%</strong> of AWS infrastructure costs. Automated AST audits and cost tracking down to $0.08–$120/mo per agent.</p>
+          <p>Cut <strong><span data-count="15" data-dec="0">15</span>%</strong> of AWS infrastructure costs. Automated SAST audits and cost tracking down to $0.08–$120/mo per agent.</p>
         </article>
         <article class="card">
           <h3>Beside the teams</h3>
@@ -98,7 +98,7 @@
     <section class="section">
       <h2>Guardrails that make delegation real</h2>
       <p class="dek" style="margin-top:0;margin-bottom:28px;">An agent opening pull requests against production repositories needs more than a good model. This is what had to exist first.</p>
-      <div class="cards auto">
+      <div class="cards">
         <article class="card">
           <h3>Human Review &amp; WIP Throttling</h3>
           <p>The agent never floods the queue: capped at a strict 2-PR limit per repo. Local tests must run and CI must pass green before human notification. Zero direct pushes to main or staging.</p>
@@ -108,12 +108,12 @@
           <p>No cosmetic code churn. Tested production work: fixing async race conditions in report rendering, migrating Angular routes to Standalone Components, Playwright E2E suites, and Nginx edge compression.</p>
         </article>
         <article class="card">
-          <h3>Subagent Isolation &amp; Fan-out</h3>
-          <p>Complex tasks fan out via <code>delegate_task</code> to specialized, isolated agents (frontend and backend run in separate execution contexts). Keeps context windows clean and limits blast radius.</p>
+          <h3>Subagent Isolation &amp; Skills</h3>
+          <p>Complex tasks fan out via <code>delegate_task</code> with procedural skills loaded dynamically on demand instead of bloated static prompts. Keeps context windows clean and limits blast radius.</p>
         </article>
         <article class="card">
           <h3>Unit Economics &amp; Security</h3>
-          <p>Daily AST vulnerability scans notify directly on Telegram only on actionable findings. Token usage telemetry tracks operational cost down to $0.08–$120/month per agent profile.</p>
+          <p>Daily SAST vulnerability scans notify directly on Telegram only on actionable findings. Token usage telemetry tracks operational cost down to $0.08–$120/month per agent profile.</p>
         </article>
       </div>
     </section>
@@ -124,6 +124,7 @@
         <p class="dek" style="margin-top:0;">Self-hosted end to end — the agent runtime and every integration run on our own infrastructure, not inside a SaaS platform.</p>
         <div class="chips" style="margin-top:20px;">
           <span class="chip">Hermes Agent Runtime</span>
+          <span class="chip">Skills Architecture</span>
           <span class="chip">Python</span>
           <span class="chip">GitHub CLI &amp; API</span>
           <span class="chip">Linux / Systemd</span>
