@@ -406,6 +406,76 @@
     .fr-box, .frame.in .fr-box { transition: none; animation: none; opacity: 1; transform: none; }
   }
 
+  /* ── Role Columns & Guardrails Grid (Airy Swiss Layout) ── */
+  .role-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 24px;
+  }
+  .role-col {
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+  }
+  .role-col h3 {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--fg);
+    margin: 0 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .role-col h3::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 1px;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .role-col p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--fg-muted);
+    margin: 0;
+  }
+
+  /* Guardrails Grid (Airy, Non-Card Layout) */
+  .guardrails-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px 48px;
+  }
+  .guardrail-item {
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+  }
+  .guardrail-index {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .guardrail-item h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--fg);
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+  }
+  .guardrail-item p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--fg-muted);
+    margin: 0;
+  }
+
   /* ── Hermes Telemetry HUD & Workload Distribution ─────── */
   .telemetry-hud {
     background: var(--bg-card);
@@ -580,4 +650,6 @@
     .hud-stat:nth-child(n+3) { border-top: 1px solid var(--line); }
     .stacked-legend { grid-template-columns: 1fr; gap: 14px; }
     .hud-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .role-columns { grid-template-columns: 1fr; gap: 20px; }
+    .guardrails-grid { grid-template-columns: 1fr; gap: 28px; }
   }

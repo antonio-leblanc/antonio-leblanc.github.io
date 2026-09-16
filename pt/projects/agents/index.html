@@ -77,8 +77,7 @@
 
     <section class="section">
       <h2>Os agentes</h2>
-      <p class="dek" style="margin-top:0;margin-bottom:28px;">O control plane de engenharia carrega as métricas de produção auditadas abaixo. Outros sete agentes de domínio operam lado a lado com responsáveis humanos.</p>
-      <div class="cards auto">
+      <div class="cards auto" style="margin-top:24px;">
         <article class="card">
           <h3>Plano de Engenharia</h3>
           <p>Resolve issues no GitHub, roda suítes de testes locais e abre pull requests em 7 repositórios de produção sob revisão humana obrigatória.</p>
@@ -95,38 +94,33 @@
 
       <!-- Telemetry HUD & Workload Distribution -->
       <div class="telemetry-hud">
-        <div class="hud-header">
-          <span class="node"><span class="status-pulse"></span>:PANTERA-BOT // TELEMETRIA DE RUNTIME:</span>
-          <span class="runtime-tag">HERMES-AGENT (SELF-HOSTED) · LINUX-X86_64 · 7 REPOS</span>
-        </div>
-
         <div class="hud-stats">
           <div class="hud-stat">
             <div class="hud-stat-num"><span data-count="426" data-dec="0">426</span></div>
-            <div class="hud-stat-label">PRs Mergeadas (83,0%)</div>
-            <div class="hud-stat-desc">426 mergeadas de 513 decididas por Tech Leads</div>
+            <div class="hud-stat-label">PRs Mergeadas</div>
+            <div class="hud-stat-desc">83% de aprovação humana</div>
           </div>
           <div class="hud-stat">
             <div class="hud-stat-num"><span data-count="158" data-dec="0">158</span></div>
-            <div class="hud-stat-label">Issues Resolvidas (92%)</div>
-            <div class="hud-stat-desc">158 fechadas de 172 tarefas de engenharia atribuídas</div>
+            <div class="hud-stat-label">Issues Fechadas</div>
+            <div class="hud-stat-desc">92% de taxa de conclusão</div>
           </div>
           <div class="hud-stat">
             <div class="hud-stat-num"><span data-count="15" data-dec="0">15</span>%</div>
-            <div class="hud-stat-label">Redução Líquida Cloud</div>
-            <div class="hud-stat-desc">Poda automática de volumes órfãos e auditoria FinOps</div>
+            <div class="hud-stat-label">Redução AWS</div>
+            <div class="hud-stat-desc">Poda automatizada de recursos e disco</div>
           </div>
           <div class="hud-stat">
             <div class="hud-stat-num">&lt;<span>$120</span>/mês</div>
-            <div class="hud-stat-label">Teto de Gasto de Tokens</div>
-            <div class="hud-stat-desc">Custo operacional estritamente controlado por perfil</div>
+            <div class="hud-stat-label">Gasto de Tokens</div>
+            <div class="hud-stat-desc">Teto operacional por perfil de agente</div>
           </div>
         </div>
 
         <div class="hud-distribution">
           <div class="hud-dist-head">
-            <span class="hud-dist-title">Distribuição Determinística de Carga (426 PRs Mergeadas)</span>
-            <span class="hud-dist-meta">Auditoria Direta da API do GitHub</span>
+            <span class="hud-dist-title">Distribuição de Carga (426 PRs Mergeadas)</span>
+            <span class="hud-dist-meta">Auditoria API GitHub</span>
           </div>
           <div class="stacked-bar" role="img" aria-label="Distribuição de PRs: 68% código e infraestrutura, 15% arquitetura viva, 17% governança de runtime">
             <div class="stacked-segment code" style="width: 67.8%;" title="Código &amp; Infraestrutura: 289 PRs (68%)">68%</div>
@@ -135,16 +129,16 @@
           </div>
           <div class="stacked-legend">
             <div class="legend-item">
-              <div class="legend-header"><span class="legend-dot code"></span>68% Código &amp; Infraestrutura (289 PRs)</div>
-              <div class="legend-tags">113 feat · 58 fix · 48 chore/ci · 25 refactor · 45 test/release</div>
+              <div class="legend-header"><span class="legend-dot code"></span>68% Código e Infra (289 PRs)</div>
+              <div class="legend-tags">113 feat · 58 fix · 48 chore/ci · 70 refactor e test</div>
             </div>
             <div class="legend-item">
-              <div class="legend-header"><span class="legend-dot arch"></span>15% Arquitetura Viva (64 PRs)</div>
-              <div class="legend-tags">64 docs: contratos de API, schemas, code-health, topologias de sistema</div>
+              <div class="legend-header"><span class="legend-dot arch"></span>15% Arquitetura (64 PRs)</div>
+              <div class="legend-tags">Contratos de API, schemas, topologias, code health</div>
             </div>
             <div class="legend-item">
-              <div class="legend-header"><span class="legend-dot sre"></span>17% Governança &amp; SRE (73 PRs)</div>
-              <div class="legend-tags">73 ops/sync: snapshots de estado, cron mirrors, sincronização de profiles</div>
+              <div class="legend-header"><span class="legend-dot sre"></span>17% Governança (73 PRs)</div>
+              <div class="legend-tags">Snapshots de estado, cron mirrors, sincronização</div>
             </div>
           </div>
         </div>
@@ -153,24 +147,28 @@
 
     <section class="section">
       <h2>O que faz a delegação ser real</h2>
-      <p class="dek" style="margin-top:0;margin-bottom:28px;">Um agente que abre pull request em repositório de produção precisa de mais que um bom modelo. Isso é o que precisou existir antes.</p>
-      <div class="cards">
-        <article class="card">
-          <h3>Revisão Humana e Limite de WIP</h3>
-          <p>O agente nunca inunda a fila: limite estrito de até 2 PRs abertas por repositório. Tarefas são decompostas deterministicamente via <code>github-issue-worker</code>. Testes locais e CI verde são obrigatórios antes de notificar para review. Zero pushes diretos em main ou staging.</p>
-        </article>
-        <article class="card">
+      <p class="dek" style="margin-top:0;margin-bottom:28px;">Repositórios de produção precisam de mais que um bom modelo. Isso é o que precisou existir antes.</p>
+      <div class="guardrails-grid">
+        <div class="guardrail-item">
+          <div class="guardrail-index">01 // Limite de WIP</div>
+          <h3>Portão de Revisão Humana</h3>
+          <p>Limite estrito de 2 PRs por repo. Testes e CI verdes antes da revisão humana. Zero pushes diretos em main ou staging.</p>
+        </div>
+        <div class="guardrail-item">
+          <div class="guardrail-index">02 // Integridade de Escopo</div>
           <h3>Escopo Real de Engenharia</h3>
-          <p>Sem refatoração cosmética. Entregas reais: concorrência assíncrona no mapa, migração atômica de Angular para Standalone Components com <code>ugm-angular-frontend-standards</code>, suítes Playwright E2E com <code>pantera-web-test-gari</code> e compressão Nginx na borda.</p>
-        </article>
-        <article class="card">
-          <h3>Isolamento de Subagentes &amp; Skills</h3>
-          <p>Tarefas complexas fazem fan-out via <code>subagent-driven-development</code> com isolamento via <code>delegate_task</code>. Skills procedurais são carregadas dinamicamente sob demanda sem inflar o system prompt, prevenindo context bleed e limitando o blast radius.</p>
-        </article>
-        <article class="card">
-          <h3>Unit Economics e FinOps</h3>
-          <p>Varreduras diárias de SAST alertam via Telegram apenas se houver vulnerabilidade real. Desperdício em nuvem é podado via <code>aws-finops-audit</code>. Telemetria granular de tokens limita o custo a menos de $120/mês mesmo para o agente de engenharia mais pesado.</p>
-        </article>
+          <p>Sem refatoração cosmética. Entregas reais: concorrência assíncrona, migração Standalone Components e suítes Playwright E2E.</p>
+        </div>
+        <div class="guardrail-item">
+          <div class="guardrail-index">03 // Blast Radius</div>
+          <h3>Isolamento de Subagentes</h3>
+          <p>Fan-out via subagentes isolados com injeção dinâmica de skills procedurais, prevenindo vazamento de contexto entre domínios.</p>
+        </div>
+        <div class="guardrail-item">
+          <div class="guardrail-index">04 // Economia &amp; Segurança</div>
+          <h3>SAST e Gating de Custo</h3>
+          <p>Varreduras diárias de SAST alertam apenas se houver risco real. Telemetria granular limita gasto a menos de $120/mês.</p>
+        </div>
       </div>
     </section>
 

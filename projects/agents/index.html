@@ -77,8 +77,7 @@
 
     <section class="section">
       <h2>The agents</h2>
-      <p class="dek" style="margin-top:0;margin-bottom:28px;">The engineering control plane carries the audited production metrics below. Seven domain agents run alongside human area owners.</p>
-      <div class="cards auto">
+      <div class="cards auto" style="margin-top:24px;">
         <article class="card">
           <h3>Engineering Control Plane</h3>
           <p>Resolves GitHub issues, runs local test suites, and opens pull requests across 7 production repositories under mandatory human review.</p>
@@ -95,38 +94,33 @@
 
       <!-- Telemetry HUD & Workload Distribution -->
       <div class="telemetry-hud">
-        <div class="hud-header">
-          <span class="node"><span class="status-pulse"></span>:PANTERA-BOT // RUNTIME TELEMETRY:</span>
-          <span class="runtime-tag">HERMES-AGENT (SELF-HOSTED) · LINUX-X86_64 · 7 REPOS</span>
-        </div>
-
         <div class="hud-stats">
           <div class="hud-stat">
             <div class="hud-stat-num"><span data-count="426" data-dec="0">426</span></div>
-            <div class="hud-stat-label">Merged PRs (83.0%)</div>
-            <div class="hud-stat-desc">426 merged of 513 decided by Tech Leads</div>
+            <div class="hud-stat-label">Merged PRs</div>
+            <div class="hud-stat-desc">83% human acceptance rate</div>
           </div>
           <div class="hud-stat">
             <div class="hud-stat-num"><span data-count="158" data-dec="0">158</span></div>
-            <div class="hud-stat-label">Issues Resolved (92%)</div>
-            <div class="hud-stat-desc">158 closed of 172 assigned engineering tasks</div>
+            <div class="hud-stat-label">Issues Closed</div>
+            <div class="hud-stat-desc">92% resolution on assigned tasks</div>
           </div>
           <div class="hud-stat">
             <div class="hud-stat-num"><span data-count="15" data-dec="0">15</span>%</div>
-            <div class="hud-stat-label">Net Cloud Savings</div>
-            <div class="hud-stat-desc">Automated orphan volume pruning &amp; FinOps audit</div>
+            <div class="hud-stat-label">AWS Cost Cut</div>
+            <div class="hud-stat-desc">Automated resource &amp; disk pruning</div>
           </div>
           <div class="hud-stat">
             <div class="hud-stat-num">&lt;<span>$120</span>/mo</div>
-            <div class="hud-stat-label">Token Spend Ceiling</div>
-            <div class="hud-stat-desc">Controlled operational cost per profile</div>
+            <div class="hud-stat-label">Token Spend</div>
+            <div class="hud-stat-desc">Operational ceiling per agent profile</div>
           </div>
         </div>
 
         <div class="hud-distribution">
           <div class="hud-dist-head">
-            <span class="hud-dist-title">Deterministic Workload Breakdown (426 Merged PRs)</span>
-            <span class="hud-dist-meta">Direct GitHub API Audit</span>
+            <span class="hud-dist-title">Workload Distribution (426 Merged PRs)</span>
+            <span class="hud-dist-meta">GitHub API Audit</span>
           </div>
           <div class="stacked-bar" role="img" aria-label="PR distribution: 68% code and infrastructure, 15% living architecture, 17% runtime governance">
             <div class="stacked-segment code" style="width: 67.8%;" title="Code &amp; Infrastructure: 289 PRs (68%)">68%</div>
@@ -135,16 +129,16 @@
           </div>
           <div class="stacked-legend">
             <div class="legend-item">
-              <div class="legend-header"><span class="legend-dot code"></span>68% Code &amp; Infrastructure (289 PRs)</div>
-              <div class="legend-tags">113 feat · 58 fix · 48 chore/ci · 25 refactor · 45 test/release</div>
+              <div class="legend-header"><span class="legend-dot code"></span>68% Code &amp; Infra (289 PRs)</div>
+              <div class="legend-tags">113 feat · 58 fix · 48 chore/ci · 70 refactor &amp; test</div>
             </div>
             <div class="legend-item">
-              <div class="legend-header"><span class="legend-dot arch"></span>15% Living Architecture (64 PRs)</div>
-              <div class="legend-tags">64 docs: API contracts, schemas, code-health, system topologies</div>
+              <div class="legend-header"><span class="legend-dot arch"></span>15% Architecture (64 PRs)</div>
+              <div class="legend-tags">API contracts, schemas, system topologies, code health</div>
             </div>
             <div class="legend-item">
-              <div class="legend-header"><span class="legend-dot sre"></span>17% Runtime Governance &amp; SRE (73 PRs)</div>
-              <div class="legend-tags">73 ops/sync: state snapshots, cron mirrors, runtime profile sync</div>
+              <div class="legend-header"><span class="legend-dot sre"></span>17% Governance (73 PRs)</div>
+              <div class="legend-tags">Automated state snapshots, cron mirrors, profile sync</div>
             </div>
           </div>
         </div>
@@ -153,24 +147,28 @@
 
     <section class="section">
       <h2>Guardrails that make delegation real</h2>
-      <p class="dek" style="margin-top:0;margin-bottom:28px;">An agent opening pull requests against production repositories needs more than a good model. This is what had to exist first.</p>
-      <div class="cards">
-        <article class="card">
-          <h3>Human Review &amp; WIP Throttling</h3>
-          <p>The agent never floods the queue: capped at a strict 2-PR limit per repo. Issues are broken down deterministically via <code>github-issue-worker</code>. Local tests must run and CI must pass green before human notification. Zero direct pushes to main or staging.</p>
-        </article>
-        <article class="card">
+      <p class="dek" style="margin-top:0;margin-bottom:28px;">Production repositories need more than a good model. This is what had to exist first.</p>
+      <div class="guardrails-grid">
+        <div class="guardrail-item">
+          <div class="guardrail-index">01 // WIP Throttling</div>
+          <h3>Human Review Gate</h3>
+          <p>Capped at a strict 2-PR limit per repo. Tests and CI must pass green before human review. Zero direct pushes to main or staging.</p>
+        </div>
+        <div class="guardrail-item">
+          <div class="guardrail-index">02 // Scope Integrity</div>
           <h3>Real Engineering Scope</h3>
-          <p>No cosmetic code churn. Tested production work: async race conditions in map rendering, migrating Angular NgModules to Standalone Components with <code>ugm-angular-frontend-standards</code>, Playwright E2E suites with <code>pantera-web-test-gari</code>, and Nginx edge compression.</p>
-        </article>
-        <article class="card">
-          <h3>Subagent Isolation &amp; Skills</h3>
-          <p>Complex tasks fan out via <code>subagent-driven-development</code> with isolated <code>delegate_task</code> execution. Procedural skills are loaded dynamically on demand instead of bloated static prompts, preventing context bleed and limiting blast radius.</p>
-        </article>
-        <article class="card">
-          <h3>Unit Economics &amp; Security</h3>
-          <p>Daily SAST vulnerability scans notify directly on Telegram only on actionable findings. Cloud waste is pruned via <code>aws-finops-audit</code>. Granular token telemetry caps operational spend under $120/month even for our heaviest full-time engineering agent.</p>
-        </article>
+          <p>No cosmetic churn. Tested production work: async race conditions, Standalone Components migration, and Playwright E2E suites.</p>
+        </div>
+        <div class="guardrail-item">
+          <div class="guardrail-index">03 // Blast Radius</div>
+          <h3>Subagent Isolation</h3>
+          <p>Complex tasks fan out via isolated subagents with dynamic procedural skill injection, preventing context bleed across domains.</p>
+        </div>
+        <div class="guardrail-item">
+          <div class="guardrail-index">04 // Economics &amp; Security</div>
+          <h3>SAST &amp; Cost Gating</h3>
+          <p>Daily SAST vulnerability scans notify only on actionable findings. Granular token telemetry keeps spend under $120/month.</p>
+        </div>
       </div>
     </section>
 
