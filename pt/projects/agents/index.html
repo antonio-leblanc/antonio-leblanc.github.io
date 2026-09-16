@@ -54,9 +54,8 @@
           <h1>Agentes de IA em Produção</h1>
           <p class="dek">Eu construo o ecossistema, as ferramentas, integrações e orquestração que dão a um modelo fundacional a capacidade de agir de verdade no mundo real.</p>
           <ul class="hero-facts">
-            <li><b>8 agentes de IA</b> em produção: um control plane, que escreve as PRs de engenharia e audita a infraestrutura, e sete dentro de vendas, sucesso do cliente, suporte, marketing, projetos, alertas de incêndio e liderança.</li>
-            <li><b>426 pull requests mergeadas</b> em 7 repositórios de produção (<b>83,0% de aprovação humana</b> por tech leads) e <b>158 issues resolvidas</b> sob limite estrito de 2 PRs simultâneas para eliminar fadiga de review.</li>
-            <li><b>Self-hosted</b> em servidores Linux próprios, rodando sobre o <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Hermes</a> — o runtime de agentes open-source da Nous Research — com inferência desacoplada e hot-swap para clusters locais.</li>
+            <li><b>8 agentes de IA</b> em produção — um control plane de engenharia e sete agentes de domínio especializados.</li>
+            <li><b>Self-hosted sobre o Hermes</b> — o runtime de agentes open-source da <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Nous Research</a>.</li>
           </ul>
         </div>
 
@@ -78,19 +77,19 @@
 
     <section class="section">
       <h2>Os agentes</h2>
-      <p class="dek" style="margin-top:0;margin-bottom:28px;">O control plane carrega as métricas de produção auditadas abaixo. Os outros sete rodam uma área dedicada cada um, operando ao lado de responsáveis humanos.</p>
+      <p class="dek" style="margin-top:0;margin-bottom:28px;">O control plane de engenharia carrega as métricas de produção auditadas abaixo. Outros sete agentes de domínio operam lado a lado com responsáveis humanos.</p>
       <div class="cards auto">
         <article class="card">
-          <h3>Escrevendo código e PRs</h3>
-          <p><strong><span data-count="426" data-dec="0">426</span> PRs mergeadas</strong> com <strong><span data-count="83" data-dec="0">83</span>% de aprovação humana</strong> em 7 repositórios de produção. Limite estrito de 2 PRs simultâneas por repo para eliminar fadiga de review.</p>
+          <h3>Plano de Engenharia</h3>
+          <p>Resolve issues no GitHub, roda suítes de testes locais e abre pull requests em 7 repositórios de produção sob revisão humana obrigatória.</p>
         </article>
         <article class="card">
-          <h3>Cuidando da infraestrutura</h3>
-          <p>Cortou <strong><span data-count="15" data-dec="0">15</span>%</strong> dos custos de infraestrutura AWS. Limpeza automatizada de volumes órfãos, poda de disco e right-sizing de daemons.</p>
+          <h3>Infraestrutura Cloud</h3>
+          <p>Higiene contínua do ambiente AWS — limpeza automatizada de volumes órfãos de disco, poda de storage e right-sizing de daemons.</p>
         </article>
         <article class="card">
-          <h3>Ao lado dos times</h3>
-          <p>Sete agentes de área — vendas, sucesso do cliente, suporte, marketing, projetos, alertas de incêndio, liderança. Cada um entrega o briefing da manhã pra pessoa que responde por aquela área.</p>
+          <h3>Operações de Domínio</h3>
+          <p>Sete agentes dedicados em vendas, CS, suporte, marketing, projetos, detecção de incêndios e operações executivas entregando briefings diários.</p>
         </article>
       </div>
 
@@ -148,25 +147,6 @@
               <div class="legend-tags">73 ops/sync: snapshots de estado, cron mirrors, sincronização de profiles</div>
             </div>
           </div>
-        </div>
-
-        <div class="hud-terminal">
-          <div class="terminal-bar">
-            <div class="terminal-dots"><span></span><span></span><span></span></div>
-            <span>Hermes Execution Trace // Ciclo de Produção</span>
-            <span class="c-ok">● LIVE TRACE</span>
-          </div>
-          <pre class="terminal-pre"><code><span class="c-dim">$</span> <span class="c-cmd">hermes -p dev chat -q "Resolve race condition in telemetry map render loop"</span>
-<span class="c-hermes">[hermes]</span> runtime: self-hosted (linux-x86_64) | profile: dev | state: sqlite
-<span class="c-hermes">[hermes]</span> provider: gemini | model: gemini-3.8-flash (via private runtime, decoupled engine)
-<span class="c-hermes">[hermes]</span> loading skills: <span class="c-bot">ugm-angular-frontend-standards</span>, <span class="c-bot">pantera-web-test-gari</span>, <span class="c-bot">github-issue-worker</span>
-<span class="c-bot">[pantera-bot]</span> tool: <span class="c-tool">search_files</span>(path="src/modules/map", pattern="renderLoop") -&gt; 3 matches
-<span class="c-bot">[pantera-bot]</span> tool: <span class="c-tool">patch</span>(path="src/modules/map/services/render.service.ts", old_string="...", new_string="...")
-<span class="c-bot">[pantera-bot]</span> tool: <span class="c-tool">terminal</span>(command="npx playwright test tests/e2e/map-render.spec.ts")
-              └── Output: <span class="c-ok">48 passed, 0 failed</span> (11.8s)
-<span class="c-bot">[pantera-bot]</span> tool: <span class="c-tool">terminal</span>(command="gh pr create --base dev --title 'fix(map): decouple render pipe from websocket'")
-              └── Output: <span class="c-dim">https://github.com/company/core-platform/pull/412</span>
-<span class="c-hermes">[hermes]</span> guardrail: WIP limit check (1/2 open PRs on core-platform) -&gt; <span class="c-ok">OK [PASSED]</span></code></pre>
         </div>
       </div>
     </section>
