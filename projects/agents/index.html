@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Production AI Agents — Antonio Leblanc</title>
   <meta name="author" content="Antonio Leblanc">
-  <meta name="description" content="Eight AI agents in production on self-hosted Hermes. 170+ production issues resolved with >88% human merge rate and strict 2-PR WIP limits.">
+  <meta name="description" content="Eight AI agents in production on self-hosted Hermes. 426 merged PRs with 83% human acceptance rate across 7 repositories and strict 2-PR WIP limits.">
   <link rel="canonical" href="https://antonioleblanc.com/projects/agents/">
   <link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/agents/">
   <link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/agents/">
@@ -15,11 +15,11 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://antonioleblanc.com/projects/agents/">
   <meta property="og:title" content="Production AI Agents — Antonio Leblanc">
-  <meta property="og:description" content="Eight AI agents in production on self-hosted Hermes. 170+ production issues resolved with >88% human merge rate and strict 2-PR WIP limits.">
+  <meta property="og:description" content="Eight AI agents in production on self-hosted Hermes. 426 merged PRs with 83% human acceptance rate across 7 repositories and strict 2-PR WIP limits.">
   <meta property="og:image" content="https://antonioleblanc.com/assets/images/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Production AI Agents — Antonio Leblanc">
-  <meta name="twitter:description" content="Eight AI agents in production on self-hosted Hermes. 170+ production issues resolved with >88% human merge rate and strict 2-PR WIP limits.">
+  <meta name="twitter:description" content="Eight AI agents in production on self-hosted Hermes. 426 merged PRs with 83% human acceptance rate across 7 repositories and strict 2-PR WIP limits.">
   <meta name="twitter:image" content="https://antonioleblanc.com/assets/images/og-image.png">
 
   <script type="application/ld+json">
@@ -55,8 +55,8 @@
           <p class="dek">I build the ecosystem, tools, integrations, and orchestration that give a foundation model the ability to take real action.</p>
           <ul class="hero-facts">
             <li><b>8 AI agents</b> in production: one control plane that writes engineering PRs and audits the infrastructure, and seven working inside sales, CS, support, marketing, projects, fire alerts, and leadership.</li>
-            <li><b>170+ production issues resolved</b> with a <b>>88% human merge rate</b> by tech leads under a strict 2-PR WIP limit to prevent review fatigue.</li>
-            <li><b>Self-hosted</b> on our own servers, on <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Hermes</a> — the open-source agent runtime by Nous Research.</li>
+            <li><b>426 merged pull requests</b> across 7 production repositories (<b>83.0% human acceptance rate</b> by tech leads) and <b>158 issues resolved</b> under a strict 2-PR WIP limit to prevent review fatigue.</li>
+            <li><b>Self-hosted</b> on our own Linux servers, powered by <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Hermes</a> — the open-source agent runtime by Nous Research — with decoupled inference hot-swappable to local clusters.</li>
           </ul>
         </div>
 
@@ -69,8 +69,8 @@
             <img src="/assets/images/projects/agents-pantera-bot-pr.webp" alt="GitHub activity feed for the pantera-bot engineering agent, showing a pull request it opened that received 17 review comments from the team." width="644" height="412" loading="lazy">
           </div>
           <figcaption class="fr-foot">
-            <span>170+ issues closed · >88% merge rate</span>
-            <span>Strict 2-PR limit · human reviewed</span>
+            <span>426 merged PRs · 83% acceptance rate</span>
+            <span>7 repos · strict 2-PR limit</span>
           </figcaption>
         </figure>
       </div>
@@ -78,11 +78,11 @@
 
     <section class="section">
       <h2>The agents</h2>
-      <p class="dek" style="margin-top:0;margin-bottom:28px;">The control plane carries both hard numbers below. The other seven run one area each, next to the person who owns it.</p>
+      <p class="dek" style="margin-top:0;margin-bottom:28px;">The control plane carries the audited production metrics below. The other seven run one area each, next to the person who owns it.</p>
       <div class="cards auto">
         <article class="card">
-          <h3>Writing code</h3>
-          <p><strong><span data-count="170" data-dec="0">170</span>+ issues</strong> closed with a <strong>&gt;<span data-count="88" data-dec="0">88</span>% merge rate</strong> by tech leads. Strict 2-PR WIP limit per repo to prevent review fatigue.</p>
+          <h3>Writing code &amp; PRs</h3>
+          <p><strong><span data-count="426" data-dec="0">426</span> merged PRs</strong> with an <strong><span data-count="83" data-dec="0">83</span>% human acceptance rate</strong> across 7 production repositories. Strict 2-PR WIP limit per repo to eliminate review fatigue.</p>
         </article>
         <article class="card">
           <h3>Running infrastructure</h3>
@@ -93,6 +93,82 @@
           <p>Seven area agents — sales, CS, support, marketing, projects, fire alerts, leadership. Each one delivers its morning briefing to the person who owns that area.</p>
         </article>
       </div>
+
+      <!-- Telemetry HUD & Workload Distribution -->
+      <div class="telemetry-hud">
+        <div class="hud-header">
+          <span class="node"><span class="status-pulse"></span>:PANTERA-BOT // RUNTIME TELEMETRY:</span>
+          <span class="runtime-tag">HERMES-AGENT (SELF-HOSTED) · LINUX-X86_64 · 7 REPOS</span>
+        </div>
+
+        <div class="hud-stats">
+          <div class="hud-stat">
+            <div class="hud-stat-num"><span data-count="426" data-dec="0">426</span></div>
+            <div class="hud-stat-label">Merged PRs (83.0%)</div>
+            <div class="hud-stat-desc">426 merged of 513 decided by Tech Leads</div>
+          </div>
+          <div class="hud-stat">
+            <div class="hud-stat-num"><span data-count="158" data-dec="0">158</span></div>
+            <div class="hud-stat-label">Issues Resolved (92%)</div>
+            <div class="hud-stat-desc">158 closed of 172 assigned engineering tasks</div>
+          </div>
+          <div class="hud-stat">
+            <div class="hud-stat-num"><span data-count="15" data-dec="0">15</span>%</div>
+            <div class="hud-stat-label">Net Cloud Savings</div>
+            <div class="hud-stat-desc">Automated orphan volume pruning &amp; FinOps audit</div>
+          </div>
+          <div class="hud-stat">
+            <div class="hud-stat-num">&lt;<span>$120</span>/mo</div>
+            <div class="hud-stat-label">Token Spend Ceiling</div>
+            <div class="hud-stat-desc">Controlled operational cost per profile</div>
+          </div>
+        </div>
+
+        <div class="hud-distribution">
+          <div class="hud-dist-head">
+            <span class="hud-dist-title">Deterministic Workload Breakdown (426 Merged PRs)</span>
+            <span class="hud-dist-meta">Direct GitHub API Audit</span>
+          </div>
+          <div class="stacked-bar" role="img" aria-label="PR distribution: 68% code and infrastructure, 15% living architecture, 17% runtime governance">
+            <div class="stacked-segment code" style="width: 67.8%;" title="Code &amp; Infrastructure: 289 PRs (68%)">68%</div>
+            <div class="stacked-segment arch" style="width: 15.0%;" title="Living Architecture &amp; Contracts: 64 PRs (15%)">15%</div>
+            <div class="stacked-segment sre" style="width: 17.2%;" title="Runtime Governance &amp; SRE: 73 PRs (17%)">17%</div>
+          </div>
+          <div class="stacked-legend">
+            <div class="legend-item">
+              <div class="legend-header"><span class="legend-dot code"></span>68% Code &amp; Infrastructure (289 PRs)</div>
+              <div class="legend-tags">113 feat · 58 fix · 48 chore/ci · 25 refactor · 45 test/release</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-header"><span class="legend-dot arch"></span>15% Living Architecture (64 PRs)</div>
+              <div class="legend-tags">64 docs: API contracts, schemas, code-health, system topologies</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-header"><span class="legend-dot sre"></span>17% Runtime Governance &amp; SRE (73 PRs)</div>
+              <div class="legend-tags">73 ops/sync: state snapshots, cron mirrors, runtime profile sync</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hud-terminal">
+          <div class="terminal-bar">
+            <div class="terminal-dots"><span></span><span></span><span></span></div>
+            <span>Hermes Execution Trace // Production Loop</span>
+            <span class="c-ok">● LIVE TRACE</span>
+          </div>
+          <pre class="terminal-pre"><code><span class="c-dim">$</span> <span class="c-cmd">hermes -p dev chat -q "Resolve race condition in telemetry map render loop"</span>
+<span class="c-hermes">[hermes]</span> runtime: self-hosted (linux-x86_64) | profile: dev | state: sqlite
+<span class="c-hermes">[hermes]</span> provider: gemini | model: gemini-3.8-flash (via private runtime, decoupled engine)
+<span class="c-hermes">[hermes]</span> loading skills: <span class="c-bot">ugm-angular-frontend-standards</span>, <span class="c-bot">pantera-web-test-gari</span>, <span class="c-bot">github-issue-worker</span>
+<span class="c-bot">[pantera-bot]</span> tool: <span class="c-tool">search_files</span>(path="src/modules/map", pattern="renderLoop") -&gt; 3 matches
+<span class="c-bot">[pantera-bot]</span> tool: <span class="c-tool">patch</span>(path="src/modules/map/services/render.service.ts", old_string="...", new_string="...")
+<span class="c-bot">[pantera-bot]</span> tool: <span class="c-tool">terminal</span>(command="npx playwright test tests/e2e/map-render.spec.ts")
+              └── Output: <span class="c-ok">48 passed, 0 failed</span> (11.8s)
+<span class="c-bot">[pantera-bot]</span> tool: <span class="c-tool">terminal</span>(command="gh pr create --base dev --title 'fix(map): decouple render pipe from websocket'")
+              └── Output: <span class="c-dim">https://github.com/company/core-platform/pull/412</span>
+<span class="c-hermes">[hermes]</span> guardrail: WIP limit check (1/2 open PRs on core-platform) -&gt; <span class="c-ok">OK [PASSED]</span></code></pre>
+        </div>
+      </div>
     </section>
 
     <section class="section">
@@ -101,19 +177,19 @@
       <div class="cards">
         <article class="card">
           <h3>Human Review &amp; WIP Throttling</h3>
-          <p>The agent never floods the queue: capped at a strict 2-PR limit per repo. Local tests must run and CI must pass green before human notification. Zero direct pushes to main or staging.</p>
+          <p>The agent never floods the queue: capped at a strict 2-PR limit per repo. Issues are broken down deterministically via <code>github-issue-worker</code>. Local tests must run and CI must pass green before human notification. Zero direct pushes to main or staging.</p>
         </article>
         <article class="card">
           <h3>Real Engineering Scope</h3>
-          <p>No cosmetic code churn. Tested production work: fixing async race conditions in report rendering, migrating Angular routes to Standalone Components, Playwright E2E suites, and Nginx edge compression.</p>
+          <p>No cosmetic code churn. Tested production work: async race conditions in map rendering, migrating Angular NgModules to Standalone Components with <code>ugm-angular-frontend-standards</code>, Playwright E2E suites with <code>pantera-web-test-gari</code>, and Nginx edge compression.</p>
         </article>
         <article class="card">
           <h3>Subagent Isolation &amp; Skills</h3>
-          <p>Complex tasks fan out via <code>delegate_task</code> with procedural skills loaded dynamically on demand instead of bloated static prompts. Keeps context windows clean and limits blast radius.</p>
+          <p>Complex tasks fan out via <code>subagent-driven-development</code> with isolated <code>delegate_task</code> execution. Procedural skills are loaded dynamically on demand instead of bloated static prompts, preventing context bleed and limiting blast radius.</p>
         </article>
         <article class="card">
           <h3>Unit Economics &amp; Security</h3>
-          <p>Daily SAST vulnerability scans notify directly on Telegram only on actionable findings. Granular token telemetry caps operational spend under $120/month even for our heaviest full-time engineering agent.</p>
+          <p>Daily SAST vulnerability scans notify directly on Telegram only on actionable findings. Cloud waste is pruned via <code>aws-finops-audit</code>. Granular token telemetry caps operational spend under $120/month even for our heaviest full-time engineering agent.</p>
         </article>
       </div>
     </section>
@@ -121,15 +197,17 @@
     <section class="split">
       <h2>How it's built</h2>
       <div>
-        <p class="dek" style="margin-top:0;">Self-hosted end to end — the agent runtime and every integration run on our own infrastructure, not inside a SaaS platform.</p>
+        <p class="dek" style="margin-top:0;">Self-hosted end to end — the agent runtime, SQLite state, and every integration run on our own infrastructure, decoupled from inference providers.</p>
         <div class="chips" style="margin-top:20px;">
           <span class="chip">Hermes Agent Runtime</span>
-          <span class="chip">Skills Architecture</span>
-          <span class="chip">Python</span>
+          <span class="chip">Decoupled Inference (Gemini Flash + vLLM / llama.cpp)</span>
+          <span class="chip">Custom Procedural Skills</span>
+          <span class="chip">Playwright &amp; Jest Harness</span>
+          <span class="chip">Semgrep SAST</span>
+          <span class="chip">SQLite State &amp; Sandboxes</span>
+          <span class="chip">Python / Bash / Systemd</span>
           <span class="chip">GitHub CLI &amp; API</span>
-          <span class="chip">Linux / Systemd</span>
-          <span class="chip">Bash</span>
-          <span class="chip">AWS</span>
+          <span class="chip">AWS FinOps</span>
         </div>
       </div>
     </section>
@@ -179,7 +257,7 @@
       io.unobserve(e.target);
     });
   }, { threshold: .3, rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.frame, .cards.auto').forEach(function (el) { io.observe(el); });
+  document.querySelectorAll('.frame, .cards.auto, .telemetry-hud').forEach(function (el) { io.observe(el); });
 })();
 </script>
 <script src="/assets/js/lang-redirect.js" defer></script>

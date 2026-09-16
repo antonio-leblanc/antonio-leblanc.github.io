@@ -405,3 +405,228 @@
     .scan, .frame.in .scan { animation: none; opacity: 0; }
     .fr-box, .frame.in .fr-box { transition: none; animation: none; opacity: 1; transform: none; }
   }
+
+  /* ── Hermes Telemetry HUD & Workload Distribution ─────── */
+  .telemetry-hud {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 28px 0 36px;
+    box-shadow: 0 20px 48px -24px rgba(0,0,0,.85);
+  }
+  .hud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    background: var(--bg-raised);
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+  .hud-header .node {
+    color: var(--accent);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hud-header .status-pulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+    display: inline-block;
+  }
+  .hud-header .runtime-tag {
+    color: var(--fg-faint);
+    font-size: 10.5px;
+  }
+  .hud-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-card);
+  }
+  .hud-stat {
+    padding: 18px 20px;
+    border-left: 1px solid var(--line);
+  }
+  .hud-stat:first-child { border-left: none; }
+  .hud-stat-num {
+    font-family: var(--font-mono);
+    font-size: clamp(20px, 2.2vw, 25px);
+    font-weight: 800;
+    color: var(--fg);
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+  .hud-stat-num span { color: var(--accent); }
+  .hud-stat-label {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--fg-faint);
+    margin-top: 4px;
+  }
+  .hud-stat-desc {
+    font-size: 12px;
+    color: var(--fg-muted);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* Distribution Stacked Bar */
+  .hud-distribution {
+    padding: 22px 20px;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .hud-dist-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+  .hud-dist-title { color: var(--fg); font-weight: 700; }
+  .hud-dist-meta { color: var(--fg-faint); }
+  .stacked-bar {
+    display: flex;
+    height: 24px;
+    width: 100%;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow: hidden;
+    gap: 2px;
+  }
+  .stacked-segment {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: .05em;
+    transition: opacity .15s ease, filter .15s ease;
+    cursor: default;
+    user-select: none;
+  }
+  .stacked-segment:hover { filter: brightness(1.15); }
+  .stacked-segment.code {
+    background: var(--accent);
+    color: #150f02;
+    width: 67.8%;
+  }
+  .stacked-segment.arch {
+    background: #38bdf8;
+    color: #04253a;
+    width: 15.0%;
+  }
+  .stacked-segment.sre {
+    background: #a89a89;
+    color: #19140f;
+    width: 17.2%;
+  }
+
+  .stacked-legend {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 18px;
+  }
+  .legend-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .legend-header {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--fg);
+  }
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .legend-dot.code { background: var(--accent); }
+  .legend-dot.arch { background: #38bdf8; }
+  .legend-dot.sre { background: #a89a89; }
+  .legend-tags {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--fg-muted);
+    line-height: 1.5;
+  }
+
+  /* CLI Terminal Trace */
+  .hud-terminal {
+    background: #090807;
+    position: relative;
+  }
+  .terminal-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    background: rgba(242, 236, 225, .03);
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--fg-faint);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .terminal-dots {
+    display: inline-flex;
+    gap: 5px;
+    align-items: center;
+  }
+  .terminal-dots span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--line);
+    display: inline-block;
+  }
+  .terminal-pre {
+    margin: 0;
+    padding: 18px 20px;
+    font-family: var(--font-mono);
+    font-size: 11.8px;
+    line-height: 1.68;
+    color: #ded6c9;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .terminal-pre .c-cmd { color: #ffffff; font-weight: 700; }
+  .terminal-pre .c-hermes { color: #60a5fa; }
+  .terminal-pre .c-bot { color: var(--accent); }
+  .terminal-pre .c-tool { color: #34d399; }
+  .terminal-pre .c-dim { color: var(--fg-faint); }
+  .terminal-pre .c-ok { color: #10b981; font-weight: 700; }
+
+  @media (max-width: 760px) {
+    .hud-stats { grid-template-columns: 1fr 1fr; }
+    .hud-stat:nth-child(2n+1) { border-left: none; }
+    .hud-stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .stacked-legend { grid-template-columns: 1fr; gap: 14px; }
+    .hud-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .terminal-bar { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
