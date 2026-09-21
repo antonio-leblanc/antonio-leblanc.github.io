@@ -42,6 +42,7 @@
   "ABOUT_MUSIC": "Ten years of formal piano, self-taught guitar, and saxophone in a Carnaval bloco — where I built the group's <a href=\"/amores-liquidos/\" target=\"_blank\" rel=\"noopener\" class=\"u\">sheet music player</a>.",
   "CONTACT_BODY": "If you're building something ambitious — in AI, climate, or public-interest tech — or leading an early-stage team that wants a technical second opinion, write to me. I'd like to hear about it.",
   "RESUME_LINK": "Resume",
+  "RESUME_URL": "/assets/cv/antonio-leblanc-resume.pdf",
   "FOOTER_LANG_LINK": "<a class=\"lang-link\" href=\"/pt/\">Português</a>",
   "BACK_TO_TOP": "Back to top",
   "AGENTS_ALT": "GitHub activity feed for the pantera-bot engineering agent, showing a pull request it opened that received 17 review comments from the team.",
