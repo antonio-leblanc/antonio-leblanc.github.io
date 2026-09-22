@@ -40,6 +40,7 @@
   "ABOUT_H2": "Off the clock",
   "ABOUT_RUN": "Marathon runner, 3:23 PR.",
   "ABOUT_MUSIC": "Ten years of formal piano, self-taught guitar, and saxophone in a Carnaval bloco — where I built the group's <a href=\"/amores-liquidos/\" target=\"_blank\" rel=\"noopener\" class=\"u\">sheet music player</a>.",
+  "ABOUT_PROJECTS": "A side habit of turning public data into tools: an interactive map of Brazil's power grid (<a href=\"/brasil-grid/\" target=\"_blank\" rel=\"noopener\" class=\"u\">brasil-grid</a>) and an open-data tracker for Congress (<a href=\"https://fichadopolitico.com.br/\" target=\"_blank\" rel=\"noopener\" class=\"u\">fichadopolitico</a>).",
   "CONTACT_BODY": "If you're building something ambitious — in AI, climate, or public-interest tech — or leading an early-stage team that wants a technical second opinion, write to me. I'd like to hear about it.",
   "RESUME_LINK": "Resume",
   "RESUME_URL": "/assets/cv/antonio-leblanc-resume.pdf",
