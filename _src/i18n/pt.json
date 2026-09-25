@@ -17,7 +17,7 @@
   "LOG_ARIA": "Histórico",
   "LOG1_DD": "Entrei na <a href=\"https://umgrauemeio.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">1.5°C</a> como estagiário e precisei assumir como CTO dez meses depois, quando o engenheiro fundador saiu. Como cofundador e CTO, lidero os modelos de visão computacional, imagens de satélite e risco de incêndio — com o time que montei.",
   "LOG2_DT": "Agentes",
-  "LOG2_DD": "Nove agentes de IA em produção no <a href=\"https://hermes-agent.nousresearch.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">Hermes</a>, o runtime de agentes open-source, em servidores nossos. Um orquestrador central e um de engenharia para PRs e infraestrutura; os outros sete ficam dentro das áreas de vendas, sucesso do cliente, suporte, marketing, projetos, alertas de incêndio e liderança, cada um com um dono humano. Toda PR que o agente escreve é revisada e mergeada por uma pessoa.",
+  "LOG2_DD": "Nove agentes de IA em produção no <a href=\"https://hermes-agent.nousresearch.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">Hermes</a>, open-source, em servidores nossos. Eles ajudam áreas diferentes da empresa, como engenharia, vendas, suporte, marketing e alertas de incêndio, e cada um tem uma pessoa responsável.",
   "LOG_DELEGATION_DT": "Além de CTO",
   "LOG_DELEGATION_DD": "Assumi Sucesso do Cliente, Suporte e Marketing em momentos diferentes e liderei o RH por dois anos. Organizei o sistema de chamados do suporte e a documentação de CS, cobri o Marketing entre contratações e passei cada área adiante.",
   "LOG3_DT": "<a href=\"https://forefire.readthedocs.io/en/latest/\" target=\"_blank\" rel=\"noopener\" class=\"u\">Open Source</a>",

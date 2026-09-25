@@ -17,7 +17,7 @@
   "LOG_ARIA": "Track record",
   "LOG1_DD": "I joined <a href=\"https://umgrauemeio.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">1.5°C</a> as an intern and had to step into the CTO role ten months later, when the founding engineer left. As co-founder and CTO, I lead the computer vision, satellite imagery, and fire-risk models — with the engineering, ML, and environmental science team that builds them with me.",
   "LOG2_DT": "Agents",
-  "LOG2_DD": "Nine AI agents in production on <a href=\"https://hermes-agent.nousresearch.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">Hermes</a>, the open-source agent runtime, on our own servers. One central orchestrator and one engineering agent for PRs and infrastructure; the other seven work inside sales, CS, support, marketing, projects, fire alerts, and leadership, each with a human owner. Every PR the agent writes is reviewed and merged by a person.",
+  "LOG2_DD": "Nine AI agents in production on <a href=\"https://hermes-agent.nousresearch.com/\" target=\"_blank\" rel=\"noopener\" class=\"u\">Hermes</a>, open-source, on our own servers. They support different areas of the company, like engineering, sales, support, marketing, and fire alerts, and each one has a person accountable for it.",
   "LOG_DELEGATION_DT": "Beyond CTO",
   "LOG_DELEGATION_DD": "I took on Customer Success, Support, and Marketing at different points and led HR for two years. I organized support ticketing and CS documentation, covered Marketing between hires, and handed each area off.",
   "LOG3_DT": "<a href=\"https://forefire.readthedocs.io/en/latest/\" target=\"_blank\" rel=\"noopener\" class=\"u\">Open Source</a>",
