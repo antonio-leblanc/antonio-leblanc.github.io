@@ -8,14 +8,16 @@ import json, os
 SP = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(SP))
 
-tpl = open(os.path.join(SP, 'home.template.html'), encoding='utf-8').read()
+# home oficial e home alternativa (/alt/, noindex, fora do sitemap)
+TARGETS = [
+    ('home.template.html', 'en.json', os.path.join(ROOT, 'index.html')),
+    ('home.template.html', 'pt.json', os.path.join(ROOT, 'pt', 'index.html')),
+    ('home-alt.template.html', 'en-alt.json', os.path.join(ROOT, 'alt', 'index.html')),
+    ('home-alt.template.html', 'pt-alt.json', os.path.join(ROOT, 'pt', 'alt', 'index.html')),
+]
 
-TARGETS = {
-    'en.json': os.path.join(ROOT, 'index.html'),
-    'pt.json': os.path.join(ROOT, 'pt', 'index.html'),
-}
-
-for data_file, out_path in TARGETS.items():
+for tpl_file, data_file, out_path in TARGETS:
+    tpl = open(os.path.join(SP, tpl_file), encoding='utf-8').read()
     data = json.load(open(os.path.join(SP, data_file), encoding='utf-8'))
     out = tpl
     for key, value in data.items():
@@ -31,5 +33,6 @@ for data_file, out_path in TARGETS.items():
         import re
         leftover = sorted(set(re.findall(r'@@[A-Z0-9_]+@@', out)))
         raise AssertionError(f'{data_file}: placeholder sem valor no JSON: {leftover}')
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
     open(out_path, 'w', encoding='utf-8', newline='\n').write(out)
     print('build:', out_path, round(len(out.encode()) / 1024, 1), 'KB')

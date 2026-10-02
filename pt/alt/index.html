@@ -1,15 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- ATENÇÃO: arquivo GERADO por _src/i18n/build_home.py a partir de home-alt.template.html + en-alt.json/pt-alt.json.
+     NÃO EDITAR ESTE ARQUIVO DIRETO — a próxima build sobrescreve qualquer edição manual sem aviso.
+     Editar home-alt.template.html (estrutura/CSS) e/ou en-alt.json/pt-alt.json (texto), depois rodar:
+     python _src/i18n/build_home.py -->
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" />
-  <meta name="theme-color" content="#0d0906" />
-  <title>Antonio Leblanc</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Archivo:wdth,wght@62..125,300..700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antonio Leblanc — CTO, IA contra incêndios e sistemas de agentes em produção</title>
+<meta name="author" content="Antonio Leblanc">
+<meta name="description" content="Antonio Leblanc — Lidero a plataforma de IA contra incêndios florestais que protege 40 milhões de hectares na 1.5°C, onde sou cofundador e CTO.">
+<link rel="canonical" href="https://antonioleblanc.com/pt/alt/">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='50' dy='.35em' text-anchor='middle' font-size='78' font-weight='700' font-family='Helvetica,Arial,sans-serif' fill='%23f9a522'%3EA%3C/text%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://antonioleblanc.com/pt/alt/">
+<meta property="og:title" content="Antonio Leblanc">
+<meta property="og:description" content="Lidero a plataforma de IA contra incêndios florestais que protege 40 milhões de hectares na 1.5°C, onde sou cofundador e CTO.">
+<meta property="og:image" content="https://antonioleblanc.com/assets/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Antonio Leblanc">
+<meta name="twitter:description" content="Lidero a plataforma de IA contra incêndios florestais que protege 40 milhões de hectares na 1.5°C, onde sou cofundador e CTO.">
+<meta name="twitter:image" content="https://antonioleblanc.com/assets/images/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Antonio Leblanc",
+  "url": "https://antonioleblanc.com/pt/alt/",
+  "image": "https://antonioleblanc.com/assets/images/antonio-headshot.jpg",
+  "jobTitle": "Co-Founder & CTO",
+  "worksFor": { "@type": "Organization", "name": "1.5°C (umgrauemeio)", "url": "https://umgrauemeio.com/" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Rio de Janeiro", "addressCountry": "BR" },
+  "knowsAbout": ["Detecção de incêndios florestais", "IA para resiliência climática", "Machine learning em edge", "Inteligência geoespacial", "Sistemas de agentes"],
+  "sameAs": [
+    "https://www.linkedin.com/in/antonio-leblanc/",
+    "https://github.com/antonio-leblanc"
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Archivo:wdth,wght@62..125,300..700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0d0906">
+<style>
     :root {
       --night: #0d0906;
       --night-2: #17100b;
@@ -123,7 +159,8 @@
 
     .who { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 5vw, 80px); align-items: center; }
     .who figure { margin: 0; position: relative; border: 1px solid var(--ink-20); }
-    .who figure img { display: block; width: 100%; height: auto; filter: grayscale(1) contrast(1.05); }
+    .who figure img { display: block; width: 100%; height: auto; filter: grayscale(1) contrast(1.05); transition: filter .3s; }
+    .who figure:hover img { filter: none; }
     .who figure figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 8px 12px; background: rgba(13, 9, 6, .82); font-family: var(--mono); font-size: 11px; color: var(--ink-60); display: flex; justify-content: space-between; }
     .who h2 { font-size: clamp(52px, 8vw, 128px) !important; }
     .who ul { margin-top: 30px; border-top: 1px solid var(--ink-20); }
@@ -162,44 +199,44 @@
   <main>
     <div class="stage" id="work">
       <header class="hero">
-        <canvas class="cover" id="art-cover" data-src="/assets/images/projects/pantera-detection-field.webp" aria-hidden="true"></canvas>
+        <canvas class="cover" id="art-cover" data-src="/assets/images/projects/pantera-detection-field.webp" role="img" aria-label="Fumaça de incêndio florestal subindo sobre uma plantação, detectada e demarcada pela rede de câmeras do Pantera."></canvas>
         <nav class="top label">
           <div class="side">
-            <a href="#work">Work</a>
-            <a href="#record">Record</a>
+            <a href="#work">Trabalho</a>
+            <a href="#record">Trajetória</a>
           </div>
           <div class="sigil" aria-hidden="true">AL</div>
           <div class="side right">
-            <a href="/pt/">PT</a>
-            <a href="#contact">Contact</a>
+            <a href="/alt/">EN</a>
+            <a href="#contact">Contato</a>
           </div>
         </nav>
         <div class="inner">
-          <div class="label">Rio de Janeiro • Climate, energy &amp; AI</div>
+          <div class="label">Rio de Janeiro · Clima, energia e IA</div>
           <h1 class="display">Antonio Leblanc</h1>
-          <p class="lede">Today I lead the AI platform <b>protecting 40 million hectares against wildfires.</b></p>
+          <p class="lede">Hoje lidero a plataforma de IA <b>que protege 40 milhões de hectares contra incêndios florestais.</b></p>
           <div class="btns">
-            <a class="btn" href="/assets/cv/antonio-leblanc-resume.pdf">Resume</a>
-            <a class="btn primary" href="#contact">Get in touch</a>
+            <a class="btn" href="/assets/cv/antonio-leblanc-curriculo.pdf">Currículo</a>
+            <a class="btn primary" href="#contact">Fale comigo</a>
           </div>
         </div>
-        <span class="tag">Smoke <b>97.2%</b></span>
+        <span class="tag">Fumaça <b>97.2%</b></span>
       </header>
-      <p class="sub reveal">In production, the AI spots 98% of fires before a person does. Tuned for recall, since a missed fire costs more than a false alarm.</p>
+      <p class="sub reveal">Em produção, a IA vê 98% dos incêndios antes de uma pessoa. O modelo prioriza recall, porque deixar passar um incêndio custa mais do que um alarme falso.</p>
 
-      <div class="gauges reveal">
-        <div class="gauge"><div class="n">190</div><p>Cameras · 150 HaaS + 40 SaaS</p></div>
-        <div class="gauge"><div class="n">40<small>M+</small></div><p>Hectares under watch</p></div>
-        <div class="gauge"><div class="n">9</div><p>AI agents in production · human oversight</p></div>
+      <div class="gauges reveal" role="group" aria-label="Escala">
+        <div class="gauge"><div class="n">190</div><p>Câmeras · 150 HaaS + 40 SaaS</p></div>
+        <div class="gauge"><div class="n">40<small>M+</small></div><p>Hectares sob monitoramento</p></div>
+        <div class="gauge"><div class="n">9</div><p>Agentes de IA em produção · supervisão humana</p></div>
       </div>
 
       <div class="rows">
         <div class="row reveal">
           <div class="copy">
             <div class="label">01 — Pantera</div>
-            <h3>Detection, risk,<br />response, impact</h3>
-            <p>The wildfire AI platform I lead end to end at 1.5°C — field cameras, satellite imagery, and fire-risk models in one operation.</p>
-            <a class="btn go" href="/projects/pantera/">Read the full story ↗</a>
+            <h3>Detecção, risco,<br />resposta, impacto</h3>
+            <p>A plataforma de IA contra incêndios florestais que lidero de ponta a ponta na 1.5°C — câmeras em campo, imagens de satélite e modelos de risco de incêndio numa operação só.</p>
+            <a class="btn go" href="/pt/projects/pantera/">Ler a história completa ↗</a>
           </div>
           <div class="art">
             <canvas data-src="/assets/images/pantera-field.webp" aria-hidden="true"></canvas>
@@ -209,11 +246,11 @@
 
         <div class="row flip reveal">
           <div class="copy">
-            <div class="label">02 — Agents</div>
-            <h3>Nine agents,<br />one company</h3>
-            <p>AI agents in production on self-hosted Hermes, each supporting an area of the company with a person accountable for it.</p>
-            <p class="stat"><b>450+</b> PRs in &lt;4mo · <b>&gt;83%</b> merge rate · <b>10</b> repos</p>
-            <a class="btn go" href="/projects/agents/">Read the full story ↗</a>
+            <div class="label">02 — Agentes</div>
+            <h3>Nove agentes,<br />uma empresa</h3>
+            <p>Agentes de IA em produção no Hermes self-hosted, cada um apoiando uma área da empresa, com uma pessoa responsável por ele.</p>
+            <p class="stat"><b>450+</b> PRs em &lt;4m · <b>&gt;83%</b> de merge · <b>10</b> repos</p>
+            <a class="btn go" href="/pt/projects/agents/">Ler a história completa ↗</a>
           </div>
           <div class="art">
             <div class="edge l" data-rail></div>
@@ -234,12 +271,12 @@
         <div class="row reveal">
           <div class="copy">
             <div class="label">03 — ForeFire</div>
-            <h3>Where the fire<br />goes next</h3>
-            <p>The open-source fire-spread simulator I maintain outside the day job, built by CNRS.</p>
-            <a class="btn go" href="/projects/forefire/">Read the full story ↗</a>
+            <h3>Para onde<br />o fogo vai</h3>
+            <p>O simulador open-source de propagação de incêndio do CNRS, que mantenho fora do meu trabalho na 1.5°C.</p>
+            <a class="btn go" href="/pt/projects/forefire/">Ler a história completa ↗</a>
           </div>
           <div class="art">
-            <canvas data-src="/assets/images/projects/forefire.webp" aria-hidden="true"></canvas>
+            <canvas data-src="/assets/images/projects/forefire.webp" role="img" aria-label="Saída de simulação de propagação de incêndio do ForeFire sobre um terreno."></canvas>
             <div class="edge r" data-rail></div>
           </div>
         </div>
@@ -249,44 +286,44 @@
     <section class="night" id="record">
       <div class="center">
         <div class="glyph">◇ ◇ ◇</div>
-        <div class="label" style="margin-bottom:22px">Track record</div>
-        <h2 class="display reveal">The record</h2>
+        <div class="label" style="margin-bottom:22px">Trajetória</div>
+        <h2 class="display reveal">Trajetória</h2>
       </div>
-      <ul class="log reveal">
-        <li><span class="k">1.5°C</span><p>I joined <a href="https://umgrauemeio.com/" target="_blank" rel="noopener" class="u">1.5°C</a> as an intern and had to step into the CTO role ten months later, when the founding engineer left. As co-founder and CTO, I lead the computer vision, satellite imagery, and fire-risk models — with the engineering, ML, and environmental science team that builds them with me.</p></li>
-        <li><span class="k">Agents</span><p>Nine AI agents in production on <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener" class="u">Hermes</a>, open-source, on our own servers. They support different areas of the company, like engineering, sales, support, marketing, and fire alerts, and each one has a person accountable for it.</p></li>
-        <li><span class="k">Beyond CTO</span><p>I took on Customer Success, Support, and Marketing at different points and led HR for two years. I organized support ticketing and CS documentation, covered Marketing between hires, and handed each area off.</p></li>
-        <li><span class="k">Open source</span><p>Contributor since 2022 to <a href="https://forefire.readthedocs.io/en/latest/" target="_blank" rel="noopener" class="u">ForeFire</a>, CNRS's open-source wildfire simulator, maintainer since 2025, and co-author on its <a href="https://doi.org/10.21105/joss.08680" target="_blank" rel="noopener" class="u">JOSS paper</a> — reviewing and merging PRs, cutting releases, Dockerization, CI/CD, documentation.</p></li>
-        <li class="now"><span class="k">Now</span><p>Open to senior technical leadership or senior individual contributor roles in climate, energy, govtech, and open source — where the hard part isn't the model but putting it inside an operation where being wrong is expensive.</p></li>
+      <ul class="log reveal" aria-label="Trajetória">
+        <li><span class="k">1.5°C</span><p>Entrei na <a href="https://umgrauemeio.com/" target="_blank" rel="noopener" class="u">1.5°C</a> como estagiário e precisei assumir como CTO dez meses depois, quando o engenheiro fundador saiu. Como cofundador e CTO, lidero os modelos de visão computacional, imagens de satélite e risco de incêndio — com o time que montei.</p></li>
+        <li><span class="k">Agentes</span><p>Nove agentes de IA em produção no <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener" class="u">Hermes</a>, open-source, em servidores nossos. Eles ajudam áreas diferentes da empresa, como engenharia, vendas, suporte, marketing e alertas de incêndio, e cada um tem uma pessoa responsável.</p></li>
+        <li><span class="k">Além de CTO</span><p>Assumi Sucesso do Cliente, Suporte e Marketing em momentos diferentes e liderei o RH por dois anos. Organizei o sistema de chamados do suporte e a documentação de CS, cobri o Marketing entre contratações e passei cada área adiante.</p></li>
+        <li><span class="k"><a href="https://forefire.readthedocs.io/en/latest/" target="_blank" rel="noopener" class="u">Open Source</a></span><p>Contribuidor desde 2022 do ForeFire, simulador de incêndios florestais open-source do CNRS, mantenedor desde 2025, e coautor do <a href="https://doi.org/10.21105/joss.08680" target="_blank" rel="noopener" class="u">paper na JOSS</a> — revisando e fazendo merge de PRs, publicando releases, Dockerização, CI/CD, documentação.</p></li>
+        <li class="now"><span class="k">Hoje</span><p>Aberto a cargos sênior de liderança técnica ou de especialista técnico em clima, energia, govtech e open source — onde o difícil não é o modelo, e sim colocá-lo dentro de uma operação em que errar custa caro.</p></li>
       </ul>
     </section>
 
     <section class="night">
       <div class="who">
         <figure class="reveal">
-          <img src="/assets/images/antonio-headshot.jpg" alt="Antonio Leblanc" width="720" height="900" loading="lazy" />
-          <figcaption><span>Antonio Leblanc</span><span>Rio de Janeiro</span></figcaption>
+          <img src="/assets/images/marathon.jpg" alt="Antonio correndo a Maratona de Niterói, fazendo joinha." width="480" height="480" loading="lazy" />
+          <figcaption><span>Antonio Leblanc</span><span>Maratona de Niterói</span></figcaption>
         </figure>
         <div>
-          <div class="label" style="margin-bottom:22px">About</div>
-          <h2 class="display reveal">Off the clock</h2>
+          <div class="label" style="margin-bottom:22px">Sobre mim</div>
+          <h2 class="display reveal">Fora do trabalho</h2>
           <ul class="reveal">
-            <li><span>Run</span><p>Marathon runner, 3:23 PR.</p></li>
-            <li><span>Music</span><p>Ten years of formal piano, self-taught guitar, and saxophone in a Carnaval bloco — where I built the group's <a href="/amores-liquidos/" target="_blank" rel="noopener" class="u">sheet music player</a>.</p></li>
-            <li><span>Data</span><p>A side habit of turning public data into tools: an interactive map of Brazil's power grid (<a href="/brasil-grid/" target="_blank" rel="noopener" class="u">brasil-grid</a>) and an open-data tracker for Congress (<a href="https://fichadopolitico.com.br/" target="_blank" rel="noopener" class="u">fichadopolitico</a>).</p></li>
+            <li><span>Corrida</span><p>Maratonista, RP de 3:23.</p></li>
+            <li><span>Música</span><p>Dez anos de estudo formal de piano, violão autodidata e saxofone num bloco de Carnaval — onde montei o <a href="/amores-liquidos/" target="_blank" rel="noopener" class="u">player de partituras</a> do grupo.</p></li>
+            <li><span>Dados</span><p>Um hábito paralelo de transformar dados públicos em ferramenta: um mapa interativo do sistema elétrico brasileiro (<a href="/brasil-grid/" target="_blank" rel="noopener" class="u">brasil-grid</a>) e um agregador de dados abertos do Congresso (<a href="https://fichadopolitico.com.br/" target="_blank" rel="noopener" class="u">fichadopolitico</a>).</p></li>
           </ul>
         </div>
       </div>
     </section>
 
     <section class="night center" id="contact">
-      <div class="label" style="margin-bottom:22px">Contact</div>
-      <h2 class="display reveal">Get in touch</h2>
-      <p style="max-width:520px;margin:26px auto 0;font-size:13.5px">If you're building something ambitious in AI, climate, or public-interest tech, write to me. I'd like to hear about it.</p>
+      <div class="label" style="margin-bottom:22px">Contato</div>
+      <h2 class="display reveal">Fale comigo</h2>
+      <p style="max-width:520px;margin:26px auto 0;font-size:13.5px">Se você está construindo algo ambicioso em IA, clima ou tecnologia de interesse público, me escreva. Quero saber o que é.</p>
       <div class="btns">
         <a class="btn" href="https://github.com/antonio-leblanc" target="_blank" rel="noopener">GitHub</a>
         <a class="btn" href="https://www.linkedin.com/in/antonio-leblanc/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn" href="/assets/cv/antonio-leblanc-resume.pdf">Resume</a>
+        <a class="btn" href="/assets/cv/antonio-leblanc-curriculo.pdf">Currículo</a>
         <a class="btn primary" href="mailto:contact@antonioleblanc.com">Email</a>
       </div>
     </section>
@@ -294,14 +331,14 @@
 
   <footer>
     <div>
-      <div class="label" style="margin-bottom:12px;color:var(--ink-60)">Climate, energy &amp; AI · Rio de Janeiro</div>
+      <div class="label" style="margin-bottom:12px;color:var(--ink-60)">Rio de Janeiro · Clima, energia e IA</div>
       <div class="display">Antonio Leblanc</div>
     </div>
     <nav class="label">
-      <a href="/projects/pantera/">Pantera</a>
-      <a href="/projects/agents/">Agents</a>
-      <a href="/projects/forefire/">ForeFire</a>
-      <a href="/pt/">Português</a>
+      <a href="/pt/projects/pantera/">Pantera</a>
+      <a href="/pt/projects/agents/">Agentes</a>
+      <a href="/pt/projects/forefire/">ForeFire</a>
+      <a class="lang-link" href="/alt/">English</a>
     </nav>
   </footer>
 
