@@ -274,6 +274,11 @@
       .cmdbar .caret { animation: none; }
     }
   
+    .fleet.first { margin-top: 0; }
+    .work { max-width: 1180px; margin: 56px auto 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+    .work .dist { margin: 0; }
+    .work .legend3 { grid-template-columns: 1fr; gap: 12px; }
+    @media (max-width: 820px) { .work { grid-template-columns: 1fr; } }
     .badge .acc { display: block; margin-top: 6px; font-family: var(--mono); font-size: 10px; color: var(--ink-60); }
     .showcase { margin: 0; border: 1px solid rgba(242, 242, 242, .18); background: rgba(8, 8, 26, .82); }
     .showcase .bar { display: flex; justify-content: space-between; gap: 10px; padding: 9px 12px; border-bottom: 1px solid rgba(242, 242, 242, .14); font-family: var(--mono); font-size: 11px; color: var(--ink-60); }
@@ -336,33 +341,11 @@
   </header>
 
   <main>
-    <div class="stage">
-      <canvas class="hero-art" id="art-hero" aria-hidden="true"></canvas>
-      <h2 class="display big reveal">Beyond chat</h2>
-      <p class="sub reveal">Nine AI agents in production: one central orchestrator and eight department profiles across engineering and operations. People talk to them, and people review what they ship.</p>
-
-      <div class="rows">
-        <div class="row reveal">
-          <div class="copy">
-            <div class="label">01 — Engineering agent</div>
-            <h3>450+ production PRs,<br />merged by tech leads</h3>
-            <p>Under 4 months, &gt;83% human acceptance rate, across 10 repos under a strict 2-PR limit.</p>
-            <p>The agent runs local tests, CI must pass green, and an engineer always reviews before merge.</p>
-          </div>
-          <figure class="showcase">
-            <div class="bar"><span><b>pantera-bot</b> — engineering agent</span><span>Real GitHub activity</span></div>
-            <img src="/assets/images/projects/agents-pantera-bot-pr.webp" alt="GitHub activity feed for the pantera-bot engineering agent, showing a pull request it opened that received 17 review comments from the team." width="644" height="412" loading="lazy" />
-            <figcaption><span>450+ merged PRs in &lt;4 months · &gt;83% rate</span><span>10 repos · 2-PR limit · 0 direct pushes</span></figcaption>
-          </figure>
-        </div>
-      </div>
-    </div>
-
-    <section class="fleet" id="fleet">
+    <section class="fleet first" id="fleet">
       <canvas class="bg" id="art-fleet" aria-hidden="true"></canvas>
       <div class="label center" style="margin-bottom:22px">The fleet</div>
-      <h2 class="display reveal">Nine agents, one company</h2>
-      <p class="sub reveal">One control plane and eight department profiles, each one serving a real team with a human owner.</p>
+      <h2 class="display reveal">One company, nine agents</h2>
+      <p class="sub reveal">One control plane and eight department profiles, each one serving a real team with a human owner. People talk to them, and people review what they ship.</p>
 
       <div class="org reveal" aria-label="Fleet org chart">
         <div class="root"><div class="badge"><img src="/assets/images/projects/agents/core.webp" alt="" width="64" height="64"><span class="label"><span class="dot"></span>control plane</span><b>Orchestrator</b><span class="acc">12 with access</span></div></div>
@@ -393,7 +376,13 @@
         <div class="label" style="margin-bottom:22px">GitHub API audit · May–Sep 2026</div>
         <h2 class="display reveal">Where the work went</h2>
       </div>
-      <div class="dist reveal">
+      <div class="work reveal">
+        <figure class="showcase">
+            <div class="bar"><span><b>pantera-bot</b> — engineering agent</span><span>Real GitHub activity</span></div>
+            <img src="/assets/images/projects/agents-pantera-bot-pr.webp" alt="GitHub activity feed for the pantera-bot engineering agent, showing a pull request it opened that received 17 review comments from the team." width="644" height="412" loading="lazy" />
+            <figcaption><span>450+ merged PRs in &lt;4 months · &gt;83% rate</span><span>10 repos · 2-PR limit · 0 direct pushes</span></figcaption>
+          </figure>
+      <div class="dist">
         <div class="dist-head"><span class="label">Workload distribution · 450 merged PRs in &lt;4 months</span><span>69 / 15 / 16</span></div>
         <div class="bar3" role="img" aria-label="PR distribution: 69% code and infrastructure, 15% architecture, 16% governance">
           <div class="a" style="width:68.9%">69%</div><div class="b" style="width:14.7%">15%</div><div class="c" style="width:16.4%">16%</div>
@@ -403,6 +392,7 @@
           <div><b><i style="background:var(--magenta)"></i>Architecture · 66 PRs</b><span>API contracts, schemas, system topologies, code health</span></div>
           <div><b><i style="background:var(--yellow)"></i>Governance · 74 PRs</b><span>Automated state snapshots, cron mirrors, profile sync</span></div>
         </div>
+      </div>
       </div>
     </section>
 
@@ -528,7 +518,6 @@
 
     function draw() {
       var s = window.innerWidth < 820 ? 3 : 4;
-      dither(document.getElementById('art-hero'), s, heroField);
       dither(document.getElementById('art-fleet'), s + 1, fleetField);
     }
     draw();
