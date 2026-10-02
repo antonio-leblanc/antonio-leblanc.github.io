@@ -43,80 +43,80 @@
           <p class="lede">The wildfire management platform I lead at 1.5°C, with our engineering, ML, and environmental science team — from risk analysis and smoke detection to response and impact assessment.</p>
         </div>
       </header>
+    </div>
 
-      <div class="gauges reveal" role="group" aria-label="Scale">
-        <div class="gauge"><div class="n">190</div><p>Cameras in the network · 150 HaaS + 40 SaaS</p></div>
-        <div class="gauge"><div class="n">40<small>M+</small></div><p>Hectares under watch, including the Pantanal and indigenous territories</p></div>
-        <div class="gauge"><div class="n">98<small>%</small></div><p>Of fires in production that our AI spots before a person does</p></div>
+    <div class="gauges reveal" role="group" aria-label="Scale">
+      <div class="gauge"><div class="n">190</div><p>Cameras in the network · 150 HaaS + 40 SaaS</p></div>
+      <div class="gauge"><div class="n">40<small>M+</small></div><p>Hectares under watch, including the Pantanal and indigenous territories</p></div>
+      <div class="gauge"><div class="n">98<small>%</small></div><p>Of fires in production that our AI spots before a person does</p></div>
+    </div>
+
+    <div class="rows">
+      <div class="row reveal">
+        <div class="copy">
+          <div class="label">Actual system output</div>
+          <h2>Smoke, boxed<br />by the model</h2>
+          <p>A single frame from one of the 190 cameras: smoke rising over farmland, flagged by the detection model with its confidence for that detection.</p>
+          <p>A detection is a candidate for validation, not yet an alert.</p>
+        </div>
+        <figure class="proof" data-proof>
+          <div class="head"><span><b>Pantera</b> — smoke detection</span><span>Unfiltered frame</span></div>
+          <div class="view">
+            <img src="/assets/images/projects/pantera-detection-field.webp" alt="Wildfire smoke rising over farmland, detected and boxed by the Pantera camera network." width="644" height="366" loading="lazy">
+            <div class="box" style="left:9.63%;top:24.32%;width:48.91%;height:57.65%">
+              <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
+              <span class="tag">Smoke 97.2%</span>
+            </div>
+          </div>
+          <figcaption class="foot"><span>One of 190 cameras</span><span>40M+ hectares under watch</span></figcaption>
+        </figure>
       </div>
 
-      <div class="rows">
-        <div class="row reveal">
-          <div class="copy">
-            <div class="label">Actual system output</div>
-            <h2>Smoke, boxed<br />by the model</h2>
-            <p>A single frame from one of the 190 cameras: smoke rising over farmland, flagged by the detection model with its confidence for that detection.</p>
-            <p>A detection is a candidate for validation, not yet an alert.</p>
-          </div>
-          <figure class="proof" data-proof>
-            <div class="head"><span><b>Pantera</b> — smoke detection</span><span>Unfiltered frame</span></div>
-            <div class="view">
-              <img src="/assets/images/projects/pantera-detection-field.webp" alt="Wildfire smoke rising over farmland, detected and boxed by the Pantera camera network." width="644" height="366" loading="lazy">
-              <div class="box" style="left:9.63%;top:24.32%;width:48.91%;height:57.65%">
-                <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
-                <span class="tag">Smoke 97.2%</span>
-              </div>
-            </div>
-            <figcaption class="foot"><span>One of 190 cameras</span><span>40M+ hectares under watch</span></figcaption>
-          </figure>
+      <div class="row flip reveal">
+        <div class="copy">
+          <div class="label">Live camera feed</div>
+          <h2>Same system,<br />live</h2>
+          <p>Raw footage from the camera network. The system patrols preset views, flags a smoke candidate, and zooms in for another check. Detections that cross the confidence threshold go to our 24/7 team for review.</p>
         </div>
+        <figure class="proof" data-proof>
+          <div class="head"><span><b>Pantera</b> — live camera feed</span><span>Same detection pipeline</span></div>
+          <div class="view">
+            <video autoplay loop muted playsinline poster="/assets/images/projects/pantera-detection-field.webp" aria-label="Live footage from a Pantera camera tower over farmland, with the detection system's own overlay flagging smoke in real time.">
+              <source src="/assets/videos/pantera-detection.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption class="foot"><span>Raw footage, no added overlay</span><span>Detection box burned in by the system itself</span></figcaption>
+        </figure>
+      </div>
 
-        <div class="row flip reveal">
-          <div class="copy">
-            <div class="label">Live camera feed</div>
-            <h2>Same system,<br />live</h2>
-            <p>Raw footage from the camera network. The system patrols preset views, flags a smoke candidate, and zooms in for another check. Detections that cross the confidence threshold go to our 24/7 team for review.</p>
-          </div>
-          <figure class="proof" data-proof>
-            <div class="head"><span><b>Pantera</b> — live camera feed</span><span>Same detection pipeline</span></div>
-            <div class="view">
-              <video autoplay loop muted playsinline poster="/assets/images/projects/pantera-detection-field.webp" aria-label="Live footage from a Pantera camera tower over farmland, with the detection system's own overlay flagging smoke in real time.">
-                <source src="/assets/videos/pantera-detection.mp4" type="video/mp4">
-              </video>
-            </div>
-            <figcaption class="foot"><span>Raw footage, no added overlay</span><span>Detection box burned in by the system itself</span></figcaption>
-          </figure>
+      <div class="row reveal">
+        <div class="copy">
+          <div class="label">The network</div>
+          <h2>Hardware we run,<br />software we layer</h2>
+          <ul class="facts">
+            <li><b>150 HaaS</b><span>Hardware we run for landowners.</span></li>
+            <li><b>40 SaaS</b><span>Our software layered on infrastructure that's already there.</span></li>
+          </ul>
         </div>
+        <div class="art">
+          <canvas data-src="/assets/images/pantera-field.webp" aria-hidden="true"></canvas>
+        </div>
+      </div>
 
-        <div class="row reveal">
-          <div class="copy">
-            <div class="label">The network</div>
-            <h2>Hardware we run,<br />software we layer</h2>
-            <ul class="facts">
-              <li><b>150 HaaS</b><span>Hardware we run for landowners.</span></li>
-              <li><b>40 SaaS</b><span>Our software layered on infrastructure that's already there.</span></li>
-            </ul>
-          </div>
-          <div class="art">
-            <canvas data-src="/assets/images/pantera-field.webp" aria-hidden="true"></canvas>
-          </div>
+      <div class="row flip reveal">
+        <div class="copy">
+          <div class="label">Risk</div>
+          <h2>Where the next<br />fire is likely</h2>
+          <p>Weather, fuel, and terrain layered together to flag where a fire is likely to start or spread next.</p>
+          <p>Detection shows where the smoke is now. Risk shows where a fire is more likely next.</p>
         </div>
-
-        <div class="row flip reveal">
-          <div class="copy">
-            <div class="label">Risk</div>
-            <h2>Where the next<br />fire is likely</h2>
-            <p>Weather, fuel, and terrain layered together to flag where a fire is likely to start or spread next.</p>
-            <p>Detection shows where the smoke is now. Risk shows where a fire is more likely next.</p>
+        <figure class="proof">
+          <div class="head"><span><b>Pantera</b> — fire-risk map</span><span>Unfiltered map</span></div>
+          <div class="view map">
+            <img src="/assets/images/projects/pantera-risk-map.webp" alt="Fire-risk map of a rural area: field plots and drainage lines colored from blue, lower risk, to red, higher risk." width="1485" height="1299" loading="lazy">
           </div>
-          <figure class="proof">
-            <div class="head"><span><b>Pantera</b> — fire-risk map</span><span>Unfiltered map</span></div>
-            <div class="view map">
-              <img src="/assets/images/projects/pantera-risk-map.webp" alt="Fire-risk map of a rural area: field plots and drainage lines colored from blue, lower risk, to red, higher risk." width="1485" height="1299" loading="lazy">
-            </div>
-            <figcaption class="foot"><span>Red: higher risk</span><span>Blue: lower risk</span></figcaption>
-          </figure>
-        </div>
+          <figcaption class="foot"><span>Red: higher risk</span><span>Blue: lower risk</span></figcaption>
+        </figure>
       </div>
     </div>
 

@@ -154,3 +154,6 @@ footer nav a:hover { color: var(--gold); }
 /* moldura que mantém a proporção da própria captura, sem corte */
 .proof .view.native { aspect-ratio: auto; }
 .proof .view.native img { height: auto; }
+
+/* bloco colorido só no hero: provas e números ficam no fundo noturno, com gutter dos dois lados */
+main > .rows .row, main > .rows .row.flip { padding: 0 var(--gutter); }

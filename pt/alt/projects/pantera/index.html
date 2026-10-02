@@ -43,80 +43,80 @@
           <p class="lede">A plataforma de gestão de incêndios florestais que lidero na 1.5°C, com o time de engenharia, ML e ciência ambiental — da análise de risco e detecção de fumaça à resposta e avaliação de impacto.</p>
         </div>
       </header>
+    </div>
 
-      <div class="gauges reveal" role="group" aria-label="Escala">
-        <div class="gauge"><div class="n">190</div><p>Câmeras na rede · 150 HaaS + 40 SaaS</p></div>
-        <div class="gauge"><div class="n">40<small>M+</small></div><p>Hectares sob monitoramento, incluindo o Pantanal e territórios indígenas</p></div>
-        <div class="gauge"><div class="n">98<small>%</small></div><p>Dos incêndios em produção que nossa IA vê antes de uma pessoa</p></div>
+    <div class="gauges reveal" role="group" aria-label="Escala">
+      <div class="gauge"><div class="n">190</div><p>Câmeras na rede · 150 HaaS + 40 SaaS</p></div>
+      <div class="gauge"><div class="n">40<small>M+</small></div><p>Hectares sob monitoramento, incluindo o Pantanal e territórios indígenas</p></div>
+      <div class="gauge"><div class="n">98<small>%</small></div><p>Dos incêndios em produção que nossa IA vê antes de uma pessoa</p></div>
+    </div>
+
+    <div class="rows">
+      <div class="row reveal">
+        <div class="copy">
+          <div class="label">Saída real do sistema</div>
+          <h2>Fumaça demarcada<br />pelo modelo</h2>
+          <p>Um quadro de uma das 190 câmeras: fumaça subindo sobre uma plantação, sinalizada pelo modelo de detecção com a confiança daquela detecção.</p>
+          <p>Uma detecção é um candidato para validação, ainda não um alerta.</p>
+        </div>
+        <figure class="proof" data-proof>
+          <div class="head"><span><b>Pantera</b> — detecção de fumaça</span><span>Quadro sem filtro</span></div>
+          <div class="view">
+            <img src="/assets/images/projects/pantera-detection-field.webp" alt="Fumaça de incêndio florestal subindo sobre uma plantação, detectada e demarcada pela rede de câmeras do Pantera." width="644" height="366" loading="lazy">
+            <div class="box" style="left:9.63%;top:24.32%;width:48.91%;height:57.65%">
+              <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
+              <span class="tag">Fumaça 97,2%</span>
+            </div>
+          </div>
+          <figcaption class="foot"><span>Uma das 190 câmeras</span><span>40M+ hectares sob monitoramento</span></figcaption>
+        </figure>
       </div>
 
-      <div class="rows">
-        <div class="row reveal">
-          <div class="copy">
-            <div class="label">Saída real do sistema</div>
-            <h2>Fumaça demarcada<br />pelo modelo</h2>
-            <p>Um quadro de uma das 190 câmeras: fumaça subindo sobre uma plantação, sinalizada pelo modelo de detecção com a confiança daquela detecção.</p>
-            <p>Uma detecção é um candidato para validação, ainda não um alerta.</p>
-          </div>
-          <figure class="proof" data-proof>
-            <div class="head"><span><b>Pantera</b> — detecção de fumaça</span><span>Quadro sem filtro</span></div>
-            <div class="view">
-              <img src="/assets/images/projects/pantera-detection-field.webp" alt="Fumaça de incêndio florestal subindo sobre uma plantação, detectada e demarcada pela rede de câmeras do Pantera." width="644" height="366" loading="lazy">
-              <div class="box" style="left:9.63%;top:24.32%;width:48.91%;height:57.65%">
-                <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
-                <span class="tag">Fumaça 97,2%</span>
-              </div>
-            </div>
-            <figcaption class="foot"><span>Uma das 190 câmeras</span><span>40M+ hectares sob monitoramento</span></figcaption>
-          </figure>
+      <div class="row flip reveal">
+        <div class="copy">
+          <div class="label">Imagem ao vivo da câmera</div>
+          <h2>O mesmo sistema,<br />ao vivo</h2>
+          <p>Imagem crua da rede de câmeras. O sistema percorre posições predefinidas, sinaliza uma possível fumaça e dá zoom para uma nova verificação. As detecções que cruzam o limiar de confiança seguem para revisão do nosso time 24/7.</p>
         </div>
+        <figure class="proof" data-proof>
+          <div class="head"><span><b>Pantera</b> — imagem ao vivo da câmera</span><span>Mesmo pipeline de detecção</span></div>
+          <div class="view">
+            <video autoplay loop muted playsinline poster="/assets/images/projects/pantera-detection-field.webp" aria-label="Imagem ao vivo de uma torre de câmera do Pantera sobre uma plantação, com o próprio sistema de detecção marcando a fumaça em tempo real.">
+              <source src="/assets/videos/pantera-detection.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption class="foot"><span>Imagem crua, sem overlay adicionado</span><span>Caixa de detecção gerada pelo próprio sistema</span></figcaption>
+        </figure>
+      </div>
 
-        <div class="row flip reveal">
-          <div class="copy">
-            <div class="label">Imagem ao vivo da câmera</div>
-            <h2>O mesmo sistema,<br />ao vivo</h2>
-            <p>Imagem crua da rede de câmeras. O sistema percorre posições predefinidas, sinaliza uma possível fumaça e dá zoom para uma nova verificação. As detecções que cruzam o limiar de confiança seguem para revisão do nosso time 24/7.</p>
-          </div>
-          <figure class="proof" data-proof>
-            <div class="head"><span><b>Pantera</b> — imagem ao vivo da câmera</span><span>Mesmo pipeline de detecção</span></div>
-            <div class="view">
-              <video autoplay loop muted playsinline poster="/assets/images/projects/pantera-detection-field.webp" aria-label="Imagem ao vivo de uma torre de câmera do Pantera sobre uma plantação, com o próprio sistema de detecção marcando a fumaça em tempo real.">
-                <source src="/assets/videos/pantera-detection.mp4" type="video/mp4">
-              </video>
-            </div>
-            <figcaption class="foot"><span>Imagem crua, sem overlay adicionado</span><span>Caixa de detecção gerada pelo próprio sistema</span></figcaption>
-          </figure>
+      <div class="row reveal">
+        <div class="copy">
+          <div class="label">A rede</div>
+          <h2>Hardware que operamos,<br />software por cima</h2>
+          <ul class="facts">
+            <li><b>150 HaaS</b><span>Hardware que operamos para proprietários de terra.</span></li>
+            <li><b>40 SaaS</b><span>Nosso software rodando sobre infraestrutura que já existe.</span></li>
+          </ul>
         </div>
+        <div class="art">
+          <canvas data-src="/assets/images/pantera-field.webp" aria-hidden="true"></canvas>
+        </div>
+      </div>
 
-        <div class="row reveal">
-          <div class="copy">
-            <div class="label">A rede</div>
-            <h2>Hardware que operamos,<br />software por cima</h2>
-            <ul class="facts">
-              <li><b>150 HaaS</b><span>Hardware que operamos para proprietários de terra.</span></li>
-              <li><b>40 SaaS</b><span>Nosso software rodando sobre infraestrutura que já existe.</span></li>
-            </ul>
-          </div>
-          <div class="art">
-            <canvas data-src="/assets/images/pantera-field.webp" aria-hidden="true"></canvas>
-          </div>
+      <div class="row flip reveal">
+        <div class="copy">
+          <div class="label">Risco</div>
+          <h2>Onde o próximo<br />incêndio é provável</h2>
+          <p>Clima, combustível e terreno cruzados pra apontar onde um incêndio tem mais chance de começar ou se espalhar.</p>
+          <p>A detecção mostra onde a fumaça está agora. O risco mostra onde um incêndio é mais provável depois.</p>
         </div>
-
-        <div class="row flip reveal">
-          <div class="copy">
-            <div class="label">Risco</div>
-            <h2>Onde o próximo<br />incêndio é provável</h2>
-            <p>Clima, combustível e terreno cruzados pra apontar onde um incêndio tem mais chance de começar ou se espalhar.</p>
-            <p>A detecção mostra onde a fumaça está agora. O risco mostra onde um incêndio é mais provável depois.</p>
+        <figure class="proof">
+          <div class="head"><span><b>Pantera</b> — mapa de risco de incêndio</span><span>Mapa sem filtro</span></div>
+          <div class="view map">
+            <img src="/assets/images/projects/pantera-risk-map.webp" alt="Mapa de risco de incêndio de uma área rural: talhões e linhas de drenagem coloridos do azul, risco menor, ao vermelho, risco maior." width="1485" height="1299" loading="lazy">
           </div>
-          <figure class="proof">
-            <div class="head"><span><b>Pantera</b> — mapa de risco de incêndio</span><span>Mapa sem filtro</span></div>
-            <div class="view map">
-              <img src="/assets/images/projects/pantera-risk-map.webp" alt="Mapa de risco de incêndio de uma área rural: talhões e linhas de drenagem coloridos do azul, risco menor, ao vermelho, risco maior." width="1485" height="1299" loading="lazy">
-            </div>
-            <figcaption class="foot"><span>Vermelho: risco maior</span><span>Azul: risco menor</span></figcaption>
-          </figure>
-        </div>
+          <figcaption class="foot"><span>Vermelho: risco maior</span><span>Azul: risco menor</span></figcaption>
+        </figure>
       </div>
     </div>
 
