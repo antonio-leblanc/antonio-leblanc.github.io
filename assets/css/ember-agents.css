@@ -38,11 +38,12 @@
 .work { max-width: 1180px; margin: 56px auto 0; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; text-align: left; }
 .dist .body { padding: 20px 16px 18px; }
 .dist .head span:last-child { white-space: nowrap; }
-.bar3 { display: flex; height: 38px; border: 1px solid var(--ink-20); }
-.bar3 div { display: flex; align-items: center; padding-left: 8px; font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--night); min-width: 0; overflow: hidden; }
-.bar3 .a, .legend3 .a { background: var(--flame); }
-.bar3 .b, .legend3 .b { background: var(--gold); }
-.bar3 .c, .legend3 .c { background: var(--ink); }
+.adopt { display: grid; gap: 10px; font-family: var(--mono); font-size: 12px; }
+.adopt div { display: grid; grid-template-columns: 32px minmax(0, 1fr) 24px; gap: 10px; align-items: center; }
+.adopt em { font-style: normal; color: var(--ink-60); }
+.adopt i { display: block; height: 14px; border: 1px solid var(--ink-20); }
+.adopt i span { display: block; height: 100%; background: var(--flame); }
+.adopt b { font-weight: 600; text-align: right; }
 .legend3 { display: grid; gap: 14px; margin-top: 20px; font-size: 12.5px; }
 .legend3 b { display: block; font-weight: 600; margin-bottom: 3px; }
 .legend3 i { display: inline-block; width: 8px; height: 8px; margin-right: 8px; }

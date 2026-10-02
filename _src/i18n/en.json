@@ -49,7 +49,7 @@
   "AGENTS_H3": "Nine agents,<br />one company",
   "AGENTS_BODY": "AI agents in production on self-hosted Hermes, each supporting an area of the company with a person accountable for it.",
   "AGENTS_HREF": "/projects/agents/",
-  "AGENTS_STATS": "<b>450+</b> PRs in &lt;4mo · <b>&gt;83%</b> merge rate · <b>10</b> repos",
+  "AGENTS_STATS": "<b>20</b> of ~60 people use it · <b>465</b> code PRs · <b>10</b> repos",
   "NAV_WORK": "Work",
   "NAV_RECORD": "Record",
   "NAV_LANG": "<a class=\"lang-link\" href=\"/pt/\">PT</a>",
