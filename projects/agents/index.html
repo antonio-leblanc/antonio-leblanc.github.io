@@ -29,13 +29,14 @@
 <meta name="theme-color" content="#07090c">
 <link rel="stylesheet" href="/assets/css/ember-project.css">
 <link rel="stylesheet" href="/assets/css/ember-agents.css">
+<link rel="stylesheet" href="/assets/css/ember-motion.css">
 </head>
 <body>
 
   <main id="top">
     <div class="stage">
       <header class="hero">
-        <canvas class="atmo" data-atmo aria-hidden="true"></canvas>
+        <canvas class="atmo" data-atmo data-drift aria-hidden="true"></canvas>
         <nav class="top label">
           <div class="side"><a href="/">← Antonio Leblanc</a></div>
           <div class="sigil" aria-hidden="true">AL</div>
@@ -111,9 +112,9 @@
       <p class="lead reveal">Production repositories need more than a good model. These make delegation real.</p>
       <ul class="guard reveal">
         <li><span class="idx">01 // Human go-ahead</span><h3>Nothing merges on its own</h3><p>No direct pushes, and at most 2 open PRs per repo. In production code, an engineer reviews and merges. In internal tools, like the company site, the team that owns it gives the go-ahead in chat and the agent merges.</p></li>
-        <li><span class="idx">02 // Real scope</span><h3>Work from the backlog</h3><p>Issues the team actually opened: async race conditions, component migrations, end-to-end test suites, lead routing into the CRM.</p></li>
+        <li><span class="idx">02 // Cost &amp; safety</span><h3>Scripts before LLMs</h3><p>Anything that can be solved with Bash, Python, or Git never calls an LLM. This prevents hallucinations, runs quiet security checks, and keeps token spend strictly under $140/mo per profile.</p></li>
         <li><span class="idx">03 // Isolation</span><h3>Each agent in its own lane</h3><p>Each profile runs in an isolated sandbox with its own tools and procedures. The sales agent never touches source code, and context never bleeds across domains.</p></li>
-        <li><span class="idx">04 // Cost &amp; safety</span><h3>Scripts before LLMs</h3><p>Anything that can be solved with Bash, Python, or Git never calls an LLM. This prevents hallucinations, runs quiet security checks, and keeps token spend strictly under $140/mo per profile.</p></li>
+        <li><span class="idx">04 // Real scope</span><h3>Work from the backlog</h3><p>Issues the team actually opened: async race conditions, component migrations, end-to-end test suites, lead routing into the CRM.</p></li>
       </ul>
     </section>
 
@@ -153,6 +154,8 @@
   </footer>
 
   <script src="/assets/js/ember-atmo.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script src="/assets/js/ember-motion.js"></script>
   <script src="/assets/js/lang-redirect.js" defer></script>
 </body>
 </html>

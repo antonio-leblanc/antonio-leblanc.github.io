@@ -70,8 +70,6 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    html.lenis { scroll-behavior: auto; }
-    html.lenis, html.lenis body { height: auto; }
     body {
       background: var(--night); color: var(--ink); font-family: var(--body);
       font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; overflow-x: clip;
@@ -82,11 +80,6 @@
     }
     a { color: inherit; }
     ::selection { background: var(--flame); color: var(--night); }
-    html { scrollbar-width: thin; scrollbar-color: var(--flame) var(--night); }
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: var(--night); }
-    ::-webkit-scrollbar-thumb { background: linear-gradient(var(--gold), var(--flame)); border: 2px solid var(--night); border-radius: 8px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--flame); }
     .label { font-stretch: 125%; font-weight: 600; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; }
     .display { font-family: var(--display); font-weight: 200; text-transform: uppercase; line-height: .86; letter-spacing: -.01em; }
     .u { text-decoration: underline; text-decoration-color: rgba(242, 106, 27, .7); text-underline-offset: 3px; }
@@ -152,7 +145,6 @@
     .art { position: relative; background: rgba(40, 10, 0, .35); border-top: 1px solid rgba(244, 235, 224, .14); border-bottom: 1px solid rgba(244, 235, 224, .14); aspect-ratio: 16 / 9; overflow: hidden; }
     a.art { display: block; text-decoration: none; }
     .art canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
-    canvas[data-drift] { top: -10%; height: 120%; transform: translate3d(0, var(--py, 0px), 0); will-change: transform; }
     /* frota em anel: a pantera dithered do fundo é o control plane; oito áreas em volta, linhas só do centro */
     .art.sq { aspect-ratio: 1; background: radial-gradient(circle at 50% 50%, rgba(var(--proj-rgb), .26), rgba(10, 18, 30, .4) 46%); }
     .ring { position: absolute; top: 0; bottom: 0; left: 50%; aspect-ratio: 1; transform: translateX(-50%); z-index: 2; }
@@ -259,6 +251,7 @@
       .reveal { opacity: 1; transform: none; transition: none; }
     }
   </style>
+  <link rel="stylesheet" href="/assets/css/ember-motion.css">
 </head>
 <body>
 
@@ -355,7 +348,6 @@
         <li><span class="y">2019</span><p>@@TL_2019@@</p></li>
         <li><span class="y">2020</span><p>@@TL_2020@@</p></li>
         <li><span class="y">2021</span><p>@@TL_2021@@</p></li>
-        <li><span class="y">2022</span><p>@@TL_2022@@</p></li>
         <li><span class="y">2025</span><p>@@TL_2025@@</p></li>
         <li><span class="y">2026</span><p>@@TL_2026@@</p></li>
         <li class="now"><span class="y">@@LOG4_DT@@</span><p>@@LOG4_DD@@</p></li>
@@ -419,7 +411,6 @@
     </nav>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
   <script>
   (function () {
     /* ordered dither of real photos into an ember palette */
@@ -459,24 +450,6 @@
     draw();
     var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(draw, 150); });
 
-
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      if (window.Lenis) new Lenis({ lerp: .09, autoRaf: true, anchors: true });
-      var drift = [].slice.call(document.querySelectorAll('[data-drift]')), dq = false;
-      var place = function () {
-        dq = false;
-        var vh = innerHeight;
-        drift.forEach(function (c) {
-          var b = c.parentNode.getBoundingClientRect();
-          if (b.bottom < 0 || b.top > vh) return;
-          var n = Math.max(-1, Math.min(1, (b.top + b.height / 2 - vh / 2) / (vh / 2 + b.height / 2)));
-          c.style.setProperty('--py', (-n * b.height * .09).toFixed(1) + 'px');
-        });
-      };
-      addEventListener('scroll', function () { if (!dq) { dq = true; requestAnimationFrame(place); } }, { passive: true });
-      addEventListener('resize', place);
-      place();
-    }
 
     var ring = document.querySelector('.ring');
     if (ring && matchMedia('(hover: hover) and (pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -543,6 +516,8 @@
     }
   })();
   </script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+<script src="/assets/js/ember-motion.js"></script>
 <script src="/assets/js/lang-redirect.js" defer></script>
 </body>
 </html>

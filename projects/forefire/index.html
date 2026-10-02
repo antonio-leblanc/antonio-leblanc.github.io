@@ -28,13 +28,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Archivo:wdth,wght@62..125,300..700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#070b08">
 <link rel="stylesheet" href="/assets/css/ember-project.css">
+<link rel="stylesheet" href="/assets/css/ember-motion.css">
 </head>
 <body>
 
   <main id="top">
     <div class="stage">
       <header class="hero">
-        <canvas class="atmo" data-atmo aria-hidden="true"></canvas>
+        <canvas class="atmo" data-atmo data-drift aria-hidden="true"></canvas>
         <nav class="top label">
           <div class="side"><a href="/">← Antonio Leblanc</a></div>
           <div class="sigil" aria-hidden="true">AL</div>
@@ -112,7 +113,7 @@
     <section class="night center">
       <div class="glyph">◇ ◇ ◇</div>
       <div class="label" style="margin-bottom:22px">My role</div>
-      <h2 class="display reveal">Maintainer</h2>
+      <h2 class="display reveal">Open source</h2>
       <p class="lead reveal">The simulator is built by <b>CNRS / Université de Corse</b>. My part is keeping it buildable, reproducible, and documented.</p>
       <ul class="log reveal" style="text-align:left">
         <li><span class="k">Since 2022</span><p>Contributor — reviewing and merging PRs, cutting releases.</p></li>
@@ -151,6 +152,8 @@
   </footer>
 
   <script src="/assets/js/ember-atmo.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script src="/assets/js/ember-motion.js"></script>
   <script src="/assets/js/lang-redirect.js" defer></script>
 </body>
 </html>

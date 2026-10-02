@@ -1,0 +1,13 @@
+/* Barra de rolagem que se preenche com a rolagem, na cor de cada página, e base do Lenis. */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--night); }
+::-webkit-scrollbar-track-piece:start { background: linear-gradient(color-mix(in srgb, var(--gold) 25%, transparent), var(--flame)); }
+::-webkit-scrollbar-thumb { background: var(--gold); }
+::-webkit-scrollbar-thumb:hover { background: var(--ink); }
+@supports not selector(::-webkit-scrollbar) { html { scrollbar-width: thin; scrollbar-color: var(--flame) var(--night); } }
+
+html.lenis { scroll-behavior: auto; }
+html.lenis, html.lenis body { height: auto; }
+
+/* Imagem de atmosfera deslizando dentro da moldura: mais alta que ela, só translate (dither não aceita scale). */
+canvas[data-drift] { top: -10%; height: 120%; transform: translate3d(0, var(--py, 0px), 0); will-change: transform; }

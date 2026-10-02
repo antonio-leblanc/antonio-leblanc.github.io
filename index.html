@@ -70,8 +70,6 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    html.lenis { scroll-behavior: auto; }
-    html.lenis, html.lenis body { height: auto; }
     body {
       background: var(--night); color: var(--ink); font-family: var(--body);
       font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; overflow-x: clip;
@@ -82,11 +80,6 @@
     }
     a { color: inherit; }
     ::selection { background: var(--flame); color: var(--night); }
-    html { scrollbar-width: thin; scrollbar-color: var(--flame) var(--night); }
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: var(--night); }
-    ::-webkit-scrollbar-thumb { background: linear-gradient(var(--gold), var(--flame)); border: 2px solid var(--night); border-radius: 8px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--flame); }
     .label { font-stretch: 125%; font-weight: 600; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; }
     .display { font-family: var(--display); font-weight: 200; text-transform: uppercase; line-height: .86; letter-spacing: -.01em; }
     .u { text-decoration: underline; text-decoration-color: rgba(242, 106, 27, .7); text-underline-offset: 3px; }
@@ -152,7 +145,6 @@
     .art { position: relative; background: rgba(40, 10, 0, .35); border-top: 1px solid rgba(244, 235, 224, .14); border-bottom: 1px solid rgba(244, 235, 224, .14); aspect-ratio: 16 / 9; overflow: hidden; }
     a.art { display: block; text-decoration: none; }
     .art canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
-    canvas[data-drift] { top: -10%; height: 120%; transform: translate3d(0, var(--py, 0px), 0); will-change: transform; }
     /* frota em anel: a pantera dithered do fundo é o control plane; oito áreas em volta, linhas só do centro */
     .art.sq { aspect-ratio: 1; background: radial-gradient(circle at 50% 50%, rgba(var(--proj-rgb), .26), rgba(10, 18, 30, .4) 46%); }
     .ring { position: absolute; top: 0; bottom: 0; left: 50%; aspect-ratio: 1; transform: translateX(-50%); z-index: 2; }
@@ -259,6 +251,7 @@
       .reveal { opacity: 1; transform: none; transition: none; }
     }
   </style>
+  <link rel="stylesheet" href="/assets/css/ember-motion.css">
 </head>
 <body>
 
@@ -269,7 +262,7 @@
         <nav class="top label">
           <div class="side">
             <a href="#work">Work</a>
-            <a href="#record">Record</a>
+            <a href="#record">So far</a>
           </div>
           <div class="sigil" aria-hidden="true">AL</div>
           <div class="side right">
@@ -348,15 +341,14 @@
       <div class="center">
         <div class="glyph">◇ ◇ ◇</div>
         <div class="label" style="margin-bottom:22px">Track record</div>
-        <h2 class="display reveal">The record</h2>
+        <h2 class="display reveal">So far</h2>
       </div>
       <div class="tl-track">
       <ol class="tl reveal" aria-label="Track record">
         <li><span class="y">2019</span><p>Joined <a href="https://umgrauemeio.com/" target="_blank" rel="noopener" class="u">1.5°C</a> as an intern.</p></li>
         <li><span class="y">2020</span><p>Had to step into the CTO role when the founding engineer left. Shipped the first version of Pantera that December.</p></li>
         <li><span class="y">2021</span><p>First deployment, at our largest client, won in a competitive process. I went into the field and up the towers.</p></li>
-        <li><span class="y">2022</span><p>Started contributing to ForeFire, CNRS's open-source wildfire simulator, and we integrated its fire spread into Pantera.</p></li>
-        <li><span class="y">2025</span><p>Became a ForeFire maintainer and co-author on its <a href="https://doi.org/10.21105/joss.08680" target="_blank" rel="noopener" class="u">JOSS paper</a>.</p></li>
+        <li><span class="y">2025</span><p>Became a maintainer of ForeFire, which I had contributed to since 2022, and co-author on its <a href="https://doi.org/10.21105/joss.08680" target="_blank" rel="noopener" class="u">JOSS paper</a>.</p></li>
         <li><span class="y">2026</span><p>AI agents in production on <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener" class="u">Hermes</a>, used by a third of the company.</p></li>
         <li class="now"><span class="y">Now</span><p>Open to senior technical leadership or senior individual contributor roles in climate, energy, govtech, and open source.</p></li>
       </ol>
@@ -364,7 +356,7 @@
       <div class="beyond reveal">
         <div>
           <div class="label">Beyond CTO</div>
-          <h3>I took on four areas outside tech and handed each one off</h3>
+          <h3>I led four areas outside tech and handed each one off</h3>
         </div>
         <ul>
           <li><b>Customer Success</b><span>Organized the CS documentation.</span></li>
@@ -385,9 +377,9 @@
           <div class="label" style="margin-bottom:22px">About</div>
           <h2 class="display reveal">Off the clock</h2>
           <ul class="reveal">
-            <li><span>Run</span><p>Marathon runner, 3:23 PR.</p></li>
+            <li><span>Sports</span><p>Marathon runner, 3:23 PR. Second place at the Rio Duathlon, age-24 category.</p></li>
             <li><span>Music</span><p>Ten years of formal piano, self-taught guitar, and saxophone in a Carnaval bloco — where I built the group's <a href="/amores-liquidos/" target="_blank" rel="noopener" class="u">sheet music player</a>.</p></li>
-            <li><span>Data</span><p>A side habit of turning public data into tools: an interactive map of Brazil's power grid (<a href="/brasil-grid/" target="_blank" rel="noopener" class="u">brasil-grid</a>) and an open-data tracker for Congress (<a href="https://fichadopolitico.com.br/" target="_blank" rel="noopener" class="u">fichadopolitico</a>).</p></li>
+            <li><span>Side projects</span><p>A side habit of turning public data into tools: an interactive map of Brazil's power grid (<a href="/brasil-grid/" target="_blank" rel="noopener" class="u">brasil-grid</a>) and an open-data tracker for Congress (<a href="https://fichadopolitico.com.br/" target="_blank" rel="noopener" class="u">fichadopolitico</a>).</p></li>
           </ul>
         </div>
       </div>
@@ -419,7 +411,6 @@
     </nav>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
   <script>
   (function () {
     /* ordered dither of real photos into an ember palette */
@@ -459,24 +450,6 @@
     draw();
     var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(draw, 150); });
 
-
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      if (window.Lenis) new Lenis({ lerp: .09, autoRaf: true, anchors: true });
-      var drift = [].slice.call(document.querySelectorAll('[data-drift]')), dq = false;
-      var place = function () {
-        dq = false;
-        var vh = innerHeight;
-        drift.forEach(function (c) {
-          var b = c.parentNode.getBoundingClientRect();
-          if (b.bottom < 0 || b.top > vh) return;
-          var n = Math.max(-1, Math.min(1, (b.top + b.height / 2 - vh / 2) / (vh / 2 + b.height / 2)));
-          c.style.setProperty('--py', (-n * b.height * .09).toFixed(1) + 'px');
-        });
-      };
-      addEventListener('scroll', function () { if (!dq) { dq = true; requestAnimationFrame(place); } }, { passive: true });
-      addEventListener('resize', place);
-      place();
-    }
 
     var ring = document.querySelector('.ring');
     if (ring && matchMedia('(hover: hover) and (pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -543,6 +516,8 @@
     }
   })();
   </script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+<script src="/assets/js/ember-motion.js"></script>
 <script src="/assets/js/lang-redirect.js" defer></script>
 </body>
 </html>

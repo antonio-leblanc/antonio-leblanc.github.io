@@ -28,13 +28,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Archivo:wdth,wght@62..125,300..700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#0d0906">
 <link rel="stylesheet" href="/assets/css/ember-project.css">
+<link rel="stylesheet" href="/assets/css/ember-motion.css">
 </head>
 <body>
 
   <main id="top">
     <div class="stage">
       <header class="hero">
-        <canvas class="atmo" data-atmo aria-hidden="true"></canvas>
+        <canvas class="atmo" data-atmo data-drift aria-hidden="true"></canvas>
         <nav class="top label">
           <div class="side"><a href="/pt/">← Antonio Leblanc</a></div>
           <div class="sigil" aria-hidden="true">AL</div>
@@ -91,6 +92,18 @@
           <figcaption class="foot"><span>Vermelho: risco maior</span><span>Azul: risco menor</span></figcaption>
         </figure>
       </div>
+
+      <div class="row reveal">
+        <div class="copy">
+          <div class="label">Em campo</div>
+          <h2>Subi<br />nas torres</h2>
+          <p>Nosso maior cliente, conquistado em concorrência, tinha recebido a promessa de um módulo analítico que ainda não existia. Eu construí o módulo e depois subi nas torres de câmera com nosso COO pra montar a rede, aprendendo redes ali mesmo, porque precisava rodar.</p>
+        </div>
+        <figure class="field">
+          <img src="/assets/images/projects/pantera-tower.webp" alt="Selfie no alto de uma torre de câmera, de capacete e cinto de segurança, com plantação de eucalipto até o horizonte." width="741" height="987" loading="lazy">
+          <figcaption>Networking, no sentido literal.</figcaption>
+        </figure>
+      </div>
     </div>
     </div>
 
@@ -140,6 +153,8 @@
   </footer>
 
   <script src="/assets/js/ember-atmo.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script src="/assets/js/ember-motion.js"></script>
   <script src="/assets/js/lang-redirect.js" defer></script>
 </body>
 </html>

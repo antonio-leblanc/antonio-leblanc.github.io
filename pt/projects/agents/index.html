@@ -29,13 +29,14 @@
 <meta name="theme-color" content="#07090c">
 <link rel="stylesheet" href="/assets/css/ember-project.css">
 <link rel="stylesheet" href="/assets/css/ember-agents.css">
+<link rel="stylesheet" href="/assets/css/ember-motion.css">
 </head>
 <body>
 
   <main id="top">
     <div class="stage">
       <header class="hero">
-        <canvas class="atmo" data-atmo aria-hidden="true"></canvas>
+        <canvas class="atmo" data-atmo data-drift aria-hidden="true"></canvas>
         <nav class="top label">
           <div class="side"><a href="/pt/">← Antonio Leblanc</a></div>
           <div class="sigil" aria-hidden="true">AL</div>
@@ -111,9 +112,9 @@
       <p class="lead reveal">Repositórios de produção precisam de mais que um bom modelo. É isso que torna a delegação real.</p>
       <ul class="guard reveal">
         <li><span class="idx">01 // Uma pessoa manda</span><h3>Nada entra sozinho</h3><p>Nenhum push direto e no máximo 2 PRs abertas por repositório. No código de produção, um engenheiro revisa e faz o merge. Nas ferramentas internas, como o site da empresa, o time dono dá o ok no chat e o agente faz o merge.</p></li>
-        <li><span class="idx">02 // Escopo real</span><h3>Trabalho do backlog</h3><p>Issues que o time abriu de verdade: condições de corrida assíncronas, migração de componentes, suítes de testes ponta a ponta, roteamento de lead para o CRM.</p></li>
+        <li><span class="idx">02 // Custo e segurança</span><h3>Scripts antes de LLM</h3><p>O que dá pra resolver com Bash, Python ou Git nunca chama um LLM. Isso evita alucinações, roda checagens de segurança em silêncio e mantém o gasto de tokens estritamente abaixo de $140 por mês por perfil.</p></li>
         <li><span class="idx">03 // Isolamento</span><h3>Cada agente na sua área</h3><p>Cada perfil roda num sandbox isolado, com ferramentas e procedimentos próprios. O agente de vendas nunca encosta no código-fonte, e o contexto de uma área nunca vaza para outra.</p></li>
-        <li><span class="idx">04 // Custo e segurança</span><h3>Scripts antes de LLM</h3><p>O que dá pra resolver com Bash, Python ou Git nunca chama um LLM. Isso evita alucinações, roda checagens de segurança em silêncio e mantém o gasto de tokens estritamente abaixo de $140 por mês por perfil.</p></li>
+        <li><span class="idx">04 // Escopo real</span><h3>Trabalho do backlog</h3><p>Issues que o time abriu de verdade: condições de corrida assíncronas, migração de componentes, suítes de testes ponta a ponta, roteamento de lead para o CRM.</p></li>
       </ul>
     </section>
 
@@ -153,6 +154,8 @@
   </footer>
 
   <script src="/assets/js/ember-atmo.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script src="/assets/js/ember-motion.js"></script>
   <script src="/assets/js/lang-redirect.js" defer></script>
 </body>
 </html>
