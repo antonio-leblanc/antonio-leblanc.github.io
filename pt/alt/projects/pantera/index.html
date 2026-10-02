@@ -74,41 +74,9 @@
 
       <div class="row flip reveal">
         <div class="copy">
-          <div class="label">Imagem ao vivo da câmera</div>
-          <h2>O mesmo sistema,<br />ao vivo</h2>
-          <p>Imagem crua da rede de câmeras. O sistema percorre posições predefinidas, sinaliza uma possível fumaça e dá zoom para uma nova verificação. As detecções que cruzam o limiar de confiança seguem para revisão do nosso time 24/7.</p>
-        </div>
-        <figure class="proof" data-proof>
-          <div class="head"><span><b>Pantera</b> — imagem ao vivo da câmera</span><span>Mesmo pipeline de detecção</span></div>
-          <div class="view">
-            <video autoplay loop muted playsinline poster="/assets/images/projects/pantera-detection-field.webp" aria-label="Imagem ao vivo de uma torre de câmera do Pantera sobre uma plantação, com o próprio sistema de detecção marcando a fumaça em tempo real.">
-              <source src="/assets/videos/pantera-detection.mp4" type="video/mp4">
-            </video>
-          </div>
-          <figcaption class="foot"><span>Imagem crua, sem overlay adicionado</span><span>Caixa de detecção gerada pelo próprio sistema</span></figcaption>
-        </figure>
-      </div>
-
-      <div class="row reveal">
-        <div class="copy">
-          <div class="label">A rede</div>
-          <h2>Hardware que operamos,<br />software por cima</h2>
-          <ul class="facts">
-            <li><b>150 HaaS</b><span>Hardware que operamos para proprietários de terra.</span></li>
-            <li><b>40 SaaS</b><span>Nosso software rodando sobre infraestrutura que já existe.</span></li>
-          </ul>
-        </div>
-        <div class="art">
-          <canvas data-src="/assets/images/pantera-field.webp" aria-hidden="true"></canvas>
-        </div>
-      </div>
-
-      <div class="row flip reveal">
-        <div class="copy">
           <div class="label">Risco</div>
           <h2>Onde o próximo<br />incêndio é provável</h2>
           <p>Clima, combustível e terreno cruzados pra apontar onde um incêndio tem mais chance de começar ou se espalhar.</p>
-          <p>A detecção mostra onde a fumaça está agora. O risco mostra onde um incêndio é mais provável depois.</p>
         </div>
         <figure class="proof">
           <div class="head"><span><b>Pantera</b> — mapa de risco de incêndio</span><span>Mapa sem filtro</span></div>
@@ -124,22 +92,7 @@
       <div class="glyph">◇ ◇ ◇</div>
       <div class="label" style="margin-bottom:22px">Decisão de modelo</div>
       <h2 class="display reveal">Por que recall</h2>
-      <p class="lead reveal">Deixar uma fumaça real passar pode atrasar a resposta a um incêndio. Nessa aplicação, esse falso negativo custa mais do que um falso positivo. Por isso, priorizamos recall no modelo de detecção de fumaça: encontrar mais das ocorrências reais. Em produção, nossa IA vê <b>98%</b> dos incêndios antes de uma pessoa.</p>
-      <ul class="log reveal" style="text-align:left">
-        <li><span class="k">O custo da escolha</span><p>Priorizar recall pode aumentar os falsos positivos e o trabalho de revisão. Com precisão em torno de 80%, cerca de uma em cada cinco detecções é alarme falso. Aceitamos essa troca para reduzir as ocorrências de fumaça que passam despercebidas; alarmes falsos também têm custo operacional.</p></li>
-        <li><span class="k">Detecção → alerta</span><p>Uma detecção do modelo é um candidato para validação. As verificações da câmera e a revisão humana descritas acima fazem parte do caminho até um alerta confirmado. A precisão do modelo e a qualidade dos alertas que chegam ao cliente precisam ser avaliadas separadamente.</p></li>
-      </ul>
-    </section>
-
-    <section class="night center">
-      <div class="label" style="margin-bottom:22px">O que ele faz</div>
-      <h2 class="display reveal">Quatro frentes</h2>
-      <ul class="log reveal" style="text-align:left">
-        <li><span class="k">Detecção</span><p>A rede de câmeras e os modelos de visão computacional sinalizam indícios de fumaça para validação e resposta antecipada.</p></li>
-        <li><span class="k">Risco</span><p>Clima, combustível e terreno cruzados pra apontar onde um incêndio tem mais chance de começar ou se espalhar.</p></li>
-        <li><span class="k">Resposta</span><p>Apoiar a coordenação da resposta em campo depois da confirmação de uma detecção.</p></li>
-        <li><span class="k">Impacto</span><p>Medir o que mudou depois — área queimada, terra recuperada — a evidência de que vale a pena fazer isso.</p></li>
-      </ul>
+      <p class="lead reveal">Deixar uma fumaça real passar pode atrasar a resposta a um incêndio, então aqui um falso negativo custa mais do que um falso positivo. Priorizamos recall no modelo de detecção de fumaça e aceitamos a troca: com precisão em torno de <b>80%</b>, cerca de uma em cada cinco detecções é alarme falso. Entre a detecção e o alerta confirmado ficam a nova verificação da câmera e o nosso time de revisão 24/7.</p>
     </section>
 
     <section class="night center">
