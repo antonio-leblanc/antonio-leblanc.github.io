@@ -219,6 +219,32 @@
     footer .display { font-size: clamp(40px, 7vw, 96px); }
     footer nav { padding: 0; display: flex; gap: 28px; flex-wrap: wrap; }
 
+    /* ── fleet ── */
+    .fleet { margin: 120px var(--gutter) 0; background: linear-gradient(180deg, #0000c4 0%, #0000b0 100%); padding: 70px clamp(16px, 5vw, 72px) 64px; position: relative; overflow: hidden; }
+    .fleet canvas.bg { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; opacity: .5; }
+    .fleet > :not(canvas) { position: relative; }
+    .fleet h2 { font-size: clamp(54px, 11vw, 170px); text-align: center; }
+    .fleet .sub { text-align: center; max-width: 600px; margin: 22px auto 0; font-size: 13.5px; }
+    .org { max-width: 1060px; margin: 54px auto 0; }
+    .org .root { display: flex; justify-content: center; }
+    .org .wire { height: 34px; width: 1px; background: rgba(242, 242, 242, .5); margin: 0 auto; }
+    .org .bus { height: 1px; background: rgba(242, 242, 242, .5); margin: 0 6.25%; }
+    .org .lanes { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
+    .org .lanes .badge { margin-top: 20px; position: relative; }
+    .org .lanes .badge::before { content: ""; position: absolute; top: -20px; left: 50%; width: 1px; height: 20px; background: rgba(242, 242, 242, .5); }
+    .badge { background: rgba(8, 8, 26, .82); border: 1px solid rgba(242, 242, 242, .22); padding: 12px 10px 11px; }
+    .badge .label { font-size: 9px; color: var(--ink-60); }
+    .badge b { display: block; font-family: var(--display); font-weight: 300; font-size: 22px; text-transform: uppercase; line-height: 1; margin-top: 6px; }
+    .badge .dot { display: inline-block; width: 6px; height: 6px; background: #00f279; margin-right: 6px; vertical-align: 1px; }
+    .org .root .badge { min-width: 260px; text-align: center; border-color: var(--cyan); }
+    .org .root .badge b { font-size: 30px; }
+    .fleet-stats { max-width: 1060px; margin: 54px auto 0; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(242, 242, 242, .3); }
+    .fleet-stats div { padding: 22px 18px 0 0; }
+    .fleet-stats div + div { padding-left: 18px; border-left: 1px solid rgba(242, 242, 242, .3); }
+    .fleet-stats .n { font-family: var(--display); font-weight: 200; font-size: clamp(48px, 6vw, 88px); line-height: .9; }
+    .fleet-stats p { font-size: 12.5px; margin-top: 10px; max-width: 230px; }
+    .fleet .more { text-align: center; margin-top: 46px; }
+
     .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.in { opacity: 1; transform: none; }
 
@@ -234,6 +260,11 @@
       .status .ref { display: none; }
       .cmdbar .keys { display: none; }
       .edge { display: none; }
+      .org .lanes { grid-template-columns: repeat(2, 1fr); }
+      .org .bus, .org .lanes .badge::before { display: none; }
+      .org .root .badge { min-width: 0; width: 100%; }
+      .fleet-stats { grid-template-columns: 1fr 1fr; }
+      .fleet-stats div:nth-child(3) { padding-left: 0; border-left: 0; }
     }
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; transition: none; }
@@ -362,13 +393,45 @@
         </div>
         <div class="metric">
           <div class="n">1<small> hook</small></div>
-          <p><code>pre_llm_call</code> carries the charter. One tool, <code>handoff_task</code>, carries the request. Nothing runs beside Hermes.</p>
+          <p><code>pre_llm_call</code> carries the charter. One tool, <code>handoff_task</code>, carries the request.</p>
         </div>
         <div class="metric">
-          <div class="n">9<small> agents</small></div>
-          <p>The fleet it is built for: profiles in production, each serving a real team across sales, CS, support and engineering.</p>
+          <div class="n">0<small> orchestrators</small></div>
+          <p>Beside Hermes. Handoff is a task on the native kanban, so the plugin gets thinner as the core grows.</p>
         </div>
       </div>
+    </section>
+
+    <section class="fleet" id="fleet">
+      <canvas class="bg" id="art-fleet" aria-hidden="true"></canvas>
+      <div class="label center" style="margin-bottom:22px">The fleet it runs on</div>
+      <h2 class="display reveal">Nine agents, one company</h2>
+      <p class="sub reveal">The plugin comes out of a self-hosted Hermes fleet in production at a climate tech company: one control plane and eight department profiles, each one serving a real team with a human owner.</p>
+
+      <div class="org reveal" aria-label="Fleet org chart">
+        <div class="root"><div class="badge"><span class="label"><span class="dot"></span>control plane</span><b>Orchestrator</b></div></div>
+        <div class="wire"></div>
+        <div class="bus"></div>
+        <div class="lanes">
+          <div class="badge"><span class="label"><span class="dot"></span>profile</span><b>Engineering</b></div>
+          <div class="badge"><span class="label"><span class="dot"></span>profile</span><b>Sales</b></div>
+          <div class="badge"><span class="label"><span class="dot"></span>profile</span><b>CS</b></div>
+          <div class="badge"><span class="label"><span class="dot"></span>profile</span><b>Support</b></div>
+          <div class="badge"><span class="label"><span class="dot"></span>profile</span><b>Marketing</b></div>
+          <div class="badge"><span class="label"><span class="dot"></span>profile</span><b>Projects</b></div>
+          <div class="badge"><span class="label"><span class="dot"></span>profile</span><b>Intelligence</b></div>
+          <div class="badge"><span class="label"><span class="dot"></span>profile</span><b>Leadership</b></div>
+        </div>
+      </div>
+
+      <div class="fleet-stats reveal">
+        <div><div class="n">450+</div><p>PRs merged across 10 production repos, every one reviewed by a person.</p></div>
+        <div><div class="n">&gt;83%</div><p>Human acceptance on the engineering agent's PRs, under a 2-PR WIP limit per repo.</p></div>
+        <div><div class="n">10</div><p>Repositories the engineering agent works in. No direct pushes, ever.</p></div>
+        <div><div class="n">15%</div><p>AWS cost cut from the agent's infrastructure audits. It proposed; the team applied.</p></div>
+      </div>
+
+      <div class="more"><a class="btn" href="/projects/agents/">Full case study →</a></div>
     </section>
 
     <section class="night">
@@ -463,12 +526,20 @@
       return clamp(.85 * (t1 + t2) + .8 * bridge + steps + .25 * blob(x, y, .5, .1, .6, .3));
     }
 
+    function fleetField(x, y) {                                      // fleet: rain of columns, brighter at the edges
+      var col = Math.floor(x * 48), r = Math.abs(Math.sin(col * 12.9898) * 43758.5453) % 1;
+      var fall = (y * 3 + r * 7) % 1;
+      var edges = Math.pow(Math.abs(x - .5) * 2, 3);
+      return clamp(edges * (.55 + .45 * Math.sin(fall * 6.28)) + .3 * blob(x, y, .5, 1, .5, .25));
+    }
+
     function draw() {
       var s = window.innerWidth < 820 ? 3 : 4;
       dither(document.getElementById('art-hero'), s, heroField);
       dither(document.getElementById('art-1'), s, gridField);
       dither(document.getElementById('art-2'), s, flowField);
       dither(document.getElementById('art-3'), s, stairsField);
+      dither(document.getElementById('art-fleet'), s + 1, fleetField);
     }
     // canvases inside .art must fill their box before measuring
     document.querySelectorAll('.art canvas').forEach(function (c) { c.style.width = '100%'; });
