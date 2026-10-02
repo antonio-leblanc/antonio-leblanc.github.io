@@ -161,12 +161,23 @@
     .center { text-align: center; }
     .glyph { font-family: var(--mono); color: var(--flame); font-size: 13px; letter-spacing: .3em; margin-bottom: 22px; }
     section.night h2 { font-size: clamp(56px, 12vw, 190px); }
-    .log { max-width: 1180px; margin: 50px auto 0; border-top: 1px solid var(--ink-20); }
-    .log li { list-style: none; display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid var(--ink-20); }
-    .log .k { font-family: var(--mono); font-size: 11px; color: var(--flame); text-transform: uppercase; letter-spacing: .06em; }
-    .log p { font-size: 14px; max-width: 760px; }
-    .log li.now .k { color: var(--gold); }
-    .log li.now p { color: var(--ink); }
+    /* track record: linha do tempo por ano + bloco "além de CTO" */
+    .tl { max-width: 1180px; margin: 60px auto 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); position: relative; }
+    .tl::before { content: ""; position: absolute; left: 0; right: 0; top: 4px; height: 1px; background: var(--ink-20); }
+    .tl li { list-style: none; position: relative; padding: 30px 20px 0 0; }
+    .tl li::before { content: ""; position: absolute; top: 0; left: 0; width: 9px; height: 9px; background: var(--night); border: 1px solid var(--flame); }
+    .tl .y { display: block; font-family: var(--display); font-weight: 200; font-size: clamp(44px, 4.6vw, 72px); line-height: .9; text-transform: uppercase; }
+    .tl p { font-size: 14px; color: var(--ink-60); margin-top: 12px; }
+    .tl li.now::before { background: var(--gold); border-color: var(--gold); }
+    .tl li.now .y { color: var(--gold); }
+    .tl li.now p { color: var(--ink); }
+    .beyond { max-width: 1180px; margin: 90px auto 0; border-top: 1px solid var(--flame); padding-top: 26px; display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(24px, 5vw, 80px); }
+    .beyond .label { color: var(--flame); }
+    .beyond h3 { font-family: var(--display); font-weight: 300; text-transform: uppercase; font-size: clamp(34px, 4vw, 58px); line-height: .95; margin-top: 16px; }
+    .beyond ul { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--ink-20); align-self: start; }
+    .beyond li { list-style: none; padding: 18px 18px 18px 0; border-bottom: 1px solid var(--ink-20); }
+    .beyond li b { display: block; font-family: var(--display); font-weight: 300; font-size: clamp(24px, 2.2vw, 32px); text-transform: uppercase; line-height: 1; }
+    .beyond li span { display: block; font-size: 14px; color: var(--ink-60); margin-top: 8px; }
 
     .who { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 5vw, 80px); align-items: center; }
     .who figure { margin: 0; position: relative; border: 1px solid var(--ink-20); }
@@ -194,7 +205,7 @@
       .gauge p { font-size: 14px; }
       .row p { font-size: 15.5px; max-width: 420px; }
       .row .stat { font-size: 12.5px; }
-      .log p { font-size: 16px; }
+      .tl p, .beyond li span { font-size: 15px; }
       .who li { font-size: 16px; }
       .contact-body { max-width: 600px; font-size: 17px; }
     }
@@ -208,7 +219,14 @@
       .art .edge { display: none; }
       .ring figure { width: 17%; }
       .ring figcaption { font-size: 8px; margin-top: 3px; }
-      .log li { grid-template-columns: 1fr; gap: 6px; }
+      .tl { grid-template-columns: 1fr; margin-top: 44px; }
+      .tl::before { left: 4px; right: auto; top: 6px; bottom: 0; width: 1px; height: auto; }
+      .tl li { display: grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: start; padding: 0 0 24px 28px; }
+      .tl li::before { top: 6px; }
+      .tl li p { padding-top: 6px; }
+      .tl .y { font-size: 40px; }
+      .tl p { margin-top: 0; }
+      .beyond { grid-template-columns: 1fr; margin-top: 60px; gap: 24px; }
       .who { grid-template-columns: 1fr; }
       .hero { min-height: 86svh; }
     }
@@ -310,13 +328,26 @@
         <div class="label" style="margin-bottom:22px">Track record</div>
         <h2 class="display reveal">The record</h2>
       </div>
-      <ul class="log reveal" aria-label="Track record">
-        <li><span class="k">1.5°C</span><p>I joined <a href="https://umgrauemeio.com/" target="_blank" rel="noopener" class="u">1.5°C</a> as an intern and had to step into the CTO role ten months later, when the founding engineer left. As co-founder and CTO, I lead the computer vision, satellite imagery, and fire-risk models — with the engineering, ML, and environmental science team that builds them with me.</p></li>
-        <li><span class="k">Agents</span><p>Nine AI agents in production on <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener" class="u">Hermes</a>, open-source, on our own servers. They support different areas of the company, like engineering, sales, support, marketing, and fire alerts, and each one has a person accountable for it.</p></li>
-        <li><span class="k">Beyond CTO</span><p>I took on Customer Success, Support, and Marketing at different points and led HR for two years. I organized support ticketing and CS documentation, covered Marketing between hires, and handed each area off.</p></li>
-        <li><span class="k"><a href="https://forefire.readthedocs.io/en/latest/" target="_blank" rel="noopener" class="u">Open Source</a></span><p>Contributor since 2022 to ForeFire, CNRS's open-source wildfire simulator, maintainer since 2025, and co-author on its <a href="https://doi.org/10.21105/joss.08680" target="_blank" rel="noopener" class="u">JOSS paper</a> — reviewing and merging PRs, cutting releases, Dockerization, CI/CD, documentation.</p></li>
-        <li class="now"><span class="k">Now</span><p>Open to senior technical leadership or senior individual contributor roles in climate, energy, govtech, and open source — where the hard part isn't the model but putting it inside an operation where being wrong is expensive.</p></li>
-      </ul>
+      <ol class="tl reveal" aria-label="Track record">
+        <li><span class="y">2019</span><p>Joined <a href="https://umgrauemeio.com/" target="_blank" rel="noopener" class="u">1.5°C</a> as an intern.</p></li>
+        <li><span class="y">2020</span><p>Had to step into the CTO role ten months later, when the founding engineer left.</p></li>
+        <li><span class="y">2022</span><p>Started contributing to ForeFire, CNRS's open-source wildfire simulator.</p></li>
+        <li><span class="y">2025</span><p>Became a ForeFire maintainer and co-author on its <a href="https://doi.org/10.21105/joss.08680" target="_blank" rel="noopener" class="u">JOSS paper</a>.</p></li>
+        <li><span class="y">2026</span><p>AI agents in production on <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener" class="u">Hermes</a>: 20 of ~60 people with access use them regularly.</p></li>
+        <li class="now"><span class="y">Now</span><p>Open to senior technical leadership or senior individual contributor roles in climate, energy, govtech, and open source.</p></li>
+      </ol>
+      <div class="beyond reveal">
+        <div>
+          <div class="label">Beyond CTO</div>
+          <h3>I took on four areas outside tech and handed each one off</h3>
+        </div>
+        <ul>
+          <li><b>Customer Success</b><span>Organized the CS documentation.</span></li>
+          <li><b>Support</b><span>Organized support ticketing.</span></li>
+          <li><b>Marketing</b><span>Covered it between hires.</span></li>
+          <li><b>HR</b><span>Led it for two years.</span></li>
+        </ul>
+      </div>
     </section>
 
     <section class="night">
