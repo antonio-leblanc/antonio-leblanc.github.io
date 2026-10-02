@@ -151,7 +151,7 @@
     .ring circle, .ring line { fill: none; stroke: rgba(244, 235, 224, .45); stroke-width: 1; vector-effect: non-scaling-stroke; }
     .ring circle { stroke-dasharray: 2 5; }
     .ring figure { position: absolute; width: 15%; left: calc(50% + 38% * sin(var(--i) * 45deg)); top: calc(50% - 38% * cos(var(--i) * 45deg)); transform: translate(-50%, -50%); }
-    .ring img { width: 100%; height: auto; aspect-ratio: 1; display: block; border: 1px solid rgba(244, 235, 224, .3); filter: saturate(.6) sepia(.25); transition: filter .2s; }
+    .ring img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; display: block; border: 1px solid rgba(244, 235, 224, .3); filter: saturate(.6) sepia(.25); transition: filter .2s; }
     .ring figure:hover img { filter: none; }
     .ring figure.core { width: 24%; left: 50%; top: 50%; }
     .ring figure.core img { border: 1px solid var(--flame); box-shadow: 0 0 0 1px var(--flame), 0 0 40px rgba(255, 106, 26, .45); }
