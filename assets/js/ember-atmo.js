@@ -1,5 +1,5 @@
-/* Atmosfera das páginas ember em /alt/: fumaça procedural em dither ordenado (nenhuma foto passa por aqui),
-   reveal no scroll e caixa de detecção entrando quando a moldura aparece. */
+/* Atmosfera das páginas ember em /alt/: fumaça procedural e fotos decorativas (canvas[data-src]) em dither ordenado,
+   reveal no scroll e caixa de detecção entrando quando a moldura aparece. Foto que prova alguma coisa fica fora daqui, crua. */
 (function () {
   var BAYER = [0, 32, 8, 40, 2, 34, 10, 42, 48, 16, 56, 24, 50, 18, 58, 26, 12, 44, 4, 36, 14, 46, 6, 38, 60, 28, 52, 20, 62, 30, 54, 22,
                3, 35, 11, 43, 1, 33, 9, 41, 51, 19, 59, 27, 49, 17, 57, 25, 15, 47, 7, 39, 13, 45, 5, 37, 63, 31, 55, 23, 61, 29, 53, 21];
@@ -69,8 +69,35 @@
       requestAnimationFrame(loop);
     })(0);
   }
+  /* foto usada só como atmosfera (canvas[data-src]): mesmo dither da home alternativa */
+  var cache = {};
+  function load(src) {
+    if (!cache[src]) cache[src] = new Promise(function (ok) { var im = new Image(); im.onload = function () { ok(im); }; im.src = src; });
+    return cache[src];
+  }
+  function ditherPhoto(canvas) {
+    var r = canvas.getBoundingClientRect(), scale = innerWidth < 820 ? 3 : 4;
+    var w = Math.max(40, Math.round(r.width / scale)), h = Math.max(24, Math.round(r.height / scale));
+    load(canvas.dataset.src).then(function (im) {
+      canvas.width = w; canvas.height = h;
+      var ctx = canvas.getContext('2d');
+      var s = Math.max(w / im.width, h / im.height), dw = im.width * s, dh = im.height * s;
+      ctx.drawImage(im, (w - dw) / 2, (h - dh) / 2, dw, dh);
+      var img = ctx.getImageData(0, 0, w, h), d = img.data, n = PAL.length - 1;
+      for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
+        var i = (y * w + x) * 4;
+        var v = Math.pow((.299 * d[i] + .587 * d[i + 1] + .114 * d[i + 2]) / 255, .9);
+        var c = PAL[Math.min(n, Math.max(0, Math.floor(v * n + (BAYER[(y & 7) * 8 + (x & 7)] + .5) / 64)))];
+        d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2]; d[i + 3] = 255;
+      }
+      ctx.putImageData(img, 0, 0);
+    });
+  }
+  function photos() { document.querySelectorAll('canvas[data-src]').forEach(ditherPhoto); }
+  photos();
+
   var rt; addEventListener('resize', function () {
-    clearTimeout(rt); rt = setTimeout(function () { scenes.forEach(function (a) { a.size(); a.draw(); }); }, 150);
+    clearTimeout(rt); rt = setTimeout(function () { scenes.forEach(function (a) { a.size(); a.draw(); }); photos(); }, 150);
   });
 
   var io = new IntersectionObserver(function (es) {
