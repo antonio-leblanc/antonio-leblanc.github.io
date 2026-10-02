@@ -70,7 +70,7 @@
     html { scroll-behavior: smooth; }
     body {
       background: var(--night); color: var(--ink); font-family: var(--body);
-      font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+      font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; overflow-x: clip;
     }
     body::before {
       content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50;
@@ -162,7 +162,9 @@
     .glyph { font-family: var(--mono); color: var(--flame); font-size: 13px; letter-spacing: .3em; margin-bottom: 22px; }
     section.night h2 { font-size: clamp(56px, 12vw, 190px); }
     /* track record: linha do tempo por ano + bloco "além de CTO" */
-    .tl { max-width: 1180px; margin: 60px auto 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); position: relative; }
+    .tl-track { margin-top: 60px; }
+    .tl { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); position: relative; }
+    .tl::after { content: ""; position: absolute; left: 0; right: 0; top: 4px; height: 1px; background: var(--flame); transform-origin: left; transform: scaleX(var(--p, 1)); }
     .tl::before { content: ""; position: absolute; left: 0; right: 0; top: 4px; height: 1px; background: var(--ink-20); }
     .tl li { list-style: none; position: relative; padding: 30px 20px 0 0; }
     .tl li::before { content: ""; position: absolute; top: 0; left: 0; width: 9px; height: 9px; background: var(--night); border: 1px solid var(--flame); }
@@ -171,6 +173,17 @@
     .tl li.now::before { background: var(--gold); border-color: var(--gold); }
     .tl li.now .y { color: var(--gold); }
     .tl li.now p { color: var(--ink); }
+    /* com JS: a linha se preenche no scroll e acende cada ano; no desktop a seção segura ~45vh */
+    .tl.anim li::before { border-color: var(--ink-20); background: var(--night); transition: background .35s, border-color .35s; }
+    .tl.anim li .y { color: var(--ink-60); transition: color .35s; }
+    .tl.anim li p { opacity: .4; transition: opacity .35s; }
+    .tl.anim li.on::before { border-color: var(--flame); background: var(--flame); }
+    .tl.anim li.on .y { color: var(--ink); }
+    .tl.anim li.on p { opacity: 1; }
+    .tl.anim li.now.on::before { border-color: var(--gold); background: var(--gold); }
+    .tl.anim li.now.on .y { color: var(--gold); }
+    .tl-track.pin { height: calc(var(--tlh) + 45vh); }
+    .tl-track.pin .tl { position: sticky; top: calc(50vh - var(--tlh) / 2); }
     .beyond { max-width: 1180px; margin: 90px auto 0; border-top: 1px solid var(--flame); padding-top: 26px; display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(24px, 5vw, 80px); }
     .beyond .label { color: var(--flame); }
     .beyond h3 { font-family: var(--display); font-weight: 300; text-transform: uppercase; font-size: clamp(34px, 4vw, 58px); line-height: .95; margin-top: 16px; }
@@ -219,7 +232,9 @@
       .art .edge { display: none; }
       .ring figure { width: 17%; }
       .ring figcaption { font-size: 8px; margin-top: 3px; }
-      .tl { grid-template-columns: 1fr; margin-top: 44px; }
+      .tl-track { margin-top: 44px; }
+      .tl { grid-template-columns: 1fr; }
+      .tl::after { left: 4px; right: auto; top: 6px; bottom: 0; width: 1px; height: auto; transform-origin: top; transform: scaleY(var(--p, 1)); }
       .tl::before { left: 4px; right: auto; top: 6px; bottom: 0; width: 1px; height: auto; }
       .tl li { display: grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: start; padding: 0 0 24px 28px; }
       .tl li::before { top: 6px; }
@@ -328,14 +343,17 @@
         <div class="label" style="margin-bottom:22px">Trajetória</div>
         <h2 class="display reveal">Trajetória</h2>
       </div>
+      <div class="tl-track">
       <ol class="tl reveal" aria-label="Trajetória">
         <li><span class="y">2019</span><p>Entrei na <a href="https://umgrauemeio.com/" target="_blank" rel="noopener" class="u">1.5°C</a> como estagiário.</p></li>
-        <li><span class="y">2020</span><p>Precisei assumir como CTO, dez meses depois, quando o engenheiro fundador saiu.</p></li>
-        <li><span class="y">2022</span><p>Comecei a contribuir com o ForeFire, simulador de incêndios florestais open-source do CNRS.</p></li>
+        <li><span class="y">2020</span><p>Precisei assumir como CTO quando o engenheiro fundador saiu. Terminei a primeira versão do Pantera em dezembro.</p></li>
+        <li><span class="y">2021</span><p>Primeira implantação, no nosso maior cliente, ganho em concorrência. Fui a campo e subi nas torres.</p></li>
+        <li><span class="y">2022</span><p>Comecei a contribuir com o ForeFire, simulador de incêndios florestais open-source do CNRS, e integramos a propagação dele ao Pantera.</p></li>
         <li><span class="y">2025</span><p>Virei mantenedor do ForeFire e coautor do <a href="https://doi.org/10.21105/joss.08680" target="_blank" rel="noopener" class="u">paper na JOSS</a>.</p></li>
         <li><span class="y">2026</span><p>Agentes de IA em produção no <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener" class="u">Hermes</a>: 20 de ~60 pessoas com acesso usam com frequência.</p></li>
         <li class="now"><span class="y">Hoje</span><p>Aberto a liderança técnica sênior ou especialista técnico em clima, energia, govtech e open source.</p></li>
       </ol>
+      </div>
       <div class="beyond reveal">
         <div>
           <div class="label">Além de CTO</div>
@@ -442,6 +460,36 @@
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold: .15 });
     document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+    var tl = document.querySelector('.tl'), track = document.querySelector('.tl-track');
+    if (tl && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var items = tl.querySelectorAll('li'), desk = matchMedia('(min-width: 821px)'), ticking = false;
+      tl.classList.add('anim');
+      var size = function () {
+        track.classList.toggle('pin', desk.matches);
+        track.style.setProperty('--tlh', tl.offsetHeight + 'px');
+      };
+      var update = function () {
+        ticking = false;
+        var vh = innerHeight, p, h = tl.offsetHeight;
+        if (desk.matches) {
+          var run = track.offsetHeight - h;
+          p = run > 0 ? ((vh - h) / 2 - track.getBoundingClientRect().top) / run : 1;
+        } else {
+          p = (vh * .65 - tl.getBoundingClientRect().top) / h;
+        }
+        p = Math.max(0, Math.min(1, p));
+        tl.style.setProperty('--p', p);
+        items.forEach(function (li, i) {
+          var at = desk.matches ? i / items.length : li.offsetTop / h;
+          li.classList.toggle('on', p >= at);
+        });
+      };
+      var onScroll = function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+      size(); update();
+      addEventListener('scroll', onScroll, { passive: true });
+      addEventListener('resize', function () { size(); onScroll(); });
+    }
   })();
   </script>
 <script src="/assets/js/lang-redirect.js" defer></script>
