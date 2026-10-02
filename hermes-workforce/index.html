@@ -233,8 +233,11 @@
     .org .lanes .badge { margin-top: 20px; position: relative; }
     .org .lanes .badge::before { content: ""; position: absolute; top: -20px; left: 50%; width: 1px; height: 20px; background: rgba(242, 242, 242, .5); }
     .badge { background: rgba(8, 8, 26, .82); border: 1px solid rgba(242, 242, 242, .22); padding: 12px 10px 11px; }
+    .badge img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; margin-bottom: 10px; filter: saturate(.55) contrast(1.05); border: 1px solid rgba(242, 242, 242, .18); transition: filter .25s; }
+    .badge:hover img { filter: none; }
+    .org .root .badge img { width: 96px; margin: 0 auto 10px; }
     .badge .label { font-size: 9px; color: var(--ink-60); }
-    .badge b { display: block; font-family: var(--display); font-weight: 300; font-size: 22px; text-transform: uppercase; line-height: 1; margin-top: 6px; }
+    .badge b { display: block; font-family: var(--display); font-weight: 300; font-size: clamp(16px, 1.7vw, 22px); text-transform: uppercase; line-height: 1; margin-top: 6px; }
     .badge .dot { display: inline-block; width: 6px; height: 6px; background: #00f279; margin-right: 6px; vertical-align: 1px; }
     .org .root .badge { min-width: 260px; text-align: center; border-color: var(--cyan); }
     .org .root .badge b { font-size: 30px; }
@@ -409,18 +412,18 @@
       <p class="sub reveal">The plugin comes out of a self-hosted Hermes fleet in production at a climate tech company: one control plane and eight department profiles, each one serving a real team with a human owner.</p>
 
       <div class="org reveal" aria-label="Fleet org chart">
-        <div class="root"><div class="badge"><span class="label"><span class="dot"></span>control plane</span><b>Orchestrator</b></div></div>
+        <div class="root"><div class="badge"><img src="/assets/images/projects/agents/core.webp" alt="" width="64" height="64"><span class="label"><span class="dot"></span>control plane</span><b>Orchestrator</b></div></div>
         <div class="wire"></div>
         <div class="bus"></div>
         <div class="lanes">
-          <div class="badge"><span class="label"><span class="dot"></span>profile</span><b>Engineering</b></div>
-          <div class="badge"><span class="label"><span class="dot"></span>profile</span><b>Sales</b></div>
-          <div class="badge"><span class="label"><span class="dot"></span>profile</span><b>CS</b></div>
-          <div class="badge"><span class="label"><span class="dot"></span>profile</span><b>Support</b></div>
-          <div class="badge"><span class="label"><span class="dot"></span>profile</span><b>Marketing</b></div>
-          <div class="badge"><span class="label"><span class="dot"></span>profile</span><b>Projects</b></div>
-          <div class="badge"><span class="label"><span class="dot"></span>profile</span><b>Intelligence</b></div>
-          <div class="badge"><span class="label"><span class="dot"></span>profile</span><b>Leadership</b></div>
+          <div class="badge"><img src="/assets/images/projects/agents/dev.webp" alt="" width="64" height="64" loading="lazy"><span class="label"><span class="dot"></span>profile</span><b>Engineering</b></div>
+          <div class="badge"><img src="/assets/images/projects/agents/vendas.webp" alt="" width="64" height="64" loading="lazy"><span class="label"><span class="dot"></span>profile</span><b>Sales</b></div>
+          <div class="badge"><img src="/assets/images/projects/agents/cs.webp" alt="" width="64" height="64" loading="lazy"><span class="label"><span class="dot"></span>profile</span><b>CS</b></div>
+          <div class="badge"><img src="/assets/images/projects/agents/suporte.webp" alt="" width="64" height="64" loading="lazy"><span class="label"><span class="dot"></span>profile</span><b>Support</b></div>
+          <div class="badge"><img src="/assets/images/projects/agents/marketing.webp" alt="" width="64" height="64" loading="lazy"><span class="label"><span class="dot"></span>profile</span><b>Marketing</b></div>
+          <div class="badge"><img src="/assets/images/projects/agents/projetos.webp" alt="" width="64" height="64" loading="lazy"><span class="label"><span class="dot"></span>profile</span><b>Projects</b></div>
+          <div class="badge"><img src="/assets/images/projects/agents/fas.webp" alt="" width="64" height="64" loading="lazy"><span class="label"><span class="dot"></span>profile</span><b>Key Account</b></div>
+          <div class="badge"><img src="/assets/images/projects/agents/liderancas.webp" alt="" width="64" height="64" loading="lazy"><span class="label"><span class="dot"></span>profile</span><b>Leadership</b></div>
         </div>
       </div>
 
