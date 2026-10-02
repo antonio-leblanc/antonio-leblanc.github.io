@@ -50,6 +50,5 @@
   "AGENTS_H3": "Production AI Agents",
   "AGENTS_BODY": "Nine AI agents in production on self-hosted Hermes.",
   "AGENTS_HREF": "/standard/projects/agents/",
-  "AGENTS_STATS": "<b>450+</b> PRs in &lt;4mo · <b>>83%</b> rate · <b>10</b> repos",
-  "ALT_HREF": "/"
+  "AGENTS_STATS": "<b>450+</b> PRs in &lt;4mo · <b>>83%</b> rate · <b>10</b> repos"
 }

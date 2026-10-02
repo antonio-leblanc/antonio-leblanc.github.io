@@ -52,7 +52,7 @@
   "AGENTS_STATS": "<b>450+</b> PRs em &lt;4m · <b>&gt;83%</b> de merge · <b>10</b> repos",
   "NAV_WORK": "Trabalho",
   "NAV_RECORD": "Trajetória",
-  "NAV_LANG": "<a href=\"/\">EN</a>",
+  "NAV_LANG": "<a class=\"lang-link\" href=\"/\">EN</a>",
   "PANTERA_H3": "Detecção, risco,<br />resposta, impacto",
   "FOREFIRE_H3": "Para onde<br />o fogo vai",
   "RECORD_H2": "Trajetória",
