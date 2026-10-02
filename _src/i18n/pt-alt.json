@@ -31,7 +31,7 @@
   "PANTERA_ALT": "Fumaça de incêndio florestal subindo sobre uma plantação, detectada e demarcada pela rede de câmeras do Pantera.",
   "PANTERA_TAG_LABEL": "Fumaça",
   "PANTERA_BODY": "A plataforma de IA contra incêndios florestais que lidero de ponta a ponta na 1.5°C — câmeras em campo, imagens de satélite e modelos de risco de incêndio numa operação só.",
-  "PANTERA_HREF": "/pt/projects/pantera/",
+  "PANTERA_HREF": "/pt/alt/projects/pantera/",
   "FOREFIRE_ALT": "Saída de simulação de propagação de incêndio do ForeFire sobre um terreno.",
   "FOREFIRE_BODY": "O simulador open-source de propagação de incêndio do CNRS, que mantenho fora do meu trabalho na 1.5°C.",
   "FOREFIRE_HREF": "/pt/projects/forefire/",

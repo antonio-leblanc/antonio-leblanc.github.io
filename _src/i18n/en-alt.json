@@ -31,7 +31,7 @@
   "PANTERA_ALT": "Wildfire smoke rising over farmland, detected and boxed by the Pantera camera network.",
   "PANTERA_TAG_LABEL": "Smoke",
   "PANTERA_BODY": "The wildfire AI platform I lead end to end at 1.5°C — field cameras, satellite imagery, and fire-risk models in one operation.",
-  "PANTERA_HREF": "/projects/pantera/",
+  "PANTERA_HREF": "/alt/projects/pantera/",
   "FOREFIRE_ALT": "ForeFire fire-spread simulation output over terrain.",
   "FOREFIRE_BODY": "The open-source fire-spread simulator I maintain outside the day job, built by CNRS.",
   "FOREFIRE_HREF": "/projects/forefire/",

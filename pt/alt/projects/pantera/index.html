@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pantera — Antonio Leblanc</title>
+<meta name="author" content="Antonio Leblanc">
+<meta name="description" content="Pantera é a plataforma de IA que lidero como cofundador e CTO na 1.5°C — 190 câmeras, 40M+ hectares, incluindo o Pantanal.">
+<link rel="canonical" href="https://antonioleblanc.com/pt/alt/projects/pantera/">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='50' dy='.35em' text-anchor='middle' font-size='78' font-weight='700' font-family='Helvetica,Arial,sans-serif' fill='%23f9a522'%3EA%3C/text%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://antonioleblanc.com/pt/alt/projects/pantera/">
+<meta property="og:title" content="Pantera — Antonio Leblanc">
+<meta property="og:description" content="Pantera é a plataforma de IA que lidero como cofundador e CTO na 1.5°C — 190 câmeras, 40M+ hectares, incluindo o Pantanal.">
+<meta property="og:image" content="https://antonioleblanc.com/assets/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Archivo:wdth,wght@62..125,300..700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0d0906">
+<link rel="stylesheet" href="/assets/css/ember-project.css">
+</head>
+<body>
+
+  <main id="top">
+    <div class="stage">
+      <header class="hero">
+        <canvas class="atmo" data-atmo aria-hidden="true"></canvas>
+        <nav class="top label">
+          <div class="side"><a href="/pt/alt/">← Antonio Leblanc</a></div>
+          <div class="sigil" aria-hidden="true">AL</div>
+          <div class="side right">
+            <a class="lang-link" href="/alt/projects/pantera/">EN</a>
+            <a href="#contact">Contato</a>
+          </div>
+        </nav>
+        <div class="inner">
+          <div class="label">01 — IA contra incêndios · 1.5°C</div>
+          <h1 class="display">Pantera</h1>
+          <p class="lede">A plataforma de gestão de incêndios florestais que lidero na 1.5°C, com o time de engenharia, ML e ciência ambiental — da análise de risco e detecção de fumaça à resposta e avaliação de impacto.</p>
+        </div>
+      </header>
+
+      <div class="gauges reveal" role="group" aria-label="Escala">
+        <div class="gauge"><div class="n">190</div><p>Câmeras na rede · 150 HaaS + 40 SaaS</p></div>
+        <div class="gauge"><div class="n">40<small>M+</small></div><p>Hectares sob monitoramento, incluindo o Pantanal e territórios indígenas</p></div>
+        <div class="gauge"><div class="n">98<small>%</small></div><p>Dos incêndios em produção que nossa IA vê antes de uma pessoa</p></div>
+      </div>
+
+      <div class="rows">
+        <div class="row reveal">
+          <div class="copy">
+            <div class="label">Saída real do sistema</div>
+            <h2>Fumaça demarcada<br />pelo modelo</h2>
+            <p>Um quadro de uma das 190 câmeras: fumaça subindo sobre uma plantação, sinalizada pelo modelo de detecção com a confiança daquela detecção.</p>
+            <p>Uma detecção é um candidato para validação, ainda não um alerta.</p>
+          </div>
+          <figure class="proof" data-proof>
+            <div class="head"><span><b>Pantera</b> — detecção de fumaça</span><span>Quadro sem filtro</span></div>
+            <div class="view">
+              <img src="/assets/images/projects/pantera-detection-field.webp" alt="Fumaça de incêndio florestal subindo sobre uma plantação, detectada e demarcada pela rede de câmeras do Pantera." width="644" height="366" loading="lazy">
+              <div class="box" style="left:9.63%;top:24.32%;width:48.91%;height:57.65%">
+                <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
+                <span class="tag">Fumaça 97,2%</span>
+              </div>
+            </div>
+            <figcaption class="foot"><span>Uma das 190 câmeras</span><span>40M+ hectares sob monitoramento</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="row flip reveal">
+          <div class="copy">
+            <div class="label">Imagem ao vivo da câmera</div>
+            <h2>O mesmo sistema,<br />ao vivo</h2>
+            <p>Imagem crua da rede de câmeras. O sistema percorre posições predefinidas, sinaliza uma possível fumaça e dá zoom para uma nova verificação. As detecções que cruzam o limiar de confiança seguem para revisão do nosso time 24/7.</p>
+          </div>
+          <figure class="proof" data-proof>
+            <div class="head"><span><b>Pantera</b> — imagem ao vivo da câmera</span><span>Mesmo pipeline de detecção</span></div>
+            <div class="view">
+              <video autoplay loop muted playsinline poster="/assets/images/projects/pantera-detection-field.webp" aria-label="Imagem ao vivo de uma torre de câmera do Pantera sobre uma plantação, com o próprio sistema de detecção marcando a fumaça em tempo real.">
+                <source src="/assets/videos/pantera-detection.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="foot"><span>Imagem crua, sem overlay adicionado</span><span>Caixa de detecção gerada pelo próprio sistema</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="row reveal">
+          <div class="copy">
+            <div class="label">A rede</div>
+            <h2>Hardware que operamos,<br />software por cima</h2>
+            <ul class="facts">
+              <li><b>150 HaaS</b><span>Hardware que operamos para proprietários de terra.</span></li>
+              <li><b>40 SaaS</b><span>Nosso software rodando sobre infraestrutura que já existe.</span></li>
+            </ul>
+          </div>
+          <figure class="proof">
+            <div class="head"><span><b>Pantera</b> — em campo</span><span>Foto sem filtro</span></div>
+            <div class="view">
+              <img src="/assets/images/pantera-field.webp" alt="Uma torre de câmera com antenas e parabólicas no alto de um morro, sob céu azul." width="1024" height="576" loading="lazy">
+            </div>
+            <figcaption class="foot"><span>Torre de câmera</span><span>190 na rede</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <section class="night center">
+      <div class="glyph">◇ ◇ ◇</div>
+      <div class="label" style="margin-bottom:22px">Decisão de modelo</div>
+      <h2 class="display reveal">Por que recall</h2>
+      <p class="lead reveal">Deixar uma fumaça real passar pode atrasar a resposta a um incêndio. Nessa aplicação, esse falso negativo custa mais do que um falso positivo. Por isso, priorizamos recall no modelo de detecção de fumaça: encontrar mais das ocorrências reais. Em produção, nossa IA vê <b>98%</b> dos incêndios antes de uma pessoa.</p>
+      <ul class="log reveal" style="text-align:left">
+        <li><span class="k">O custo da escolha</span><p>Priorizar recall pode aumentar os falsos positivos e o trabalho de revisão. Com precisão em torno de 80%, cerca de uma em cada cinco detecções é alarme falso. Aceitamos essa troca para reduzir as ocorrências de fumaça que passam despercebidas; alarmes falsos também têm custo operacional.</p></li>
+        <li><span class="k">Detecção → alerta</span><p>Uma detecção do modelo é um candidato para validação. As verificações da câmera e a revisão humana descritas acima fazem parte do caminho até um alerta confirmado. A precisão do modelo e a qualidade dos alertas que chegam ao cliente precisam ser avaliadas separadamente.</p></li>
+      </ul>
+    </section>
+
+    <section class="night center">
+      <div class="label" style="margin-bottom:22px">O que ele faz</div>
+      <h2 class="display reveal">Quatro frentes</h2>
+      <ul class="log reveal" style="text-align:left">
+        <li><span class="k">Detecção</span><p>A rede de câmeras e os modelos de visão computacional sinalizam indícios de fumaça para validação e resposta antecipada.</p></li>
+        <li><span class="k">Risco</span><p>Clima, combustível e terreno cruzados pra apontar onde um incêndio tem mais chance de começar ou se espalhar.</p></li>
+        <li><span class="k">Resposta</span><p>Apoiar a coordenação da resposta em campo depois da confirmação de uma detecção.</p></li>
+        <li><span class="k">Impacto</span><p>Medir o que mudou depois — área queimada, terra recuperada — a evidência de que vale a pena fazer isso.</p></li>
+      </ul>
+    </section>
+
+    <section class="night center">
+      <div class="label" style="margin-bottom:22px">Como é construído</div>
+      <h2 class="display reveal">Time de 8</h2>
+      <p class="lead reveal">Engenharia, geoespacial e ciência de dados — rodando em Agile e OKRs. Lidero a arquitetura de ponta a ponta como cofundador e CTO desde 2020.</p>
+      <div class="chips reveal">
+        <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">PostGIS</span><span class="chip">PyTorch</span><span class="chip">Angular</span>
+      </div>
+    </section>
+
+    <section class="night center" id="contact">
+      <div class="label" style="margin-bottom:22px">Contato</div>
+      <h2 class="display reveal">Fale comigo</h2>
+      <p class="lead">Se você está construindo algo em clima, govtech, monitoramento de incêndio ou geoespacial, me escreva.</p>
+      <div class="btns">
+        <a class="btn" href="https://github.com/antonio-leblanc" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/antonio-leblanc/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://umgrauemeio.com/" target="_blank" rel="noopener">umgrauemeio.com</a>
+        <a class="btn primary" href="mailto:contact@antonioleblanc.com">E-mail</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <div class="label" style="margin-bottom:12px;color:var(--ink-60)">01 — Pantera</div>
+      <div class="display">Antonio Leblanc</div>
+    </div>
+    <nav class="label">
+      <a href="/pt/alt/">Início</a>
+      <a href="/pt/projects/agents/">Agentes</a>
+      <a href="/pt/projects/forefire/">ForeFire</a>
+      <a class="lang-link" href="/alt/projects/pantera/">English</a>
+    </nav>
+  </footer>
+
+  <script src="/assets/js/ember-atmo.js"></script>
+  <script src="/assets/js/lang-redirect.js" defer></script>
+</body>
+</html>
