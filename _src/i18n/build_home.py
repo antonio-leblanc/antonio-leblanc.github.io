@@ -8,12 +8,12 @@ import json, os
 SP = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(SP))
 
-# home oficial e home alternativa (/alt/, noindex, fora do sitemap)
+# home oficial e edição standard (/standard/, noindex, fora do sitemap)
 TARGETS = [
     ('home.template.html', 'en.json', os.path.join(ROOT, 'index.html')),
     ('home.template.html', 'pt.json', os.path.join(ROOT, 'pt', 'index.html')),
-    ('home-alt.template.html', 'en-alt.json', os.path.join(ROOT, 'alt', 'index.html')),
-    ('home-alt.template.html', 'pt-alt.json', os.path.join(ROOT, 'pt', 'alt', 'index.html')),
+    ('home-standard.template.html', 'en-standard.json', os.path.join(ROOT, 'standard', 'index.html')),
+    ('home-standard.template.html', 'pt-standard.json', os.path.join(ROOT, 'pt', 'standard', 'index.html')),
 ]
 
 for tpl_file, data_file, out_path in TARGETS:
