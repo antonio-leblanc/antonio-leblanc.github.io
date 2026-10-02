@@ -144,9 +144,19 @@
     .art .edge.l { left: 0; border-right: 1px solid rgba(244, 235, 224, .1); }
     .art .edge.r { right: 0; border-left: 1px solid rgba(244, 235, 224, .1); }
     .art .edge::before { content: ""; position: absolute; top: 0; bottom: 0; left: 2px; width: 2px; background: linear-gradient(var(--gold), var(--flame), var(--smoke)); opacity: .7; }
-    .crew { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; padding: 18px 18px 18px 64px; position: absolute; inset: auto 0 0 0; z-index: 2; }
-    .crew img { width: 100%; height: auto; aspect-ratio: 1; display: block; border: 1px solid rgba(244, 235, 224, .25); filter: saturate(.6) sepia(.25); transition: filter .2s; }
-    .crew img:hover { filter: none; }
+    /* frota em anel: a pantera dithered do fundo é o control plane; oito áreas em volta, linhas só do centro */
+    .art.sq { aspect-ratio: 1; background: radial-gradient(circle at 50% 50%, rgba(255, 106, 26, .32), rgba(40, 10, 0, .35) 46%); }
+    .ring { position: absolute; top: 0; bottom: 0; left: 50%; aspect-ratio: 1; transform: translateX(-50%); z-index: 2; }
+    .ring svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .ring circle, .ring line { fill: none; stroke: rgba(244, 235, 224, .45); stroke-width: 1; vector-effect: non-scaling-stroke; }
+    .ring circle { stroke-dasharray: 2 5; }
+    .ring figure { position: absolute; width: 15%; left: calc(50% + 38% * sin(var(--i) * 45deg)); top: calc(50% - 38% * cos(var(--i) * 45deg)); transform: translate(-50%, -50%); }
+    .ring img { width: 100%; height: auto; aspect-ratio: 1; display: block; border: 1px solid rgba(244, 235, 224, .3); filter: saturate(.6) sepia(.25); transition: filter .2s; }
+    .ring figure:hover img { filter: none; }
+    .ring figure.core { width: 24%; left: 50%; top: 50%; }
+    .ring figure.core img { border: 1px solid var(--flame); box-shadow: 0 0 0 1px var(--flame), 0 0 40px rgba(255, 106, 26, .45); }
+    .ring figure.core figcaption { font-size: 11px; }
+    .ring figcaption { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 4px; white-space: nowrap; font-family: var(--mono); font-size: 9px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); text-shadow: 0 1px 3px rgba(0, 0, 0, .9); }
 
     /* night sections */
     section.night { padding: 120px var(--gutter) 30px; }
@@ -187,7 +197,8 @@
       .row, .row.flip { grid-template-columns: 1fr; padding: 0 var(--gutter); }
       .row.flip .copy { order: 0; }
       .art .edge { display: none; }
-      .crew { padding: 10px; grid-template-columns: repeat(4, 1fr); }
+      .ring figure { width: 17%; }
+      .ring figcaption { font-size: 8px; margin-top: 3px; }
       .log li { grid-template-columns: 1fr; gap: 6px; }
       .who { grid-template-columns: 1fr; }
       .hero { min-height: 86svh; }
@@ -253,18 +264,19 @@
             <p class="stat">@@AGENTS_STATS@@</p>
             <a class="btn go" href="@@AGENTS_HREF@@">@@READ_STORY@@</a>
           </div>
-          <div class="art">
+          <div class="art sq">
             <div class="edge l" data-rail></div>
-            <canvas data-src="/assets/images/projects/agents/core.webp" data-scale="5" aria-hidden="true"></canvas>
-            <div class="crew">
-              <img src="/assets/images/projects/agents/liderancas.webp" alt="" loading="lazy" />
-              <img src="/assets/images/projects/agents/core.webp" alt="" loading="lazy" />
-              <img src="/assets/images/projects/agents/dev.webp" alt="" loading="lazy" />
-              <img src="/assets/images/projects/agents/vendas.webp" alt="" loading="lazy" />
-              <img src="/assets/images/projects/agents/marketing.webp" alt="" loading="lazy" />
-              <img src="/assets/images/projects/agents/projetos.webp" alt="" loading="lazy" />
-              <img src="/assets/images/projects/agents/cs.webp" alt="" loading="lazy" />
-              <img src="/assets/images/projects/agents/suporte.webp" alt="" loading="lazy" />
+            <div class="ring">
+              <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="38"/><line x1="50" y1="50" x2="50.00" y2="12.00"/><line x1="50" y1="50" x2="76.87" y2="23.13"/><line x1="50" y1="50" x2="88.00" y2="50.00"/><line x1="50" y1="50" x2="76.87" y2="76.87"/><line x1="50" y1="50" x2="50.00" y2="88.00"/><line x1="50" y1="50" x2="23.13" y2="76.87"/><line x1="50" y1="50" x2="12.00" y2="50.00"/><line x1="50" y1="50" x2="23.13" y2="23.13"/></svg>
+              <figure class="core"><img src="/assets/images/projects/agents/core.webp" alt="" loading="lazy" /><figcaption>@@AG_CORE@@</figcaption></figure>
+              <figure style="--i:0"><img src="/assets/images/projects/agents/dev.webp" alt="" loading="lazy" /><figcaption>@@AG_ENG@@</figcaption></figure>
+              <figure style="--i:1"><img src="/assets/images/projects/agents/projetos.webp" alt="" loading="lazy" /><figcaption>@@AG_PROJ@@</figcaption></figure>
+              <figure style="--i:2"><img src="/assets/images/projects/agents/suporte.webp" alt="" loading="lazy" /><figcaption>@@AG_SUP@@</figcaption></figure>
+              <figure style="--i:3"><img src="/assets/images/projects/agents/cs.webp" alt="" loading="lazy" /><figcaption>@@AG_CS@@</figcaption></figure>
+              <figure style="--i:4"><img src="/assets/images/projects/agents/fas.webp" alt="" loading="lazy" /><figcaption>@@AG_KA@@</figcaption></figure>
+              <figure style="--i:5"><img src="/assets/images/projects/agents/vendas.webp" alt="" loading="lazy" /><figcaption>@@AG_SALES@@</figcaption></figure>
+              <figure style="--i:6"><img src="/assets/images/projects/agents/marketing.webp" alt="" loading="lazy" /><figcaption>@@AG_MKT@@</figcaption></figure>
+              <figure style="--i:7"><img src="/assets/images/projects/agents/liderancas.webp" alt="" loading="lazy" /><figcaption>@@AG_LEAD@@</figcaption></figure>
             </div>
           </div>
         </div>

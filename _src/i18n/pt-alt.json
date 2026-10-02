@@ -62,5 +62,14 @@
   "ABOUT_RUN_K": "Corrida",
   "ABOUT_MUSIC_K": "Música",
   "ABOUT_DATA_K": "Dados",
-  "STD_HREF": "/pt/"
+  "STD_HREF": "/pt/",
+  "AG_ENG": "Engenharia",
+  "AG_PROJ": "Projetos",
+  "AG_SUP": "Suporte",
+  "AG_CS": "CS",
+  "AG_KA": "Conta-chave",
+  "AG_SALES": "Vendas",
+  "AG_MKT": "Marketing",
+  "AG_LEAD": "Lideranças",
+  "AG_CORE": "Orquestrador"
 }

@@ -62,5 +62,14 @@
   "ABOUT_RUN_K": "Run",
   "ABOUT_MUSIC_K": "Music",
   "ABOUT_DATA_K": "Data",
-  "STD_HREF": "/"
+  "STD_HREF": "/",
+  "AG_ENG": "Engineering",
+  "AG_PROJ": "Projects",
+  "AG_SUP": "Support",
+  "AG_CS": "CS",
+  "AG_KA": "Key Account",
+  "AG_SALES": "Sales",
+  "AG_MKT": "Marketing",
+  "AG_LEAD": "Leadership",
+  "AG_CORE": "Orchestrator"
 }
