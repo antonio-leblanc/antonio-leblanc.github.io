@@ -51,23 +51,21 @@
     nav.top a:hover { opacity: 1; color: var(--gold); }
     .sigil { width: 34px; height: 34px; border: 1px solid var(--ink-60); display: grid; place-items: center; font-family: var(--mono); font-size: 11px; }
 
-    .telemetry {
-      margin: 26px auto 0; width: min(620px, calc(100% - 2 * var(--gutter)));
-      border: 1px solid var(--ember); background: var(--night-2);
-      display: flex; align-items: center; gap: 14px; padding: 9px 14px;
-      font-family: var(--mono); font-size: 11px; color: var(--ink-60); white-space: nowrap; overflow: hidden;
+    /* hero sits on the first dithered photo */
+    .hero { position: relative; min-height: min(92vh, 940px); display: flex; flex-direction: column; overflow: hidden; }
+    .hero canvas.cover { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+    .hero::after {
+      content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 46% at 50% 54%, rgba(13, 9, 6, .62), rgba(13, 9, 6, 0) 100%),
+        linear-gradient(180deg, rgba(13, 9, 6, .55) 0%, rgba(13, 9, 6, 0) 22%, rgba(13, 9, 6, 0) 70%, #a32d00 100%);
     }
-    .telemetry .live { width: 7px; height: 7px; background: var(--flame); flex: none; animation: pulse 1.6s ease-in-out infinite; }
-    .telemetry b { color: var(--ink); font-weight: 600; }
-    @keyframes pulse { 50% { opacity: .25; } }
-
-    /* hero */
-    .hero { text-align: center; padding: 60px var(--gutter) 70px; }
-    .hero .label { margin-bottom: 22px; color: var(--ink-60); }
+    .hero > :not(canvas) { position: relative; z-index: 2; }
+    .hero .inner { margin: auto 0; text-align: center; padding: 48px var(--gutter) 96px; text-shadow: 0 1px 18px rgba(13, 9, 6, .7); }
+    .hero .label { margin-bottom: 22px; color: var(--ink); }
     .hero h1 { font-size: clamp(60px, 13.2vw, 226px); }
-    .hero .lede { max-width: 640px; margin: 30px auto 0; font-family: var(--display); font-weight: 300; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.12; text-transform: none; }
+    .hero .lede { max-width: 640px; margin: 30px auto 0; font-family: var(--display); font-weight: 300; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.12; }
     .hero .lede b { font-weight: 500; color: var(--gold); }
-    .hero p.dek { max-width: 500px; margin: 18px auto 0; font-size: 13.5px; color: var(--ink-60); }
     .btns { display: flex; justify-content: center; gap: 4px; margin-top: 30px; flex-wrap: wrap; }
     .btn { font-weight: 600; font-size: 11.5px; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; padding: 9px 12px; background: #2a1d14; transition: background .15s; }
     .btn:hover { background: #3a281b; }
@@ -75,15 +73,13 @@
     .btn.primary:hover { background: var(--gold); }
 
     /* ember stage */
-    .stage { margin: 0 var(--gutter); background: linear-gradient(180deg, #b83600 0%, #8f2600 100%); position: relative; overflow: hidden; }
-    .stage canvas.cover { display: block; width: 100%; aspect-ratio: 16 / 6.4; image-rendering: pixelated; }
+    .stage { margin: clamp(10px, 1.4vw, 20px) var(--gutter) 0; background: linear-gradient(180deg, #b83600 0%, #8f2600 100%); position: relative; overflow: hidden; }
     .stage .tag {
-      position: absolute; top: 18px; left: 18px; font-family: var(--mono); font-size: 11px;
+      position: absolute; bottom: 18px; left: 18px; z-index: 2; font-family: var(--mono); font-size: 11px;
       background: rgba(13, 9, 6, .78); border: 1px solid var(--gold); padding: 5px 9px; color: var(--ink);
     }
     .stage .tag b { color: var(--gold); }
-    .stage h2.big { font-size: clamp(52px, 11.8vw, 184px); text-align: center; padding: 0 16px; margin-top: -3.5%; position: relative; }
-    .stage .sub { text-align: center; max-width: 560px; margin: 22px auto 0; padding: 0 16px; font-size: 13.5px; }
+    .stage .sub { text-align: center; max-width: 620px; margin: 56px auto 0; padding: 0 16px; font-size: 15px; }
 
     .gauges { display: grid; grid-template-columns: repeat(3, 1fr); margin: 64px clamp(16px, 5vw, 72px) 0; border-top: 1px solid rgba(244, 235, 224, .3); }
     .gauge { padding: 22px 18px 0 0; }
@@ -154,52 +150,41 @@
       .crew { padding: 10px; grid-template-columns: repeat(4, 1fr); }
       .log li { grid-template-columns: 1fr; gap: 6px; }
       .who { grid-template-columns: 1fr; }
-      .telemetry .opt { display: none; }
+      .hero { min-height: 86svh; }
     }
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; transition: none; }
-      .telemetry .live { animation: none; }
     }
   </style>
 </head>
 <body>
 
-  <nav class="top label">
-    <div class="side">
-      <a href="#work">Work</a>
-      <a href="#record">Record</a>
-    </div>
-    <div class="sigil" aria-hidden="true">AL</div>
-    <div class="side right">
-      <a href="/pt/">PT</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-
-  <div class="telemetry" aria-hidden="true">
-    <span class="live"></span>
-    <span><b>190</b> cameras</span>
-    <span><b>40M+</b> ha under watch</span>
-    <span class="opt"><b>9</b> agents · human oversight</span>
-    <span class="opt">Rio de Janeiro</span>
-  </div>
-
-  <header class="hero">
-    <div class="label">Rio de Janeiro • Climate, energy &amp; AI</div>
-    <h1 class="display">Antonio Leblanc</h1>
-    <p class="lede">Today I lead the AI platform <b>protecting 40 million hectares against wildfires.</b></p>
-    <p class="dek">Policy, community engagement, and ethics matter just as much as the model — that's where I want to keep spending my energy.</p>
-    <div class="btns">
-      <a class="btn" href="/assets/cv/antonio-leblanc-resume.pdf">Resume</a>
-      <a class="btn primary" href="#contact">Get in touch</a>
-    </div>
-  </header>
-
   <main>
     <div class="stage" id="work">
-      <canvas class="cover" id="art-cover" data-src="/assets/images/projects/pantera-detection-field.webp" aria-hidden="true"></canvas>
-      <span class="tag">Smoke <b>97.2%</b></span>
-      <h2 class="display big reveal">Watching 40M hectares</h2>
+      <header class="hero">
+        <canvas class="cover" id="art-cover" data-src="/assets/images/projects/pantera-detection-field.webp" aria-hidden="true"></canvas>
+        <nav class="top label">
+          <div class="side">
+            <a href="#work">Work</a>
+            <a href="#record">Record</a>
+          </div>
+          <div class="sigil" aria-hidden="true">AL</div>
+          <div class="side right">
+            <a href="/pt/">PT</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </nav>
+        <div class="inner">
+          <div class="label">Rio de Janeiro • Climate, energy &amp; AI</div>
+          <h1 class="display">Antonio Leblanc</h1>
+          <p class="lede">Today I lead the AI platform <b>protecting 40 million hectares against wildfires.</b></p>
+          <div class="btns">
+            <a class="btn" href="/assets/cv/antonio-leblanc-resume.pdf">Resume</a>
+            <a class="btn primary" href="#contact">Get in touch</a>
+          </div>
+        </div>
+        <span class="tag">Smoke <b>97.2%</b></span>
+      </header>
       <p class="sub reveal">In production, the AI spots 98% of fires before a person does. Tuned for recall, since a missed fire costs more than a false alarm.</p>
 
       <div class="gauges reveal">
