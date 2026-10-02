@@ -366,7 +366,7 @@
       </div>
 
       <div class="fleet-stats reveal">
-        <div><div class="n">450+</div><p>Merged PRs. &gt;83% human acceptance rate in &lt;4 months.</p></div>
+        <div><div class="n">450+</div><p>Merged PRs. &gt;83% acceptance rate in &lt;4 months.</p></div>
         <div><div class="n">310</div><p>Code &amp; infra PRs, in 10 production repos under a 2-PR limit.</p></div>
         <div><div class="n">15%</div><p>AWS cost cut through automated resource &amp; disk pruning.</p></div>
         <div><div class="n">&lt;$140</div><p>Token spend ceiling per profile, per month.</p></div>
@@ -406,7 +406,7 @@
         <p class="lede">Production repositories need more than a good model. These make delegation real.</p>
       </div>
       <ul class="guard reveal">
-        <li><span class="idx">01 // Human review</span><h3>No direct pushes, ever</h3><p>Capped at 2 open PRs per repo so the team never gets overwhelmed. The agent runs local tests, CI must pass green, and an engineer always reviews before merge.</p></li>
+        <li><span class="idx">01 // Human review</span><h3>No direct pushes, ever</h3><p>Capped at 2 open PRs per repo so the team never gets overwhelmed. The agent runs local tests, CI must pass green, and an engineer reviews and merges production code. Low-risk repos, like the marketing site, auto-merge on green CI.</p></li>
         <li><span class="idx">02 // Real scope</span><h3>Real problems, zero busywork</h3><p>No cosmetic churn or whitespace refactoring. The agent tackles actual backlog issues: async race conditions, component migrations, and end-to-end test suites.</p></li>
         <li><span class="idx">03 // Isolation</span><h3>Each agent in its own lane</h3><p>Each profile runs in an isolated sandbox with its own tools and procedures. The sales agent never touches source code, and context never bleeds across domains.</p></li>
         <li><span class="idx">04 // Cost &amp; safety</span><h3>Scripts before LLMs</h3><p>Anything that can be solved with Bash, Python, or Git never calls an LLM. This prevents hallucinations, runs quiet security checks, and keeps token spend strictly under $140/mo per profile.</p></li>
