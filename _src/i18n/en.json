@@ -2,8 +2,8 @@
   "LANG": "en",
   "URL": "https://antonioleblanc.com/",
   "TITLE": "Antonio Leblanc — CTO, wildfire AI & agentic systems in production",
-  "META_DESCRIPTION": "Antonio Leblanc — I lead the wildfire AI platform protecting 40M+ hectares at 1.5°C, where I'm co-founder and CTO.",
-  "OG_DESCRIPTION": "I lead the wildfire AI platform protecting 40M+ hectares at 1.5°C, where I'm co-founder and CTO.",
+  "META_DESCRIPTION": "Antonio Leblanc — I lead a wildfire AI platform protecting 40M+ hectares at 1.5°C, where I'm co-founder and CTO.",
+  "OG_DESCRIPTION": "I lead a wildfire AI platform protecting 40M+ hectares at 1.5°C, where I'm co-founder and CTO.",
   "JSONLD_KNOWS_ABOUT": [
     "Wildfire detection",
     "AI for climate resilience",
@@ -12,8 +12,8 @@
     "Agentic systems"
   ],
   "EYEBROW": "Rio de Janeiro · Climate, energy &amp; AI",
-  "H1_SOFT": "Today I lead the AI platform",
-  "H1_HARD": "protecting 40 million hectares against wildfires.",
+  "H1_SOFT": "Today I lead an AI platform",
+  "H1_HARD": "that protects 40 million hectares from wildfires.",
   "GAUGES_ARIA": "Scale",
   "GAUGE1_LABEL": "Cameras · 150 HaaS + 40 SaaS",
   "GAUGE2_LABEL": "Of fires in production that our AI spots before a person does",

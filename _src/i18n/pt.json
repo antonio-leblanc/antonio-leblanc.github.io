@@ -2,8 +2,8 @@
   "LANG": "pt-BR",
   "URL": "https://antonioleblanc.com/pt/",
   "TITLE": "Antonio Leblanc — CTO, IA contra incêndios e sistemas de agentes em produção",
-  "META_DESCRIPTION": "Antonio Leblanc — Lidero a plataforma de IA contra incêndios florestais que protege 40 milhões de hectares na 1.5°C, onde sou cofundador e CTO.",
-  "OG_DESCRIPTION": "Lidero a plataforma de IA contra incêndios florestais que protege 40 milhões de hectares na 1.5°C, onde sou cofundador e CTO.",
+  "META_DESCRIPTION": "Antonio Leblanc — Lidero uma plataforma de IA contra incêndios florestais que protege 40 milhões de hectares na 1.5°C, onde sou cofundador e CTO.",
+  "OG_DESCRIPTION": "Lidero uma plataforma de IA contra incêndios florestais que protege 40 milhões de hectares na 1.5°C, onde sou cofundador e CTO.",
   "JSONLD_KNOWS_ABOUT": [
     "Detecção de incêndios florestais",
     "IA para resiliência climática",
@@ -12,7 +12,7 @@
     "Sistemas de agentes"
   ],
   "EYEBROW": "Rio de Janeiro · Clima, energia e IA",
-  "H1_SOFT": "Hoje lidero a plataforma de IA",
+  "H1_SOFT": "Hoje lidero uma plataforma de IA",
   "H1_HARD": "que protege 40 milhões de hectares contra incêndios florestais.",
   "GAUGES_ARIA": "Escala",
   "GAUGE1_LABEL": "Câmeras · 150 HaaS + 40 SaaS",
