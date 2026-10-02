@@ -237,6 +237,15 @@
     });
   }, { threshold: .3, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.frame, .cards.auto, .telemetry-hud').forEach(function (el) { io.observe(el); });
+
+  console.log(
+    '%cYou opened the console. Good sign.
+' +
+    'Nine agents run on self-hosted Hermes here; engineers review the production merges.
+' +
+    'Want to argue about agent governance? contact@antonioleblanc.com',
+    'font-family: monospace; color: #b8a6ff'
+  );
 })();
 </script>
 <script src="/assets/js/lang-redirect.js" defer></script>
