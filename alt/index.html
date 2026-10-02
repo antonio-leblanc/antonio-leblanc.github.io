@@ -115,9 +115,8 @@
       background: rgba(13, 9, 6, .78); border: 1px solid var(--gold); padding: 5px 9px; color: var(--ink);
     }
     .stage .tag b { color: var(--gold); }
-    .stage .sub { text-align: center; max-width: 620px; margin: 56px auto 0; padding: 0 16px; font-size: 15px; }
 
-    .gauges { display: grid; grid-template-columns: repeat(3, 1fr); margin: 64px clamp(16px, 5vw, 72px) 0; border-top: 1px solid rgba(244, 235, 224, .3); }
+    .gauges { display: grid; grid-template-columns: repeat(3, 1fr); margin: 40px clamp(16px, 5vw, 72px) 0; border-top: 1px solid rgba(244, 235, 224, .3); }
     .gauge { padding: 22px 18px 0 0; }
     .gauge + .gauge { padding-left: 18px; border-left: 1px solid rgba(244, 235, 224, .3); }
     .gauge .n { font-family: var(--display); font-weight: 200; font-size: clamp(64px, 9vw, 136px); line-height: .9; }
@@ -222,11 +221,9 @@
         </div>
         <span class="tag">Smoke <b>97.2%</b></span>
       </header>
-      <p class="sub reveal">In production, the AI spots 98% of fires before a person does. Tuned for recall, since a missed fire costs more than a false alarm.</p>
-
       <div class="gauges reveal" role="group" aria-label="Scale">
         <div class="gauge"><div class="n">190</div><p>Cameras · 150 HaaS + 40 SaaS</p></div>
-        <div class="gauge"><div class="n">40<small>M+</small></div><p>Hectares under watch</p></div>
+        <div class="gauge"><div class="n">98<small>%</small></div><p>Of fires in production that our AI spots before a person does</p></div>
         <div class="gauge"><div class="n">9</div><p>AI agents in production · human oversight</p></div>
       </div>
 
