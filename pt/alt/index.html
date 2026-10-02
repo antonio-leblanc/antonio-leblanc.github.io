@@ -114,11 +114,6 @@
 
     /* ember stage */
     .stage { margin: clamp(10px, 1.4vw, 20px) var(--gutter) 0; background: linear-gradient(180deg, #b83600 0%, #8f2600 100%); position: relative; overflow: hidden; }
-    .stage .tag {
-      position: absolute; bottom: 18px; left: 18px; z-index: 2; font-family: var(--mono); font-size: 11px;
-      background: rgba(13, 9, 6, .78); border: 1px solid var(--gold); padding: 5px 9px; color: var(--ink);
-    }
-    .stage .tag b { color: var(--gold); }
 
     .gauges { display: grid; grid-template-columns: repeat(3, 1fr); margin: 40px clamp(16px, 5vw, 72px) 0; border-top: 1px solid rgba(244, 235, 224, .3); }
     .gauge { padding: 22px 18px 0 0; }
@@ -234,7 +229,6 @@
             <a class="btn primary" href="#contact">Fale comigo</a>
           </div>
         </div>
-        <span class="tag">Fumaça <b>97.2%</b></span>
       </header>
       <div class="gauges reveal" role="group" aria-label="Escala">
         <div class="gauge"><div class="n">190</div><p>Câmeras · 150 HaaS + 40 SaaS</p></div>
@@ -285,7 +279,7 @@
           <div class="copy">
             <div class="label">03 — ForeFire</div>
             <h3>Para onde<br />o fogo vai</h3>
-            <p>O simulador open-source de propagação de incêndio do CNRS, que mantenho fora do meu trabalho na 1.5°C.</p>
+            <p>O simulador open-source de propagação de incêndio do CNRS. Mantenho fora do meu trabalho na 1.5°C e sou coautor do <a href="https://doi.org/10.21105/joss.08680" target="_blank" rel="noopener" class="u">artigo no JOSS</a>.</p>
             <a class="btn go" href="/pt/alt/projects/forefire/">Ler a história completa ↗</a>
           </div>
           <div class="art">

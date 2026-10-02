@@ -114,11 +114,6 @@
 
     /* ember stage */
     .stage { margin: clamp(10px, 1.4vw, 20px) var(--gutter) 0; background: linear-gradient(180deg, #b83600 0%, #8f2600 100%); position: relative; overflow: hidden; }
-    .stage .tag {
-      position: absolute; bottom: 18px; left: 18px; z-index: 2; font-family: var(--mono); font-size: 11px;
-      background: rgba(13, 9, 6, .78); border: 1px solid var(--gold); padding: 5px 9px; color: var(--ink);
-    }
-    .stage .tag b { color: var(--gold); }
 
     .gauges { display: grid; grid-template-columns: repeat(3, 1fr); margin: 40px clamp(16px, 5vw, 72px) 0; border-top: 1px solid rgba(244, 235, 224, .3); }
     .gauge { padding: 22px 18px 0 0; }
@@ -234,7 +229,6 @@
             <a class="btn primary" href="#contact">@@CONTACT_H2@@</a>
           </div>
         </div>
-        <span class="tag">@@PANTERA_TAG_LABEL@@ <b>97.2%</b></span>
       </header>
       <div class="gauges reveal" role="group" aria-label="@@GAUGES_ARIA@@">
         <div class="gauge"><div class="n">190</div><p>@@GAUGE1_LABEL@@</p></div>
