@@ -145,17 +145,13 @@
     .art { position: relative; background: rgba(40, 10, 0, .35); border-top: 1px solid rgba(244, 235, 224, .14); border-bottom: 1px solid rgba(244, 235, 224, .14); aspect-ratio: 16 / 9; overflow: hidden; }
     a.art { display: block; text-decoration: none; }
     .art canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
-    .art .edge { position: absolute; top: 0; bottom: 0; width: 46px; z-index: 1; font-family: var(--mono); font-size: 7px; line-height: 9px; color: rgba(244, 235, 224, .35); overflow: hidden; word-break: break-all; padding: 6px 4px; }
-    .art .edge.l { left: 0; border-right: 1px solid rgba(244, 235, 224, .1); }
-    .art .edge.r { right: 0; border-left: 1px solid rgba(244, 235, 224, .1); }
-    .art .edge::before { content: ""; position: absolute; top: 0; bottom: 0; left: 2px; width: 2px; background: linear-gradient(var(--gold), var(--flame), var(--smoke)); opacity: .7; }
     /* frota em anel: a pantera dithered do fundo é o control plane; oito áreas em volta, linhas só do centro */
     .art.sq { aspect-ratio: 1; background: radial-gradient(circle at 50% 50%, rgba(var(--proj-rgb), .26), rgba(10, 18, 30, .4) 46%); }
     .ring { position: absolute; top: 0; bottom: 0; left: 50%; aspect-ratio: 1; transform: translateX(-50%); z-index: 2; }
     .ring svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
     .ring circle, .ring line { fill: none; stroke: rgba(244, 235, 224, .45); stroke-width: 1; vector-effect: non-scaling-stroke; }
     .ring circle { stroke-dasharray: 2 5; }
-    .ring figure { position: absolute; width: 15%; left: calc(50% + 38% * sin(var(--i) * 45deg)); top: calc(50% - 38% * cos(var(--i) * 45deg)); transform: translate(-50%, -50%); }
+    .ring figure { position: absolute; width: 15%; left: calc(50% + 38% * sin(var(--i) * 45deg)); top: calc(50% - 38% * cos(var(--i) * 45deg)); transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px))); will-change: transform; }
     .ring img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; display: block; border: 1px solid rgba(244, 235, 224, .3); filter: saturate(.6) sepia(.25); transition: filter .2s; }
     .ring figure:hover img { filter: none; }
     .ring figure.core { width: 24%; left: 50%; top: 50%; }
@@ -236,7 +232,6 @@
       .gauge + .gauge { padding-left: 0; border-left: 0; border-top: 1px solid rgba(244, 235, 224, .3); margin-top: 22px; }
       .row, .row.flip { grid-template-columns: 1fr; padding: 0 var(--gutter); }
       .row.flip .copy { order: 0; }
-      .art .edge { display: none; }
       .ring figure { width: 17%; }
       .ring figcaption { font-size: 8px; margin-top: 3px; }
       .tl-track { margin-top: 44px; }
@@ -300,7 +295,6 @@
           </div>
           <a class="art" href="/projects/pantera/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
             <canvas data-src="/assets/images/pantera-field.webp" data-pal="40 26 4, 120 80 10, 196 140 40, 236 196 110, 246 236 214" aria-hidden="true"></canvas>
-            <div class="edge r" data-rail></div>
           </a>
         </div>
 
@@ -308,12 +302,11 @@
           <div class="copy">
             <div class="label">02 — Agents</div>
             <h3>Nine agents,<br />one company</h3>
-            <p>AI agents in production on self-hosted Hermes, each supporting an area of the company with a person accountable for it.</p>
-            <p class="stat"><b>20</b> of ~60 people use it · <b>465</b> code PRs · <b>10</b> repos</p>
+            <p>AI agents plugged into the tools each area already uses: Zendesk, Pipedrive, GitHub, AWS. Each one has a person accountable for it, and nothing reaches production without someone saying so.</p>
+            <p class="stat"><b>1/3</b> of the company uses it · <b>520</b> PRs merged · <b>35</b> repos</p>
             <a class="btn go" href="/projects/agents/" target="_blank" rel="noopener">Read the full story ↗</a>
           </div>
           <a class="art sq" href="/projects/agents/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-            <div class="edge l" data-rail></div>
             <div class="ring">
               <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="38"/><line x1="50" y1="50" x2="50.00" y2="12.00"/><line x1="50" y1="50" x2="76.87" y2="23.13"/><line x1="50" y1="50" x2="88.00" y2="50.00"/><line x1="50" y1="50" x2="76.87" y2="76.87"/><line x1="50" y1="50" x2="50.00" y2="88.00"/><line x1="50" y1="50" x2="23.13" y2="76.87"/><line x1="50" y1="50" x2="12.00" y2="50.00"/><line x1="50" y1="50" x2="23.13" y2="23.13"/></svg>
               <figure class="core"><img src="/assets/images/projects/agents/core.webp" alt="" loading="lazy" /><figcaption>Orchestrator</figcaption></figure>
@@ -338,7 +331,6 @@
           </div>
           <a class="art" href="/projects/forefire/" target="_blank" rel="noopener" tabindex="-1">
             <canvas data-src="/assets/images/projects/forefire.webp" data-pal="8 26 12, 30 78 36, 84 136 64, 242 106 27, 246 220 160" role="img" aria-label="ForeFire fire-spread simulation output over terrain."></canvas>
-            <div class="edge r" data-rail></div>
           </a>
         </div>
       </div>
@@ -357,7 +349,7 @@
         <li><span class="y">2021</span><p>First deployment, at our largest client, won in a competitive process. I went into the field and up the towers.</p></li>
         <li><span class="y">2022</span><p>Started contributing to ForeFire, CNRS's open-source wildfire simulator, and we integrated its fire spread into Pantera.</p></li>
         <li><span class="y">2025</span><p>Became a ForeFire maintainer and co-author on its <a href="https://doi.org/10.21105/joss.08680" target="_blank" rel="noopener" class="u">JOSS paper</a>.</p></li>
-        <li><span class="y">2026</span><p>AI agents in production on <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener" class="u">Hermes</a>: 20 of ~60 people with access use them regularly.</p></li>
+        <li><span class="y">2026</span><p>AI agents in production on <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener" class="u">Hermes</a>, used by a third of the company.</p></li>
         <li class="now"><span class="y">Now</span><p>Open to senior technical leadership or senior individual contributor roles in climate, energy, govtech, and open source.</p></li>
       </ol>
       </div>
@@ -458,11 +450,35 @@
     draw();
     var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(draw, 150); });
 
-    var hex = '0123456789abcdef';
-    document.querySelectorAll('[data-rail]').forEach(function (el) {
-      var s = ''; for (var i = 0; i < 1400; i++) s += hex[(i * 7 + (i >> 3) * 13) % 16];
-      el.textContent = s;
-    });
+
+    var ring = document.querySelector('.ring');
+    if (ring && matchMedia('(hover: hover) and (pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var figs = [].slice.call(ring.querySelectorAll('figure:not(.core)')).map(function (f, k) {
+        return { el: f, ph: k * 2.4, sp: .00055 + (k % 3) * .00012, x: 0, y: 0 };
+      });
+      var mx = null, my = null, on = false, raf = 0;
+      ring.addEventListener('pointermove', function (e) { mx = e.clientX; my = e.clientY; });
+      ring.addEventListener('pointerleave', function () { mx = my = null; });
+      var tick = function (t) {
+        var R = ring.offsetWidth * .3;
+        figs.forEach(function (f) {
+          var tx = Math.sin(t * f.sp + f.ph) * 2.5, ty = Math.cos(t * f.sp * 1.3 + f.ph) * 2.5;
+          if (mx !== null) {
+            var b = f.el.getBoundingClientRect(), vx = b.left + b.width / 2 - f.x - mx, vy = b.top + b.height / 2 - f.y - my;
+            var d = Math.hypot(vx, vy) || 1, k = Math.max(0, 1 - d / R) * 8;
+            tx += vx / d * k; ty += vy / d * k;
+          }
+          f.x += (tx - f.x) * .08; f.y += (ty - f.y) * .08;
+          f.el.style.setProperty('--dx', f.x.toFixed(2) + 'px');
+          f.el.style.setProperty('--dy', f.y.toFixed(2) + 'px');
+        });
+        raf = on ? requestAnimationFrame(tick) : 0;
+      };
+      new IntersectionObserver(function (es) {
+        on = es[0].isIntersecting;
+        if (on && !raf) raf = requestAnimationFrame(tick);
+      }).observe(ring);
+    }
 
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
