@@ -134,6 +134,7 @@
     .row .stat b { color: var(--ink); }
     .row .go { display: inline-block; margin-top: 20px; }
     .art { position: relative; background: rgba(40, 10, 0, .35); border-top: 1px solid rgba(244, 235, 224, .14); border-bottom: 1px solid rgba(244, 235, 224, .14); aspect-ratio: 16 / 9; overflow: hidden; }
+    a.art { display: block; text-decoration: none; }
     .art canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
     .art .edge { position: absolute; top: 0; bottom: 0; width: 46px; z-index: 1; font-family: var(--mono); font-size: 7px; line-height: 9px; color: rgba(244, 235, 224, .35); overflow: hidden; word-break: break-all; padding: 6px 4px; }
     .art .edge.l { left: 0; border-right: 1px solid rgba(244, 235, 224, .1); }
@@ -184,6 +185,17 @@
     .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.in { opacity: 1; transform: none; }
 
+    .contact-body { max-width: 520px; margin: 26px auto 0; font-size: 13.5px; }
+
+    /* desktop: corpo dos blocos um pouco maior */
+    @media (min-width: 821px) {
+      .gauge p { font-size: 14px; }
+      .row p { font-size: 15.5px; max-width: 420px; }
+      .row .stat { font-size: 12.5px; }
+      .log p { font-size: 16px; }
+      .who li { font-size: 16px; }
+      .contact-body { max-width: 600px; font-size: 17px; }
+    }
     @media (max-width: 820px) {
       nav.top { grid-template-columns: 1fr auto; }
       nav.top .side.right { display: none; }
@@ -242,12 +254,12 @@
             <div class="label">01 — Pantera</div>
             <h3>Detection, risk,<br />response, impact</h3>
             <p>The wildfire AI platform I lead end to end at 1.5°C — field cameras, satellite imagery, and fire-risk models in one operation.</p>
-            <a class="btn go" href="/alt/projects/pantera/">Read the full story ↗</a>
+            <a class="btn go" href="/alt/projects/pantera/" target="_blank" rel="noopener">Read the full story ↗</a>
           </div>
-          <div class="art">
+          <a class="art" href="/alt/projects/pantera/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
             <canvas data-src="/assets/images/pantera-field.webp" aria-hidden="true"></canvas>
             <div class="edge r" data-rail></div>
-          </div>
+          </a>
         </div>
 
         <div class="row flip reveal">
@@ -256,9 +268,9 @@
             <h3>Nine agents,<br />one company</h3>
             <p>AI agents in production on self-hosted Hermes, each supporting an area of the company with a person accountable for it.</p>
             <p class="stat"><b>450+</b> PRs in &lt;4mo · <b>&gt;83%</b> merge rate · <b>10</b> repos</p>
-            <a class="btn go" href="/alt/projects/agents/">Read the full story ↗</a>
+            <a class="btn go" href="/alt/projects/agents/" target="_blank" rel="noopener">Read the full story ↗</a>
           </div>
-          <div class="art sq">
+          <a class="art sq" href="/alt/projects/agents/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
             <div class="edge l" data-rail></div>
             <div class="ring">
               <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="38"/><line x1="50" y1="50" x2="50.00" y2="12.00"/><line x1="50" y1="50" x2="76.87" y2="23.13"/><line x1="50" y1="50" x2="88.00" y2="50.00"/><line x1="50" y1="50" x2="76.87" y2="76.87"/><line x1="50" y1="50" x2="50.00" y2="88.00"/><line x1="50" y1="50" x2="23.13" y2="76.87"/><line x1="50" y1="50" x2="12.00" y2="50.00"/><line x1="50" y1="50" x2="23.13" y2="23.13"/></svg>
@@ -272,7 +284,7 @@
               <figure style="--i:6"><img src="/assets/images/projects/agents/marketing.webp" alt="" loading="lazy" /><figcaption>Marketing</figcaption></figure>
               <figure style="--i:7"><img src="/assets/images/projects/agents/liderancas.webp" alt="" loading="lazy" /><figcaption>Leadership</figcaption></figure>
             </div>
-          </div>
+          </a>
         </div>
 
         <div class="row reveal">
@@ -280,12 +292,12 @@
             <div class="label">03 — ForeFire</div>
             <h3>Where the fire<br />goes next</h3>
             <p>The open-source fire-spread simulator built by CNRS. I maintain it outside the day job and co-authored its <a href="https://doi.org/10.21105/joss.08680" target="_blank" rel="noopener" class="u">JOSS paper</a>.</p>
-            <a class="btn go" href="/alt/projects/forefire/">Read the full story ↗</a>
+            <a class="btn go" href="/alt/projects/forefire/" target="_blank" rel="noopener">Read the full story ↗</a>
           </div>
-          <div class="art">
+          <a class="art" href="/alt/projects/forefire/" target="_blank" rel="noopener" tabindex="-1">
             <canvas data-src="/assets/images/projects/forefire.webp" role="img" aria-label="ForeFire fire-spread simulation output over terrain."></canvas>
             <div class="edge r" data-rail></div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -326,7 +338,7 @@
     <section class="night center" id="contact">
       <div class="label" style="margin-bottom:22px">Contact</div>
       <h2 class="display reveal">Get in touch</h2>
-      <p style="max-width:520px;margin:26px auto 0;font-size:13.5px">If you're building something ambitious in AI, climate, or public-interest tech, write to me. I'd like to hear about it.</p>
+      <p class="contact-body">If you're building something ambitious in AI, climate, or public-interest tech, write to me. I'd like to hear about it.</p>
       <div class="btns">
         <a class="btn" href="https://github.com/antonio-leblanc" target="_blank" rel="noopener">GitHub</a>
         <a class="btn" href="https://www.linkedin.com/in/antonio-leblanc/" target="_blank" rel="noopener">LinkedIn</a>
