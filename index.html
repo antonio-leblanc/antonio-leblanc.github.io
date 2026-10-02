@@ -137,7 +137,7 @@
     .row .stat { font-family: var(--mono); font-size: 11.5px; margin-top: 16px; color: rgba(244, 235, 224, .8); }
     .row .stat b { color: var(--ink); }
     .row .go { display: inline-block; margin-top: 20px; }
-    /* cada card antecipa a cor da página do projeto, só como acento: quadrado do rótulo, fio da imagem, paleta do dither e hover do botão */
+    /* cada card antecipa a cor da página do projeto, só como acento: quadrado do rótulo, fio da imagem e hover do botão */
     .row.p-pantera { --proj: #e3a83c; --proj-rgb: 227, 168, 60; }
     .row.p-agents { --proj: #8fb2d6; --proj-rgb: 143, 178, 214; }
     .row.p-forefire { --proj: #c8dc7a; --proj-rgb: 200, 220, 122; }
@@ -147,6 +147,7 @@
     .art { position: relative; background: rgba(40, 10, 0, .35); border-top: 1px solid rgba(244, 235, 224, .14); border-bottom: 1px solid rgba(244, 235, 224, .14); aspect-ratio: 16 / 9; overflow: hidden; }
     a.art { display: block; text-decoration: none; }
     .art canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+    .art > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
     .art .edge { position: absolute; top: 0; bottom: 0; width: 46px; z-index: 1; font-family: var(--mono); font-size: 7px; line-height: 9px; color: rgba(244, 235, 224, .35); overflow: hidden; word-break: break-all; padding: 6px 4px; }
     .art .edge.l { left: 0; border-right: 1px solid rgba(244, 235, 224, .1); }
     .art .edge.r { right: 0; border-left: 1px solid rgba(244, 235, 224, .1); }
@@ -300,9 +301,8 @@
             <p>The wildfire AI platform I lead end to end at 1.5°C — field cameras, satellite imagery, and fire-risk models in one operation.</p>
             <a class="btn go" href="/projects/pantera/" target="_blank" rel="noopener">Read the full story ↗</a>
           </div>
-          <a class="art" href="/projects/pantera/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-            <canvas data-src="/assets/images/pantera-field.webp" data-pal="40 26 4, 120 80 10, 196 140 40, 236 196 110, 246 236 214" aria-hidden="true"></canvas>
-            <div class="edge r" data-rail></div>
+          <a class="art" href="/projects/pantera/" target="_blank" rel="noopener" tabindex="-1">
+            <img src="/assets/images/projects/pantera-detection-card.webp" alt="A Pantera camera spots smoke on the horizon and boxes it, with 95.5% confidence for that detection." width="794" height="446" loading="lazy" />
           </a>
         </div>
 
@@ -339,8 +339,7 @@
             <a class="btn go" href="/projects/forefire/" target="_blank" rel="noopener">Read the full story ↗</a>
           </div>
           <a class="art" href="/projects/forefire/" target="_blank" rel="noopener" tabindex="-1">
-            <canvas data-src="/assets/images/projects/forefire.webp" data-pal="8 26 12, 30 78 36, 84 136 64, 242 106 27, 246 220 160" role="img" aria-label="ForeFire fire-spread simulation output over terrain."></canvas>
-            <div class="edge r" data-rail></div>
+            <img src="/assets/images/projects/forefire-spread.webp" alt="ForeFire spread forecast rendered inside Pantera: the projected burn area over real terrain, crossing roads." width="1000" height="562" loading="lazy" />
           </a>
         </div>
       </div>
@@ -443,15 +442,14 @@
         // cover-fit the photo
         var s = Math.max(w / im.width, h / im.height), dw = im.width * s, dh = im.height * s;
         ctx.drawImage(im, (w - dw) / 2, (h - dh) / 2, dw, dh);
-        var pal = canvas.dataset.pal ? canvas.dataset.pal.split(',').map(function (c) { return c.trim().split(/\s+/).map(Number); }) : PAL;
-        var img = ctx.getImageData(0, 0, w, h), d = img.data, n = pal.length - 1;
+        var img = ctx.getImageData(0, 0, w, h), d = img.data, n = PAL.length - 1;
         for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
           var i = (y * w + x) * 4;
           var v = (.299 * d[i] + .587 * d[i + 1] + .114 * d[i + 2]) / 255;
           v = Math.pow(v, .9);
           var t = (BAYER[(y & 7) * 8 + (x & 7)] + .5) / 64;
           var q = Math.min(n, Math.max(0, Math.floor(v * n + t)));
-          var c = pal[q]; d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2]; d[i + 3] = 255;
+          var c = PAL[q]; d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2]; d[i + 3] = 255;
         }
         ctx.putImageData(img, 0, 0);
       });
