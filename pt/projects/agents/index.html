@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Agentes em produção — Antonio Leblanc</title>
 <meta name="author" content="Antonio Leblanc">
-<meta name="description" content="Nove agentes de IA em produção no Hermes self-hosted, atendendo times reais com revisão humana.">
+<meta name="description" content="Nove agentes de IA em produção no Hermes self-hosted, plugados nas ferramentas que a empresa já usa. Um terço da empresa usa.">
 <link rel="canonical" href="https://antonioleblanc.com/pt/projects/agents/">
 <link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/agents/">
 <link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/agents/">
@@ -17,7 +17,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://antonioleblanc.com/pt/projects/agents/">
 <meta property="og:title" content="Agentes em produção — Antonio Leblanc">
-<meta property="og:description" content="Nove agentes de IA em produção no Hermes self-hosted, atendendo times reais com revisão humana.">
+<meta property="og:description" content="Nove agentes de IA em produção no Hermes self-hosted, plugados nas ferramentas que a empresa já usa. Um terço da empresa usa.">
 <meta property="og:image" content="https://antonioleblanc.com/assets/images/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -57,7 +57,7 @@
       <section class="fleet center" id="fleet">
         <div class="label" style="margin-bottom:22px">A frota</div>
         <h2 class="display reveal">Uma empresa,<br />nove agentes</h2>
-        <p class="sub reveal">Um control plane e oito perfis de área, cada um atendendo um time real com um responsável humano. As pessoas conversam com eles, e são pessoas que revisam o que eles entregam.</p>
+        <p class="sub reveal">Um control plane e oito perfis de área, cada um atendendo um time real com um responsável humano. As pessoas conversam com eles, e nada é mergeado sem uma pessoa mandar.</p>
 
         <div class="org" role="group" aria-label="Organograma da frota">
           <div class="root"><div class="badge"><img src="/assets/images/projects/agents/liderancas.webp" alt="" width="239" height="240" loading="lazy"><span class="label"><span class="dot"></span>lideranças e conselho</span><b>Lideranças</b><span class="acc">6 com acesso</span></div></div>
@@ -76,10 +76,10 @@
         </div>
 
         <div class="proof" role="group" aria-label="Números da frota">
-          <div class="head"><span><b>Frota</b> — em produção</span><span>Sessões da frota e API do GitHub</span></div>
+          <div class="head"><span><b>Frota</b> — em produção</span><span>Ativo: 3+ dias no mês · API do GitHub</span></div>
           <div class="nums">
-            <div><div class="n">20</div><p>De ~60 pessoas com acesso usam em 3 dias ou mais no mês. Em junho eram 6.</p></div>
-            <div><div class="n">465</div><p>PRs de código mergeadas entre maio e setembro de 2026, em 10 repositórios de produção, com limite de 2 PRs abertas.</p></div>
+            <div><div class="n">1/3</div><p>Da empresa usa com frequência. A maioria fora da engenharia.</p></div>
+            <div><div class="n">520</div><p>PRs mergeadas em cinco meses, em 35 repositórios, do código do produto ao site da empresa.</p></div>
             <div><div class="n">15%</div><p>De corte no custo da AWS com limpeza automática de recursos e disco.</p></div>
             <div><div class="n">&lt;$140</div><p>Teto de gasto com tokens por perfil, por mês.</p></div>
           </div>
@@ -87,32 +87,44 @@
       </section>
     </div>
 
+    <section class="night center" id="wired">
+      <div class="label" style="margin-bottom:22px">Onde está plugada</div>
+      <h2 class="display reveal">Dentro das ferramentas</h2>
+      <p class="lead reveal">Cada agente trabalha no software que o time dele já usa. Ninguém troca de ferramenta pra usar.</p>
+      <div class="wired reveal">
+        <div><span class="idx">Suporte</span><span class="tools">Zendesk · Zabbix</span><p>Faz a triagem dos chamados a cada 10 minutos, em horário comercial.</p></div>
+        <div><span class="idx">Vendas</span><span class="tools">Pipedrive</span><p>Briefing do pipeline toda manhã e a linha do tempo de cada conta.</p></div>
+        <div><span class="idx">CS</span><span class="tools">Amplitude · Pipedrive</span><p>O CS é dono do produto, então o agente dele lê como cada cliente usa o Pantera.</p></div>
+        <div><span class="idx">Marketing</span><span class="tools">Site da empresa · GA4 · Pipedrive</span><p>Publica no site, mede lead no GA4 e manda cada lead pro vendedor certo.</p></div>
+        <div><span class="idx">Engenharia</span><span class="tools">GitHub · AWS</span><p>Transforma issue em PR, faz triagem do CI e vigia o custo de nuvem.</p></div>
+        <div><span class="idx">Orquestrador</span><span class="tools">Teams · SharePoint</span><p>Alertas, usuários da frota e os briefings que cruzam as áreas.</p></div>
+      </div>
+      <p class="note">48 rotinas agendadas na frota</p>
+    </section>
+
     <section class="night center">
-      <div class="label" style="margin-bottom:22px">Auditoria da frota · mai–set 2026</div>
-      <h2 class="display reveal">Quem usa</h2>
+      <div class="label" style="margin-bottom:22px">Um caso</div>
+      <h2 class="display reveal">O marketing publica</h2>
+      <p class="lead reveal">O marketing mexe sozinho no site da empresa pelo agente dele, inclusive no backend. A gente revisa.</p>
       <div class="work">
+        <div class="proof dist" role="group" aria-label="Pull requests do marketing">
+          <div class="head"><span><b>Site da empresa</b> · PRs reais</span><span>Set 2026</span></div>
+          <div class="body">
+            <ol class="log">
+              <li><em>11 set</em><span>Evento de lead no GA4 na página de contato</span></li>
+              <li><em>22 set</em><span>Lead de evento entra no Pipedrive já com o vendedor da região</span></li>
+              <li><em>28 set</em><span>Origem do visitante e atribuição orgânica/social no funil</span></li>
+            </ol>
+          </div>
+          <div class="foot"><span>Pedido no chat pelo marketing</span><span>Front-end e backend</span></div>
+        </div>
         <figure class="proof" data-proof>
           <div class="head"><span><b>pantera-bot</b> — agente de engenharia</span><span>Atividade real no GitHub</span></div>
           <div class="view native">
             <img src="/assets/images/projects/agents-pantera-bot-pr.webp" alt="Feed de atividade do GitHub do agente de engenharia pantera-bot, mostrando um pull request aberto por ele que recebeu 17 comentários de revisão do time." width="1888" height="984" loading="lazy">
           </div>
-          <figcaption class="foot"><span>465 PRs de código, revisadas por um engenheiro</span><span>10 repositórios · limite de 2 PRs · 0 pushes diretos</span></figcaption>
+          <figcaption class="foot"><span>520 PRs, nenhuma mergeada sem uma pessoa mandar</span><span>35 repositórios · limite de 2 PRs · 0 pushes diretos</span></figcaption>
         </figure>
-        <div class="proof dist" role="group" aria-label="Adoção da frota">
-          <div class="head"><span><b>Adoção</b> · pessoas que usam em 3+ dias no mês</span><span>de ~60</span></div>
-          <div class="body">
-            <div class="adopt" role="img" aria-label="Usuários recorrentes por mês, de cerca de 60 pessoas com acesso: 6 em junho, 19 em julho, 17 em agosto, 20 em setembro">
-              <div><em>Jun</em><i><span style="width:10%"></span></i><b>6</b></div>
-              <div><em>Jul</em><i><span style="width:31.7%"></span></i><b>19</b></div>
-              <div><em>Ago</em><i><span style="width:28.3%"></span></i><b>17</b></div>
-              <div><em>Set</em><i><span style="width:33.3%"></span></i><b>20</b></div>
-            </div>
-            <div class="legend3">
-              <div><b>Eu opero a frota, o time usa</b><span>18 dos 20 de setembro são de fora da liderança técnica.</span></div>
-            </div>
-          </div>
-          <div class="foot"><span>Sessões da frota, sem cron</span><span>Jun–set 2026</span></div>
-        </div>
       </div>
     </section>
 
@@ -122,8 +134,8 @@
       <h2 class="display reveal">Salvaguardas</h2>
       <p class="lead reveal">Repositórios de produção precisam de mais que um bom modelo. É isso que torna a delegação real.</p>
       <ul class="guard reveal">
-        <li><span class="idx">01 // Revisão humana</span><h3>Nenhum push direto, nunca</h3><p>No máximo 2 PRs abertas por repositório, pra não afogar o time. O agente roda os testes locais, o CI precisa passar verde e um engenheiro revisa e faz o merge do código de produção. Repositórios de baixo risco, como o site institucional, fazem auto-merge com o CI verde.</p></li>
-        <li><span class="idx">02 // Escopo real</span><h3>Problemas reais, zero perfumaria</h3><p>Nada de mudança cosmética ou refatoração de espaçamento. O agente pega issues reais do backlog: condições de corrida assíncronas, migração de componentes e suítes de testes ponta a ponta.</p></li>
+        <li><span class="idx">01 // Uma pessoa manda</span><h3>Nada entra sozinho</h3><p>Nenhum push direto e no máximo 2 PRs abertas por repositório. No código de produção, um engenheiro revisa e faz o merge. Nas ferramentas internas, como o site da empresa, o time dono dá o ok no chat e o agente faz o merge.</p></li>
+        <li><span class="idx">02 // Escopo real</span><h3>Trabalho do backlog</h3><p>Issues que o time abriu de verdade: condições de corrida assíncronas, migração de componentes, suítes de testes ponta a ponta, roteamento de lead para o CRM.</p></li>
         <li><span class="idx">03 // Isolamento</span><h3>Cada agente na sua área</h3><p>Cada perfil roda num sandbox isolado, com ferramentas e procedimentos próprios. O agente de vendas nunca encosta no código-fonte, e o contexto de uma área nunca vaza para outra.</p></li>
         <li><span class="idx">04 // Custo e segurança</span><h3>Scripts antes de LLM</h3><p>O que dá pra resolver com Bash, Python ou Git nunca chama um LLM. Isso evita alucinações, roda checagens de segurança em silêncio e mantém o gasto de tokens estritamente abaixo de $140 por mês por perfil.</p></li>
       </ul>
@@ -136,7 +148,7 @@
         <p class="lead reveal">De ponta a ponta — o runtime do agente, o estado em SQLite e cada integração rodam em infraestrutura própria, desacoplados dos provedores de inferência. Trocar o modelo é mudar uma configuração; as salvaguardas e o processo de revisão continuam iguais.</p>
       </div>
       <div class="chips reveal">
-        <span class="chip">Hermes Agent Runtime</span><span class="chip">Python</span><span class="chip">Playwright</span><span class="chip">SQLite</span><span class="chip">GitHub CLI &amp; API</span><span class="chip">Linux / Systemd</span><span class="chip">Bash</span><span class="chip">AWS</span>
+        <span class="chip">Hermes Agent Runtime</span><span class="chip">Telegram</span><span class="chip">Python</span><span class="chip">Playwright</span><span class="chip">SQLite</span><span class="chip">GitHub CLI &amp; API</span><span class="chip">Linux / Systemd</span><span class="chip">Bash</span><span class="chip">AWS</span>
       </div>
     </section>
 

@@ -1,4 +1,4 @@
-/* Página de agentes em /alt/: organograma da frota, números, distribuição das PRs e guardrails.
+/* Página de agentes em /alt/: organograma da frota, números, integrações por área, caso do marketing e guardrails.
    Carregado depois do ember-project.css; usa os mesmos tokens. Ilustrações em cor natural, prova sem filtro. */
 .hero h1 { font-size: clamp(64px, 12.5vw, 210px); }
 .hero .lede + .lede { margin-top: 14px; font-size: clamp(16px, 1.5vw, 19px); font-family: var(--body); font-weight: 400; line-height: 1.45; }
@@ -34,20 +34,21 @@
 .nums .n { font-family: var(--display); font-weight: 200; font-size: clamp(48px, 6vw, 88px); line-height: .9; }
 .nums p { font-size: 12.5px; margin-top: 10px; max-width: 230px; color: var(--ink-60); }
 
-/* onde foi o trabalho: print da PR + distribuição */
+/* caso do marketing: lista de PRs + print do GitHub */
 .work { max-width: 1180px; margin: 56px auto 0; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; text-align: left; }
 .dist .body { padding: 20px 16px 18px; }
 .dist .head span:last-child { white-space: nowrap; }
-.adopt { display: grid; gap: 10px; font-family: var(--mono); font-size: 12px; }
-.adopt div { display: grid; grid-template-columns: 32px minmax(0, 1fr) 24px; gap: 10px; align-items: center; }
-.adopt em { font-style: normal; color: var(--ink-60); }
-.adopt i { display: block; height: 14px; border: 1px solid var(--ink-20); }
-.adopt i span { display: block; height: 100%; background: var(--flame); }
-.adopt b { font-weight: 600; text-align: right; }
-.legend3 { display: grid; gap: 14px; margin-top: 20px; font-size: 12.5px; }
-.legend3 b { display: block; font-weight: 600; margin-bottom: 3px; }
-.legend3 i { display: inline-block; width: 8px; height: 8px; margin-right: 8px; }
-.legend3 span { color: var(--ink-60); }
+.log { list-style: none; display: grid; gap: 14px; }
+.log li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 12px; align-items: baseline; font-size: 14px; }
+.log em { font-style: normal; font-family: var(--mono); font-size: 11px; color: var(--flame); text-transform: uppercase; }
+
+/* onde está plugada: uma célula por área */
+.wired { max-width: 1180px; margin: 50px auto 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink-20); border-left: 1px solid var(--ink-20); text-align: left; }
+.wired > div { padding: 22px 20px 24px; border-right: 1px solid var(--ink-20); border-bottom: 1px solid var(--ink-20); }
+.wired .idx { display: block; font-family: var(--display); font-weight: 300; font-size: clamp(24px, 2.6vw, 34px); text-transform: uppercase; line-height: 1; }
+.wired .tools { display: block; margin-top: 10px; font-family: var(--mono); font-size: 11px; color: var(--gold); text-transform: uppercase; letter-spacing: .06em; }
+.wired p { font-size: 14px; color: var(--ink-60); margin-top: 12px; }
+.note { margin-top: 18px; font-family: var(--mono); font-size: 11px; color: var(--ink-60); text-transform: uppercase; letter-spacing: .06em; }
 
 /* guardrails */
 .guard { max-width: 1180px; margin: 50px auto 0; border-top: 1px solid var(--ink-20); text-align: left; }
@@ -72,6 +73,7 @@ section.night.split { display: grid; grid-template-columns: minmax(0, 1.25fr) mi
   .nums > div:nth-child(3) { border-left: 0; }
   .nums > div:nth-child(n+3) { border-top: 1px solid var(--ink-20); }
   .work { grid-template-columns: 1fr; }
+  .wired { grid-template-columns: 1fr; }
   .guard li { grid-template-columns: 1fr; gap: 8px; }
 }
 

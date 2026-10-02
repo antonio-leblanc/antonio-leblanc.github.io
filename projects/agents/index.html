@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Production Agents — Antonio Leblanc</title>
 <meta name="author" content="Antonio Leblanc">
-<meta name="description" content="Nine AI agents in production on self-hosted Hermes, serving real teams with human review.">
+<meta name="description" content="Nine AI agents in production on self-hosted Hermes, plugged into the tools a company already uses. A third of the company uses them.">
 <link rel="canonical" href="https://antonioleblanc.com/projects/agents/">
 <link rel="alternate" hreflang="en" href="https://antonioleblanc.com/projects/agents/">
 <link rel="alternate" hreflang="pt-br" href="https://antonioleblanc.com/pt/projects/agents/">
@@ -17,7 +17,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://antonioleblanc.com/projects/agents/">
 <meta property="og:title" content="Production Agents — Antonio Leblanc">
-<meta property="og:description" content="Nine AI agents in production on self-hosted Hermes, serving real teams with human review.">
+<meta property="og:description" content="Nine AI agents in production on self-hosted Hermes, plugged into the tools a company already uses. A third of the company uses them.">
 <meta property="og:image" content="https://antonioleblanc.com/assets/images/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -57,7 +57,7 @@
       <section class="fleet center" id="fleet">
         <div class="label" style="margin-bottom:22px">The fleet</div>
         <h2 class="display reveal">One company,<br />nine agents</h2>
-        <p class="sub reveal">One control plane and eight department profiles, each one serving a real team with a human owner. People talk to them, and people review what they ship.</p>
+        <p class="sub reveal">One control plane and eight department profiles, each one serving a real team with a human owner. People talk to them, and nothing merges without a person saying so.</p>
 
         <div class="org" role="group" aria-label="Fleet org chart">
           <div class="root"><div class="badge"><img src="/assets/images/projects/agents/liderancas.webp" alt="" width="239" height="240" loading="lazy"><span class="label"><span class="dot"></span>leadership &amp; advisor</span><b>Leadership</b><span class="acc">6 with access</span></div></div>
@@ -76,10 +76,10 @@
         </div>
 
         <div class="proof" role="group" aria-label="Fleet numbers">
-          <div class="head"><span><b>Fleet</b> — in production</span><span>Fleet sessions and GitHub API</span></div>
+          <div class="head"><span><b>Fleet</b> — in production</span><span>Active: 3+ days a month · GitHub API</span></div>
           <div class="nums">
-            <div><div class="n">20</div><p>Of ~60 people with access use it 3+ days a month. 6 in June.</p></div>
-            <div><div class="n">465</div><p>Code PRs merged May–Sep 2026, in 10 production repos under a 2-PR limit.</p></div>
+            <div><div class="n">1/3</div><p>Of the company uses it regularly. Most of them outside engineering.</p></div>
+            <div><div class="n">520</div><p>PRs merged in five months, across 35 repos, from product code to the company site.</p></div>
             <div><div class="n">15%</div><p>AWS cost cut through automated resource &amp; disk pruning.</p></div>
             <div><div class="n">&lt;$140</div><p>Token spend ceiling per profile, per month.</p></div>
           </div>
@@ -87,32 +87,44 @@
       </section>
     </div>
 
+    <section class="night center" id="wired">
+      <div class="label" style="margin-bottom:22px">Where it plugs in</div>
+      <h2 class="display reveal">Inside the tools</h2>
+      <p class="lead reveal">Each agent works in the software its team already uses. Nobody switches tools to use it.</p>
+      <div class="wired reveal">
+        <div><span class="idx">Support</span><span class="tools">Zendesk · Zabbix</span><p>Triages incoming tickets every 10 minutes during business hours.</p></div>
+        <div><span class="idx">Sales</span><span class="tools">Pipedrive</span><p>A morning pipeline briefing and the timeline of every account.</p></div>
+        <div><span class="idx">CS</span><span class="tools">Amplitude · Pipedrive</span><p>CS owns the product, so its agent reads how each customer uses Pantera.</p></div>
+        <div><span class="idx">Marketing</span><span class="tools">Company site · GA4 · Pipedrive</span><p>Ships site changes, measures leads in GA4, routes each lead to the right salesperson.</p></div>
+        <div><span class="idx">Engineering</span><span class="tools">GitHub · AWS</span><p>Turns issues into PRs, triages CI, watches cloud cost.</p></div>
+        <div><span class="idx">Orchestrator</span><span class="tools">Teams · SharePoint</span><p>Alerts, fleet users, and the briefings that cross departments.</p></div>
+      </div>
+      <p class="note">48 scheduled routines across the fleet</p>
+    </section>
+
     <section class="night center">
-      <div class="label" style="margin-bottom:22px">Fleet audit · May–Sep 2026</div>
-      <h2 class="display reveal">Who uses it</h2>
+      <div class="label" style="margin-bottom:22px">One case</div>
+      <h2 class="display reveal">Marketing ships</h2>
+      <p class="lead reveal">Marketing changes the company site on its own, through its agent, backend included. We review.</p>
       <div class="work">
+        <div class="proof dist" role="group" aria-label="Marketing pull requests">
+          <div class="head"><span><b>Company site</b> · real PRs</span><span>Sep 2026</span></div>
+          <div class="body">
+            <ol class="log">
+              <li><em>Sep 11</em><span>Lead event in GA4 on the contact page</span></li>
+              <li><em>Sep 22</em><span>Event leads land in Pipedrive with the region's salesperson</span></li>
+              <li><em>Sep 28</em><span>Referrer and organic/social attribution across the funnel</span></li>
+            </ol>
+          </div>
+          <div class="foot"><span>Asked in chat by marketing</span><span>Front end and backend</span></div>
+        </div>
         <figure class="proof" data-proof>
           <div class="head"><span><b>pantera-bot</b> — engineering agent</span><span>Real GitHub activity</span></div>
           <div class="view native">
             <img src="/assets/images/projects/agents-pantera-bot-pr.webp" alt="GitHub activity feed for the pantera-bot engineering agent, showing a pull request it opened that received 17 review comments from the team." width="1888" height="984" loading="lazy">
           </div>
-          <figcaption class="foot"><span>465 code PRs, reviewed by an engineer</span><span>10 repos · 2-PR limit · 0 direct pushes</span></figcaption>
+          <figcaption class="foot"><span>520 PRs, none merged without a person's go-ahead</span><span>35 repos · 2-PR limit · 0 direct pushes</span></figcaption>
         </figure>
-        <div class="proof dist" role="group" aria-label="Fleet adoption">
-          <div class="head"><span><b>Adoption</b> · people using it 3+ days a month</span><span>of ~60</span></div>
-          <div class="body">
-            <div class="adopt" role="img" aria-label="Recurring users per month, out of about 60 people with access: 6 in June, 19 in July, 17 in August, 20 in September">
-              <div><em>Jun</em><i><span style="width:10%"></span></i><b>6</b></div>
-              <div><em>Jul</em><i><span style="width:31.7%"></span></i><b>19</b></div>
-              <div><em>Aug</em><i><span style="width:28.3%"></span></i><b>17</b></div>
-              <div><em>Sep</em><i><span style="width:33.3%"></span></i><b>20</b></div>
-            </div>
-            <div class="legend3">
-              <div><b>I run the fleet; the team uses it</b><span>18 of September's 20 are outside tech leadership.</span></div>
-            </div>
-          </div>
-          <div class="foot"><span>Fleet sessions, crons excluded</span><span>Jun–Sep 2026</span></div>
-        </div>
       </div>
     </section>
 
@@ -122,8 +134,8 @@
       <h2 class="display reveal">Guardrails</h2>
       <p class="lead reveal">Production repositories need more than a good model. These make delegation real.</p>
       <ul class="guard reveal">
-        <li><span class="idx">01 // Human review</span><h3>No direct pushes, ever</h3><p>Capped at 2 open PRs per repo so the team never gets overwhelmed. The agent runs local tests, CI must pass green, and an engineer reviews and merges production code. Low-risk repos, like the marketing site, auto-merge on green CI.</p></li>
-        <li><span class="idx">02 // Real scope</span><h3>Real problems, zero busywork</h3><p>No cosmetic churn or whitespace refactoring. The agent tackles actual backlog issues: async race conditions, component migrations, and end-to-end test suites.</p></li>
+        <li><span class="idx">01 // Human go-ahead</span><h3>Nothing merges on its own</h3><p>No direct pushes, and at most 2 open PRs per repo. In production code, an engineer reviews and merges. In internal tools, like the company site, the team that owns it gives the go-ahead in chat and the agent merges.</p></li>
+        <li><span class="idx">02 // Real scope</span><h3>Work from the backlog</h3><p>Issues the team actually opened: async race conditions, component migrations, end-to-end test suites, lead routing into the CRM.</p></li>
         <li><span class="idx">03 // Isolation</span><h3>Each agent in its own lane</h3><p>Each profile runs in an isolated sandbox with its own tools and procedures. The sales agent never touches source code, and context never bleeds across domains.</p></li>
         <li><span class="idx">04 // Cost &amp; safety</span><h3>Scripts before LLMs</h3><p>Anything that can be solved with Bash, Python, or Git never calls an LLM. This prevents hallucinations, runs quiet security checks, and keeps token spend strictly under $140/mo per profile.</p></li>
       </ul>
@@ -136,7 +148,7 @@
         <p class="lead reveal">End to end — the agent runtime, SQLite state, and every integration run on our own infrastructure, decoupled from inference providers. Swapping the model is a config change; the guardrails and review process stay the same.</p>
       </div>
       <div class="chips reveal">
-        <span class="chip">Hermes Agent Runtime</span><span class="chip">Python</span><span class="chip">Playwright</span><span class="chip">SQLite</span><span class="chip">GitHub CLI &amp; API</span><span class="chip">Linux / Systemd</span><span class="chip">Bash</span><span class="chip">AWS</span>
+        <span class="chip">Hermes Agent Runtime</span><span class="chip">Telegram</span><span class="chip">Python</span><span class="chip">Playwright</span><span class="chip">SQLite</span><span class="chip">GitHub CLI &amp; API</span><span class="chip">Linux / Systemd</span><span class="chip">Bash</span><span class="chip">AWS</span>
       </div>
     </section>
 
