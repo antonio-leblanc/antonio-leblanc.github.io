@@ -102,32 +102,6 @@
       <p class="note">48 rotinas agendadas na frota</p>
     </section>
 
-    <section class="night center">
-      <div class="label" style="margin-bottom:22px">Um caso</div>
-      <h2 class="display reveal">O marketing publica</h2>
-      <p class="lead reveal">O marketing mexe sozinho no site da empresa pelo agente dele, inclusive no backend. A gente revisa.</p>
-      <div class="work">
-        <div class="proof dist" role="group" aria-label="Pull requests do marketing">
-          <div class="head"><span><b>Site da empresa</b> · PRs reais</span><span>Set 2026</span></div>
-          <div class="body">
-            <ol class="log">
-              <li><em>11 set</em><span>Evento de lead no GA4 na página de contato</span></li>
-              <li><em>22 set</em><span>Lead de evento entra no Pipedrive já com o vendedor da região</span></li>
-              <li><em>28 set</em><span>Origem do visitante e atribuição orgânica/social no funil</span></li>
-            </ol>
-          </div>
-          <div class="foot"><span>Pedido no chat pelo marketing</span><span>Front-end e backend</span></div>
-        </div>
-        <figure class="proof" data-proof>
-          <div class="head"><span><b>pantera-bot</b> — agente de engenharia</span><span>Atividade real no GitHub</span></div>
-          <div class="view native">
-            <img src="/assets/images/projects/agents-pantera-bot-pr.webp" alt="Feed de atividade do GitHub do agente de engenharia pantera-bot, mostrando um pull request aberto por ele que recebeu 17 comentários de revisão do time." width="1888" height="984" loading="lazy">
-          </div>
-          <figcaption class="foot"><span>520 PRs, nenhuma mergeada sem uma pessoa mandar</span><span>35 repositórios · limite de 2 PRs · 0 pushes diretos</span></figcaption>
-        </figure>
-      </div>
-    </section>
-
     <section class="night center" id="guardrails">
       <div class="glyph">◇ ◇ ◇</div>
       <div class="label" style="margin-bottom:22px">O que precisou existir antes</div>
@@ -141,12 +115,10 @@
       </ul>
     </section>
 
-    <section class="night split">
-      <div>
-        <div class="label" style="margin-bottom:22px">Como é construído</div>
-        <h2 class="display reveal">Self-hosted</h2>
-        <p class="lead reveal">De ponta a ponta — o runtime do agente, o estado em SQLite e cada integração rodam em infraestrutura própria, desacoplados dos provedores de inferência. Trocar o modelo é mudar uma configuração; as salvaguardas e o processo de revisão continuam iguais.</p>
-      </div>
+    <section class="night center">
+      <div class="label" style="margin-bottom:22px">Como é construído</div>
+      <h2 class="display reveal">Self-hosted</h2>
+      <p class="lead reveal">De ponta a ponta — o runtime do agente, o estado em SQLite e cada integração rodam em infraestrutura própria, desacoplados dos provedores de inferência. Trocar o modelo é mudar uma configuração; as salvaguardas e o processo de revisão continuam iguais.</p>
       <div class="chips reveal">
         <span class="chip">Hermes Agent Runtime</span><span class="chip">Telegram</span><span class="chip">Python</span><span class="chip">Playwright</span><span class="chip">SQLite</span><span class="chip">GitHub CLI &amp; API</span><span class="chip">Linux / Systemd</span><span class="chip">Bash</span><span class="chip">AWS</span>
       </div>
