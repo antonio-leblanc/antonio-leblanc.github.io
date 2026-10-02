@@ -158,15 +158,10 @@ footer nav a:hover { color: var(--gold); }
 /* bloco colorido só no hero: provas e números ficam no fundo noturno, com gutter dos dois lados */
 main > .rows .row, main > .rows .row.flip { padding: 0 var(--gutter); }
 
-/* fecho em brasa: o contato volta pro bloco colorido, espelhando o hero */
+/* fecho em brasa: o contato, igual ao das outras seções, sobre o mesmo fundo colorido do hero */
 .stage.end { margin-top: 120px; }
 .stage.end::after {
   content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(13, 9, 6, .55), rgba(13, 9, 6, 0) 100%);
 }
 .stage.end > section { position: relative; z-index: 2; padding: 110px var(--gutter) 100px; text-shadow: 0 1px 18px rgba(13, 9, 6, .7); }
-.stage.end .btn { background: var(--night); }
-.stage.end .btn:hover { background: #2a1d14; }
-.stage.end .btn.primary { background: var(--ink); color: var(--night); }
-.stage.end .btn.primary:hover { background: var(--gold); }
-body:has(.stage.end) footer { margin-top: 40px; border-top: 0; }
