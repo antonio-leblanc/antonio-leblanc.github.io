@@ -10,13 +10,13 @@
 .fleet .sub { max-width: 620px; margin: 24px auto 0; font-size: 14px; }
 .org { max-width: 1060px; margin: 56px auto 0; }
 .org .root { display: flex; justify-content: center; }
-.org .wire { height: 34px; width: 1px; background: rgba(244, 235, 224, .55); margin: 0 auto; }
-.org .bus { height: 1px; background: rgba(244, 235, 224, .55); margin: 0 6.25%; }
+.org .wire { height: 34px; width: 1px; background: rgba(var(--ink-rgb), .55); margin: 0 auto; }
+.org .bus { height: 1px; background: rgba(var(--ink-rgb), .55); margin: 0 6.25%; }
 .org .lanes { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 8px; }
 .org .lanes .badge { margin-top: 20px; position: relative; }
-.org .lanes .badge::before { content: ""; position: absolute; top: -21px; left: 50%; width: 1px; height: 20px; background: rgba(244, 235, 224, .55); }
-.badge { background: rgba(13, 9, 6, .84); border: 1px solid rgba(244, 235, 224, .22); padding: 12px 10px 11px; min-width: 0; }
-.badge img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; margin-bottom: 10px; border: 1px solid rgba(244, 235, 224, .18); }
+.org .lanes .badge::before { content: ""; position: absolute; top: -21px; left: 50%; width: 1px; height: 20px; background: rgba(var(--ink-rgb), .55); }
+.badge { background: rgba(var(--shade), .84); border: 1px solid rgba(var(--ink-rgb), .22); padding: 12px 10px 11px; min-width: 0; }
+.badge img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; margin-bottom: 10px; border: 1px solid rgba(var(--ink-rgb), .18); }
 .badge .label { display: block; font-size: 9px; color: var(--ink-60); overflow-wrap: anywhere; }
 .badge b { display: block; font-family: var(--display); font-weight: 300; font-size: clamp(14px, 1.35vw, 19px); text-transform: uppercase; line-height: 1; margin-top: 6px; overflow-wrap: break-word; }
 .badge .dot { display: inline-block; width: 6px; height: 6px; background: var(--gold); margin-right: 6px; vertical-align: 1px; }
