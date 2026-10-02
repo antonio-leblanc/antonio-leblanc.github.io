@@ -150,3 +150,7 @@ footer nav a:hover { color: var(--gold); }
 @media (prefers-reduced-motion: reduce) {
   .reveal, .box { opacity: 1; transform: none; transition: none; }
 }
+
+/* moldura que mantém a proporção da própria captura, sem corte */
+.proof .view.native { aspect-ratio: auto; }
+.proof .view.native img { height: auto; }

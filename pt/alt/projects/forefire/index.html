@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ForeFire — Antonio Leblanc</title>
+<meta name="author" content="Antonio Leblanc">
+<meta name="description" content="O ForeFire é o simulador open-source de propagação de incêndio construído pelo CNRS / Université de Corse. Contribuidor desde 2022, mantenedor desde 2025, coautor do paper na JOSS.">
+<link rel="canonical" href="https://antonioleblanc.com/pt/alt/projects/forefire/">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='50' dy='.35em' text-anchor='middle' font-size='78' font-weight='700' font-family='Helvetica,Arial,sans-serif' fill='%23f9a522'%3EA%3C/text%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://antonioleblanc.com/pt/alt/projects/forefire/">
+<meta property="og:title" content="ForeFire — Antonio Leblanc">
+<meta property="og:description" content="O ForeFire é o simulador open-source de propagação de incêndio construído pelo CNRS / Université de Corse. Contribuidor desde 2022, mantenedor desde 2025, coautor do paper na JOSS.">
+<meta property="og:image" content="https://antonioleblanc.com/assets/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Archivo:wdth,wght@62..125,300..700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0d0906">
+<link rel="stylesheet" href="/assets/css/ember-project.css">
+</head>
+<body>
+
+  <main id="top">
+    <div class="stage">
+      <header class="hero">
+        <canvas class="atmo" data-atmo aria-hidden="true"></canvas>
+        <nav class="top label">
+          <div class="side"><a href="/pt/alt/">← Antonio Leblanc</a></div>
+          <div class="sigil" aria-hidden="true">AL</div>
+          <div class="side right">
+            <a class="lang-link" href="/alt/projects/forefire/">EN</a>
+            <a href="#contact">Contato</a>
+          </div>
+        </nav>
+        <div class="inner">
+          <div class="label">03 — Open source · CNRS / Université de Corse</div>
+          <h1 class="display">ForeFire</h1>
+          <p class="lede">O simulador open-source de propagação de incêndio construído pelo CNRS / Université de Corse. Contribuo desde 2022 e mantenho desde 2025 — no meu próprio tempo, ao lado do Pantera.</p>
+        </div>
+      </header>
+
+      <div class="gauges reveal" role="group" aria-label="Meu papel">
+        <div class="gauge"><div class="n">2022</div><p>Contribuidor — revisando e fazendo merge de PRs, publicando releases</p></div>
+        <div class="gauge"><div class="n">2025</div><p>Mantenedor — Dockerização, pipeline de CI/CD, documentação Sphinx</p></div>
+        <div class="gauge"><div class="n">JOSS</div><p>Coautor do paper do projeto na Journal of Open Source Software</p></div>
+      </div>
+
+      <div class="rows">
+        <div class="row reveal">
+          <div class="copy">
+            <div class="label">O que é</div>
+            <h2>Para onde<br />o fogo vai</h2>
+            <p>O ForeFire simula como uma frente de incêndio se move, com dados reais de vento, terreno e combustível. É usado por pesquisadores e equipes operacionais pra rodar cenários "e se": pra onde esse incêndio vai nas próximas seis horas se o vento mudar.</p>
+            <p>No Pantera, é o mesmo simulador por trás das nossas próprias previsões de propagação — transformando uma detecção confirmada numa trajetória projetada que a brigada consegue agir em cima.</p>
+          </div>
+          <figure class="proof" data-proof>
+            <div class="head"><span><b>ForeFire</b> — simulação de propagação de incêndio</span><span>Ao vivo dentro do Pantera</span></div>
+            <div class="view">
+              <video autoplay loop muted playsinline poster="/assets/images/projects/forefire.webp" aria-label="Previsão de propagação do ForeFire renderizada dentro do Pantera, mostrando uma trajetória projetada de incêndio sobre terreno real.">
+                <source src="/assets/videos/forefire-propagation.webm" type="video/webm">
+                <source src="/assets/videos/forefire-propagation.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="foot"><span>O mesmo simulador, em produção</span><span>Alimentando os módulos de risco e resposta do Pantera</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="row flip reveal">
+          <div class="copy">
+            <div class="label">Modelo acoplado fogo–atmosfera</div>
+            <h2>O fogo cria<br />o próprio clima</h2>
+            <p>Renderização 3D volumétrica da pluma piroconvectiva e dos downbursts gerados pelo modelo acoplado fogo-atmosfera do ForeFire, simulando o incêndio de Pedrógão Grande de 2017 em Portugal.</p>
+            <p>Figura 2 do <a href="https://doi.org/10.21105/joss.08680" target="_blank" rel="noopener">paper do projeto na JOSS</a>.</p>
+          </div>
+          <figure class="proof">
+            <div class="head"><span><b>ForeFire</b> — modelo acoplado fogo–atmosfera</span><span>Paper na JOSS, Fig. 2</span></div>
+            <div class="view">
+              <img src="/assets/images/projects/forefire-pyrocb.webp" alt="Renderização 3D volumétrica da pluma piroconvectiva e dos downbursts gerados pelo modelo acoplado fogo-atmosfera do ForeFire, simulando o incêndio de Pedrógão Grande de 2017 em Portugal." width="1200" height="677" loading="lazy">
+            </div>
+            <figcaption class="foot"><span>Pedrógão Grande, Portugal — 2017</span><span>O fogo cria seu próprio clima — modelado, não assumido</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="row reveal">
+          <div class="copy">
+            <div class="label">O próprio simulador</div>
+            <h2>Camadas entram,<br />frentes de fogo saem</h2>
+            <p>A interface do próprio ForeFire: camadas de entrada como vento, combustível, declividade e altitude à esquerda, uma barra de comandos no topo e frentes de incêndio simuladas desenhadas sobre o mapa, com o campo de vento em setas.</p>
+          </div>
+          <figure class="proof">
+            <div class="head"><span><b>ForeFire</b> — interface do simulador</span><span>Captura sem filtro</span></div>
+            <div class="view native">
+              <img src="/assets/images/projects/forefire.webp" alt="Interface do ForeFire: uma lista de camadas de entrada, incluindo vento, combustível e declividade, uma barra de comandos e duas frentes de incêndio simuladas sobre um mapa de estradas, com setas de vento por cima." width="900" height="489" loading="lazy">
+            </div>
+            <figcaption class="foot"><span>Data da simulação 2017-06-17</span><span>Campo de vento em setas</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <section class="night center">
+      <div class="glyph">◇ ◇ ◇</div>
+      <div class="label" style="margin-bottom:22px">Meu papel</div>
+      <h2 class="display reveal">Mantenedor</h2>
+      <p class="lead reveal">O simulador é construído pelo <b>CNRS / Université de Corse</b>. Minha parte é manter o projeto buildável, reproduzível e documentado.</p>
+      <ul class="log reveal" style="text-align:left">
+        <li><span class="k">Desde 2022</span><p>Contribuidor — revisando e fazendo merge de PRs, publicando releases.</p></li>
+        <li><span class="k">Desde 2025</span><p>Mantenedor — Dockerização, pipeline de CI/CD, documentação Sphinx, e o dia a dia de manter o projeto buildável e reproduzível.</p></li>
+        <li><span class="k">Paper na JOSS</span><p>Coautor do <a href="https://doi.org/10.21105/joss.08680" target="_blank" rel="noopener">paper do projeto na Journal of Open Source Software</a>, a citação formal do simulador.</p></li>
+      </ul>
+      <div class="chips reveal">
+        <span class="chip">Docker</span><span class="chip">CI/CD</span><span class="chip">Sphinx</span><span class="chip">Releases</span><span class="chip">Revisão de código</span>
+      </div>
+    </section>
+
+    <section class="night center" id="contact">
+      <div class="label" style="margin-bottom:22px">Contato</div>
+      <h2 class="display reveal">Fale comigo</h2>
+      <p class="lead">Se você está construindo algo em simulação de incêndio, incêndio florestal, ou ferramentas científicas open-source, me escreva.</p>
+      <div class="btns">
+        <a class="btn" href="https://github.com/forefireAPI/forefire" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://forefire.readthedocs.io/en/latest/" target="_blank" rel="noopener">Documentação</a>
+        <a class="btn" href="/pt/alt/projects/pantera/">Pantera</a>
+        <a class="btn primary" href="mailto:contact@antonioleblanc.com">E-mail</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <div class="label" style="margin-bottom:12px;color:var(--ink-60)">03 — ForeFire</div>
+      <div class="display">Antonio Leblanc</div>
+    </div>
+    <nav class="label">
+      <a href="/pt/alt/">Início</a>
+      <a href="/pt/alt/projects/pantera/">Pantera</a>
+      <a href="/pt/projects/agents/">Agentes</a>
+      <a class="lang-link" href="/alt/projects/forefire/">English</a>
+    </nav>
+  </footer>
+
+  <script src="/assets/js/ember-atmo.js"></script>
+  <script src="/assets/js/lang-redirect.js" defer></script>
+</body>
+</html>
