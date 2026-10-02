@@ -65,3 +65,7 @@
   .work { grid-template-columns: 1fr; }
   .guard li { grid-template-columns: 1fr; gap: 8px; }
 }
+
+/* atalho discreto ao lado do crédito do Hermes */
+.egg { font-family: "Segoe UI Symbol", "Apple Symbols", "Noto Sans Symbols", sans-serif; font-size: 13px; letter-spacing: 0; text-decoration: none; color: inherit; opacity: .5; margin-left: 4px; transition: opacity .2s, color .2s; }
+.egg:hover, .egg:focus-visible { opacity: 1; color: var(--gold); }

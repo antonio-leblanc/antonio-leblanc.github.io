@@ -683,3 +683,7 @@
     .org-c-wire::after { display: none; }
     .org-c-lanes { grid-template-columns: repeat(2, 1fr); }
   }
+
+  /* atalho discreto ao lado do crédito do Hermes */
+  .egg { font-family: "Segoe UI Symbol", "Apple Symbols", "Noto Sans Symbols", sans-serif; text-decoration: none; color: inherit; opacity: .4; margin-left: 4px; transition: opacity .2s, color .2s; }
+  .egg:hover, .egg:focus-visible { opacity: 1; color: var(--accent); }
