@@ -25,7 +25,7 @@
   --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
   --gutter: clamp(16px, 5vw, 72px);
 }
-/* Mesma estrutura nas três páginas, cor pelo assunto: Pantera em brasa (padrão acima),
+/* Mesma estrutura nas três páginas, cor pelo assunto: Pantera em ocre,
    ForeFire em vegetação com a frente de fogo laranja, agentes em aço frio. */
 html[data-skin="forefire"] {
   --night: #070b08;
@@ -63,6 +63,22 @@ html[data-skin="agents"] {
   --btn-hover: #222c3a;
   --art-bg: rgba(10, 18, 30, .35);
   --atmo: 12 18 26, 40 58 80, 92 124 158, 158 188 218, 238 242 247;
+}
+/* Pantera em ocre (amarelo siena): hero, números e provas no bloco colorido, como nas outras páginas */
+html[data-skin="pantera"] {
+  --night: #0e0b06;
+  --night-2: #181208;
+  --flame: #e3a83c;
+  --gold: #f4d58a;
+  --shade: 14, 11, 6;
+  --stage-top: #a8700e;
+  --stage-bottom: #7a4e08;
+  --stage-fade: #8c5d0a;
+  --frame: rgba(227, 168, 60, .45);
+  --btn: #2a2010;
+  --btn-hover: #3a2c16;
+  --art-bg: rgba(40, 26, 0, .35);
+  --atmo: 40 26 4, 120 80 10, 196 140 40, 236 196 110, 246 236 214;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
