@@ -89,6 +89,8 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
   transition:text-decoration-color .25s ease,color .25s ease;
 }
 .u:hover{color:var(--fg);text-decoration-color:var(--accent)}
+.egg{font-family:var(--mono);text-decoration:none;color:inherit;opacity:.35;margin-left:6px;transition:opacity .2s,color .2s}
+.egg:hover,.egg:focus-visible{opacity:1;color:var(--accent)}
 
 .mono,.eyebrow,.label,.log dt,.sb-item,.gauge small,.foot{
   font-family:var(--mono);text-transform:uppercase;letter-spacing:.09em;
@@ -512,7 +514,7 @@ footer{
   </section>
 
   <footer>
-    <span class="foot">Antonio Leblanc — Rio de Janeiro</span>
+    <span class="foot">Antonio Leblanc — Rio de Janeiro <a class="egg" href="@@ALT_HREF@@" title="Alt edition" aria-label="Alt edition">⌥</a></span>
     <span class="foot">@@FOOTER_LANG_LINK@@ · <a href="#top">@@BACK_TO_TOP@@</a></span>
   </footer>
 </main>
