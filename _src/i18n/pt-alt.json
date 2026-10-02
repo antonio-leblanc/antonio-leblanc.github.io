@@ -49,7 +49,7 @@
   "FOOTER_LANG_LINK": "<a class=\"lang-link\" href=\"/alt/\">English</a>",
   "AGENTS_H3": "Nove agentes,<br />uma empresa",
   "AGENTS_BODY": "Agentes de IA em produção no Hermes self-hosted, cada um apoiando uma área da empresa, com uma pessoa responsável por ele.",
-  "AGENTS_HREF": "/pt/projects/agents/",
+  "AGENTS_HREF": "/pt/alt/projects/agents/",
   "AGENTS_STATS": "<b>450+</b> PRs em &lt;4m · <b>&gt;83%</b> de merge · <b>10</b> repos",
   "NAV_WORK": "Trabalho",
   "NAV_RECORD": "Trajetória",
