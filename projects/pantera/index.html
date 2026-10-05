@@ -58,17 +58,16 @@
         <div class="copy">
           <div class="label">Actual system output</div>
           <h2>Smoke, boxed<br />by the model</h2>
-          <p>A single frame from one of the 190 cameras: smoke rising over farmland, flagged by the detection model with its confidence for that detection.</p>
+          <p>One of the 190 cameras: a faint plume on the horizon, flagged by the detection model at 30% confidence. The camera zooms in and the same detection climbs to 98%.</p>
           <p>A detection is a candidate for validation, not yet an alert.</p>
         </div>
-        <figure class="proof" data-proof>
-          <div class="head"><span><b>Pantera</b> — smoke detection</span><span>Unfiltered frame</span></div>
+        <figure class="proof">
+          <div class="head"><span><b>Pantera</b> — smoke detection</span><span>Unfiltered footage</span></div>
           <div class="view">
-            <img src="/assets/images/projects/pantera-detection-field.webp" alt="Wildfire smoke rising over farmland, detected and boxed by the Pantera camera network." width="644" height="366" loading="lazy">
-            <div class="box" style="left:9.63%;top:24.32%;width:48.91%;height:57.65%">
-              <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
-              <span class="tag">Smoke 97.2%</span>
-            </div>
+            <video autoplay loop muted playsinline poster="/assets/images/projects/pantera-detection-poster.webp" aria-label="Wildfire smoke on the horizon, detected by the Pantera camera network at low confidence; the camera zooms in and the confidence rises to 98%.">
+              <source src="/assets/videos/pantera-detection.webm" type="video/webm">
+              <source src="/assets/videos/pantera-detection.mp4" type="video/mp4">
+            </video>
           </div>
           <figcaption class="foot"><span>One of 190 cameras</span><span>40M+ hectares under watch</span></figcaption>
         </figure>
