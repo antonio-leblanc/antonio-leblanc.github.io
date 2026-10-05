@@ -115,6 +115,8 @@ canvas.atmo { position: absolute; inset: 0; width: 100%; height: 100%; image-ren
     linear-gradient(180deg, rgba(var(--shade), .5) 0%, rgba(var(--shade), 0) 24%, rgba(var(--shade), 0) 72%, var(--stage-fade) 100%);
 }
 .hero > :not(canvas) { position: relative; z-index: 2; }
+/* agentes: os logs ficam fora de foco, como fundo; o título é o que se lê */
+canvas.atmo[data-kind="logs"] { filter: blur(2px); }
 /* ForeFire: a fumaça tem brasa de verdade na base; o fade pro verde da página começa mais tarde pra não apagá-la */
 html[data-skin="forefire"] .hero::after {
   background:

@@ -16,13 +16,16 @@
   .intro { color: var(--ink-60); max-width: 720px; margin: 12px 0 8px; font-size: 15px; }
   h2 { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .12em; margin: 48px 0 14px; color: var(--ink-60); }
   .row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .row.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   figure { position: relative; aspect-ratio: 16 / 11; overflow: hidden; background: #000; }
   canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
   figure .t { position: absolute; inset: 0; display: grid; place-items: center; font-family: "Antonio", sans-serif; font-weight: 300; text-transform: uppercase; font-size: clamp(34px, 5vw, 76px); text-shadow: 0 1px 18px rgba(13, 9, 6, .7); pointer-events: none; }
+  .four figure .t { font-size: clamp(30px, 3.6vw, 58px); }
   figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 8px 12px; background: rgba(13, 9, 6, .82); font-family: var(--mono); font-size: 11px; display: flex; justify-content: space-between; gap: 10px; }
   figcaption span + span { color: var(--ink-60); }
   label { display: inline-flex; gap: 8px; align-items: center; font-family: var(--mono); font-size: 12px; margin-top: 14px; cursor: pointer; }
-  @media (max-width: 820px) { .row { grid-template-columns: 1fr; } }
+  @media (max-width: 1100px) { .row.four { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 820px) { .row, .row.four { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -44,13 +47,32 @@
   </div>
   <label><input type="checkbox" id="pa-motion"> aplicar 24 qps + faíscas nas paletas novas (B e C)</label>
 
+  <h2>Agentes — fumaça com uma cor a mais</h2>
+  <div class="row four">
+    <figure><canvas data-pal="ag" data-fps="11"></canvas><div class="t">Agents</div><figcaption><span>A · aço atual</span><span>uma família</span></figcaption></figure>
+    <figure><canvas data-pal="ag-ambar" data-fps="24"></canvas><div class="t">Agents</div><figcaption><span>B · aço + âmbar</span><span>luz de servidor</span></figcaption></figure>
+    <figure><canvas data-pal="ag-fosforo" data-fps="24"></canvas><div class="t">Agents</div><figcaption><span>C · aço + fósforo</span><span>verde de terminal</span></figcaption></figure>
+    <figure><canvas data-pal="ag-brasa" data-fps="24"></canvas><div class="t">Agents</div><figcaption><span>D · aço + brasa</span><span>liga ao fogo da home</span></figcaption></figure>
+  </div>
+
+  <h2>Agentes — fora da fumaça, mesmo dither e movimento</h2>
+  <div class="row">
+    <figure><canvas data-kind="net" data-pal="ag-ambar" data-fps="24"></canvas><div class="t">Agents</div><figcaption><span>E · rede</span><span>orquestrador manda tarefa, área devolve</span></figcaption></figure>
+    <figure><canvas data-kind="logs" data-pal="ag-fosforo" data-fps="24"></canvas><div class="t">Agents</div><figcaption><span>F · logs</span><span>oito colunas trabalhando, cada uma no seu ritmo</span></figcaption></figure>
+    <figure><canvas data-kind="flow" data-pal="ag" data-fps="24"></canvas><div class="t">Agents</div><figcaption><span>G · fluxo</span><span>partículas orbitando o centro</span></figcaption></figure>
+  </div>
+
 <script>
 (function () {
   var PALS = {
-    'ff':       '8 26 12, 30 78 36, 84 136 64, 242 106 27, 246 220 160',
-    'pa':       '40 26 4, 120 80 10, 196 140 40, 236 196 110, 246 236 214',
-    'pa-cinza': '14 15 18, 52 52 54, 196 140 40, 236 196 110, 246 236 214',
-    'pa-terra': '26 12 6, 92 40 16, 196 140 40, 238 198 104, 248 238 216'
+    'ff':         '8 26 12, 30 78 36, 84 136 64, 242 106 27, 246 220 160',
+    'pa':         '40 26 4, 120 80 10, 196 140 40, 236 196 110, 246 236 214',
+    'pa-cinza':   '14 15 18, 52 52 54, 196 140 40, 236 196 110, 246 236 214',
+    'pa-terra':   '26 12 6, 92 40 16, 196 140 40, 238 198 104, 248 238 216',
+    'ag':         '12 18 26, 40 58 80, 92 124 158, 158 188 218, 238 242 247',
+    'ag-ambar':   '12 18 26, 40 58 80, 92 124 158, 230 168 70, 248 236 210',
+    'ag-fosforo': '10 16 22, 36 56 72, 80 116 140, 110 220 150, 226 250 236',
+    'ag-brasa':   '12 18 26, 40 58 80, 92 124 158, 242 106 27, 246 236 222'
   };
   var BAYER = [0, 32, 8, 40, 2, 34, 10, 42, 48, 16, 56, 24, 50, 18, 58, 26, 12, 44, 4, 36, 14, 46, 6, 38, 60, 28, 52, 20, 62, 30, 54, 22,
                3, 35, 11, 43, 1, 33, 9, 41, 51, 19, 59, 27, 49, 17, 57, 25, 15, 47, 7, 39, 13, 45, 5, 37, 63, 31, 55, 23, 61, 29, 53, 21];
@@ -72,11 +94,145 @@
     return s;
   }
 
+  /* cada tipo preenche this.f (0..1 por pixel); o dither é o mesmo pra todos */
+  var KINDS = {
+    smoke: {
+      init: function () {},
+      step: function (s, dt) {
+        if (!s.sparks) { s.parts.length = 0; return; }
+        if (Math.random() < .55 * dt) s.parts.push({ x: Math.random() * s.w, y: s.h - 1, vy: -(.5 + Math.random() * .9), ph: Math.random() * 6, life: 1, decay: .012 + Math.random() * .02 });
+        s.parts = s.parts.filter(function (p) {
+          p.y += p.vy * dt * 1.6; p.x += Math.sin(p.y * .15 + p.ph) * .35 * dt; p.life -= p.decay * dt;
+          return p.life > 0 && p.y > 0;
+        });
+      },
+      field: function (s) {
+        var w = s.w, h = s.h, f = s.f, k = s.k, t = s.t;
+        for (var y = 0; y < h; y++) {
+          var fy = y / h, glow = Math.pow(fy, 1.8) * .55;
+          for (var x = 0; x < w; x++) {
+            var px = x * k, py = y * k + t;
+            var warp = fbm(px * .6 + 3.1, py * .6 - t * .3);
+            f[y * w + x] = glow + Math.max(0, fbm(px + warp * 1.6, py) - .38) * (.35 + .9 * fy);
+          }
+        }
+        s.parts.forEach(function (p) {
+          var x = Math.round(p.x), y = Math.round(p.y);
+          if (x >= 0 && x < w && y >= 0 && y < h) f[y * w + x] = p.life > .55 ? 1.2 : .8;
+        });
+      }
+    },
+
+    /* E: orquestrador no centro, oito áreas em anel; pacote vai do centro, a área acende, pacote volta */
+    net: {
+      init: function (s) {
+        s.nodes = []; s.flash = []; s.pk = [];
+        for (var i = 0; i < 8; i++) s.flash.push(0);
+      },
+      step: function (s, dt) {
+        var cx = s.w / 2, cy = s.h / 2, R = Math.min(s.w, s.h) * .36;
+        s.nodes = [];
+        for (var i = 0; i < 8; i++) s.nodes.push([cx + R * Math.sin(i * Math.PI / 4), cy - R * Math.cos(i * Math.PI / 4)]);
+        if (Math.random() < .12 * dt) s.pk.push({ i: Math.floor(Math.random() * 8), p: 0, dir: 1, sp: .025 + Math.random() * .02 });
+        s.pk = s.pk.filter(function (q) {
+          q.p += q.sp * q.dir * dt;
+          if (q.dir > 0 && q.p >= 1) { q.p = 1; q.dir = -1; s.flash[q.i] = 1; q.wait = 6 + Math.random() * 14; q.sp *= 1.3; }
+          if (q.dir < 0 && q.wait > 0) { q.wait -= dt; q.p = 1; }
+          return q.p > 0;
+        });
+        for (var j = 0; j < 8; j++) s.flash[j] = Math.max(0, s.flash[j] - .04 * dt);
+      },
+      field: function (s) {
+        var w = s.w, h = s.h, f = s.f, t = s.t, k = s.k;
+        for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) f[y * w + x] = Math.max(0, fbm(x * k * .8, y * k * .8 + t * .5) - .42) * .7;
+        var cx = w / 2, cy = h / 2, sz = Math.min(w, h);
+        s.nodes.forEach(function (n) { line(s, cx, cy, n[0], n[1], .3); });
+        s.nodes.forEach(function (n, i) { splat(s, n[0], n[1], sz * .028, .5 + s.flash[i] * .7); });
+        splat(s, cx, cy, sz * .05, .85 + .15 * Math.sin(t * 3));
+        s.pk.forEach(function (q) {
+          var n = s.nodes[q.i];
+          splat(s, cx + (n[0] - cx) * q.p, cy + (n[1] - cy) * q.p, sz * .014, q.dir > 0 ? 1.1 : .8);
+        });
+      }
+    },
+
+    /* F: oito colunas de linhas de log subindo, cada coluna numa velocidade */
+    logs: {
+      init: function (s) {
+        s.cols = [];
+        for (var c = 0; c < 8; c++) s.cols.push({ sp: .35 + Math.random() * .6, lines: [] });
+      },
+      step: function (s, dt) {
+        var cw = s.w / 8;
+        s.cols.forEach(function (col) {
+          col.lines.forEach(function (l) { l.y -= col.sp * dt; });
+          col.lines = col.lines.filter(function (l) { return l.y > -2; });
+          var last = col.lines[col.lines.length - 1];
+          if (!last || last.y < s.h - 3) {
+            var r = Math.random();
+            col.lines.push({ y: s.h + 1, len: Math.max(2, Math.round((cw - 3) * (.2 + Math.random() * .8))), b: r < .08 ? 1.2 : .45 + Math.random() * .4 });
+          }
+        });
+      },
+      field: function (s) {
+        var w = s.w, h = s.h, f = s.f, cw = w / 8;
+        for (var i = 0; i < f.length; i++) f[i] = .04;
+        s.cols.forEach(function (col, c) {
+          var x0 = Math.round(c * cw + 1), n = col.lines.length;
+          col.lines.forEach(function (l, j) {
+            var y = Math.round(l.y); if (y < 0 || y >= h) return;
+            var fade = .25 + .75 * (y / h), b = l.b * fade;
+            if (j === n - 1 && Math.floor(s.t * 6) % 2) b = 1.2;   // cursor piscando na linha mais nova
+            for (var x = x0; x < x0 + l.len && x < w; x++) f[y * w + x] = b;
+          });
+        });
+      }
+    },
+
+    /* G: partículas num campo de ruído com puxão tangencial: rastro que orbita o centro */
+    flow: {
+      init: function (s) { s.ps = []; },
+      step: function (s, dt) {
+        var w = s.w, h = s.h, cx = w / 2, cy = h / 2, N = Math.round(w * h / 9);
+        while (s.ps.length < N) s.ps.push({ x: Math.random() * w, y: Math.random() * h, life: Math.random() * 120 });
+        var f = s.f, decay = Math.pow(.9, dt);
+        for (var i = 0; i < f.length; i++) f[i] *= decay;
+        s.ps.forEach(function (p) {
+          var a = fbm(p.x * .035, p.y * .035 + s.t * .25) * Math.PI * 4;
+          var dx = p.x - cx, dy = p.y - cy, d = Math.hypot(dx, dy) || 1;
+          var vx = Math.cos(a) * .5 - dy / d * .55, vy = Math.sin(a) * .5 + dx / d * .55;
+          p.x += vx * dt; p.y += vy * dt; p.life -= dt;
+          if (p.life < 0 || p.x < 0 || p.x >= w || p.y < 0 || p.y >= h) { p.x = Math.random() * w; p.y = Math.random() * h; p.life = 60 + Math.random() * 120; return; }
+          var j = Math.floor(p.y) * w + Math.floor(p.x);
+          f[j] = Math.min(1.1, f[j] + .28);
+        });
+      },
+      field: function () {}
+    }
+  };
+
+  function splat(s, cx, cy, sg, a) {
+    var w = s.w, h = s.h, f = s.f, r = Math.ceil(sg * 3);
+    for (var y = Math.max(0, Math.floor(cy - r)); y <= Math.min(h - 1, cy + r); y++)
+      for (var x = Math.max(0, Math.floor(cx - r)); x <= Math.min(w - 1, cx + r); x++) {
+        var d2 = (x - cx) * (x - cx) + (y - cy) * (y - cy);
+        f[y * w + x] += a * Math.exp(-d2 / (2 * sg * sg));
+      }
+  }
+  function line(s, x0, y0, x1, y1, a) {
+    var n = Math.ceil(Math.hypot(x1 - x0, y1 - y0));
+    for (var i = 0; i <= n; i++) {
+      var x = Math.round(x0 + (x1 - x0) * i / n), y = Math.round(y0 + (y1 - y0) * i / n), j = y * s.w + x;
+      if (x >= 0 && x < s.w && y >= 0 && y < s.h) s.f[j] = Math.max(s.f[j], a);
+    }
+  }
+
   function Scene(c) {
-    this.c = c; this.ctx = c.getContext('2d'); this.t = 0; this.last = 0;
+    this.c = c; this.ctx = c.getContext('2d'); this.t = 0; this.last = 0; this.parts = [];
+    this.kind = KINDS[c.dataset.kind || 'smoke'];
     this.pal = parse(PALS[c.dataset.pal]);
     this.base = { fps: +c.dataset.fps, sparks: c.hasAttribute('data-sparks') };
-    this.fps = this.base.fps; this.sparks = this.base.sparks; this.parts = [];
+    this.fps = this.base.fps; this.sparks = this.base.sparks;
     this.size();
   }
   Scene.prototype.size = function () {
@@ -84,43 +240,23 @@
     this.w = this.c.width = Math.max(40, Math.round(r.width / scale));
     this.h = this.c.height = Math.max(24, Math.round(r.height / scale));
     this.img = this.ctx.createImageData(this.w, this.h);
+    this.f = new Float32Array(this.w * this.h);
     this.k = 7 / Math.max(this.w, this.h);
+    this.kind.init(this);
   };
-  Scene.prototype.step = function (dt) {
-    // dt em unidades do atual (1 = um quadro de 90 ms)
-    this.t += .045 * dt;
-    if (!this.sparks) { this.parts.length = 0; return; }
-    var w = this.w, h = this.h;
-    if (Math.random() < .55 * dt) this.parts.push({ x: Math.random() * w, y: h - 1, vy: -(.5 + Math.random() * .9), ph: Math.random() * 6, life: 1, decay: .012 + Math.random() * .02 });
-    this.parts = this.parts.filter(function (p) {
-      p.y += p.vy * dt * 1.6; p.x += Math.sin(p.y * .15 + p.ph) * .35 * dt; p.life -= p.decay * dt;
-      return p.life > 0 && p.y > 0;
-    });
-  };
+  Scene.prototype.step = function (dt) { this.t += .045 * dt; this.kind.step(this, dt); };   // dt em quadros de 90 ms
   Scene.prototype.draw = function () {
-    var w = this.w, h = this.h, d = this.img.data, k = this.k, t = this.t, P = this.pal, n = P.length - 1;
-    for (var y = 0; y < h; y++) {
-      var fy = y / h, glow = Math.pow(fy, 1.8) * .55;
-      for (var x = 0; x < w; x++) {
-        var px = x * k, py = y * k + t;
-        var warp = fbm(px * .6 + 3.1, py * .6 - t * .3);
-        var smoke = fbm(px + warp * 1.6, py);
-        var v = glow + Math.max(0, smoke - .38) * (.35 + .9 * fy);
-        var q = Math.min(n, Math.max(0, Math.floor(v * n + (BAYER[(y & 7) * 8 + (x & 7)] + .5) / 64)));
-        var c = P[q], i = (y * w + x) * 4;
-        d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2]; d[i + 3] = 255;
-      }
+    this.kind.field(this);
+    var w = this.w, h = this.h, d = this.img.data, f = this.f, P = this.pal, n = P.length - 1;
+    for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
+      var j = y * w + x, q = Math.min(n, Math.max(0, Math.floor(f[j] * n + (BAYER[(y & 7) * 8 + (x & 7)] + .5) / 64)));
+      var c = P[q], i = j * 4;
+      d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2]; d[i + 3] = 255;
     }
-    this.parts.forEach(function (p) {
-      var x = Math.round(p.x), y = Math.round(p.y);
-      if (x < 0 || x >= w || y < 0 || y >= h) return;
-      var c = P[p.life > .55 ? n : n - 1], i = (y * w + x) * 4;
-      d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2];
-    });
     this.ctx.putImageData(this.img, 0, 0);
   };
 
-  var scenes = [].map.call(document.querySelectorAll('canvas[data-pal]'), function (c) { var s = new Scene(c); s.draw(); return s; });
+  var scenes = [].map.call(document.querySelectorAll('canvas[data-pal]'), function (c) { var s = new Scene(c); s.step(0); s.draw(); return s; });
 
   document.getElementById('pa-motion').addEventListener('change', function (e) {
     scenes.forEach(function (s) {
@@ -129,15 +265,21 @@
     });
   });
 
+  var vis = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { scenes.forEach(function (s) { if (s.c === e.target) s.on = e.isIntersecting; }); });
+  });
+  scenes.forEach(function (s) { s.on = true; vis.observe(s.c); });
+
   (function loop(ts) {
     scenes.forEach(function (s) {
-      var iv = 1000 / s.fps;
-      if (ts - s.last >= iv) { s.step(Math.min(3, (ts - s.last) / 90)); s.last = ts; s.draw(); }
+      if (ts - s.last < 1000 / s.fps) return;
+      var dt = Math.min(3, (ts - s.last) / 90); s.last = ts;
+      if (s.on) { s.step(dt); s.draw(); }
     });
     requestAnimationFrame(loop);
   })(0);
 
-  var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { scenes.forEach(function (s) { s.size(); s.draw(); }); }, 150); });
+  var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { scenes.forEach(function (s) { s.size(); s.step(0); s.draw(); }); }, 150); });
 })();
 </script>
 </body>

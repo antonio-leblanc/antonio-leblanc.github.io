@@ -30,6 +30,8 @@
     this.fps = +(canvas.dataset.fps || 11);   // atmosfera padrão anda a ~11 qps; data-fps="24" deixa mais fluida
     this.sparks = canvas.hasAttribute('data-sparks') ? +(canvas.dataset.sparks || .55) : 0; this.parts = [];   // faíscas por quadro de 90 ms
     this.glow = +(canvas.dataset.glow || .55);   // força da brasa de baixo
+    this.pal = canvas.dataset.pal ? canvas.dataset.pal.split(',').map(function (c) { return c.trim().split(/\s+/).map(Number); }) : PAL;
+    this.logs = canvas.dataset.kind === 'logs';  // em vez de fumaça, oito colunas de log subindo
     this.size();
   }
   Atmo.prototype.size = function () {
@@ -38,9 +40,11 @@
     this.h = this.c.height = Math.max(24, Math.round(r.height / scale));
     this.img = this.ctx.createImageData(this.w, this.h);
     this.k = 7 / Math.max(this.w, this.h);
+    if (this.logs) { this.cols = []; for (var c = 0; c < 8; c++) this.cols.push({ sp: .35 + Math.random() * .6, lines: [] }); this.fill(); }
   };
   Atmo.prototype.draw = function () {
-    var w = this.w, h = this.h, d = this.img.data, k = this.k, t = this.t, n = PAL.length - 1;
+    if (this.logs) return this.drawLogs();
+    var w = this.w, h = this.h, d = this.img.data, k = this.k, t = this.t, PAL = this.pal, n = PAL.length - 1;
     for (var y = 0; y < h; y++) {
       var fy = y / h;                       // 0 no topo, 1 embaixo
       var glow = Math.pow(fy, 1.8) * this.glow;   // brasa vindo de baixo
@@ -65,6 +69,7 @@
   // dt em quadros de 90 ms: a fumaça sobe na mesma velocidade qualquer que seja o fps
   Atmo.prototype.step = function (dt) {
     this.t += .045 * dt;
+    if (this.logs) return this.stepLogs(dt);
     if (!this.sparks) return;
     var w = this.w, h = this.h;
     for (var r = this.sparks * dt; r > 0; r--) if (Math.random() < r) this.parts.push({ x: Math.random() * w, y: h - 1, vy: -(.5 + Math.random() * .9), ph: Math.random() * 6, life: 1, decay: .012 + Math.random() * .02 });
@@ -72,6 +77,40 @@
       p.y += p.vy * dt * 1.6; p.x += Math.sin(p.y * .15 + p.ph) * .35 * dt; p.life -= p.decay * dt;
       return p.life > 0 && p.y > 0;
     });
+  };
+
+  /* logs: cada coluna é um agente; linhas sobem no ritmo dela, a mais nova com cursor piscando */
+  Atmo.prototype.stepLogs = function (dt) {
+    var h = this.h, cw = this.w / 8;
+    this.cols.forEach(function (col) {
+      col.lines.forEach(function (l) { l.y -= col.sp * dt; });
+      col.lines = col.lines.filter(function (l) { return l.y > -2; });
+      var last = col.lines[col.lines.length - 1];
+      if (!last || last.y < h - 3) col.lines.push({ y: h + 1, len: Math.max(2, Math.round((cw - 3) * (.2 + Math.random() * .8))), b: Math.random() < .08 ? 1.2 : .45 + Math.random() * .4 });
+    });
+  };
+  Atmo.prototype.fill = function () {          // tela já cheia na primeira pintura, sem esperar as linhas subirem
+    for (var i = 0; i < this.h; i++) this.stepLogs(3.75);
+  };
+  Atmo.prototype.drawLogs = function () {
+    var w = this.w, h = this.h, d = this.img.data, P = this.pal, n = P.length - 1, cw = w / 8, t = this.t;
+    var f = new Float32Array(w * h).fill(.04);
+    this.cols.forEach(function (col, c) {
+      var x0 = Math.round(c * cw + 1), m = col.lines.length;
+      col.lines.forEach(function (l, j) {
+        var y = Math.round(l.y); if (y < 0 || y >= h) return;
+        var dx = (x0 + l.len / 2) / w - .5, dy = y / h - .5;   // apaga as linhas atrás do título pra ele respirar
+        var b = l.b * (.25 + .75 * (y / h)) * (1 - .7 * Math.exp(-(dx * dx / .06 + dy * dy / .05)));
+        if (j === m - 1 && Math.floor(t * 6) % 2) b = 1.2;
+        for (var x = x0; x < x0 + l.len && x < w; x++) f[y * w + x] = b;
+      });
+    });
+    for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
+      var j = y * w + x, q = Math.min(n, Math.max(0, Math.floor(f[j] * n + (BAYER[(y & 7) * 8 + (x & 7)] + .5) / 64)));
+      var c = P[q], i = j * 4;
+      d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2]; d[i + 3] = 255;
+    }
+    this.ctx.putImageData(this.img, 0, 0);
   };
 
   var scenes = [];
