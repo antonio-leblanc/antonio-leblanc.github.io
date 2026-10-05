@@ -230,8 +230,8 @@ footer nav a:hover { color: var(--gold); }
 .proof .view.native img { height: auto; }
 
 /* foto de campo: crua, tamanho médio, sem a moldura de saída do sistema */
-.field { margin: 0; justify-self: center; width: min(100%, 340px); }
-.field img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 50% 80%; display: block; border: 1px solid rgba(var(--ink-rgb), .22); }
+.field { margin: 0; justify-self: center; width: min(100%, 440px); }
+.field img { width: 100%; height: auto; aspect-ratio: 9 / 10; object-fit: cover; object-position: 50% 100%; display: block; border: 1px solid rgba(var(--ink-rgb), .22); }
 .field figcaption { margin-top: 10px; font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-60); }
 
 /* bloco colorido só no hero: provas e números ficam no fundo noturno, com gutter dos dois lados */
