@@ -223,6 +223,8 @@
       .tl p, .beyond li span { font-size: 15px; }
       .who li { font-size: 16px; }
       .contact-body { max-width: 600px; font-size: 17px; }
+      /* no wide o quadrado passaria de 1000px de altura: trava a altura e o card vira paisagem, anel no centro e fluxo nas laterais */
+      .art.sq { aspect-ratio: auto; height: min(58vw, 78vh, 680px); }
     }
     @media (max-width: 820px) {
       nav.top { grid-template-columns: 1fr auto; }
@@ -498,7 +500,7 @@
         }
         return top;
       }
-      var ig = Math.floor(h * .58) * w + Math.floor(w * .38), D = [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]];
+      var ig = Math.floor(h * .6) * w + Math.floor(w * .14), D = [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]];
       T[ig] = 0; push(ig, 0);
       while (heap.length) {
         var e = pop(), t = e[0], j = e[1]; if (t > T[j]) continue;
@@ -529,7 +531,8 @@
       this.ctx.putImageData(this.img, 0, 0);
     };
     var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    Spread.prototype.tick = function (dt) { this.tau += dt * this.Tmax / 110; if (this.tau > this.Tmax * 1.25) this.tau = 0; };
+    /* a frente começa devagar e acelera no fim */
+    Spread.prototype.tick = function (dt) { this.tau += dt * this.Tmax / (95 - 32 * Math.min(1, this.tau / this.Tmax)); if (this.tau > this.Tmax * 1.15) this.tau = 0; };
 
     /* card do Pantera: a vista da câmera na torre. Morros e talhões na paleta da página; a pluma e o fogo na base
        usam uma segunda paleta (fumaça cinza, fogo laranja), misturada pelo mesmo dither. A caixa de detecção entra quando a pluma cresce */
@@ -537,7 +540,7 @@
     function PView(c) {
       this.c = c; this.ctx = c.getContext('2d'); this.on = true; this.t = 0; this.hold = 0;
       this.pal = pal(c.dataset.pal); this.pal2 = pal(c.dataset.pal2); this.sv = +(c.dataset.smoke || .5);
-      this.a = reduce ? .85 : 0; this.sx = .62;
+      this.a = reduce ? .85 : 0; this.sx = .64;
       this.size();
     }
     PView.prototype.size = function () {
@@ -547,7 +550,7 @@
     };
     PView.prototype.tick = function (dt) {
       this.t += .045 * dt;
-      if (this.hold > 0) { this.hold -= dt; if (this.hold <= 0) { this.a = 0; this.sx = .5 + Math.random() * .3; } return; }
+      if (this.hold > 0) { this.hold -= dt; if (this.hold <= 0) { this.a = 0; var sx = this.sx, ps = [.26, .44, .64].filter(function (p) { return p !== sx; }); this.sx = ps[Math.floor(Math.random() * ps.length)]; } return; }
       this.a += dt / 150; if (this.a >= 1) { this.a = 1; this.hold = 45; }
     };
     PView.prototype.mark = function (x, y) { if (x >= 0 && x < this.w && y >= 0 && y < this.h) { this.f[y * this.w + x] = 1.2; this.m[y * this.w + x] = 0; } };
@@ -572,7 +575,7 @@
         if (top > 0 && hg > -2 && hg < 2 + a * 2 && Math.abs(x - sx) < 1.5 + a * 3) { v = .82 + .25 * noise(x * .7, t * 9); m[j] = 1; }   // fogo na base
         f[j] = v;
       }
-      if (a > .4 && (a > .5 || Math.floor(t * 8) % 2)) {
+      if (a > .1 && (a > .15 || Math.floor(t * 8) % 2)) {
         var hT = top * .9, x0 = Math.round(sx - 3), x1 = Math.round(sx + hT * .77 + 2.2), y0 = Math.round(sy - hT), y1 = Math.round(sy + 2), k;
         for (k = x0; k <= x1; k++) { this.mark(k, y0); this.mark(k, y1); }
         for (k = y0; k <= y1; k++) { this.mark(x0, k); this.mark(x1, k); }
