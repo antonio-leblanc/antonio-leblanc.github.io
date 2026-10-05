@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Card de agentes — variantes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Archivo:wdth,wght@62..125,300..700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --night: #0d0906; --ink: #f4ebe0; --ink-60: rgba(244, 235, 224, .62);
+    --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+    --proj: #8fb2d6; --proj-rgb: 143, 178, 214;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--night); color: var(--ink); font-family: "Archivo", system-ui, sans-serif; padding: 40px 16px 80px; }
+  h1 { font-family: "Antonio", sans-serif; font-weight: 300; text-transform: uppercase; font-size: clamp(36px, 5vw, 64px); }
+  .intro { color: var(--ink-60); max-width: 760px; margin: 12px 0 32px; font-size: 15px; }
+  .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .stage { background: linear-gradient(180deg, #b83600 0%, #8f2600 100%); padding: clamp(14px, 2vw, 28px); }
+  .stage h2 { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 4px; }
+  .stage p { font-size: 13px; color: rgba(244, 235, 224, .8); margin-bottom: 16px; min-height: 3em; }
+
+  /* card, igual à home salvo o fundo */
+  .art { position: relative; display: block; aspect-ratio: 1; overflow: hidden; border-top: 2px solid var(--proj); border-bottom: 1px solid rgba(244, 235, 224, .14); }
+  .art.atual { background: radial-gradient(circle at 50% 50%, rgba(var(--proj-rgb), .26), rgba(10, 18, 30, .4) 46%); }
+  .art.sem { background: none; }
+  .art canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+  .ring { position: absolute; top: 0; bottom: 0; left: 50%; aspect-ratio: 1; transform: translateX(-50%); z-index: 2; }
+  .ring svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .ring circle, .ring line { fill: none; stroke: rgba(244, 235, 224, .45); stroke-width: 1; vector-effect: non-scaling-stroke; }
+  .ring circle { stroke-dasharray: 2 5; }
+  .dim .ring circle, .dim .ring line { stroke: rgba(158, 188, 218, .22); }
+  .ring figure { position: absolute; width: 15%; left: calc(50% + 38% * sin(var(--i) * 45deg)); top: calc(50% - 38% * cos(var(--i) * 45deg)); transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px))); will-change: transform; }
+  .ring img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; display: block; border: 1px solid rgba(244, 235, 224, .3); filter: saturate(.6) sepia(.25); transition: filter .2s; background: var(--night); }
+  .ring figure:hover img { filter: none; }
+  .ring figure.core { width: 24%; left: 50%; top: 50%; }
+  .ring figure.core img { border: 1px solid var(--proj); box-shadow: 0 0 0 1px var(--proj), 0 0 40px rgba(var(--proj-rgb), .45); }
+  /* legenda com tarja: 11px em vez de 9px, legível sobre qualquer fundo */
+  .ring figcaption { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 5px; white-space: nowrap; font-family: var(--mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); padding: 1px 5px; background: rgba(13, 9, 6, .78); }
+  .atual .ring figcaption { font-size: 9px; padding: 0; background: none; text-shadow: 0 1px 3px rgba(0, 0, 0, .9); margin-top: 4px; }
+
+  @media (max-width: 1100px) { .cols { grid-template-columns: 1fr; max-width: 640px; } }
+</style>
+</head>
+<body>
+  <h1>Card de agentes</h1>
+  <p class="intro">Hoje (em cima, à esquerda, pra comparar) e três candidatos, cada um no vermelho da home. Passe o mouse no anel: os avatares fogem como na home. Nos três candidatos a legenda sobe de 9px pra 11px, com tarja escura.</p>
+
+  <div class="cols" id="cols"></div>
+
+<template id="ring">
+  <div class="ring">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="38"/><line x1="50" y1="50" x2="50.00" y2="12.00"/><line x1="50" y1="50" x2="76.87" y2="23.13"/><line x1="50" y1="50" x2="88.00" y2="50.00"/><line x1="50" y1="50" x2="76.87" y2="76.87"/><line x1="50" y1="50" x2="50.00" y2="88.00"/><line x1="50" y1="50" x2="23.13" y2="76.87"/><line x1="50" y1="50" x2="12.00" y2="50.00"/><line x1="50" y1="50" x2="23.13" y2="23.13"/></svg>
+    <figure class="core"><img src="/assets/images/projects/agents/core.webp" alt="" /><figcaption>Orchestrator</figcaption></figure>
+    <figure style="--i:0"><img src="/assets/images/projects/agents/dev.webp" alt="" /><figcaption>Engineering</figcaption></figure>
+    <figure style="--i:1"><img src="/assets/images/projects/agents/projetos.webp" alt="" /><figcaption>Projects</figcaption></figure>
+    <figure style="--i:2"><img src="/assets/images/projects/agents/suporte.webp" alt="" /><figcaption>Support</figcaption></figure>
+    <figure style="--i:3"><img src="/assets/images/projects/agents/cs.webp" alt="" /><figcaption>CS</figcaption></figure>
+    <figure style="--i:4"><img src="/assets/images/projects/agents/fas.webp" alt="" /><figcaption>Key Account</figcaption></figure>
+    <figure style="--i:5"><img src="/assets/images/projects/agents/vendas.webp" alt="" /><figcaption>Sales</figcaption></figure>
+    <figure style="--i:6"><img src="/assets/images/projects/agents/marketing.webp" alt="" /><figcaption>Marketing</figcaption></figure>
+    <figure style="--i:7"><img src="/assets/images/projects/agents/liderancas.webp" alt="" /><figcaption>Leadership</figcaption></figure>
+  </div>
+</template>
+
+<script>
+(function () {
+  var VARIANTS = [
+    { id: 'hoje', t: 'Hoje', d: 'Gradiente aço translúcido sobre a brasa: o violeta sujo.', cls: 'atual' },
+    { id: 'A', t: 'A · fluxo orbital', d: 'Dither em aço escuro, partículas girando em volta do orquestrador. Atmosfera, sem enredo.', cls: 'dim', kind: 'orbit' },
+    { id: 'B', t: 'B · fluxo + pulsos', d: 'O mesmo fundo, e pulsos claros nos raios: o orquestrador manda a tarefa, a área trabalha e devolve.', cls: 'dim', kind: 'pulse' },
+    { id: 'C', t: 'C · sem fundo', d: 'Direto na brasa, sem canvas. Só anel, raios e avatares.', cls: 'sem' }
+  ];
+  var cols = document.getElementById('cols'), tpl = document.getElementById('ring');
+  VARIANTS.forEach(function (v) {
+    var st = document.createElement('div'); st.className = 'stage';
+    st.innerHTML = '<h2>' + v.t + '</h2><p>' + v.d + '</p>';
+    var art = document.createElement('a'); art.className = 'art ' + v.cls; art.href = '/projects/agents/';
+    if (v.kind) { var c = document.createElement('canvas'); c.dataset.kind = v.kind; art.appendChild(c); }
+    art.appendChild(tpl.content.cloneNode(true));
+    st.appendChild(art); cols.appendChild(st);
+  });
+  cols.style.gridTemplateColumns = innerWidth > 1100 ? 'repeat(4, minmax(0, 1fr))' : '';
+
+  var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- dither: mesmo Bayer 8×8 da home ---- */
+  var BAYER = [0, 32, 8, 40, 2, 34, 10, 42, 48, 16, 56, 24, 50, 18, 58, 26, 12, 44, 4, 36, 14, 46, 6, 38, 60, 28, 52, 20, 62, 30, 54, 22,
+               3, 35, 11, 43, 1, 33, 9, 41, 51, 19, 59, 27, 49, 17, 57, 25, 15, 47, 7, 39, 13, 45, 5, 37, 63, 31, 55, 23, 61, 29, 53, 21];
+  // aço escuro: o fundo fica nos três primeiros tons; só os pulsos chegam aos dois claros
+  var PAL = [[9, 13, 19], [20, 30, 44], [36, 54, 76], [104, 138, 172], [222, 234, 247]];
+  var BG_CAP = .42;
+  function hash(x, y) {
+    var h = (x * 374761393 + y * 668265263) | 0;
+    h = Math.imul(h ^ (h >>> 13), 1274126177);
+    return ((h ^ (h >>> 16)) >>> 0) / 4294967295;
+  }
+  function noise(x, y) {
+    var xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+    var u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf);
+    var a = hash(xi, yi), b = hash(xi + 1, yi), c = hash(xi, yi + 1), d = hash(xi + 1, yi + 1);
+    return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
+  }
+  function fbm(x, y) { var s = 0, amp = .5; for (var o = 0; o < 4; o++) { s += amp * noise(x, y); x *= 2.03; y *= 2.03; amp *= .5; } return s; }
+  function splat(s, cx, cy, sg, a) {
+    var r = Math.ceil(sg * 3);
+    for (var y = Math.max(0, Math.floor(cy - r)); y <= Math.min(s.h - 1, cy + r); y++)
+      for (var x = Math.max(0, Math.floor(cx - r)); x <= Math.min(s.w - 1, cx + r); x++) {
+        var d2 = (x - cx) * (x - cx) + (y - cy) * (y - cy), j = y * s.w + x;
+        s.f[j] = Math.min(1.1, s.f[j] + a * Math.exp(-d2 / (2 * sg * sg)));
+      }
+  }
+
+  function Scene(c) {
+    this.c = c; this.ctx = c.getContext('2d'); this.t = 0; this.last = 0; this.pulse = c.dataset.kind === 'pulse';
+    this.size();
+  }
+  Scene.prototype.size = function () {
+    var r = this.c.getBoundingClientRect(), scale = innerWidth < 820 ? 3 : 4;
+    this.w = this.c.width = Math.max(40, Math.round(r.width / scale));
+    this.h = this.c.height = Math.max(40, Math.round(r.height / scale));
+    this.img = this.ctx.createImageData(this.w, this.h);
+    this.f = new Float32Array(this.w * this.h);
+    this.ps = []; this.pulses = []; this.wait = []; this.next = 4;
+    for (var k = 0; k < 40; k++) this.step(1);   // já começa com rastro
+  };
+  Scene.prototype.step = function (dt) {
+    var s = this, w = s.w, h = s.h, cx = w / 2, cy = h / 2, f = s.f;
+    s.t += .045 * dt;
+    var decay = Math.pow(.88, dt);
+    for (var i = 0; i < f.length; i++) f[i] *= decay;
+
+    // fluxo de fundo: partículas em órbita com turbulência, presas abaixo de BG_CAP
+    var N = Math.round(w * h / 14);
+    while (s.ps.length < N) s.ps.push({ x: Math.random() * w, y: Math.random() * h, life: Math.random() * 120 });
+    s.ps.forEach(function (p) {
+      var a = fbm(p.x * .035, p.y * .035 + s.t * .25) * Math.PI * 4;
+      var dx = p.x - cx, dy = p.y - cy, d = Math.hypot(dx, dy) || 1;
+      var vx = Math.cos(a) * .45 - dy / d * .5, vy = Math.sin(a) * .45 + dx / d * .5;
+      p.x += vx * dt; p.y += vy * dt; p.life -= dt;
+      if (p.life < 0 || p.x < 0 || p.x >= w || p.y < 0 || p.y >= h) { p.x = Math.random() * w; p.y = Math.random() * h; p.life = 60 + Math.random() * 120; return; }
+      var j = Math.floor(p.y) * w + Math.floor(p.x);
+      if (f[j] < BG_CAP) f[j] = Math.min(BG_CAP, f[j] + .16);
+    });
+
+    if (!s.pulse) return;
+    // pulsos: centro → área (tarefa), espera, área → centro (resultado)
+    var R0 = .13 * w, R1 = .30 * w;
+    s.next -= dt;
+    if (s.next <= 0) { s.pulses.push({ i: Math.floor(Math.random() * 8), p: 0, out: true }); s.next = 7 + Math.random() * 12; }
+    s.wait = s.wait.filter(function (q) { q.t -= dt; if (q.t <= 0) { s.pulses.push({ i: q.i, p: 0, out: false }); return false; } return true; });
+    s.pulses = s.pulses.filter(function (q) {
+      var ang = q.i * Math.PI / 4, sx = Math.sin(ang), sy = -Math.cos(ang);
+      var p0 = q.p; q.p = Math.min(1, q.p + .07 * dt);
+      for (var u = p0; u <= q.p; u += .5 / (R1 - R0)) {   // carimba sem buraco entre quadros
+        var r = q.out ? R0 + (R1 - R0) * u : R1 - (R1 - R0) * u;
+        var x = Math.round(cx + sx * r), y = Math.round(cy + sy * r);
+        for (var oy = -1; oy <= 1; oy++) for (var ox = -1; ox <= 1; ox++) {
+          var X = x + ox, Y = y + oy; if (X < 0 || Y < 0 || X >= w || Y >= h) continue;
+          var jj = Y * w + X; f[jj] = Math.max(f[jj], (ox || oy) ? .7 : 1.1);
+        }
+      }
+      if (q.p >= 1) {
+        var rr = q.out ? .38 * w : 0;
+        if (q.out) { splat(s, cx + sx * rr, cy + sy * rr, w * .06, .55); s.wait.push({ i: q.i, t: 8 + Math.random() * 18 }); }
+        else splat(s, cx, cy, w * .09, .45);
+        return false;
+      }
+      return true;
+    });
+  };
+  Scene.prototype.draw = function () {
+    var w = this.w, h = this.h, d = this.img.data, f = this.f, n = PAL.length - 1;
+    for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
+      var th = (BAYER[(y & 7) * 8 + (x & 7)] + .5) / 64, j = y * w + x, q = Math.min(n, Math.max(0, Math.floor(f[j] * n + th)));
+      var c = PAL[q], i = j * 4;
+      d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2]; d[i + 3] = 255;
+    }
+    this.ctx.putImageData(this.img, 0, 0);
+  };
+
+  var scenes = [].map.call(document.querySelectorAll('canvas[data-kind]'), function (c) { var s = new Scene(c); s.draw(); return s; });
+  if (!still) (function loop(ts) {
+    scenes.forEach(function (s) {
+      if (ts - s.last < 1000 / 24) return;
+      var dt = Math.min(3, (ts - s.last) / 90); s.last = ts;
+      s.step(dt); s.draw();
+    });
+    requestAnimationFrame(loop);
+  })(0);
+  var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { scenes.forEach(function (s) { s.size(); s.draw(); }); }, 150); });
+
+  /* ---- anel: flutua de leve e foge do mouse, igual à home ---- */
+  if (!still && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('.ring').forEach(function (ring) {
+      var figs = [].slice.call(ring.querySelectorAll('figure:not(.core)')).map(function (f, k) {
+        return { el: f, ph: k * 2.4, sp: .00055 + (k % 3) * .00012, x: 0, y: 0 };
+      });
+      var mx = null, my = null;
+      ring.addEventListener('pointermove', function (e) { mx = e.clientX; my = e.clientY; });
+      ring.addEventListener('pointerleave', function () { mx = my = null; });
+      (function tick(t) {
+        var R = ring.offsetWidth * .3;
+        figs.forEach(function (f) {
+          var tx = Math.sin(t * f.sp + f.ph) * 2.5, ty = Math.cos(t * f.sp * 1.3 + f.ph) * 2.5;
+          if (mx !== null) {
+            var b = f.el.getBoundingClientRect(), vx = b.left + b.width / 2 - f.x - mx, vy = b.top + b.height / 2 - f.y - my;
+            var d = Math.hypot(vx, vy) || 1, k = Math.max(0, 1 - d / R) * 8;
+            tx += vx / d * k; ty += vy / d * k;
+          }
+          f.x += (tx - f.x) * .08; f.y += (ty - f.y) * .08;
+          f.el.style.setProperty('--dx', f.x.toFixed(2) + 'px');
+          f.el.style.setProperty('--dy', f.y.toFixed(2) + 'px');
+        });
+        requestAnimationFrame(tick);
+      })(0);
+    });
+  }
+})();
+</script>
+</body>
+</html>
