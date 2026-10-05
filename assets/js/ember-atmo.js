@@ -26,7 +26,10 @@
   }
 
   function Atmo(canvas) {
-    this.c = canvas; this.ctx = canvas.getContext('2d'); this.t = 0; this.on = true;
+    this.c = canvas; this.ctx = canvas.getContext('2d'); this.t = 0; this.on = true; this.last = 0;
+    this.fps = +(canvas.dataset.fps || 11);   // atmosfera padrão anda a ~11 qps; data-fps="24" deixa mais fluida
+    this.sparks = canvas.hasAttribute('data-sparks') ? +(canvas.dataset.sparks || .55) : 0; this.parts = [];   // faíscas por quadro de 90 ms
+    this.glow = +(canvas.dataset.glow || .55);   // força da brasa de baixo
     this.size();
   }
   Atmo.prototype.size = function () {
@@ -40,7 +43,7 @@
     var w = this.w, h = this.h, d = this.img.data, k = this.k, t = this.t, n = PAL.length - 1;
     for (var y = 0; y < h; y++) {
       var fy = y / h;                       // 0 no topo, 1 embaixo
-      var glow = Math.pow(fy, 1.8) * .55;   // brasa vindo de baixo
+      var glow = Math.pow(fy, 1.8) * this.glow;   // brasa vindo de baixo
       for (var x = 0; x < w; x++) {
         var px = x * k, py = y * k + t;     // amostra desce = fumaça sobe
         var warp = fbm(px * .6 + 3.1, py * .6 - t * .3);
@@ -51,7 +54,24 @@
         d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2]; d[i + 3] = 255;
       }
     }
+    this.parts.forEach(function (p) {          // faísca: pixel solto, creme enquanto nova, depois o tom abaixo
+      var x = Math.round(p.x), y = Math.round(p.y);
+      if (x < 0 || x >= w || y < 0 || y >= h) return;
+      var c = PAL[p.life > .55 ? n : n - 1], i = (y * w + x) * 4;
+      d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2];
+    });
     this.ctx.putImageData(this.img, 0, 0);
+  };
+  // dt em quadros de 90 ms: a fumaça sobe na mesma velocidade qualquer que seja o fps
+  Atmo.prototype.step = function (dt) {
+    this.t += .045 * dt;
+    if (!this.sparks) return;
+    var w = this.w, h = this.h;
+    for (var r = this.sparks * dt; r > 0; r--) if (Math.random() < r) this.parts.push({ x: Math.random() * w, y: h - 1, vy: -(.5 + Math.random() * .9), ph: Math.random() * 6, life: 1, decay: .012 + Math.random() * .02 });
+    this.parts = this.parts.filter(function (p) {
+      p.y += p.vy * dt * 1.6; p.x += Math.sin(p.y * .15 + p.ph) * .35 * dt; p.life -= p.decay * dt;
+      return p.life > 0 && p.y > 0;
+    });
   };
 
   var scenes = [];
@@ -62,12 +82,12 @@
       es.forEach(function (e) { scenes.forEach(function (a) { if (a.c === e.target) a.on = e.isIntersecting; }); });
     });
     scenes.forEach(function (a) { vis.observe(a.c); });
-    var last = 0;
     (function loop(ts) {
-      if (ts - last > 90) {
-        last = ts;
-        scenes.forEach(function (a) { if (a.on && !document.hidden) { a.t += .045; a.draw(); } });
-      }
+      scenes.forEach(function (a) {
+        if (ts - a.last < 1000 / a.fps) return;
+        var dt = Math.min(3, (ts - a.last) / 90); a.last = ts;
+        if (a.on && !document.hidden) { a.step(dt); a.draw(); }
+      });
       requestAnimationFrame(loop);
     })(0);
   }
