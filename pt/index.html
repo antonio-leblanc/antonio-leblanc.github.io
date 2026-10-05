@@ -296,7 +296,7 @@
             <a class="btn go" href="/pt/projects/pantera/" target="_blank" rel="noopener">Ler a história completa ↗</a>
           </div>
           <a class="art" href="/pt/projects/pantera/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-            <canvas data-drift data-src="/assets/images/pantera-field.webp" data-pal="40 26 4, 120 80 10, 196 140 40, 236 196 110, 246 236 214" aria-hidden="true"></canvas>
+            <canvas data-drift data-pview data-pal="26 12 6, 92 40 16, 196 140 40, 238 198 104, 248 238 216" data-pal2="18 16 15, 66 62 58, 146 140 132, 242 106 27, 250 222 170" data-smoke=".5" aria-hidden="true"></canvas>
           </a>
         </div>
 
@@ -529,24 +529,80 @@
       this.ctx.putImageData(this.img, 0, 0);
     };
     var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var spreads = [].map.call(document.querySelectorAll('canvas[data-spread]'), function (c) { var s = new Spread(c); s.draw(); return s; });
-    if (spreads.length && !reduce) {
-      var sv = new IntersectionObserver(function (es) { es.forEach(function (e) { spreads.forEach(function (s) { if (s.c === e.target) s.on = e.isIntersecting; }); }); });
-      spreads.forEach(function (s) { sv.observe(s.c); });
+    Spread.prototype.tick = function (dt) { this.tau += dt * this.Tmax / 110; if (this.tau > this.Tmax * 1.25) this.tau = 0; };
+
+    /* card do Pantera: a vista da câmera na torre. Morros e talhões na paleta da página; a pluma e o fogo na base
+       usam uma segunda paleta (fumaça cinza, fogo laranja), misturada pelo mesmo dither. A caixa de detecção entra quando a pluma cresce */
+    function pal(s) { return s.split(',').map(function (p) { return p.trim().split(/\s+/).map(Number); }); }
+    function PView(c) {
+      this.c = c; this.ctx = c.getContext('2d'); this.on = true; this.t = 0; this.hold = 0;
+      this.pal = pal(c.dataset.pal); this.pal2 = pal(c.dataset.pal2); this.sv = +(c.dataset.smoke || .5);
+      this.a = reduce ? .85 : 0; this.sx = .62;
+      this.size();
+    }
+    PView.prototype.size = function () {
+      var r = this.c.getBoundingClientRect(), scale = innerWidth < 820 ? 3 : 4;
+      this.w = this.c.width = Math.max(40, Math.round(r.width / scale)); this.h = this.c.height = Math.max(24, Math.round(r.height / scale));
+      this.img = this.ctx.createImageData(this.w, this.h); this.f = new Float32Array(this.w * this.h); this.m = new Float32Array(this.w * this.h);
+    };
+    PView.prototype.tick = function (dt) {
+      this.t += .045 * dt;
+      if (this.hold > 0) { this.hold -= dt; if (this.hold <= 0) { this.a = 0; this.sx = .5 + Math.random() * .3; } return; }
+      this.a += dt / 150; if (this.a >= 1) { this.a = 1; this.hold = 45; }
+    };
+    PView.prototype.mark = function (x, y) { if (x >= 0 && x < this.w && y >= 0 && y < this.h) { this.f[y * this.w + x] = 1.2; this.m[y * this.w + x] = 0; } };
+    PView.prototype.draw = function () {
+      var w = this.w, h = this.h, f = this.f, m = this.m, t = this.t, hor = h * .42, sv = this.sv, a = this.a;
+      var r1 = function (x) { return hor - fbm(x * .025 + 3, 1) * .2 * h; };
+      var r2 = function (x) { return hor + .1 * h - fbm(x * .04 + 9, 2) * .14 * h; };
+      var sx = this.sx * w, sy = r1(sx) + 1, top = a * h * .55;
+      for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
+        var v, j = y * w + x; m[j] = 0;
+        if (y < r1(x)) v = .62 - .32 * (1 - y / hor) + fbm(x * .05 + t * .2, y * .12) * .12;          // céu, mais claro no horizonte
+        else if (y < r2(x)) v = .3 + fbm(x * .08, y * .08) * .08;                                      // morro distante
+        else if (y < hor + .2 * h) v = .18 + fbm(x * .1 + 5, y * .1) * .08;                            // morro perto
+        else { var u = (x - w / 2) / (y - hor + 1), st = ((u * 2.2) % 1 + 1) % 1; v = (st < .5 ? .2 : .1) + fbm(x * .2, y * .2) * .06; }   // talhões
+        var hg = sy - y;
+        if (hg > -1 && top > 0) {
+          var drift = hg * .45 + Math.sin(hg * .12 - t * 2) * 1.5, wd = 1.2 + hg * .32;
+          var dn = Math.exp(-Math.pow((x - sx - drift) / wd, 2)) * (.55 + .7 * fbm(x * .14, y * .14 + t * 3));
+          dn = Math.min(1, dn * (hg < top ? 1 : Math.exp(-(hg - top) / 3)));
+          v = v * (1 - dn) + sv * dn; m[j] = Math.min(1, dn * 1.8);
+        }
+        if (top > 0 && hg > -2 && hg < 2 + a * 2 && Math.abs(x - sx) < 1.5 + a * 3) { v = .82 + .25 * noise(x * .7, t * 9); m[j] = 1; }   // fogo na base
+        f[j] = v;
+      }
+      if (a > .4 && (a > .5 || Math.floor(t * 8) % 2)) {
+        var hT = top * .9, x0 = Math.round(sx - 3), x1 = Math.round(sx + hT * .77 + 2.2), y0 = Math.round(sy - hT), y1 = Math.round(sy + 2), k;
+        for (k = x0; k <= x1; k++) { this.mark(k, y0); this.mark(k, y1); }
+        for (k = y0; k <= y1; k++) { this.mark(x0, k); this.mark(x1, k); }
+        for (var yy = y0 - 4; yy < y0 - 1; yy++) for (var xx = x0; xx < x0 + 12; xx++) this.mark(xx, yy);   // etiqueta
+      }
+      var d = this.img.data, P = this.pal, P2 = this.pal2, n = P.length - 1;
+      for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
+        var th = (BAYER[(y & 7) * 8 + (x & 7)] + .5) / 64, j = y * w + x, q = Math.min(n, Math.max(0, Math.floor(f[j] * n + th)));
+        var c = m[j] > th ? P2[q] : P[q], i = j * 4;
+        d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2]; d[i + 3] = 255;
+      }
+      this.ctx.putImageData(this.img, 0, 0);
+    };
+
+    var anims = [].map.call(document.querySelectorAll('canvas[data-spread]'), function (c) { return new Spread(c); })
+      .concat([].map.call(document.querySelectorAll('canvas[data-pview]'), function (c) { return new PView(c); }));
+    anims.forEach(function (s) { s.draw(); });
+    if (anims.length && !reduce) {
+      var sv = new IntersectionObserver(function (es) { es.forEach(function (e) { anims.forEach(function (s) { if (s.c === e.target) s.on = e.isIntersecting; }); }); });
+      anims.forEach(function (s) { sv.observe(s.c); });
       var slast = 0;
       (function sloop(ts) {
         if (ts - slast >= 1000 / 24) {
           var dt = Math.min(3, (ts - slast) / 90); slast = ts;
-          spreads.forEach(function (s) {
-            if (!s.on || document.hidden) return;
-            s.tau += dt * s.Tmax / 110; if (s.tau > s.Tmax * 1.25) s.tau = 0;
-            s.draw();
-          });
+          anims.forEach(function (s) { if (s.on && !document.hidden) { s.tick(dt); s.draw(); } });
         }
         requestAnimationFrame(sloop);
       })(0);
     }
-    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { draw(); spreads.forEach(function (s) { s.size(); s.draw(); }); }, 150); });
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { draw(); anims.forEach(function (s) { s.size(); s.draw(); }); }, 150); });
 
 
     var ring = document.querySelector('.ring');

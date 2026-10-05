@@ -17,6 +17,7 @@
   h2 { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .12em; margin: 48px 0 14px; color: var(--ink-60); }
   .row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
   .row.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  figure.wide { aspect-ratio: 16 / 9; }
   figure { position: relative; aspect-ratio: 16 / 11; overflow: hidden; background: #000; }
   canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
   figure .t { position: absolute; inset: 0; display: grid; place-items: center; font-family: "Antonio", sans-serif; font-weight: 300; text-transform: uppercase; font-size: clamp(34px, 5vw, 76px); text-shadow: 0 1px 18px rgba(13, 9, 6, .7); pointer-events: none; }
@@ -53,6 +54,20 @@
     <figure><canvas data-kind="spread" data-pal="ff" data-fps="24"></canvas><figcaption><span>B · propagação gerada</span><span>do zero: frente avançando sobre o relevo, com vento</span></figcaption></figure>
   </div>
 
+  <h2>Pantera — imagem do card da home</h2>
+  <div class="row">
+    <figure class="wide"><canvas data-kind="pview" data-pal="pa" data-fps="24"></canvas><figcaption><span>A · a câmera vê</span><span>fumaça sobe no morro, o modelo enquadra</span></figcaption></figure>
+    <figure class="wide"><canvas data-kind="pmap" data-pal="pa" data-fps="24"></canvas><figcaption><span>B · rede de câmeras</span><span>vista de cima: duas câmeras cruzam e localizam o foco</span></figcaption></figure>
+    <figure class="wide"><canvas data-kind="peye" data-pal="pa" data-fps="24"></canvas><figcaption><span>C · olho de pantera</span><span>a ideia da call, gerada</span></figcaption></figure>
+  </div>
+
+  <h2>Pantera A — fogo e fumaça numa cor própria</h2>
+  <div class="row">
+    <figure class="wide"><canvas data-kind="pview" data-pal="pa" data-pal2="brasa" data-smoke=".78" data-fps="24"></canvas><figcaption><span>A1 · ocre + brasa</span><span>paisagem do card, pluma na brasa da home</span></figcaption></figure>
+    <figure class="wide"><canvas data-kind="pview" data-pal="pa-terra" data-pal2="fumaca" data-smoke=".5" data-fps="24"></canvas><figcaption><span>A2 · terra + fumaça cinza</span><span>fumaça cinza de verdade, fogo laranja na base</span></figcaption></figure>
+    <figure class="wide"><canvas data-kind="pview" data-pal="pa-terra" data-pal2="terra-fogo" data-smoke=".62" data-fps="24"></canvas><figcaption><span>A3 · terra + terra queimada</span><span>tudo terroso, pluma puxando pro vermelho</span></figcaption></figure>
+  </div>
+
   <h2>Agentes — fumaça com uma cor a mais</h2>
   <div class="row four">
     <figure><canvas data-pal="ag" data-fps="11"></canvas><div class="t">Agents</div><figcaption><span>A · aço atual</span><span>uma família</span></figcaption></figure>
@@ -78,7 +93,10 @@
     'ag':         '12 18 26, 40 58 80, 92 124 158, 158 188 218, 238 242 247',
     'ag-ambar':   '12 18 26, 40 58 80, 92 124 158, 230 168 70, 248 236 210',
     'ag-fosforo': '10 16 22, 36 56 72, 80 116 140, 110 220 150, 226 250 236',
-    'ag-brasa':   '12 18 26, 40 58 80, 92 124 158, 242 106 27, 246 236 222'
+    'ag-brasa':   '12 18 26, 40 58 80, 92 124 158, 242 106 27, 246 236 222',
+    'brasa':      '60 12 0, 170 46 0, 242 106 27, 242 181 68, 246 236 222',
+    'fumaca':     '18 16 15, 66 62 58, 146 140 132, 242 106 27, 250 222 170',
+    'terra-fogo': '30 8 4, 112 32 10, 196 72 22, 240 140 58, 250 230 200'
   };
   var BAYER = [0, 32, 8, 40, 2, 34, 10, 42, 48, 16, 56, 24, 50, 18, 58, 26, 12, 44, 4, 36, 14, 46, 6, 38, 60, 28, 52, 20, 62, 30, 54, 22,
                3, 35, 11, 43, 1, 33, 9, 41, 51, 19, 59, 27, 49, 17, 57, 25, 15, 47, 7, 39, 13, 45, 5, 37, 63, 31, 55, 23, 61, 29, 53, 21];
@@ -271,6 +289,127 @@
       }
     },
 
+    /* Pantera A: vista da câmera na torre. Morros, talhões em perspectiva, fumaça subindo de um ponto; a caixa de detecção entra quando a pluma cresce */
+    pview: {
+      init: function (s) { s.a = 0; s.hold = 0; s.sx = s.w * (.55 + Math.random() * .2); },
+      step: function (s, dt) {
+        if (s.hold > 0) { s.hold -= dt; if (s.hold <= 0) { s.a = 0; s.sx = s.w * (.5 + Math.random() * .3); } return; }
+        s.a += dt / 150; if (s.a >= 1) { s.a = 1; s.hold = 45; }
+      },
+      field: function (s) {
+        var w = s.w, h = s.h, f = s.f, t = s.t, hor = h * .42;
+        var r1 = function (x) { return hor - fbm(x * .025 + 3, 1) * .2 * h; };
+        var r2 = function (x) { return hor + .1 * h - fbm(x * .04 + 9, 2) * .14 * h; };
+        var sx = s.sx, sy = r1(sx) + 1, top = s.a * h * .55, m = s.m, sv = +(s.c.dataset.smoke || .78);
+        for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
+          var v, y1 = r1(x), y2 = r2(x);
+          m[y * w + x] = 0;
+          if (y < y1) v = .62 - .32 * (1 - y / hor) + fbm(x * .05 + t * .2, y * .12) * .12;          // céu, mais claro no horizonte
+          else if (y < y2) v = .3 + fbm(x * .08, y * .08) * .08;                                       // morro distante
+          else if (y < hor + .2 * h) v = .18 + fbm(x * .1 + 5, y * .1) * .08;                          // morro perto
+          else {                                                                                        // talhões em perspectiva
+            var u = (x - w / 2) / (y - hor + 1), st = ((u * 2.2) % 1 + 1) % 1;
+            v = (st < .5 ? .2 : .1) + fbm(x * .2, y * .2) * .06;
+          }
+          var hg = sy - y;
+          if (hg > -1 && top > 0) {
+            var drift = hg * .45 + Math.sin(hg * .12 - t * 2) * 1.5, wd = 1.2 + hg * .32;
+            var dn = Math.exp(-Math.pow((x - sx - drift) / wd, 2)) * (.55 + .7 * fbm(x * .14, y * .14 + t * 3));
+            dn *= hg < top ? 1 : Math.exp(-(hg - top) / 3);
+            dn = Math.min(1, dn);
+            v = v * (1 - dn) + sv * dn;
+            m[y * w + x] = Math.min(1, dn * 1.8);
+          }
+          if (top > 0 && hg > -2 && hg < 2 + s.a * 2 && Math.abs(x - sx) < 1.5 + s.a * 3) {   // fogo na base da pluma
+            v = .82 + .25 * noise(x * .7, t * 9); m[y * w + x] = 1;
+          }
+          f[y * w + x] = v;
+        }
+        if (s.a > .4 && (s.a > .5 || Math.floor(t * 8) % 2)) {
+          var hT = top * .9, x0 = Math.round(sx - 3), x1 = Math.round(sx + hT * .45 + 1.2 + hT * .32 + 1), y0 = Math.round(sy - hT), y1b = Math.round(sy + 2);
+          line(s, x0, y0, x1, y0, 1.2); line(s, x0, y1b, x1, y1b, 1.2); line(s, x0, y0, x0, y1b, 1.2); line(s, x1, y0, x1, y1b, 1.2);
+          for (var yy = y0 - 4; yy < y0 - 1; yy++) for (var xx = x0; xx < x0 + 12; xx++) if (xx >= 0 && xx < w && yy >= 0) f[yy * w + xx] = 1.2;   // etiqueta
+        }
+      }
+    },
+
+    /* Pantera B: mapa visto de cima. Câmeras giram o campo de visão; quando duas veem o foco, as linhas se cruzam nele e a caixa fecha */
+    pmap: {
+      init: function (s) {
+        var w = s.w, h = s.h; s.cams = [];
+        for (var i = 0; i < 7; i++) s.cams.push({ x: w * (.1 + .8 * hash(i, 7)), y: h * (.12 + .76 * hash(i, 11)), a: hash(i, 3) * 6.28, sp: .05 + hash(i, 5) * .05, saw: false });
+        s.fire = null; s.wait = 20;
+      },
+      step: function (s, dt) {
+        s.cams.forEach(function (c) { c.a += c.sp * dt; });
+        if (!s.fire) {
+          s.wait -= dt;
+          if (s.wait <= 0) { s.fire = { x: s.w * (.15 + .7 * Math.random()), y: s.h * (.15 + .7 * Math.random()), age: 0, done: 0 }; s.cams.forEach(function (c) { c.saw = false; }); }
+          return;
+        }
+        var F = s.fire; F.age += dt;
+        s.cams.forEach(function (c) {
+          var dx = F.x - c.x, dy = F.y - c.y, d = Math.hypot(dx, dy), da = Math.atan2(dy, dx) - c.a;
+          da = Math.atan2(Math.sin(da), Math.cos(da));
+          if (d < s.w * .45 && Math.abs(da) < .22 && F.age > 8) c.saw = true;
+        });
+        if (s.cams.filter(function (c) { return c.saw; }).length >= 2) F.done += dt;
+        if (F.done > 60) { s.fire = null; s.wait = 15; }
+      },
+      field: function (s) {
+        var w = s.w, h = s.h, f = s.f, R = w * .45, F = s.fire;
+        for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
+          var g = fbm(x * .06, y * .06), blk = ((Math.floor(x / 9) + Math.floor(y / 7)) % 2) && g > .45 ? .06 : 0;
+          var v = .08 + g * .2 + blk;
+          for (var i = 0; i < s.cams.length; i++) {
+            var c = s.cams[i], dx = x - c.x, dy = y - c.y, d = Math.hypot(dx, dy);
+            if (d > R || d < 1) continue;
+            var da = Math.atan2(dy, dx) - c.a; da = Math.atan2(Math.sin(da), Math.cos(da));
+            if (Math.abs(da) < .22) v += .16 * (1 - d / R);
+          }
+          f[y * w + x] = v;
+        }
+        s.cams.forEach(function (c) { splat(s, c.x, c.y, 1.1, .9); });
+        if (F) {
+          splat(s, F.x, F.y, 1.4 + Math.min(1.5, F.age / 30), .9 + .3 * Math.sin(F.age));
+          s.cams.forEach(function (c) { if (c.saw) line(s, c.x, c.y, F.x, F.y, .62); });
+          if (F.done > 0 && (F.done > 12 || Math.floor(F.done / 2) % 2)) {
+            var b = 4, x0 = Math.round(F.x - b), x1 = Math.round(F.x + b), y0 = Math.round(F.y - b), y1 = Math.round(F.y + b);
+            line(s, x0, y0, x1, y0, 1.2); line(s, x0, y1, x1, y1, 1.2); line(s, x0, y0, x0, y1, 1.2); line(s, x1, y0, x1, y1, 1.2);
+          }
+        }
+      }
+    },
+
+    /* Pantera C: olho de felino. Pálpebra em amêndoa, íris com fibras radiais, pupila em fenda que respira; pisca de vez em quando */
+    peye: {
+      init: function (s) { s.blink = 0; s.next = 60 + Math.random() * 60; },
+      step: function (s, dt) {
+        s.next -= dt; if (s.next <= 0) { s.blink = 1; s.next = 70 + Math.random() * 90; }
+        if (s.blink > 0) s.blink = Math.max(0, s.blink - .09 * dt);
+      },
+      field: function (s) {
+        var w = s.w, h = s.h, f = s.f, t = s.t, cx = w / 2, cy = h / 2;
+        var open = 1 - Math.sin(s.blink * Math.PI), W = w * .4, H = h * .36 * Math.max(.04, open), Ri = h * .36;
+        var pw = 1.6 + 1.2 * (.5 + .5 * Math.sin(t * .7));
+        for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
+          var dx = x - cx, dy = y - cy, v;
+          var lid = H * (1 - Math.pow(dx / W, 2));
+          if (Math.abs(dx) < W && Math.abs(dy) < lid) {
+            var r = Math.hypot(dx, dy), ang = Math.atan2(dy, dx);
+            v = .5 + .35 * noise(ang * 14 + 50, r * .18) + .15 * fbm(x * .2, y * .2) - Math.max(0, (r - Ri * .8) / (Ri * .2)) * .35;
+            if (r < Ri * .35) v += .12;                                                       // anel claro em volta da pupila
+            if (Math.abs(dx) < pw * Math.max(0, 1 - Math.pow(dy / Ri, 2))) v = .02;         // pupila em fenda
+            if (Math.abs(dy) > lid - 1.2) v = .05;                                          // borda escura da pálpebra
+            if (Math.hypot(dx + Ri * .32, dy + Ri * .38) < 2.2 && open > .8) v = 1.2;       // reflexo
+          } else {
+            v = .06 + .16 * fbm(x * .07 + Math.sin(y * .05) * 2, y * .35) * (1 - .5 * Math.abs(dy) / h);   // pelo
+          }
+          f[y * w + x] = v;
+        }
+      }
+    },
+
     flow: {
       init: function (s) { s.ps = []; },
       step: function (s, dt) {
@@ -312,6 +451,7 @@
     this.c = c; this.ctx = c.getContext('2d'); this.t = 0; this.last = 0; this.parts = [];
     this.kind = KINDS[c.dataset.kind || 'smoke'];
     this.pal = parse(PALS[c.dataset.pal]);
+    this.pal2 = c.dataset.pal2 ? parse(PALS[c.dataset.pal2]) : null;   // pixels marcados na máscara usam esta paleta
     this.base = { fps: +c.dataset.fps, sparks: c.hasAttribute('data-sparks') };
     this.fps = this.base.fps; this.sparks = this.base.sparks;
     this.size();
@@ -322,6 +462,7 @@
     this.h = this.c.height = Math.max(24, Math.round(r.height / scale));
     this.img = this.ctx.createImageData(this.w, this.h);
     this.f = new Float32Array(this.w * this.h);
+    this.m = new Float32Array(this.w * this.h);
     this.k = 7 / Math.max(this.w, this.h);
     this.kind.init(this);
   };
@@ -330,8 +471,8 @@
     this.kind.field(this);
     var w = this.w, h = this.h, d = this.img.data, f = this.f, P = this.pal, n = P.length - 1;
     for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
-      var j = y * w + x, q = Math.min(n, Math.max(0, Math.floor(f[j] * n + (BAYER[(y & 7) * 8 + (x & 7)] + .5) / 64)));
-      var c = P[q], i = j * 4;
+      var th = (BAYER[(y & 7) * 8 + (x & 7)] + .5) / 64, j = y * w + x, q = Math.min(n, Math.max(0, Math.floor(f[j] * n + th)));
+      var c = (this.pal2 && this.m[j] > th) ? this.pal2[q] : P[q], i = j * 4;
       d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2]; d[i + 3] = 255;
     }
     this.ctx.putImageData(this.img, 0, 0);
