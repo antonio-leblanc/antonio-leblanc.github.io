@@ -28,7 +28,7 @@
   function Atmo(canvas) {
     this.c = canvas; this.ctx = canvas.getContext('2d'); this.t = 0; this.on = true; this.last = 0;
     this.fps = +(canvas.dataset.fps || 11);   // atmosfera padrão anda a ~11 qps; data-fps="24" deixa mais fluida
-    this.sparks = canvas.hasAttribute('data-sparks') ? +(canvas.dataset.sparks || .55) : 0; this.parts = [];   // faíscas por quadro de 90 ms
+    this.sparks = canvas.hasAttribute('data-sparks') ? +(canvas.dataset.sparks || .55) : 0; this.parts = [];   // faíscas por quadro de 90 ms a cada 100 colunas: hero largo não dilui a brasa
     this.glow = +(canvas.dataset.glow || .55);   // força da brasa de baixo
     this.pal = canvas.dataset.pal ? canvas.dataset.pal.split(',').map(function (c) { return c.trim().split(/\s+/).map(Number); }) : PAL;
     this.logs = canvas.dataset.kind === 'logs';  // em vez de fumaça, oito colunas de log subindo
@@ -61,8 +61,9 @@
     this.parts.forEach(function (p) {          // faísca: pixel solto, creme enquanto nova, depois o tom abaixo
       var x = Math.round(p.x), y = Math.round(p.y);
       if (x < 0 || x >= w || y < 0 || y >= h) return;
-      var c = PAL[p.life > .55 ? n : n - 1], i = (y * w + x) * 4;
+      var c = PAL[p.life > .45 ? n : n - 1], i = (y * w + x) * 4;
       d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2];
+      if (p.big && y > 0) { i -= w * 4; d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2]; }   // brasa maior: rastro de dois pixels
     });
     this.ctx.putImageData(this.img, 0, 0);
   };
@@ -72,7 +73,7 @@
     if (this.logs) return this.stepLogs(dt);
     if (!this.sparks) return;
     var w = this.w, h = this.h;
-    for (var r = this.sparks * dt; r > 0; r--) if (Math.random() < r) this.parts.push({ x: Math.random() * w, y: h - 1, vy: -(.5 + Math.random() * .9), ph: Math.random() * 6, life: 1, decay: .012 + Math.random() * .02 });
+    for (var r = this.sparks * dt * w / 100; r > 0; r--) if (Math.random() < r) this.parts.push({ x: Math.random() * w, y: h - 1 - Math.random() * h / 3, vy: -(.5 + Math.random() * .9), ph: Math.random() * 6, life: 1, decay: .008 + Math.random() * .016, big: Math.random() < .2 });
     this.parts = this.parts.filter(function (p) {
       p.y += p.vy * dt * 1.6; p.x += Math.sin(p.y * .15 + p.ph) * .35 * dt; p.life -= p.decay * dt;
       return p.life > 0 && p.y > 0;
