@@ -32,6 +32,7 @@
     this.glow = +(canvas.dataset.glow || .55);   // força da brasa de baixo
     this.pal = canvas.dataset.pal ? canvas.dataset.pal.split(',').map(function (c) { return c.trim().split(/\s+/).map(Number); }) : PAL;
     this.logs = canvas.dataset.kind === 'logs';  // em vez de fumaça, oito colunas de log subindo
+    this.flow = canvas.dataset.kind === 'flow';  // em vez de fumaça, partículas orbitando o centro, como o card de agentes da home
     this.size();
   }
   Atmo.prototype.size = function () {
@@ -40,10 +41,19 @@
     this.h = this.c.height = Math.max(24, Math.round(r.height / scale));
     this.img = this.ctx.createImageData(this.w, this.h);
     this.k = 7 / Math.max(this.w, this.h);
+    if (this.flow) {
+      this.f = new Float32Array(this.w * this.h); this.ps = [];
+      this.calm = new Float32Array(this.w * this.h);   // faixa larga e baixa atrás do título: o giro continua, mas quase apagado ali
+      for (var y = 0; y < this.h; y++) for (var x = 0; x < this.w; x++) {
+        var ex = x / this.w - .5, ey = y / this.h - .52;
+        this.calm[y * this.w + x] = 1 - .8 * Math.exp(-(ex * ex / .07 + ey * ey / .03));
+      } for (var i = 0; i < 40; i++) this.stepFlow(1);
+    }
     if (this.logs) { this.cols = []; for (var c = 0; c < 8; c++) this.cols.push({ sp: .35 + Math.random() * .6, lines: [] }); this.fill(); }
   };
   Atmo.prototype.draw = function () {
     if (this.logs) return this.drawLogs();
+    if (this.flow) return this.drawField(this.f);
     var w = this.w, h = this.h, d = this.img.data, k = this.k, t = this.t, PAL = this.pal, n = PAL.length - 1;
     for (var y = 0; y < h; y++) {
       var fy = y / h;                       // 0 no topo, 1 embaixo
@@ -71,6 +81,7 @@
   Atmo.prototype.step = function (dt) {
     this.t += .045 * dt;
     if (this.logs) return this.stepLogs(dt);
+    if (this.flow) return this.stepFlow(dt);
     if (!this.sparks) return;
     var w = this.w, h = this.h;
     for (var r = this.sparks * dt * w / 100; r > 0; r--) if (Math.random() < r) this.parts.push({ x: Math.random() * w, y: h - 1 - Math.random() * h / 3, vy: -(.5 + Math.random() * .9), ph: Math.random() * 6, life: 1, decay: .008 + Math.random() * .016, big: Math.random() < .2 });
@@ -106,6 +117,25 @@
         for (var x = x0; x < x0 + l.len && x < w; x++) f[y * w + x] = b;
       });
     });
+    this.drawField(f);
+  };
+
+  /* fluxo: partículas giram em volta do centro com turbulência e deixam rastro que apaga; o título fica no olho do giro */
+  Atmo.prototype.stepFlow = function (dt) {
+    var w = this.w, h = this.h, cx = w / 2, cy = h / 2, t = this.t, f = this.f, calm = this.calm, N = Math.round(w * h / 9), decay = Math.pow(.9, dt);
+    while (this.ps.length < N) this.ps.push({ x: Math.random() * w, y: Math.random() * h, life: Math.random() * 120 });
+    for (var i = 0; i < f.length; i++) f[i] *= decay;
+    this.ps.forEach(function (p) {
+      var a = fbm(p.x * .035, p.y * .035 + t * .25) * Math.PI * 4;
+      var dx = p.x - cx, dy = p.y - cy, d = Math.hypot(dx, dy) || 1;
+      p.x += (Math.cos(a) * .5 - dy / d * .55) * dt; p.y += (Math.sin(a) * .5 + dx / d * .55) * dt; p.life -= dt;
+      if (p.life < 0 || p.x < 0 || p.x >= w || p.y < 0 || p.y >= h) { p.x = Math.random() * w; p.y = Math.random() * h; p.life = 60 + Math.random() * 120; return; }
+      var j = Math.floor(p.y) * w + Math.floor(p.x);
+      f[j] = Math.min(1.1, f[j] + .28 * calm[j]);
+    });
+  };
+  Atmo.prototype.drawField = function (f) {
+    var w = this.w, h = this.h, d = this.img.data, P = this.pal, n = P.length - 1;
     for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
       var j = y * w + x, q = Math.min(n, Math.max(0, Math.floor(f[j] * n + (BAYER[(y & 7) * 8 + (x & 7)] + .5) / 64)));
       var c = P[q], i = j * 4;
