@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0b0b17" />
+  <meta name="description" content="Study notebook on how the Hermes Agent works inside: the agent loop, profiles, kanban, gateway and plugins, every fact linked to the code." />
+  <title>How Hermes works — Antonio Leblanc</title>
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Archivo:wdth,wght@62..125,300..700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --night: #0b0b17;
+      --night-2: #12122a;
+      --blue: #0000f2;
+      --ink: #f2f2f2;
+      --ink-60: rgba(242, 242, 242, .62);
+      --ink-20: rgba(242, 242, 242, .18);
+      --cyan: #00f2f2;
+      --magenta: #f200f2;
+      --yellow: #f2f200;
+      --display: "Antonio", "Arial Narrow", sans-serif;
+      --body: "Archivo", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+      --gutter: clamp(16px, 5vw, 72px);
+      --measure: 680px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--night);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50;
+      border: 1px solid rgba(0, 0, 242, .55);
+    }
+    a { color: inherit; }
+    ::selection { background: var(--blue); color: var(--ink); }
+
+    .label {
+      font-family: var(--body);
+      font-stretch: 125%;
+      font-weight: 600;
+      font-size: 10.5px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .display {
+      font-family: var(--display);
+      font-weight: 200;
+      text-transform: uppercase;
+      line-height: .86;
+      letter-spacing: -.01em;
+    }
+    code {
+      font-family: var(--mono); font-size: .82em;
+      background: var(--night-2); border: 1px solid #23234a; padding: 1px 5px;
+      overflow-wrap: anywhere;
+    }
+
+    /* ── nav ── */
+    nav.top {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 28px var(--gutter) 0;
+    }
+    nav.top a { text-decoration: none; opacity: .85; }
+    nav.top a:hover { opacity: 1; color: var(--cyan); }
+    .sigil {
+      width: 34px; height: 34px; border: 1px solid var(--ink-60);
+      display: grid; place-items: center;
+      font-family: var(--mono); font-size: 11px; line-height: 1;
+    }
+
+    /* ── hero ── */
+    .hero { text-align: center; padding: 72px var(--gutter) 64px; }
+    .hero .label { margin-bottom: 22px; color: var(--ink-60); }
+    .hero h1 { font-size: clamp(52px, 10vw, 168px); }
+    .hero p { max-width: 540px; margin: 28px auto 0; font-size: 15px; }
+    .hero p + p { margin-top: 12px; color: var(--ink-60); }
+
+    /* ── roadmap ── */
+    .roadmap { max-width: var(--measure); margin: 0 auto; padding: 0 var(--gutter); box-sizing: content-box; }
+    .roadmap .part { color: var(--ink-60); margin: 40px 0 10px; }
+    .roadmap .part:first-child { margin-top: 0; }
+    .roadmap ol { list-style: none; border-top: 1px solid var(--ink-20); }
+    .roadmap li {
+      display: flex; gap: 16px; align-items: baseline;
+      padding: 13px 0; border-bottom: 1px solid var(--ink-20);
+      color: var(--ink-60);
+    }
+    .roadmap li::before { content: attr(value); font-family: var(--mono); font-size: 11px; min-width: 18px; }
+    .roadmap li > div { flex: 1; }
+    .roadmap .t { font-size: 15px; color: var(--ink); }
+    .roadmap .t a { text-decoration: none; }
+    .roadmap .t a:hover { color: var(--cyan); }
+    .roadmap .t a.doc { font-family: var(--mono); font-size: 10.5px; color: var(--ink-60); margin-left: 6px; }
+    .roadmap .q { font-size: 13.5px; margin-top: 2px; }
+    .roadmap .state { font-family: var(--mono); font-size: 10.5px; white-space: nowrap; }
+    .roadmap li.done .state { color: var(--cyan); }
+    .roadmap li.known .state { color: #00f279; }
+    .roadmap li.half .state { color: var(--yellow); }
+
+    /* ── chapter ── */
+    article {
+      max-width: var(--measure); margin: 0 auto; padding: 110px var(--gutter) 40px;
+      box-sizing: content-box;
+    }
+    article header { margin-bottom: 44px; }
+    article header .label { color: var(--cyan); margin-bottom: 18px; }
+    article h2 { font-size: clamp(44px, 7vw, 96px); }
+    article header p { margin-top: 18px; color: var(--ink-60); font-size: 15px; }
+    article h3 {
+      font-family: var(--display); font-weight: 300; font-size: clamp(26px, 3vw, 34px);
+      line-height: 1.05; margin: 52px 0 16px;
+    }
+    article h3 code { font-family: inherit; font-size: inherit; background: none; border: 0; padding: 0; text-transform: none; }
+    article p + p { margin-top: 14px; }
+    article ul { margin: 14px 0 0 0; list-style: none; }
+    article li { padding-left: 18px; position: relative; }
+    article li + li { margin-top: 10px; }
+    article strong { font-weight: 600; }
+    article li::before { content: "—"; position: absolute; left: 0; color: var(--ink-60); }
+
+    .art {
+      margin: 26px 0; border: 1px solid #23234a; background: #08081a;
+      position: relative; overflow: hidden;
+    }
+    .art::before {
+      content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 2px;
+      background: linear-gradient(var(--magenta), var(--cyan), var(--yellow)); opacity: .7;
+    }
+    .art .bar {
+      padding: 8px 14px; border-bottom: 1px solid #23234a;
+      font-family: var(--mono); font-size: 11px; color: var(--ink-60);
+    }
+    .art pre {
+      font-family: var(--mono); font-size: 12.5px; line-height: 1.7;
+      padding: 18px 20px; white-space: pre; overflow-x: auto;
+    }
+    .art pre .k { color: var(--cyan); }
+    .art pre .s { color: var(--yellow); }
+    .art pre .c { color: rgba(242, 242, 242, .5); }
+    .art pre .m { color: var(--magenta); }
+
+    .sources {
+      margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--ink-20);
+      font-size: 13px; color: var(--ink-60);
+    }
+    .sources .label { margin-bottom: 10px; }
+    .sources li::before { content: "↗"; }
+    .sources a:hover { color: var(--cyan); }
+
+    /* ── footer ── */
+    footer {
+      margin-top: 120px; padding: 48px var(--gutter) 40px; border-top: 1px solid var(--ink-20);
+      display: flex; justify-content: space-between; align-items: flex-end; gap: 28px; flex-wrap: wrap;
+    }
+    footer .display { font-size: clamp(40px, 6vw, 72px); }
+    footer .label { color: var(--ink-60); }
+    footer nav { display: flex; gap: 22px; }
+    footer nav a { text-decoration: none; }
+    footer nav a:hover { color: var(--cyan); }
+
+    @media (max-width: 560px) {
+      .roadmap li { flex-wrap: wrap; gap: 4px 12px; }
+      .roadmap li .state { width: 100%; padding-left: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top label">
+    <a href="/">Antonio Leblanc</a>
+    <div class="sigil" aria-hidden="true">AL</div>
+    <a href="/agents-hermes/">Agents</a>
+  </nav>
+
+  <header class="hero">
+    <div class="label">Study notebook</div>
+    <h1 class="display">How Hermes<br />works</h1>
+    <p>I run nine AI agents on Hermes, one per department of the company. This is what I learn opening up its code.</p>
+    <p>Facts come from <a href="https://github.com/NousResearch/hermes-agent/tree/e05b16348b1d06a3311237423b0a4fc30d9c5aa1" target="_blank" rel="noopener"><code>hermes-agent</code></a> at commit <code>e05b163</code>, October 1, 2026.</p>
+  </header>
+
+  <section class="roadmap" aria-label="Roadmap">
+    <div class="part label">One agent</div>
+    <ol>
+      <li class="done" value="1"><div><div class="t"><a href="#loop">The agent loop</a> <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/agent-loop.md" target="_blank" rel="noopener">guide ↗</a></div><div class="q">What happens between the message arriving and the reply going out? When does the loop stop?</div></div><span class="state">summary</span></li>
+      <li class="done" value="2"><div><div class="t"><a href="#prompt">Prompt assembly</a> <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/prompt-assembly.md" target="_blank" rel="noopener">guide ↗</a></div><div class="q">In what order is the system prompt built, and why does the order decide the cache?</div></div><span class="state">summary</span></li>
+      <li class="" value="3"><div><div class="t">Tools and toolsets <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/tools-runtime.md" target="_blank" rel="noopener">guide ↗</a></div><div class="q">How does a tool register, who decides whether the model sees it, and where does the command run?</div></div><span class="state">to study</span></li>
+      <li class="" value="4"><div><div class="t">Providers and models <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/provider-runtime.md" target="_blank" rel="noopener">guide ↗</a></div><div class="q">How does Hermes pick the model and the key, and what does it do when a provider goes down?</div></div><span class="state">to study</span></li>
+      <li class="half" value="5"><div><div class="t">Long context and memory <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/context-compression-and-caching.md" target="_blank" rel="noopener">guide ↗</a></div><div class="q">What happens when the conversation no longer fits the window? What survives between sessions?</div></div><span class="state">understood, can't explain yet</span></li>
+    </ol>
+    <div class="part label">Many agents</div>
+    <ol>
+      <li class="done" value="6"><div><div class="t"><a href="#profiles">Profiles and <code>kanban.db</code></a></div><div class="q">What belongs to each agent, and what they all share.</div></div><span class="state">summary</span></li>
+      <li class="half" value="7"><div><div class="t">Gateway <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/gateway-internals.md" target="_blank" rel="noopener">guide ↗</a></div><div class="q">How does a Telegram message become a turn of the right profile? Who is allowed to talk to the bot?</div></div><span class="state">partly</span></li>
+      <li class="known" value="8"><div><div class="t"><code>state.db</code> <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/session-storage.md" target="_blank" rel="noopener">guide ↗</a></div><div class="q">How is a session stored, and how do you measure human use from it?</div></div><span class="state">can explain</span></li>
+      <li class="half" value="9"><div><div class="t">Kanban inside</div><div class="q">Who picks up a task, how does it block and unblock, and how does it notify whoever asked?</div></div><span class="state">understood, can't explain yet</span></li>
+      <li class="" value="10"><div><div class="t">Cron and subagents <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/cron-internals.md" target="_blank" rel="noopener">guide ↗</a></div><div class="q">How does an agent work with nobody messaging it, and how does it delegate to a child?</div></div><span class="state">to study</span></li>
+    </ol>
+    <div class="part label">Extending</div>
+    <ol>
+      <li class="known" value="11"><div><div class="t">Plugins and hooks <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/plugins/index.md" target="_blank" rel="noopener">guide ↗</a></div><div class="q">Where do you change what the agent sees, what it does, and what you observe from it?</div></div><span class="state">can explain</span></li>
+      <li class="" value="12"><div><div class="t">Skills <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/creating-skills.md" target="_blank" rel="noopener">guide ↗</a></div><div class="q">What is a skill, how does the agent find the right one, and who creates and curates them?</div></div><span class="state">to study</span></li>
+      <li class="" value="13"><div><div class="t">Dashboard and desktop <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/desktop-plugin-sdk.md" target="_blank" rel="noopener">guide ↗</a></div><div class="q">How a plugin gets a screen: backend inside the gateway, UI in the Desktop app.</div></div><span class="state">to study</span></li>
+    </ol>
+    <div class="part label">Running it in a company</div>
+    <ol>
+      <li class="half" value="14"><div><div class="t">Security <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/egress-internals.md" target="_blank" rel="noopener">guide ↗</a></div><div class="q">What stops an agent from leaking a secret, reaching the network, or running a command without approval?</div></div><span class="state">partly</span></li>
+      <li class="" value="15"><div><div class="t">Health and cost <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/gateway-monitoring.md" target="_blank" rel="noopener">guide ↗</a></div><div class="q">How do you know the fleet is alive, and what it costs?</div></div><span class="state">to study</span></li>
+    </ol>
+  </section>
+
+  <article id="loop">
+    <header>
+      <div class="label">Chapter 01</div>
+      <h2 class="display">The agent<br />loop</h2>
+      <p>What happens between the message arriving and the reply going out.</p>
+    </header>
+
+    <h3>An agent is a model inside a loop</h3>
+    <p>On its own, the model only returns text. What makes it an agent is the loop around it: Hermes calls the model and, if the reply asks for a tool, runs the tool, puts the result into the conversation and calls the model again. The loop ends only when the model answers in text, when the budget runs out, or when someone interrupts it.</p>
+
+    <div class="art">
+      <div class="bar">one turn</div>
+<pre><span class="k">user</span> message
+   │
+   ▼
+build the system prompt         <span class="c"># or reuse last turn's</span>
+   │
+   ▼
+over 50% of the window? ──yes──▶ <span class="m">compress</span> the middle
+   │
+   ▼
+┌▶ call the <span class="k">model</span>
+│     │
+│     ├── asked for a tool? ──▶ <span class="m">run it</span> ──▶ result into history ─┐
+│     │                                                       │
+└─────┼───────────────────────────────────────────────────────┘
+      │
+      └── answered in text ──▶ <span class="k">save</span> the session ──▶ reply</pre>
+    </div>
+
+    <h3>Where it lives</h3>
+    <p>The name is misleading: <code>run_agent.py</code> is just a facade. The loop is <code>run_conversation()</code> in <code>agent/conversation_loop.py</code>, and each phase of a turn has its own file under <code>agent/turn_*.py</code>: preflight, API call, tool round, error recovery, truncation. There are more than 30. It's the densest part of the code, because it's where everything goes wrong: provider down, reply cut off, tool hanging.</p>
+
+    <h3>The conversation has an alternation rule</h3>
+    <p>Internally every conversation is in OpenAI format, with four roles: <code>system</code>, <code>user</code>, <code>assistant</code> and <code>tool</code>. Providers require alternation: never two <code>assistant</code> messages in a row, never two <code>user</code> messages in a row. Only <code>tool</code> can repeat, when several tools answer the same request. A provider rejects a history that breaks this rule, and a good part of the turn code exists so it never sends one.</p>
+
+    <h3>Tools: only the safe ones run in parallel</h3>
+    <p>When the model asks for several tools at once, Hermes splits the batch into segments. Only tools that change nothing run together: reading files, searching the web, looking up past sessions. File reads and writes share a segment only if their paths don't overlap. Everything else, the terminal included, runs one at a time. Results come back in the order the model asked for them, as if everything had run in sequence.</p>
+    <p>Around each execution sit the plugin hooks <code>pre_tool_call</code> and <code>post_tool_call</code>, with the dangerous-command check in between, which stops and asks for approval. Four tools skip the registry entirely: <code>todo</code>, <code>memory</code>, <code>session_search</code> and <code>delegate_task</code>. The loop handles them directly because they change the agent's own state.</p>
+
+    <h3>When the loop stops</h3>
+    <ul>
+      <li><strong>Budget.</strong> Every agent has an <code>IterationBudget</code>: 500 iterations for the main agent, 250 for each subagent. A subagent has its own budget and doesn't spend the parent's. When it runs out, the agent stops and returns a summary of what it did.</li>
+      <li><strong>Interrupt.</strong> A new message or <code>/stop</code> abandons the call in flight. The half-finished reply is discarded and never enters the history.</li>
+      <li><strong>Provider down.</strong> On 429, 5xx or 401/403, Hermes tries the <code>fallback_providers</code> from <code>config.yaml</code>, in order, and carries on with whichever answers.</li>
+    </ul>
+
+    <h3>Two compressions</h3>
+    <p>Before calling the model, if the conversation is over 50% of the window, the compressor summarizes the middle and keeps the last 20 messages intact. The gateway has a second safety net, between turns, at 85%. More in chapter 05.</p>
+
+    <h3>The docs lag, the code rules</h3>
+    <p>The official guide says that with several tools, they all run in parallel. The code only parallelizes the safe ones. The same guide says 50 iterations per subagent, and the code says 250 since a config migration. When in doubt, open the code.</p>
+
+    <div class="sources">
+      <div class="label">In the code</div>
+      <ul>
+        <li><a href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/agent/conversation_loop.py#L1695" target="_blank" rel="noopener"><code>agent/conversation_loop.py</code></a>: <code>run_conversation()</code>, the loop.</li>
+        <li><a href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/agent/tool_dispatch_helpers.py#L30" target="_blank" rel="noopener"><code>agent/tool_dispatch_helpers.py</code></a>: which tools may run together and how the batch is split.</li>
+        <li><a href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/agent/iteration_budget.py" target="_blank" rel="noopener"><code>agent/iteration_budget.py</code></a> and <a href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/hermes_cli/config_defaults.py#L1363" target="_blank" rel="noopener"><code>hermes_cli/config_defaults.py</code></a>: the budget and the subagent's 250.</li>
+        <li><a href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/gateway/run_turn.py#L680" target="_blank" rel="noopener"><code>gateway/run_turn.py</code></a>: the gateway's 85% compression.</li>
+        <li><a href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/agent-loop.md" target="_blank" rel="noopener">Official loop guide</a>, to read with the caveat above.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article id="prompt">
+    <header>
+      <div class="label">Chapter 02</div>
+      <h2 class="display">Prompt<br />assembly</h2>
+      <p>What the model reads before your message, and why the order matters.</p>
+    </header>
+
+    <h3>Built once, reused every turn</h3>
+    <p>The system prompt is not rebuilt on every message. Hermes builds it once at the start of the session, keeps it on the agent, and sends the exact same bytes on every turn. The only thing that triggers a rebuild is compression. Even the date line carries only the day, not the time, so the prompt stays identical from morning to night.</p>
+
+    <h3>Why: the prefix cache</h3>
+    <p>Providers cache the longest prefix of the request that they have already seen, and charge the cached part at a fraction of the price. It works like Docker layers: change one line near the top and everything after it is rebuilt. So the order of the prompt is the order of how likely each piece is to change. What never changes goes first, and what may change goes last.</p>
+
+    <h3>Three tiers</h3>
+    <div class="art">
+      <div class="bar">system prompt</div>
+<pre><span class="k">stable</span>     <span class="c"># same for every session of this agent</span>
+  identity (SOUL.md, or the built-in default)
+  tool and model guidance, platform hints, pinned skills
+
+<span class="k">context</span>    <span class="c"># depends on the project and the folder</span>
+  system_message from the caller
+  project file: .hermes.md › AGENTS.md › CLAUDE.md › .cursorrules
+  git workspace snapshot
+
+<span class="m">volatile</span>   <span class="c"># most likely to differ on a rebuild</span>
+  skills index
+  MEMORY.md and USER.md snapshots
+  plugin prompt sections, active profile line
+  date line, runtime environment (host, cwd)</pre>
+    </div>
+    <p>The project file is first match wins: if there is a <code>.hermes.md</code>, the <code>AGENTS.md</code> is not loaded. And <code>SOUL.md</code> goes into the identity slot only, never twice.</p>
+
+    <h3>Memory is a snapshot</h3>
+    <p>When the agent saves something with the <code>memory</code> tool mid-session, it goes to disk but does not change the prompt already built. The agent only sees the new memory in its prompt in the next session, or after a compression rebuild. Editing the prompt mid-session would throw the cache away.</p>
+
+    <h3>What enters per turn goes into the user message</h3>
+    <p>Anything that changes from turn to turn stays out of the system prompt. Gateway context, memory recall and the <code>pre_llm_call</code> hook output are added only at call time and never written into the cached prompt. The <code>pre_llm_call</code> output goes into the current user message, at the end of the request, where it doesn't break the cached prefix. That's why a plugin that injects context, like a company charter, uses <code>pre_llm_call</code> and doesn't touch the system prompt.</p>
+
+    <h3>Where to customize</h3>
+    <ul>
+      <li>Who the agent is: <code>SOUL.md</code>.</li>
+      <li>Rules of a repo: the project file (<code>AGENTS.md</code> and friends).</li>
+      <li>Reusable procedures: skills.</li>
+      <li>Durable facts about the user: <code>MEMORY.md</code> and <code>USER.md</code>.</li>
+      <li>Per-platform tone: <code>platform_hints</code> in <code>config.yaml</code>, with <code>append</code> or <code>replace</code>.</li>
+    </ul>
+    <p>Editing <code>agent/prompt_builder.py</code> is a change for every Hermes user, not a customization.</p>
+
+    <h3>The docs contradict themselves here</h3>
+    <p>The official guide lists the skills index in the volatile tier and, a few lines later, says skills are in the stable tier. The code settles it: the skills index opens the volatile tier, because skills change at runtime. Only pinned skills, resolved once per agent, sit in the stable tier.</p>
+
+    <div class="sources">
+      <div class="label">In the code</div>
+      <ul>
+        <li><a href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/agent/system_prompt.py#L734" target="_blank" rel="noopener"><code>agent/system_prompt.py</code></a>: <code>build_system_prompt_parts()</code>, the three tiers, and <a href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/agent/system_prompt.py#L800" target="_blank" rel="noopener"><code>build_system_prompt()</code></a>, built once and cached.</li>
+        <li><a href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/agent/system_prompt.py#L489" target="_blank" rel="noopener"><code>_timestamp_line()</code></a>: date only, so the prompt is byte-stable for the day.</li>
+        <li><a href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/agent/prompt_builder.py#L1830" target="_blank" rel="noopener"><code>agent/prompt_builder.py</code></a>: <code>build_context_files_prompt()</code> and <code>load_soul_md()</code>.</li>
+        <li><a href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/prompt-assembly.md" target="_blank" rel="noopener">Official prompt assembly guide</a>, to read with the caveat above.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article id="profiles">
+    <header>
+      <div class="label">Chapter 06</div>
+      <h2 class="display">Profiles and<br />kanban.db</h2>
+      <p>What belongs to each agent, and what they all share.</p>
+    </header>
+
+    <h3>A profile is an isolated agent</h3>
+    <p>Every Hermes agent is a profile: a directory with everything that belongs to it. The default profile lives in <code>~/.hermes/</code>, the others in <code>~/.hermes/profiles/&lt;name&gt;/</code>.</p>
+    <p>Four files matter:</p>
+    <ul>
+      <li><code>SOUL.md</code>: who the agent is and how it behaves.</li>
+      <li><code>config.yaml</code>: model, tools and the rest of the configuration.</li>
+      <li><code>.env</code>: API keys and tokens.</li>
+      <li><code>state.db</code>: the conversations, in SQLite.</li>
+    </ul>
+
+    <div class="art">
+      <div class="bar">~/.hermes</div>
+<pre><span class="k">~/.hermes/</span>
+├── <span class="m">kanban.db</span>            <span class="c"># shared by all profiles</span>
+├── SOUL.md  config.yaml  .env  state.db   <span class="c"># default profile</span>
+└── <span class="k">profiles/</span>
+    ├── <span class="k">support/</span>
+    │   ├── SOUL.md
+    │   ├── config.yaml
+    │   ├── .env
+    │   └── state.db
+    └── <span class="k">tech/</span>
+        └── ...</pre>
+    </div>
+
+    <h3>Secrets don't cross profiles</h3>
+    <p>A single gateway can serve several profiles in the same process, so one profile's keys must never leak into another's turn. If some code asks for a secret without knowing which profile it belongs to, Hermes doesn't fall back to the global environment: it raises <code>UnscopedSecretError</code> and stops.</p>
+    <p>Why it matters is prompt injection. The agent that talks to strangers the most should have the least power. The support bot talks to any customer, so whatever someone writes to it must not reach the tech bot's keys.</p>
+
+    <h3><code>kanban.db</code> is what they share</h3>
+    <p>Outside the profiles, at the root, sits <code>~/.hermes/kanban.db</code>. It's the only place common to all of them. When one agent hands work to another, it opens a task on the board with the other profile as assignee, and the kanban dispatcher delivers the task to it.</p>
+
+    <div class="art">
+      <div class="bar">kanban.db · tasks</div>
+<pre><span class="k">id</span>          t_3a91c0de
+<span class="k">title</span>       <span class="s">"500 error on the customer report"</span>
+<span class="k">created_by</span>  support
+<span class="k">assignee</span>    tech
+<span class="k">status</span>      <span class="m">ready</span>   <span class="c"># triage · todo · ready · running · blocked · done ...</span></pre>
+    </div>
+
+    <p>That's the default board. You can create other boards under <code>~/.hermes/kanban/boards/&lt;name&gt;/</code>, and an agent working on one board can't see the others.</p>
+
+    <div class="sources">
+      <div class="label">In the code</div>
+      <ul>
+        <li><a href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/hermes_constants.py#L111" target="_blank" rel="noopener"><code>hermes_constants.py</code></a>: <code>get_hermes_home()</code> resolves the active profile's directory, and <code>_PROFILE_IDENTITY_MARKERS</code> lists the files that make a directory a profile.</li>
+        <li><a href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/agent/secret_scope.py#L115" target="_blank" rel="noopener"><code>agent/secret_scope.py</code></a>: the per-profile secret scope and <code>UnscopedSecretError</code>.</li>
+        <li><a href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/hermes_cli/kanban_db.py#L513" target="_blank" rel="noopener"><code>hermes_cli/kanban_db.py</code></a>: <code>kanban_db_path()</code>, the default board at the root and the others under <code>kanban/boards/</code>.</li>
+      </ul>
+    </div>
+  </article>
+
+  <footer>
+    <div>
+      <div class="label" style="margin-bottom:12px">A notebook on Hermes Agent, the open-source agent runtime by Nous Research</div>
+      <div class="display">Antonio Leblanc</div>
+    </div>
+    <nav class="label">
+      <a href="/agents-hermes/">Agents →</a>
+      <a href="/">Home</a>
+    </nav>
+  </footer>
+</body>
+</html>
