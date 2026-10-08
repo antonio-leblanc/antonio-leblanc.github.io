@@ -102,6 +102,8 @@ nav.top .side { display: flex; gap: clamp(16px, 5vw, 90px); }
 nav.top .side.right { justify-content: flex-end; }
 nav.top a { text-decoration: none; opacity: .85; }
 nav.top a:hover { opacity: 1; color: var(--gold); }
+nav.top .social { display: flex; align-items: center; gap: 14px; }
+nav.top .social svg { width: 15px; height: 15px; display: block; }
 .sigil { width: 34px; height: 34px; border: 1px solid var(--ink-60); display: grid; place-items: center; font-family: var(--mono); font-size: 11px; }
 
 /* hero: atmosfera dither procedural */
