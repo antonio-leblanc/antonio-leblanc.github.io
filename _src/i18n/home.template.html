@@ -222,6 +222,12 @@
     .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.in { opacity: 1; transform: none; }
 
+    /* contato revelado: o conteúdo sobe como uma folha e descobre o contato parado embaixo */
+    @media (min-width: 821px) and (min-height: 700px) {
+      .sheet { position: relative; z-index: 1; display: flow-root; background: var(--night); box-shadow: 0 50px 90px -30px rgba(0, 0, 0, .9); border-bottom: 1px solid rgba(244, 235, 224, .14); }
+      #contact { position: sticky; bottom: 0; z-index: 0; background: #050302; }
+      #contact > * { opacity: var(--rv, 1); transform: translateY(calc((1 - var(--rv, 1)) * 70px)); transition: none; }
+    }
     .contact-body { max-width: 520px; margin: 26px auto 0; font-size: 13.5px; }
 
     /* desktop: corpo dos blocos um pouco maior */
@@ -268,6 +274,7 @@
 <body>
 
   <main>
+   <div class="sheet">
     <div class="stage" id="work">
       <header class="hero">
         <canvas class="cover" id="art-cover" data-drift data-src="/assets/images/projects/pantera-detection-field.webp" role="img" aria-label="@@PANTERA_ALT@@"></canvas>
@@ -401,6 +408,7 @@
         </div>
       </div>
     </section>
+   </div>
 
     <section class="night center" id="contact">
       <div class="label" style="margin-bottom:22px">@@CONTACT_LABEL@@</div>
@@ -726,6 +734,23 @@
   </script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
 <script src="/assets/js/ember-motion.js"></script>
+<script>
+(function () {
+  /* contato revelado: aparece com opacidade e sobe um pouco conforme a folha descobre */
+  var c = document.getElementById('contact'), s = document.querySelector('.sheet');
+  if (!c || !s || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var on = matchMedia('(min-width: 821px) and (min-height: 700px)'), q = false;
+  var tick = function () {
+    q = false;
+    if (!on.matches) { c.style.removeProperty('--rv'); return; }
+    var p = (innerHeight - s.getBoundingClientRect().bottom) / c.offsetHeight;
+    c.style.setProperty('--rv', Math.max(0, Math.min(1, p * 1.15)).toFixed(3));
+  };
+  addEventListener('scroll', function () { if (!q) { q = true; requestAnimationFrame(tick); } }, { passive: true });
+  addEventListener('resize', tick);
+  tick();
+})();
+</script>
 <script src="/assets/js/lang-redirect.js" defer></script>
 </body>
 </html>
