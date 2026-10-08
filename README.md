@@ -15,6 +15,7 @@ Estático puro, sem build de deploy. GitHub Pages serve o `main` direto da raiz.
 | `projects/{pantera,forefire,agents}/index.html` (e os pares em `pt/projects/`) | as páginas de projeto de fato — carregam `assets/css/ember-project.css`; a de agentes também `ember-agents.css` |
 | `agents-hermes/`, `pt/agents-hermes/` | edição Hermes da página de agentes (botão ⚚ no rodapé dela): mesmo texto, estilo próprio inline, `noindex`. Mudou o texto de `projects/agents/`, muda aqui também |
 | `hermes-workforce/` | página do plugin `hermes-workforce`, `noindex` e sem link de entrada até o lançamento |
+| `pt/hermes-notebook/` | caderno de estudo "Como o Hermes funciona", um capítulo por parte do Hermes; estilo da edição Hermes inline, `noindex`, fora do sitemap e sem link de entrada. Fatos com link pro commit fixado do `hermes-agent`; o EN vem depois do PT aprovado |
 | `standard/`, `pt/standard/` | edição anterior do site (home + páginas de projeto), `noindex`, fora do sitemap e sem link a partir da ember; home gerada de `home-standard.template.html` + `{en,pt}-standard.json` |
 | `alt/`, `pt/alt/` | stubs de redirect dos endereços antigos da edição ember pra raiz |
 | `assets/css/ember-project.css`, `ember-agents.css` | CSS da ember nas páginas de projeto (a home tem o CSS dentro do template) |

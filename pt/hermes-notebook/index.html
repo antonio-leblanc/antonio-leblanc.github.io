@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0b0b17" />
+  <meta name="description" content="Caderno de estudo do Hermes Agent por dentro: perfil, kanban, gateway e plugins, com cada fato apontando pro código." />
+  <title>Como o Hermes funciona — Antonio Leblanc</title>
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Archivo:wdth,wght@62..125,300..700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --night: #0b0b17;
+      --night-2: #12122a;
+      --blue: #0000f2;
+      --ink: #f2f2f2;
+      --ink-60: rgba(242, 242, 242, .62);
+      --ink-20: rgba(242, 242, 242, .18);
+      --cyan: #00f2f2;
+      --magenta: #f200f2;
+      --yellow: #f2f200;
+      --display: "Antonio", "Arial Narrow", sans-serif;
+      --body: "Archivo", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+      --gutter: clamp(16px, 5vw, 72px);
+      --measure: 680px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--night);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50;
+      border: 1px solid rgba(0, 0, 242, .55);
+    }
+    a { color: inherit; }
+    ::selection { background: var(--blue); color: var(--ink); }
+
+    .label {
+      font-family: var(--body);
+      font-stretch: 125%;
+      font-weight: 600;
+      font-size: 10.5px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .display {
+      font-family: var(--display);
+      font-weight: 200;
+      text-transform: uppercase;
+      line-height: .86;
+      letter-spacing: -.01em;
+    }
+    code {
+      font-family: var(--mono); font-size: .82em;
+      background: var(--night-2); border: 1px solid #23234a; padding: 1px 5px;
+      overflow-wrap: anywhere;
+    }
+
+    /* ── nav ── */
+    nav.top {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 28px var(--gutter) 0;
+    }
+    nav.top a { text-decoration: none; opacity: .85; }
+    nav.top a:hover { opacity: 1; color: var(--cyan); }
+    .sigil {
+      width: 34px; height: 34px; border: 1px solid var(--ink-60);
+      display: grid; place-items: center;
+      font-family: var(--mono); font-size: 11px; line-height: 1;
+    }
+
+    /* ── hero ── */
+    .hero { text-align: center; padding: 72px var(--gutter) 64px; }
+    .hero .label { margin-bottom: 22px; color: var(--ink-60); }
+    .hero h1 { font-size: clamp(52px, 10vw, 168px); }
+    .hero p { max-width: 540px; margin: 28px auto 0; font-size: 15px; }
+    .hero p + p { margin-top: 12px; color: var(--ink-60); }
+
+    /* ── roadmap ── */
+    .roadmap { max-width: var(--measure); margin: 0 auto; padding: 0 var(--gutter); box-sizing: content-box; }
+    .roadmap .part { color: var(--ink-60); margin: 40px 0 10px; }
+    .roadmap .part:first-child { margin-top: 0; }
+    .roadmap ol { list-style: none; border-top: 1px solid var(--ink-20); }
+    .roadmap li {
+      display: flex; gap: 16px; align-items: baseline;
+      padding: 13px 0; border-bottom: 1px solid var(--ink-20);
+      color: var(--ink-60);
+    }
+    .roadmap li::before { content: attr(value); font-family: var(--mono); font-size: 11px; min-width: 18px; }
+    .roadmap li > div { flex: 1; }
+    .roadmap .t { font-size: 15px; color: var(--ink); }
+    .roadmap .t a { text-decoration: none; }
+    .roadmap .t a:hover { color: var(--cyan); }
+    .roadmap .t a.doc { font-family: var(--mono); font-size: 10.5px; color: var(--ink-60); margin-left: 6px; }
+    .roadmap .q { font-size: 13.5px; margin-top: 2px; }
+    .roadmap .state { font-family: var(--mono); font-size: 10.5px; white-space: nowrap; }
+    .roadmap li.done .state { color: var(--cyan); }
+    .roadmap li.known .state { color: #00f279; }
+    .roadmap li.half .state { color: var(--yellow); }
+
+    /* ── chapter ── */
+    article {
+      max-width: var(--measure); margin: 0 auto; padding: 110px var(--gutter) 40px;
+      box-sizing: content-box;
+    }
+    article header { margin-bottom: 44px; }
+    article header .label { color: var(--cyan); margin-bottom: 18px; }
+    article h2 { font-size: clamp(44px, 7vw, 96px); }
+    article header p { margin-top: 18px; color: var(--ink-60); font-size: 15px; }
+    article h3 {
+      font-family: var(--display); font-weight: 300; font-size: clamp(26px, 3vw, 34px);
+      line-height: 1.05; margin: 52px 0 16px;
+    }
+    article h3 code { font-family: inherit; font-size: inherit; background: none; border: 0; padding: 0; text-transform: none; }
+    article p + p { margin-top: 14px; }
+    article ul { margin: 14px 0 0 0; list-style: none; }
+    article li { padding-left: 18px; position: relative; }
+    article li + li { margin-top: 6px; }
+    article li::before { content: "—"; position: absolute; left: 0; color: var(--ink-60); }
+
+    .art {
+      margin: 26px 0; border: 1px solid #23234a; background: #08081a;
+      position: relative; overflow: hidden;
+    }
+    .art::before {
+      content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 2px;
+      background: linear-gradient(var(--magenta), var(--cyan), var(--yellow)); opacity: .7;
+    }
+    .art .bar {
+      padding: 8px 14px; border-bottom: 1px solid #23234a;
+      font-family: var(--mono); font-size: 11px; color: var(--ink-60);
+    }
+    .art pre {
+      font-family: var(--mono); font-size: 12.5px; line-height: 1.7;
+      padding: 18px 20px; white-space: pre; overflow-x: auto;
+    }
+    .art pre .k { color: var(--cyan); }
+    .art pre .s { color: var(--yellow); }
+    .art pre .c { color: rgba(242, 242, 242, .5); }
+    .art pre .m { color: var(--magenta); }
+
+    .sources {
+      margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--ink-20);
+      font-size: 13px; color: var(--ink-60);
+    }
+    .sources .label { margin-bottom: 10px; }
+    .sources li::before { content: "↗"; }
+    .sources a:hover { color: var(--cyan); }
+
+    /* ── footer ── */
+    footer {
+      margin-top: 120px; padding: 48px var(--gutter) 40px; border-top: 1px solid var(--ink-20);
+      display: flex; justify-content: space-between; align-items: flex-end; gap: 28px; flex-wrap: wrap;
+    }
+    footer .display { font-size: clamp(40px, 6vw, 72px); }
+    footer .label { color: var(--ink-60); }
+    footer nav { display: flex; gap: 22px; }
+    footer nav a { text-decoration: none; }
+    footer nav a:hover { color: var(--cyan); }
+
+    @media (max-width: 560px) {
+      .roadmap li { flex-wrap: wrap; gap: 4px 12px; }
+      .roadmap li .state { width: 100%; padding-left: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top label">
+    <a href="/pt/">Antonio Leblanc</a>
+    <div class="sigil" aria-hidden="true">AL</div>
+    <a href="/pt/agents-hermes/">Agentes</a>
+  </nav>
+
+  <header class="hero">
+    <div class="label">Caderno de estudo</div>
+    <h1 class="display">Como o Hermes<br />funciona</h1>
+    <p>Rodo nove agentes de IA no Hermes, um por área da empresa. Aqui fica o que eu aprendo abrindo o código dele.</p>
+    <p>Os fatos vêm do <a href="https://github.com/NousResearch/hermes-agent/tree/e05b16348b1d06a3311237423b0a4fc30d9c5aa1" target="_blank" rel="noopener"><code>hermes-agent</code></a> no commit <code>e05b163</code>, de 1º de outubro de 2026. A explicação é minha.</p>
+  </header>
+
+  <section class="roadmap" aria-label="Roteiro">
+    <div class="part label">Um agente</div>
+    <ol>
+      <li class="" value="1"><div><div class="t">O loop do agente <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/agent-loop.md" target="_blank" rel="noopener">guia ↗</a></div><div class="q">O que acontece entre a mensagem chegar e a resposta sair? Quando o loop para?</div></div><span class="state">a estudar</span></li>
+      <li class="half" value="2"><div><div class="t">Montagem do prompt <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/prompt-assembly.md" target="_blank" rel="noopener">guia ↗</a></div><div class="q">Em que ordem o system prompt é montado, e por que a ordem decide o cache?</div></div><span class="state">em parte</span></li>
+      <li class="" value="3"><div><div class="t">Ferramentas e toolsets <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/tools-runtime.md" target="_blank" rel="noopener">guia ↗</a></div><div class="q">Como uma tool se registra, quem decide se o modelo a vê, e onde o comando roda?</div></div><span class="state">a estudar</span></li>
+      <li class="" value="4"><div><div class="t">Provedores e modelos <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/provider-runtime.md" target="_blank" rel="noopener">guia ↗</a></div><div class="q">Como o Hermes escolhe modelo e chave, e o que faz quando o provedor cai?</div></div><span class="state">a estudar</span></li>
+      <li class="half" value="5"><div><div class="t">Contexto longo e memória <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/context-compression-and-caching.md" target="_blank" rel="noopener">guia ↗</a></div><div class="q">O que acontece quando a conversa não cabe na janela? O que sobrevive entre sessões?</div></div><span class="state">entendi, falta explicar</span></li>
+    </ol>
+    <div class="part label">Vários agentes</div>
+    <ol>
+      <li class="done" value="6"><div><div class="t"><a href="#perfil">Perfil e <code>kanban.db</code></a></div><div class="q">O que é de cada agente, e o que todos dividem.</div></div><span class="state">escrito</span></li>
+      <li class="half" value="7"><div><div class="t">Gateway <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/gateway-internals.md" target="_blank" rel="noopener">guia ↗</a></div><div class="q">Como uma mensagem do Telegram vira um turno do perfil certo? Quem pode falar com o bot?</div></div><span class="state">em parte</span></li>
+      <li class="known" value="8"><div><div class="t"><code>state.db</code> <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/session-storage.md" target="_blank" rel="noopener">guia ↗</a></div><div class="q">Como a sessão é guardada, e como medir uso humano a partir dela?</div></div><span class="state">explico de cabeça</span></li>
+      <li class="half" value="9"><div><div class="t">O kanban por dentro</div><div class="q">Quem pega a tarefa, como ela trava e destrava, e como avisa quem pediu?</div></div><span class="state">entendi, falta explicar</span></li>
+      <li class="" value="10"><div><div class="t">Cron e subagentes <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/cron-internals.md" target="_blank" rel="noopener">guia ↗</a></div><div class="q">Como um agente trabalha sem ninguém mandar mensagem, e como delega pra um filho?</div></div><span class="state">a estudar</span></li>
+    </ol>
+    <div class="part label">Estender</div>
+    <ol>
+      <li class="known" value="11"><div><div class="t">Plugins e hooks <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/plugins/index.md" target="_blank" rel="noopener">guia ↗</a></div><div class="q">Por onde se muda o que o agente vê, o que ele faz e o que se observa dele?</div></div><span class="state">explico de cabeça</span></li>
+      <li class="" value="12"><div><div class="t">Skills <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/creating-skills.md" target="_blank" rel="noopener">guia ↗</a></div><div class="q">O que é uma skill, como o agente acha a certa, e quem cria e cura as skills?</div></div><span class="state">a estudar</span></li>
+      <li class="" value="13"><div><div class="t">Painel e desktop <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/desktop-plugin-sdk.md" target="_blank" rel="noopener">guia ↗</a></div><div class="q">Como um plugin ganha tela: backend dentro do gateway e interface no Desktop.</div></div><span class="state">a estudar</span></li>
+    </ol>
+    <div class="part label">Operar numa empresa</div>
+    <ol>
+      <li class="half" value="14"><div><div class="t">Segurança <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/egress-internals.md" target="_blank" rel="noopener">guia ↗</a></div><div class="q">O que impede um agente de vazar segredo, sair pra rede ou rodar comando sem aprovação?</div></div><span class="state">em parte</span></li>
+      <li class="" value="15"><div><div class="t">Saúde e custo <a class="doc" href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/website/docs/developer-guide/gateway-monitoring.md" target="_blank" rel="noopener">guia ↗</a></div><div class="q">Como saber se a frota está viva e quanto ela custa?</div></div><span class="state">a estudar</span></li>
+    </ol>
+  </section>
+
+  <article id="perfil">
+    <header>
+      <div class="label">Capítulo 06</div>
+      <h2 class="display">Perfil e<br />kanban.db</h2>
+      <p>O que é de cada agente, e o que todos dividem.</p>
+    </header>
+
+    <h3>O perfil é um agente isolado</h3>
+    <p>Cada agente do Hermes é um perfil: um diretório com tudo o que é dele. O perfil padrão mora em <code>~/.hermes/</code>, e os outros em <code>~/.hermes/profiles/&lt;nome&gt;/</code>.</p>
+    <p>Quatro arquivos importam:</p>
+    <ul>
+      <li><code>SOUL.md</code>: quem o agente é e como ele se comporta.</li>
+      <li><code>config.yaml</code>: modelo, ferramentas e o resto da configuração.</li>
+      <li><code>.env</code>: as chaves de API e os tokens.</li>
+      <li><code>state.db</code>: as conversas, num SQLite.</li>
+    </ul>
+
+    <div class="art">
+      <div class="bar">~/.hermes</div>
+<pre><span class="k">~/.hermes/</span>
+├── <span class="m">kanban.db</span>            <span class="c"># de todos os perfis</span>
+├── SOUL.md  config.yaml  .env  state.db   <span class="c"># perfil padrão</span>
+└── <span class="k">profiles/</span>
+    ├── <span class="k">suporte/</span>
+    │   ├── SOUL.md
+    │   ├── config.yaml
+    │   ├── .env
+    │   └── state.db
+    └── <span class="k">tech/</span>
+        └── ...</pre>
+    </div>
+
+    <h3>Segredo não atravessa perfil</h3>
+    <p>Um único gateway pode atender vários perfis no mesmo processo, e aí as chaves de um perfil não podem vazar pro turno de outro. Se algum código pede um segredo sem saber de qual perfil ele é, o Hermes não procura no ambiente global: levanta <code>UnscopedSecretError</code> e para.</p>
+    <p>O porquê é prompt injection. O agente que mais fala com estranho deve ter menos poder. O bot de suporte conversa com qualquer cliente, então o que alguém escreve pra ele não pode chegar nas chaves do bot de tech.</p>
+
+    <h3>O <code>kanban.db</code> é o que eles dividem</h3>
+    <p>Fora dos perfis, na raiz, fica o <code>~/.hermes/kanban.db</code>. É o único lugar comum a todos. Quando um agente passa trabalho pra outro, ele abre uma tarefa no quadro com o outro perfil como responsável, e o dispatcher do kanban entrega a tarefa a ele.</p>
+
+    <div class="art">
+      <div class="bar">kanban.db · tasks</div>
+<pre><span class="k">id</span>          t_3a91c0de
+<span class="k">title</span>       <span class="s">"Erro 500 no relatório do cliente"</span>
+<span class="k">created_by</span>  suporte
+<span class="k">assignee</span>    tech
+<span class="k">status</span>      <span class="m">ready</span>   <span class="c"># triage · todo · ready · running · blocked · done ...</span></pre>
+    </div>
+
+    <p>Esse é o quadro padrão. Dá pra criar outros quadros em <code>~/.hermes/kanban/boards/&lt;nome&gt;/</code>, e um agente trabalhando num quadro não enxerga os outros.</p>
+
+    <div class="sources">
+      <div class="label">No código</div>
+      <ul>
+        <li><a href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/hermes_constants.py#L111" target="_blank" rel="noopener"><code>hermes_constants.py</code></a>: <code>get_hermes_home()</code> resolve o diretório do perfil ativo, e <code>_PROFILE_IDENTITY_MARKERS</code> lista os arquivos que fazem de um diretório um perfil.</li>
+        <li><a href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/agent/secret_scope.py#L115" target="_blank" rel="noopener"><code>agent/secret_scope.py</code></a>: o escopo de segredo por perfil e o <code>UnscopedSecretError</code>.</li>
+        <li><a href="https://github.com/NousResearch/hermes-agent/blob/e05b16348b1d06a3311237423b0a4fc30d9c5aa1/hermes_cli/kanban_db.py#L513" target="_blank" rel="noopener"><code>hermes_cli/kanban_db.py</code></a>: <code>kanban_db_path()</code>, o quadro padrão na raiz e os outros em <code>kanban/boards/</code>.</li>
+      </ul>
+    </div>
+  </article>
+
+  <footer>
+    <div>
+      <div class="label" style="margin-bottom:12px">Caderno sobre o Hermes Agent, o runtime de agentes open-source da Nous Research</div>
+      <div class="display">Antonio Leblanc</div>
+    </div>
+    <nav class="label">
+      <a href="/pt/agents-hermes/">Agentes →</a>
+      <a href="/pt/">Início</a>
+    </nav>
+  </footer>
+</body>
+</html>
