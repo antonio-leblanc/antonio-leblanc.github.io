@@ -22,6 +22,7 @@
   canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
   figure .t { position: absolute; inset: 0; display: grid; place-items: center; font-family: "Antonio", sans-serif; font-weight: 300; text-transform: uppercase; font-size: clamp(34px, 5vw, 76px); text-shadow: 0 1px 18px rgba(13, 9, 6, .7); pointer-events: none; }
   .four figure .t { font-size: clamp(30px, 3.6vw, 58px); }
+  figure.wide .t { font-size: clamp(26px, 2.8vw, 44px); }
   figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 8px 12px; background: rgba(13, 9, 6, .82); font-family: var(--mono); font-size: 11px; display: flex; justify-content: space-between; gap: 10px; }
   figcaption span + span { color: var(--ink-60); }
   label { display: inline-flex; gap: 8px; align-items: center; font-family: var(--mono); font-size: 12px; margin-top: 14px; cursor: pointer; }
@@ -111,6 +112,19 @@
     <figure><canvas data-kind="net" data-pal="ag-ambar" data-fps="24"></canvas><div class="t">Agents</div><figcaption><span>E · rede</span><span>orquestrador manda tarefa, área devolve</span></figcaption></figure>
     <figure><canvas data-kind="logs" data-pal="ag-fosforo" data-fps="24"></canvas><div class="t">Agents</div><figcaption><span>F · logs</span><span>oito colunas trabalhando, cada uma no seu ritmo</span></figcaption></figure>
     <figure><canvas data-kind="flow" data-pal="ag" data-fps="24"></canvas><div class="t">Agents</div><figcaption><span>G · fluxo</span><span>partículas orbitando o centro</span></figcaption></figure>
+  </div>
+
+  <h2>Agentes — hero: o fundo conta um mecanismo da frota</h2>
+  <p class="intro">Formato do hero, com a faixa calma atrás do título como na página. G é o que está no ar; os outros trocam o giro por uma coisa que a frota faz de verdade.</p>
+  <div class="row">
+    <figure class="wide"><canvas data-kind="flow" data-pal="ag" data-fps="24" data-calm></canvas><div class="t">Production Agents</div><figcaption><span>G · fluxo (no ar)</span><span>giro em volta do centro</span></figcaption></figure>
+    <figure class="wide"><canvas data-kind="gate" data-pal="ag" data-fps="24" data-calm></canvas><div class="t">Production Agents</div><figcaption><span>H · portão</span><span>trabalho para na linha até uma pessoa aprovar</span></figcaption></figure>
+    <figure class="wide"><canvas data-kind="route" data-pal="ag" data-fps="24" data-calm></canvas><div class="t">Production Agents</div><figcaption><span>G2 · fluxo com destino</span><span>sai do orquestrador, chega em uma das oito áreas</span></figcaption></figure>
+  </div>
+  <div class="row" style="margin-top:14px">
+    <figure class="wide"><canvas data-kind="route" data-pal="ag" data-dense="2.2" data-fps="24" data-calm></canvas><div class="t">Production Agents</div><figcaption><span>G2b · destino, mais denso</span><span>mais rastro, as oito saídas aparecem pelo caminho</span></figcaption></figure>
+    <figure class="wide"><canvas data-kind="route" data-pal="ag" data-pal2="ag-ambar" data-dense="2.2" data-fps="24" data-calm></canvas><div class="t">Production Agents</div><figcaption><span>G2c · destino quente</span><span>aço no caminho, âmbar só onde chega</span></figcaption></figure>
+    <figure class="wide"><canvas data-kind="gate2" data-pal="ag" data-pal2="ag-ambar" data-fps="24" data-calm></canvas><div class="t">Production Agents</div><figcaption><span>H2 · portão em fluxo</span><span>o rastro acumula numa linha invisível e passa quando aprova</span></figcaption></figure>
   </div>
 
 <script>
@@ -454,12 +468,167 @@
           p.x += vx * dt; p.y += vy * dt; p.life -= dt;
           if (p.life < 0 || p.x < 0 || p.x >= w || p.y < 0 || p.y >= h) { p.x = Math.random() * w; p.y = Math.random() * h; p.life = 60 + Math.random() * 120; return; }
           var j = Math.floor(p.y) * w + Math.floor(p.x);
-          f[j] = Math.min(1.1, f[j] + .28);
+          f[j] = Math.min(1.1, f[j] + .28 * s.calm[j]);
         });
       },
       field: function () {}
+    },
+
+    /* H: oito raias da esquerda pra direita; o trabalho para numa linha vertical e só passa quando a aprovação acende naquela raia */
+    gate: {
+      init: function (s) { s.lanes = []; for (var i = 0; i < 8; i++) s.lanes.push({ pk: [], flash: 0 }); s.next = 8; s.gx = s.w * .74; },
+      step: function (s, dt) {
+        var gx = s.gx;
+        s.lanes.forEach(function (L) {
+          if (Math.random() < .035 * dt) L.pk.push({ x: -3, sp: .45 + Math.random() * .35, ok: false });
+          var lim = gx - 2;
+          L.pk.sort(function (a, b) { return b.x - a.x; });
+          L.pk.forEach(function (p) {
+            if (p.ok) { p.x += p.sp * 2.2 * dt; return; }
+            p.x = Math.min(p.x + p.sp * dt, lim); lim = p.x - 5;
+          });
+          L.pk = L.pk.filter(function (p) { return p.x < s.w + 4; });
+          L.flash = Math.max(0, L.flash - .05 * dt);
+        });
+        s.next -= dt;
+        if (s.next <= 0) {
+          var ready = s.lanes.filter(function (L) { return L.pk.some(function (p) { return !p.ok && p.x >= gx - 2.5; }); });
+          if (ready.length) { var L = ready[Math.floor(Math.random() * ready.length)]; L.pk.forEach(function (p) { if (!p.ok && p.x >= gx - 2.5) p.ok = true; }); L.flash = 1; }
+          s.next = 6 + Math.random() * 14;
+        }
+      },
+      field: function (s) {
+        var w = s.w, h = s.h, f = s.f, gx = Math.round(s.gx), m = s.m;
+        for (var i = 0; i < f.length; i++) { f[i] = .04; m[i] = 0; }
+        s.lanes.forEach(function (L, i) {
+          var y = Math.round(h * (.12 + .76 * i / 7));
+          for (var x = 0; x < w; x++) f[y * w + x] = x < gx ? .16 : .1;
+          L.pk.forEach(function (p) {
+            for (var k = 0; k < 4; k++) { var x = Math.round(p.x) - k; if (x >= 0 && x < w) f[y * w + x] = p.ok ? .95 - k * .15 : .6 - k * .1; }
+          });
+          for (var dy = -2; dy <= 2; dy++) { var j = (y + dy) * w + gx; if (y + dy >= 0 && y + dy < h) { f[j] = .45 + L.flash * .8; m[j] = L.flash; } }
+        });
+        for (var y = 0; y < h; y++) if ((y >> 1) % 2) f[y * w + gx] = Math.max(f[y * w + gx], .3);   // linha do portão, tracejada
+        for (var j = 0; j < f.length; j++) f[j] *= s.calm[j];
+      }
+    },
+
+    /* G2: o mesmo rastro do fluxo, mas cada partícula nasce no orquestrador e é puxada até uma das oito áreas, que acende quando ela chega */
+    route: {
+      init: function (s) { s.ps = []; s.flash = [0, 0, 0, 0, 0, 0, 0, 0]; },
+      step: function (s, dt) {
+        var w = s.w, h = s.h, cx = w / 2, cy = h / 2, R = Math.min(w * .42, h * .62), N = Math.round(w * h / 22 * +(s.c.dataset.dense || 1)), f = s.f;
+        s.sinks = []; for (var i = 0; i < 8; i++) s.sinks.push([cx + R * 1.45 * Math.cos(i * Math.PI / 4 + .39), cy + R * Math.sin(i * Math.PI / 4 + .39)]);
+        while (s.ps.length < N) s.ps.push(born());
+        function born() { var a = Math.random() * 6.28; return { x: cx + Math.cos(a) * 2, y: cy + Math.sin(a) * 2, to: Math.floor(Math.random() * 8), age: Math.random() * 60 }; }
+        var decay = Math.pow(.9, dt);
+        for (var k = 0; k < f.length; k++) f[k] *= decay;
+        s.ps.forEach(function (p, idx) {
+          var S = s.sinks[p.to], dx = S[0] - p.x, dy = S[1] - p.y, d = Math.hypot(dx, dy) || 1;
+          var a = fbm(p.x * .04, p.y * .04 + s.t * .25) * Math.PI * 4, pull = Math.min(1, p.age / 50);
+          p.x += (Math.cos(a) * .45 * (1 - pull * .6) + dx / d * .6 * pull - dy / d * .25) * dt;
+          p.y += (Math.sin(a) * .45 * (1 - pull * .6) + dy / d * .6 * pull + dx / d * .25) * dt;
+          p.age += dt;
+          if (d < 2 || p.age > 400 || p.x < 0 || p.x >= w || p.y < 0 || p.y >= h) { if (d < 2) s.flash[p.to] = 1; s.ps[idx] = born(); return; }
+          var j = Math.floor(p.y) * w + Math.floor(p.x);
+          f[j] = Math.min(1.1, f[j] + .3 * s.calm[j]);
+        });
+        for (var q = 0; q < 8; q++) s.flash[q] = Math.max(0, s.flash[q] - .06 * dt);
+      },
+      field: function (s) {
+        if (!s.sinks) return;
+        var sz = Math.min(s.w, s.h), m = s.m;
+        m.fill(0);
+        s.sinks.forEach(function (S, i) {
+          splat(s, S[0], S[1], sz * .022, (.25 + s.flash[i] * .6) * .5);
+          if (s.pal2) mark(s, S[0], S[1], sz * .05, .3 + s.flash[i]);   // só a chegada esquenta
+        });
+      }
+    },
+
+    /* H2: rastro andando da esquerda pra direita em oito faixas soltas; perto da linha (invisível) ele freia e acumula, e passa quando a faixa é aprovada */
+    gate2: {
+      init: function (s) { s.ps = []; s.open = [0, 0, 0, 0, 0, 0, 0, 0]; s.next = 10; },
+      step: function (s, dt) {
+        var w = s.w, h = s.h, f = s.f, m = s.m, gx = w * .72, N = Math.round(w * h / 10);
+        var ly = function (l) { return h * (.14 + .72 * l / 7); };
+        while (s.ps.length < N) s.ps.push({ x: Math.random() * gx, y: 0, l: Math.floor(Math.random() * 8), fresh: true });
+        var decay = Math.pow(.9, dt);
+        for (var k = 0; k < f.length; k++) { f[k] *= decay; m[k] *= decay; }
+        s.ps.forEach(function (p) {
+          if (p.fresh) { p.y = ly(p.l) + (Math.random() - .5) * 6; p.fresh = false; }
+          var a = (fbm(p.x * .05, p.y * .05 + s.t * .3) - .5) * Math.PI * 1.6, vx = .55 + Math.cos(a) * .2, vy = Math.sin(a) * .35 + (ly(p.l) - p.y) * .03;
+          if (p.x < gx) { if (s.open[p.l] > 0 && gx - p.x < 14) vx *= 2.2; else vx *= Math.max(.02, Math.min(1, (gx - p.x) / 16)); }
+          else vx *= 1.5;
+          p.x += vx * dt; p.y += vy * dt;
+          if (p.x >= w || p.y < 0 || p.y >= h) { p.x = Math.random() * 6; p.fresh = true; return; }
+          var j = Math.floor(p.y) * w + Math.floor(p.x);
+          f[j] = Math.min(1.1, f[j] + .22 * s.calm[j]);
+          if (p.x > gx - 4 && s.open[p.l] > 0) m[j] = 1;   // o que acabou de ser aprovado sai quente
+        });
+        for (var l = 0; l < 8; l++) s.open[l] = Math.max(0, s.open[l] - dt);
+        s.next -= dt;
+        if (s.next <= 0) { s.open[Math.floor(Math.random() * 8)] = 10; s.next = 8 + Math.random() * 16; }
+      },
+      field: function () {}
+    },
+
+    /* I: grade de 8 colunas (agentes) por 6 linhas (ferramentas); um pulso desce a coluna até a ferramenta e o nó guarda a marca do uso */
+    weave: {
+      init: function (s) { s.knot = new Float32Array(48); s.pk = []; },
+      step: function (s, dt) {
+        if (Math.random() < .14 * dt) s.pk.push({ c: Math.floor(Math.random() * 8), r: Math.floor(Math.random() * 6), p: 0 });
+        s.pk = s.pk.filter(function (q) { q.p += .035 * dt; if (q.p >= 1) { s.knot[q.r * 8 + q.c] = 1; return false; } return true; });
+        for (var i = 0; i < 48; i++) s.knot[i] = Math.max(0, s.knot[i] - .006 * dt);
+      },
+      field: function (s) {
+        var w = s.w, h = s.h, f = s.f, X = [], Y = [];
+        for (var c = 0; c < 8; c++) X.push(Math.round(w * (.08 + .84 * c / 7)));
+        for (var r = 0; r < 6; r++) Y.push(Math.round(h * (.14 + .72 * r / 5)));
+        for (var i = 0; i < f.length; i++) f[i] = .04;
+        X.forEach(function (x) { for (var y = 0; y < h; y++) f[y * w + x] = .14; });
+        Y.forEach(function (y) { for (var x = 0; x < w; x++) f[y * w + x] = Math.max(f[y * w + x], .1); });
+        for (r = 0; r < 6; r++) for (c = 0; c < 8; c++) { var k = s.knot[r * 8 + c]; if (k > 0) splat(s, X[c], Y[r], 1.2, k * .9); }
+        s.pk.forEach(function (q) {
+          var x = X[q.c], yEnd = Y[q.r], y = Math.round(yEnd * q.p);
+          for (var t = 0; t < 5; t++) if (y - t >= 0) f[(y - t) * w + x] = 1 - t * .15;
+        });
+        for (var j = 0; j < f.length; j++) f[j] *= s.calm[j];
+      }
+    },
+
+    /* K: oito faixas de células correndo pra esquerda, cada agente com seu ritmo de atividade; célula clara rara é uma entrega aprovada */
+    pulse: {
+      init: function (s) { s.cols = []; s.off = 0; s.cell = 4; s.seed = Math.random() * 50; for (var i = 0; i < Math.ceil(s.w / s.cell) + 2; i++) s.cols.push(col(s)); },
+      step: function (s, dt) {
+        s.off += .3 * dt;
+        while (s.off >= s.cell) { s.off -= s.cell; s.cols.shift(); s.cols.push(col(s)); }
+      },
+      field: function (s) {
+        var w = s.w, h = s.h, f = s.f, cell = s.cell, rh = Math.floor(h * .8 / 8), y0 = Math.round(h * .1);
+        for (var i = 0; i < f.length; i++) f[i] = .03;
+        s.cols.forEach(function (cl, ci) {
+          var x0 = Math.round(ci * cell - s.off);
+          cl.forEach(function (v, r) {
+            for (var y = y0 + r * rh; y < y0 + r * rh + rh - 1; y++) for (var x = x0; x < x0 + cell - 1; x++)
+              if (x >= 0 && x < w && y < h) f[y * w + x] = v;
+          });
+        });
+        for (var j = 0; j < f.length; j++) f[j] *= s.calm[j];
+      }
     }
   };
+
+  function col(s) {
+    s.tick = (s.tick || 0) + 1;
+    var out = [];
+    for (var r = 0; r < 8; r++) {
+      var busy = fbm(s.tick * .05 + r * 7.3 + s.seed, r * 2.1), v = busy > .52 ? .22 + (busy - .52) * 2.2 : .07;
+      if (busy > .5 && Math.random() < .03) v = 1.15;
+      out.push(v);
+    }
+    return out;
+  }
 
   function splat(s, cx, cy, sg, a) {
     var w = s.w, h = s.h, f = s.f, r = Math.ceil(sg * 3);
@@ -468,6 +637,12 @@
         var d2 = (x - cx) * (x - cx) + (y - cy) * (y - cy);
         f[y * w + x] += a * Math.exp(-d2 / (2 * sg * sg));
       }
+  }
+  function mark(s, cx, cy, sg, a) {   // máscara da segunda paleta (data-pal2), em gaussiana
+    var w = s.w, h = s.h, r = Math.ceil(sg * 3);
+    for (var y = Math.max(0, Math.floor(cy - r)); y <= Math.min(h - 1, cy + r); y++)
+      for (var x = Math.max(0, Math.floor(cx - r)); x <= Math.min(w - 1, cx + r); x++)
+        s.m[y * w + x] = Math.max(s.m[y * w + x], a * Math.exp(-((x - cx) * (x - cx) + (y - cy) * (y - cy)) / (2 * sg * sg)));
   }
   function line(s, x0, y0, x1, y1, a) {
     var n = Math.ceil(Math.hypot(x1 - x0, y1 - y0));
@@ -494,6 +669,11 @@
     this.f = new Float32Array(this.w * this.h);
     this.m = new Float32Array(this.w * this.h);
     this.k = 7 / Math.max(this.w, this.h);
+    this.calm = new Float32Array(this.w * this.h).fill(1);   // data-calm: faixa larga e baixa atrás do título, igual ao hero de agentes
+    if (this.c.hasAttribute('data-calm')) for (var y = 0; y < this.h; y++) for (var x = 0; x < this.w; x++) {
+      var ex = x / this.w - .5, ey = y / this.h - .52;
+      this.calm[y * this.w + x] = 1 - .8 * Math.exp(-(ex * ex / .07 + ey * ey / .03));
+    }
     this.kind.init(this);
   };
   Scene.prototype.step = function (dt) { this.t += .045 * dt; this.kind.step(this, dt); };   // dt em quadros de 90 ms
@@ -508,7 +688,11 @@
     this.ctx.putImageData(this.img, 0, 0);
   };
 
-  var scenes = [].map.call(document.querySelectorAll('canvas[data-pal]'), function (c) { var s = new Scene(c); s.step(0); s.draw(); return s; });
+  var scenes = [].map.call(document.querySelectorAll('canvas[data-pal]'), function (c) {
+    var s = new Scene(c); s.step(0);
+    if (c.hasAttribute('data-calm')) for (var i = 0; i < 80; i++) s.step(1);   // hero já em movimento na primeira pintura
+    s.draw(); return s;
+  });
 
   document.getElementById('pa-motion').addEventListener('change', function (e) {
     scenes.forEach(function (s) {
