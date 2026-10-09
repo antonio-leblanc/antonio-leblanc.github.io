@@ -33,6 +33,8 @@
     this.pal = canvas.dataset.pal ? canvas.dataset.pal.split(',').map(function (c) { return c.trim().split(/\s+/).map(Number); }) : PAL;
     this.logs = canvas.dataset.kind === 'logs';  // em vez de fumaça, oito colunas de log subindo
     this.flow = canvas.dataset.kind === 'flow';  // em vez de fumaça, partículas orbitando o centro, como o card de agentes da home
+    this.route = canvas.dataset.kind === 'route';  // rastro que sai do orquestrador no centro e chega numa das oito áreas
+    if (this.route) this.flow = true;
     this.size();
   }
   Atmo.prototype.size = function () {
@@ -47,7 +49,9 @@
       for (var y = 0; y < this.h; y++) for (var x = 0; x < this.w; x++) {
         var ex = x / this.w - .5, ey = y / this.h - .52;
         this.calm[y * this.w + x] = 1 - .8 * Math.exp(-(ex * ex / .07 + ey * ey / .03));
-      } for (var i = 0; i < 40; i++) this.stepFlow(1);
+      }
+      if (this.route) this.flash = [0, 0, 0, 0, 0, 0, 0, 0];
+      for (var i = 0; i < (this.route ? 80 : 40); i++) this.stepFlow(1);
     }
     if (this.logs) { this.cols = []; for (var c = 0; c < 8; c++) this.cols.push({ sp: .35 + Math.random() * .6, lines: [] }); this.fill(); }
   };
@@ -122,6 +126,7 @@
 
   /* fluxo: partículas giram em volta do centro com turbulência e deixam rastro que apaga; o título fica no olho do giro */
   Atmo.prototype.stepFlow = function (dt) {
+    if (this.route) return this.stepRoute(dt);
     var w = this.w, h = this.h, cx = w / 2, cy = h / 2, t = this.t, f = this.f, calm = this.calm, N = Math.round(w * h / 9), decay = Math.pow(.9, dt);
     while (this.ps.length < N) this.ps.push({ x: Math.random() * w, y: Math.random() * h, life: Math.random() * 120 });
     for (var i = 0; i < f.length; i++) f[i] *= decay;
@@ -132,6 +137,33 @@
       if (p.life < 0 || p.x < 0 || p.x >= w || p.y < 0 || p.y >= h) { p.x = Math.random() * w; p.y = Math.random() * h; p.life = 60 + Math.random() * 120; return; }
       var j = Math.floor(p.y) * w + Math.floor(p.x);
       f[j] = Math.min(1.1, f[j] + .28 * calm[j]);
+    });
+  };
+  /* destino: o mesmo rastro, mas cada partícula nasce no centro e é puxada até uma das oito áreas, que acende quando ela chega */
+  Atmo.prototype.stepRoute = function (dt) {
+    var w = this.w, h = this.h, cx = w / 2, cy = h / 2, R = Math.min(w * .42, h * .62), t = this.t, f = this.f, calm = this.calm, fl = this.flash, ps = this.ps;
+    var N = Math.round(w * h / 22), decay = Math.pow(.9, dt), sinks = [];
+    for (var i = 0; i < 8; i++) sinks.push([cx + R * 1.45 * Math.cos(i * Math.PI / 4 + .39), cy + R * Math.sin(i * Math.PI / 4 + .39)]);
+    function born() { var a = Math.random() * 6.28; return { x: cx + Math.cos(a) * 2, y: cy + Math.sin(a) * 2, to: Math.floor(Math.random() * 8), age: Math.random() * 60 }; }
+    while (ps.length < N) ps.push(born());
+    for (i = 0; i < f.length; i++) f[i] *= decay;
+    ps.forEach(function (p, idx) {
+      var S = sinks[p.to], dx = S[0] - p.x, dy = S[1] - p.y, d = Math.hypot(dx, dy) || 1;
+      var a = fbm(p.x * .04, p.y * .04 + t * .25) * Math.PI * 4, pull = Math.min(1, p.age / 50);
+      p.x += (Math.cos(a) * .45 * (1 - pull * .6) + dx / d * .6 * pull - dy / d * .25) * dt;
+      p.y += (Math.sin(a) * .45 * (1 - pull * .6) + dy / d * .6 * pull + dx / d * .25) * dt;
+      p.age += dt;
+      if (d < 2 || p.age > 400 || p.x < 0 || p.x >= w || p.y < 0 || p.y >= h) { if (d < 2) fl[p.to] = 1; ps[idx] = born(); return; }
+      var j = Math.floor(p.y) * w + Math.floor(p.x);
+      f[j] = Math.min(1.1, f[j] + .3 * calm[j]);
+    });
+    var sg = Math.min(w, h) * .022, r = Math.ceil(sg * 3);
+    sinks.forEach(function (S, k) {
+      fl[k] = Math.max(0, fl[k] - .06 * dt);
+      var amp = (.25 + fl[k] * .6) * .5;
+      for (var y = Math.max(0, Math.floor(S[1] - r)); y <= Math.min(h - 1, S[1] + r); y++)
+        for (var x = Math.max(0, Math.floor(S[0] - r)); x <= Math.min(w - 1, S[0] + r); x++)
+          f[y * w + x] += amp * Math.exp(-((x - S[0]) * (x - S[0]) + (y - S[1]) * (y - S[1])) / (2 * sg * sg));
     });
   };
   Atmo.prototype.drawField = function (f) {
