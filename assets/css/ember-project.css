@@ -257,3 +257,13 @@ main > .rows .row, main > .rows .row.flip { padding: 0 var(--gutter); }
 /* atalho discreto para versao standard */
 .egg { font-family: var(--mono); text-decoration: none; color: inherit; opacity: .35; margin-left: 6px; font-size: 13px; vertical-align: middle; transition: opacity .2s, color .2s; }
 .egg:hover, .egg:focus-visible { opacity: 1; color: var(--gold); }
+
+/* simulação ao vivo do ForeFire (assets/js/forefire-live.js) */
+.proof .view.live { background: var(--night); }
+.proof .view.live canvas { width: 100%; height: 100%; display: block; }
+.proof .foot [data-readout] { font-variant-numeric: tabular-nums; }
+.proof .view.live .attrib {
+  position: absolute; left: 0; bottom: 0; padding: 3px 6px; line-height: 1.3;
+  font-family: var(--mono); font-size: 9px; color: rgba(var(--ink-rgb), .62); background: rgba(var(--shade), .55);
+}
+@media (max-width: 600px) { .proof .view.live .attrib { font-size: 7px; padding: 2px 4px; } }

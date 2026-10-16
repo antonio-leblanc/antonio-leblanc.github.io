@@ -64,6 +64,24 @@
       <div class="rows">
         <div class="row reveal">
           <div class="copy">
+            <div class="label">Ao vivo · Ostriconi, Córsega</div>
+            <h2>O fogo<br />lê o terreno</h2>
+            <p>Um incêndio simulado agora, na sua tela, pelo próprio ForeFire, sobre um pedaço real da Córsega na beira do Désert des Agriates. O vento empurra, o fogo acelera morro acima, corre mais no capim que no maquis e para no mar. Cada linha fina marca onde a frente estava cinco minutos antes.</p>
+            <p>Cada fogo começa num ponto diferente, com outro vento. É uma ilustração, não a previsão de um incêndio real.</p>
+            <p>ForeFire por <a href="https://github.com/filippi" target="_blank" rel="noopener">Jean-Baptiste Filippi</a>; versão pro navegador por <a href="https://github.com/HugoFara" target="_blank" rel="noopener">Hugo Fara</a>.</p>
+          </div>
+          <figure class="proof" data-forefire-live>
+            <div class="head"><span><b>ForeFire</b> — simulação ao vivo</span><span>Ostriconi, Córsega</span></div>
+            <div class="view live">
+              <canvas role="img" aria-label="Simulação do ForeFire rodando ao vivo sobre a imagem de satélite de Ostriconi, na Córsega: uma frente de incêndio se espalha empurrada pelo vento, deixando linhas de onde estava a cada cinco minutos."></canvas>
+              <span class="attrib">© Esri, Maxar, Earthstar Geographics · ESA WorldCover</span>
+            </div>
+            <figcaption class="foot"><span data-readout>Ostriconi · 3,2 × 1,8 km</span><span data-counter>Linhas a cada 5 min</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="row flip reveal">
+          <div class="copy">
             <div class="label">O que é</div>
             <h2>Para onde<br />o fogo vai</h2>
             <p>O ForeFire simula como uma frente de incêndio se move, com dados reais de vento, terreno e combustível. É usado por pesquisadores e equipes operacionais pra rodar cenários "e se": pra onde esse incêndio vai nas próximas seis horas se o vento mudar.</p>
@@ -78,22 +96,6 @@
               </video>
             </div>
             <figcaption class="foot"><span>O mesmo simulador, em produção</span><span>Alimentando os módulos de risco e resposta do Pantera</span></figcaption>
-          </figure>
-        </div>
-
-        <div class="row flip reveal">
-          <div class="copy">
-            <div class="label">Modelo acoplado fogo–atmosfera</div>
-            <h2>O fogo cria<br />o próprio clima</h2>
-            <p>Renderização 3D volumétrica da pluma piroconvectiva e dos downbursts gerados pelo modelo acoplado fogo-atmosfera do ForeFire, simulando o incêndio de Pedrógão Grande de 2017 em Portugal.</p>
-            <p>Figura 2 do <a href="https://doi.org/10.21105/joss.08680" target="_blank" rel="noopener">paper do projeto na JOSS</a>.</p>
-          </div>
-          <figure class="proof">
-            <div class="head"><span><b>ForeFire</b> — modelo acoplado fogo–atmosfera</span><span>Paper na JOSS, Fig. 2</span></div>
-            <div class="view">
-              <img src="/assets/images/projects/forefire-pyrocb.webp" alt="Renderização 3D volumétrica da pluma piroconvectiva e dos downbursts gerados pelo modelo acoplado fogo-atmosfera do ForeFire, simulando o incêndio de Pedrógão Grande de 2017 em Portugal." width="1200" height="677" loading="lazy">
-            </div>
-            <figcaption class="foot"><span>Pedrógão Grande, Portugal — 2017</span><span>O fogo cria seu próprio clima — modelado, não assumido</span></figcaption>
           </figure>
         </div>
 
@@ -161,6 +163,7 @@
   <script src="/assets/js/ember-atmo.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
   <script src="/assets/js/ember-motion.js"></script>
+  <script src="/assets/js/forefire-live.js" defer></script>
   <script src="/assets/js/lang-redirect.js" defer></script>
 </body>
 </html>

@@ -22,6 +22,9 @@ Estático puro, sem build de deploy. GitHub Pages serve o `main` direto da raiz.
 | `assets/css/projects.css` | CSS das páginas de projeto da edição standard, standalone |
 | `assets/js/ember-atmo.js` | fumaça/atmosfera em canvas da ember; respeita `prefers-reduced-motion` |
 | `assets/js/lang-redirect.js` | redireciona pro idioma do navegador |
+| `assets/js/forefire-live.js` | desenha o incêndio ao vivo da página do ForeFire sobre os tiles de satélite da Esri (carregados ao vivo, nunca salvos no repo — termos da Esri); começa quando o quadro aparece, pausa fora da tela, e com `prefers-reduced-motion` mostra o fogo já terminado |
+| `assets/forefire/` | o ForeFire de verdade em WebAssembly (`forefire.js` + `forefire.wasm`), `ostriconi.bin` (combustível + relevo de Ostriconi, Córsega), `live-core.js` (cenário e Rothermel) e `live-worker.js` (calcula cada fogo numa instância WASM nova, porque o ForeFire guarda a sessão em estado estático). Build do fork `antonio-leblanc/forefire`, branch `feat/wasm-on-dev` (commit `a466848`): `emcmake cmake -S . -B build-wasm -DCMAKE_BUILD_TYPE=Release && cmake --build build-wasm`, com emsdk 6.0.6, e copiar `bin/forefire.mjs` como `forefire.js` |
+| `_src/forefire-bake.py` | gera o `ostriconi.bin` a partir do ESA WorldCover 2021 e do AWS Terrain Tiles (precisa de `rasterio`); `preview` compara lugares candidatos. Mudou o lugar, muda também o `BBOX` em `live-core.js` e `forefire-live.js` |
 | `assets/fonts/` | Inter e JetBrains Mono (`.woff2`) da edição standard; a ember carrega Antonio, Archivo e JetBrains Mono do Google Fonts |
 | `assets/images/` | fotos e imagens de `projects/`, sem base64 no HTML; `og/*.jpg` é a imagem de compartilhamento da ember, `og-image.png` a da standard |
 | `CNAME` | domínio custom, gerenciado pelo GitHub Pages |
