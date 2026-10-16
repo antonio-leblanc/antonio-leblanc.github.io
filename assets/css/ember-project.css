@@ -259,7 +259,9 @@ main > .rows .row, main > .rows .row.flip { padding: 0 var(--gutter); }
 .egg:hover, .egg:focus-visible { opacity: 1; color: var(--gold); }
 
 /* simulação ao vivo do ForeFire (assets/js/forefire-live.js) */
-.proof .view.live { background: var(--night); }
+/* Pôster: um incêndio terminado da própria demo, visível enquanto o simulador
+   carrega ou se ele não roda no navegador. */
+.proof .view.live { background: var(--night) url(/assets/forefire/live-poster.webp) center / cover no-repeat; }
 .proof .view.live canvas { width: 100%; height: 100%; display: block; }
 .proof .foot [data-readout] { font-variant-numeric: tabular-nums; }
 .proof .view.live .attrib {

@@ -34,7 +34,7 @@
   let worker = null, run = null, next = null, waiting = false;
   let frame = 0, phase = 'idle', phaseAt = 0, visible = false, raf = 0, count = 0;
   let base = null, sat = null, satZoom = 0, land = null, seed = (Math.random() * 1e9) | 0;
-  let dpr = 1;
+  let dpr = 1, failed = false;
 
   function size() {
     const r = canvas.getBoundingClientRect();
@@ -139,6 +139,9 @@
 
   function draw(alpha = 1) {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
+    // Antes do primeiro incêndio chegar (ou se o simulador falhou), o canvas fica
+    // transparente e aparece o pôster do CSS: um incêndio já terminado.
+    if (failed || !run) { ctx.clearRect(0, 0, canvas.width, canvas.height); return; }
     ctx.fillStyle = '#070b08';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     if (base) ctx.drawImage(base, 0, 0);
@@ -287,12 +290,16 @@
         waiting = false;
         if (!run) begin(data); else next = data;
         if (visible) resume();
-      } else if (data.type === 'error') {
-        readout.textContent = T.fail;
-        console.warn('forefire-live:', data.message);
-      }
+      } else if (data.type === 'error') fail(data.message);
     };
-    worker.onerror = (e) => { readout.textContent = T.fail; console.warn('forefire-live:', e.message); };
+    worker.onerror = (e) => fail(e.message);
+  }
+
+  function fail(message) {
+    failed = true;
+    readout.textContent = T.fail;
+    console.warn('forefire-live:', message);
+    draw();
   }
 
   new ResizeObserver(size).observe(canvas);
