@@ -29,12 +29,17 @@
   const FPS = 14;           // passos de simulação por segundo de tela
   const HOLD = 2600;        // ms parado no fim antes do próximo
   const FADE = 700;
-  const ISO_EVERY = 10;     // uma isócrona a cada N passos (5 min)
+  const ISO_MAX = 6;        // no máximo tantas isócronas por incêndio
+
+  // Tempo de chegada, do carvão (cedo) à brasa clara (tarde): o chão que
+  // acabou de pegar fogo é o mais claro. Mesma escala da demo do ForeFire.
+  const ARRIVAL = [[42, 15, 46], [138, 28, 60], [226, 71, 12], [255, 166, 43]];
 
   let worker = null, run = null, next = null, waiting = false;
   let frame = 0, phase = 'idle', phaseAt = 0, visible = false, raf = 0, count = 0;
   let base = null, sat = null, satZoom = 0, land = null, seed = (Math.random() * 1e9) | 0;
   let dpr = 1, failed = false;
+  let burn = null, burnTo = -1, labelFont = 'monospace';
 
   function size() {
     const r = canvas.getBoundingClientRect();
@@ -43,6 +48,7 @@
     canvas.height = Math.round(r.height * dpr);
     if (canvas.width > 1000 && satZoom && satZoom < 16) loadImagery(16);
     base = paintBase();
+    burnTo = -1;
     draw();
   }
 
@@ -127,14 +133,70 @@
 
   // ---- fogo ----
 
-  function path(fronts, sx, sy, H) {
-    const p = new Path2D();
-    for (const f of fronts) {
-      p.moveTo(f[0] * sx, (H - f[1]) * sy);
-      for (let k = 2; k < f.length; k += 2) p.lineTo(f[k] * sx, (H - f[k + 1]) * sy);
-      p.closePath();
+  function rgb(stops, t) {
+    const x = Math.max(0, Math.min(1, t)) * (stops.length - 1);
+    const i = Math.min(stops.length - 2, Math.floor(x)), f = x - i;
+    return `rgb(${stops[i].map((v, k) => Math.round(v + (stops[i + 1][k] - v) * f))})`;
+  }
+
+  function clock(s) {
+    const min = Math.round(s / 60);
+    return min >= 60 ? `${Math.floor(min / 60)} h ${String(min % 60).padStart(2, '0')}` : `${min} min`;
+  }
+
+  // Uma vez por incêndio: o caminho de cada frame em metros do domínio, a
+  // duração (o worker entrega o incêndio inteiro, então a escala de cor já
+  // nasce certa) e as isócronas num intervalo redondo.
+  function prepare(r) {
+    r.paths = r.frames.map((f) => {
+      const p = new Path2D();
+      for (const c of f.fronts) {
+        p.moveTo(c[0], c[1]);
+        for (let k = 2; k < c.length; k += 2) p.lineTo(c[k], c[k + 1]);
+        p.closePath();
+      }
+      return p;
+    });
+    r.tEnd = Math.max(1, r.frames[r.frames.length - 1].t);
+    const every = 60 * ([5, 10, 15, 30, 60, 120].find((m) => r.tEnd / (60 * m) <= ISO_MAX) || 240);
+    r.isos = [];
+    for (let t = every; t < r.tEnd; t += every) {
+      const k = r.frames.findIndex((f) => f.t >= t);
+      if (k < 0 || !r.frames[k].fronts.length) continue;
+      // Rótulo no nó mais ao norte, que raramente fica embaixo de outra linha.
+      let top = [0, -Infinity];
+      for (const c of r.frames[k].fronts)
+        for (let i = 0; i < c.length; i += 2) if (c[i + 1] > top[1]) top = [c[i], c[i + 1]];
+      r.isos.push({ frame: k, at: top, text: clock(t) });
     }
-    return p;
+    return r;
+  }
+
+  // De metros do domínio pra pixels do canvas (o y do domínio cresce pra cima).
+  function inMetres(c, sx, sy, H) { c.setTransform(sx, 0, 0, -sy, 0, H * sy); }
+
+  // Área queimada colorida pelo frame em que cada ponto pegou fogo, numa
+  // camada à parte. Cada frame novo é pintado por baixo do que já está lá
+  // (destination-over), então cada ponto guarda a cor do primeiro frame que o
+  // conteve, e a camada inteira entra com uma transparência só.
+  function paintBurn(sx, sy, H) {
+    if (!burn || burn.width !== canvas.width || burn.height !== canvas.height) {
+      burn = document.createElement('canvas');
+      burn.width = canvas.width; burn.height = canvas.height;
+      burnTo = -1;
+    }
+    const b = burn.getContext('2d');
+    if (frame < burnTo || burnTo < 0) { b.setTransform(1, 0, 0, 1, 0, 0); b.clearRect(0, 0, burn.width, burn.height); burnTo = -1; }
+    if (burnTo >= frame) return;
+    b.save();
+    inMetres(b, sx, sy, H);
+    b.globalCompositeOperation = 'destination-over';
+    for (let k = burnTo + 1; k <= frame; k++) {
+      b.fillStyle = rgb(ARRIVAL, run.frames[k].t / run.tEnd);
+      b.fill(run.paths[k], 'evenodd');
+    }
+    b.restore();
+    burnTo = frame;
   }
 
   function draw(alpha = 1) {
@@ -145,42 +207,42 @@
     ctx.fillStyle = '#070b08';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     if (base) ctx.drawImage(base, 0, 0);
-    if (!run) return;
     ctx.globalAlpha = alpha;
 
     const { frames, W, H } = run;
     const sx = canvas.width / W, sy = canvas.height / H;
     const cur = frames[Math.min(frame, frames.length - 1)];
     if (!cur) { ctx.globalAlpha = 1; return; }
+    const now = run.paths[frame];
 
-    // Área queimada.
-    const now = path(cur.fronts, sx, sy, H);
-    ctx.fillStyle = 'rgba(22, 9, 4, .72)';
-    ctx.fill(now, 'evenodd');
+    // Área queimada pelo tempo de chegada.
+    paintBurn(sx, sy, H);
+    ctx.globalAlpha = 0.62 * alpha;
+    ctx.drawImage(burn, 0, 0);
+    ctx.globalAlpha = alpha;
 
-    // Isócronas: onde a frente estava a cada 5 min, do ouro (recente) pra
-    // brasa escura (antigo).
+    // Isócronas: onde a frente estava em cada horário redondo.
+    ctx.save();
+    inMetres(ctx, sx, sy, H);
     ctx.lineJoin = 'round';
-    for (let k = ISO_EVERY; k < frame; k += ISO_EVERY) {
-      const age = (frame - k) / Math.max(1, frame);
-      ctx.strokeStyle = `rgba(${Math.round(242 - 110 * age)}, ${Math.round(160 - 115 * age)}, ${Math.round(70 - 45 * age)}, ${0.6 - 0.3 * age})`;
-      ctx.lineWidth = 1 * dpr;
-      ctx.stroke(path(frames[k - 1].fronts, sx, sy, H));
-    }
+    ctx.lineWidth = dpr / sx;
+    ctx.strokeStyle = 'rgba(255, 255, 255, .5)';
+    for (const iso of run.isos) if (iso.frame <= frame) ctx.stroke(run.paths[iso.frame]);
 
     // Frente ativa com brilho.
-    ctx.save();
     ctx.globalCompositeOperation = 'lighter';
     ctx.shadowColor = 'rgba(242, 106, 27, .9)';
     ctx.shadowBlur = 10 * dpr;
     ctx.strokeStyle = 'rgba(242, 106, 27, .95)';
-    ctx.lineWidth = 2 * dpr;
+    ctx.lineWidth = (2 * dpr) / sx;
     ctx.stroke(now);
     ctx.shadowBlur = 0;
     ctx.strokeStyle = 'rgba(255, 214, 140, .8)';
-    ctx.lineWidth = 0.8 * dpr;
+    ctx.lineWidth = (0.8 * dpr) / sx;
     ctx.stroke(now);
     ctx.restore();
+
+    isoLabels(sx, sy, H);
 
     // Ponto de ignição.
     const [ix, iy] = run.sc.ignition;
@@ -194,6 +256,38 @@
 
     windRose(cur);
     ctx.globalAlpha = 1;
+  }
+
+  // Horário de cada isócrona, da mais recente pra mais antiga, sem rótulo em
+  // cima de outro nem da rosa dos ventos. Quando o fogo encosta na borda,
+  // linhas seguidas dividem o ponto mais ao norte e só a mais recente fica
+  // com o rótulo.
+  function isoLabels(sx, sy, H) {
+    const size = 10.5 * dpr, pad = 6 * dpr;
+    const rose = [canvas.width - 52 * dpr, 52 * dpr];
+    ctx.save();
+    ctx.font = `500 ${size}px ${labelFont}`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.lineJoin = 'round';
+    ctx.lineWidth = 3 * dpr;
+    ctx.strokeStyle = 'rgba(7, 11, 8, .85)';
+    ctx.fillStyle = 'rgba(237, 240, 228, .95)';
+    const placed = [];
+    for (let i = run.isos.length - 1; i >= 0; i--) {
+      const iso = run.isos[i];
+      if (iso.frame > frame) continue;
+      const w = ctx.measureText(iso.text).width;
+      const x = Math.max(w / 2 + pad, Math.min(canvas.width - w / 2 - pad, iso.at[0] * sx));
+      let y = (H - iso.at[1]) * sy - 4 * dpr;
+      if (y < size + pad) y += size + 8 * dpr; // colado no topo: rótulo por dentro
+      if (x + w / 2 > rose[0] && y - size < rose[1]) continue;
+      if (placed.some(([px, py, pw]) => Math.abs(px - x) < (pw + w) / 2 + 4 * dpr && Math.abs(py - y) < size + 2 * dpr)) continue;
+      placed.push([x, y, w]);
+      ctx.strokeText(iso.text, x, y);
+      ctx.fillText(iso.text, x, y);
+    }
+    ctx.restore();
   }
 
   function windRose(cur) {
@@ -228,9 +322,8 @@
     if (!run) return;
     const cur = run.frames[Math.min(frame, run.frames.length - 1)];
     if (!cur) return;
-    const min = Math.round(cur.t / 60);
     const ha = cur.area / 1e4;
-    const t = min >= 60 ? `${Math.floor(min / 60)} h ${String(min % 60).padStart(2, '0')}` : `${min} min`;
+    const t = clock(cur.t);
     const ended = phase === 'hold' && T.end[run.end] ? ` · ${T.end[run.end]}` : '';
     readout.textContent = `t ${t} · ${ha.toFixed(ha < 10 ? 1 : 0)} ha · ${T.wind} ${Math.round(cur.speed * 3.6)} km/h${ended}`;
     counter.textContent = `${T.fire} ${count}`;
@@ -245,7 +338,8 @@
   }
 
   function begin(r) {
-    run = r; count++;
+    run = prepare(r); count++;
+    burnTo = -1;
     frame = still ? r.frames.length - 1 : 0;
     phase = still ? 'hold' : 'play';
     phaseAt = performance.now();
@@ -277,6 +371,7 @@
 
   function boot() {
     readout.textContent = T.loading;
+    labelFont = getComputedStyle(readout).fontFamily || labelFont;
     loadImagery(canvas.width > 1000 ? 16 : 15);
     fetch('/assets/forefire/ostriconi.bin').then((r) => r.arrayBuffer()).then((b) => {
       const n = NX * NY;
